@@ -9,9 +9,9 @@
 
 .site-footer {
   background: $dark;
-  color: #fff;
+  color: $white;
   padding-bottom: 0.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid $footer-line;
 }
 
 .footer-inner {
@@ -29,7 +29,7 @@
 }
 
 .footer-nav .nav-sep {
-  color: rgba(255, 255, 255, 0.4);
+  color: $footer-sep;
   font-size: 0.72rem;
   font-weight: 400;
   line-height: 1;
@@ -53,7 +53,7 @@
 .copyright {
   margin-left: auto;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.86);
+  color: $copyright;
 }
 
 .to-top {
@@ -63,12 +63,12 @@
   height: 2.6rem;
   border: 1px solid $pink;
   background: transparent;
-  color: #fff;
+  color: $white;
   cursor: pointer;
 }
 
 .to-top:hover {
-  background: rgba(255, 79, 163, 0.14);
+  background: $pink-wash;
 }
 
 .arrow-icon {
@@ -77,7 +77,7 @@
 }
 
 .to-top .arrow-icon {
-  color: #fff;
+  color: $white;
 }
 
 @media (max-width: 800px) {

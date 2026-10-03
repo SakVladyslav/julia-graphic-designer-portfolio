@@ -46,11 +46,11 @@
   inset: -50%;
   background: radial-gradient(
     circle closest-side,
-    rgba(255, 79, 163, 0.75) 0%,
-    rgba(242, 66, 129, 0.5) 28%,
-    rgba(255, 79, 163, 0.22) 50%,
-    rgba(255, 79, 163, 0.06) 76%,
-    rgba(255, 79, 163, 0) 100%
+    $hero-glow-core 0%,
+    $hero-glow-mid 28%,
+    $hero-glow-soft 50%,
+    $hero-glow-faint 76%,
+    $hero-glow-clear 100%
   );
   pointer-events: none;
 }
@@ -192,8 +192,8 @@
   place-items: center;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #e3e3e3;
-  color: #4a4a4a;
+  background: $media-bg;
+  color: $media-text;
 }
 
 .project-media span {
@@ -215,20 +215,20 @@
 .project-media[data-shape="0"]::before {
   width: 46%;
   height: 64%;
-  border: 1px solid rgba(20, 20, 20, 0.16);
+  border: 1px solid $muted-line;
   border-radius: 50%;
 }
 
 .project-media[data-shape="1"]::before {
   width: 34%;
   height: 48%;
-  border: 1px solid rgba(20, 20, 20, 0.16);
+  border: 1px solid $muted-line;
   transform: rotate(14deg);
 }
 
 .project-media[data-shape="2"]::before,
 .project-media[data-shape="2"]::after {
-  border: 1px solid rgba(20, 20, 20, 0.15);
+  border: 1px solid $media-stroke;
   border-radius: 50%;
 }
 
@@ -247,7 +247,7 @@
 .project-media[data-shape="3"]::before {
   width: 32%;
   aspect-ratio: 1;
-  background: rgba(20, 20, 20, 0.06);
+  background: $media-fill;
   transform: rotate(45deg);
 }
 
@@ -266,17 +266,17 @@
 }
 
 .tags li {
-  border: 1px solid #c8c8c8;
+  border: 1px solid $tag-border;
   border-radius: 999px;
   padding: 0.28rem 0.72rem;
   font-size: 0.75rem;
   line-height: 1.2;
-  color: #242424;
+  color: $tag-text;
 }
 
 .contacts {
   background: $dark;
-  color: #fff;
+  color: $white;
   padding: 5.25rem 0 3.25rem;
   scroll-margin-top: 5.5rem;
 }
@@ -310,7 +310,7 @@
 }
 
 .contact-main {
-  color: #fff;
+  color: $white;
   font-size: clamp(1.65rem, 3vw, 2.5rem);
   font-weight: 500;
   letter-spacing: -0.03em;
@@ -354,7 +354,7 @@ a.contact-main:hover {
   padding: 1rem 1.15rem;
   border: 1px solid $pink;
   background: transparent;
-  color: #fff;
+  color: $white;
   cursor: pointer;
   font-size: 0.75rem;
   font-weight: 500;
@@ -379,7 +379,7 @@ a.contact-main:hover {
 }
 
 .contact-actions button:hover {
-  background: rgba(255, 79, 163, 0.14);
+  background: $pink-wash;
 }
 
 .arrow-icon {
