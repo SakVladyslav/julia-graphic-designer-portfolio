@@ -1,15 +1,15 @@
-import "./Logo.scss"
+import "./Logo.scss";
 
 type LogoProps = {
-  tone?: "header"
-}
+  tone?: "header" | "footer";
+};
 
 export default function Logo({ tone }: LogoProps) {
-  const className = tone === "header" ? "logo logo--header" : "logo"
+  const className = tone ? `logo logo--${tone}` : "logo";
 
   return (
     <a className={className} href="#top">
       <span className="logo-bracket">[</span>SMCHK<span className="logo-bracket">]</span>
     </a>
-  )
+  );
 }

@@ -1,10 +1,25 @@
 // Design tokens: spacing (margins, paddings, gaps)
-// Values taken from Header / LandingPage Figma-matched layout.
 
 $header-padding-y: 32px;
 $header-padding-x: 88px;
 $nav-gap: 24px;
+
 $hero-padding-top: 69px;
 $hero-padding-bottom: 115px;
 $hero-role-margin-left: 271px;
+
 $section-heading-gap: 2px;
+$section-inline-scaled: 6.111111vw;
+
+$project-row-gap: 64px;
+$project-card-gap: 20px;
+$project-copy-gap: 16px;
+$project-tag-gap: 8px;
+$project-tag-padding-y: 4px;
+$project-tag-padding-x: 12px;
+
+$contacts-padding-top: 128px;
+$contacts-padding-bottom: 168px;
+$contacts-heading-gap: 40px;
+$contact-inline-gap: 4px;
+$contacts-panel-offset: 20px;
