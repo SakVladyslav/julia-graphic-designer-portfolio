@@ -1,46 +1,17 @@
 @use "../../styles/colors" as *;
+@use "../../styles/typography" as *;
 @use "../../styles/spacing" as *;
-@use "../../styles/sizes" as *;
-
-.wrap {
-  width: min(#{$max-width}, calc(100% - 3.5rem));
-  margin-inline: auto;
-}
 
 .site-header {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 20;
-  /* Transparent at rest so the hero blur, which already extends over this
+  /* Transparent so the hero blur, which already extends over this
      bar, stays visible. Logo and nav live in this stacking context, above
-     the glow. The bar fills in once the page scrolls. */
+     the glow. */
   background-color: transparent;
   color: $text;
   text-transform: uppercase;
-  padding: $header-padding-y $header-padding-x;
-  animation: site-header-fill linear both;
-  animation-timeline: scroll(root);
-  animation-range: 0 24px;
-}
-
-@keyframes site-header-fill {
-  from {
-    background-color: transparent;
-  }
-
-  to {
-    background-color: $bg;
-  }
-}
-
-@supports not (animation-timeline: scroll()) {
-  .site-header {
-    animation: none;
-  }
-}
-
-.site-header.is-stuck {
-  background-color: $bg;
+  padding: $header-padding-y 0;
 }
 
 .header-inner {
@@ -54,7 +25,7 @@
   align-items: center;
   gap: $nav-gap;
   color: $text;
-  font-family: "Min Sans", sans-serif;
+  font-family: $font-family;
   font-size: $font-size-base;
   font-weight: 500;
   letter-spacing: $letter-spacing-nav;
@@ -68,8 +39,6 @@
   font-weight: 500;
   letter-spacing: $letter-spacing-nav;
   line-height: 1;
-  pointer-events: none;
-  user-select: none;
 }
 
 .nav a {
@@ -82,16 +51,12 @@
 }
 
 .nav a:hover {
-  color: $pink;
+  color: $accent-hover;
 }
 
 @media (max-width: 800px) {
-  .wrap {
-    width: min(#{$max-width}, calc(100% - 2rem));
-  }
-
   .site-header {
-    padding: 0.85rem 1rem;
+    padding: 0.85rem 0;
   }
 
   .header-inner {

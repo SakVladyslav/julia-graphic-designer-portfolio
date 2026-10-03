@@ -1,0 +1,33 @@
+---
+description: SCSS design token files and @use order
+globs: "**/*.{scss,sass}"
+alwaysApply: false
+---
+
+# SCSS tokens
+
+Token partials live in `src/styles/`:
+
+| File | Responsibility |
+|---|---|
+| `_colors.scss` | surfaces, text, accent |
+| `_typography.scss` | font-family, font-size, letter-spacing, line-height |
+| `_spacing.scss` | margins, paddings, gaps |
+| `_sizes.scss` | widths, heights, borders, radii, media geometry |
+
+## `@use` order in component/page SCSS
+
+1. `sass:*` built-ins (only if needed)
+2. `colors`
+3. `typography`
+4. `spacing`
+5. `sizes`
+
+Omit unused modules. Prefer `as *` to match the project.
+
+```scss
+@use "../../styles/colors" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/spacing" as *;
+@use "../../styles/sizes" as *;
+```

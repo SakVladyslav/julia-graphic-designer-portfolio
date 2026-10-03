@@ -1,17 +1,6 @@
 @use "styles/colors" as *;
+@use "styles/typography" as *;
 @use "styles/spacing" as *;
-@use "styles/sizes" as *;
-
-:root {
-  --bg: #{$bg};
-  --ink: #{$ink};
-  --pink: #{$pink};
-  --pink-ink: #{$pink-ink};
-  --dark: #{$dark};
-  --muted-line: #{$muted-line};
-  --serif: "Min Sans";
-  --max: #{$max-width};
-}
 
 *,
 *::before,
@@ -26,8 +15,8 @@ html {
 body {
   margin: 0;
   background: $bg;
-  color: $ink;
-  font-family: "Min Sans";
+  color: $text;
+  font-family: $font-family;
   font-size: $font-size-base;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
@@ -52,7 +41,36 @@ ul {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid $pink;
+  outline: 2px solid $accent;
+  outline-offset: 3px;
+}
+
+/* Skip target: avoid a full-page focus ring after "Skip to content". */
+#main-content:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: absolute;
+  left: $header-padding-x;
+  top: $header-padding-y;
+  z-index: 1000;
+  padding: 0.75rem 1rem;
+  background: $surface-inverse;
+  color: $paper;
+  font-family: $font-family;
+  font-size: $font-size-base;
+  font-weight: 500;
+  letter-spacing: $letter-spacing-nav;
+  text-decoration: none;
+  text-transform: uppercase;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid $accent;
   outline-offset: 3px;
 }
 
@@ -68,8 +86,27 @@ button:focus-visible {
   border: 0;
 }
 
+.container {
+  width: 100%;
+  margin-inline: auto;
+  padding-left: $header-padding-x;
+  padding-right: $header-padding-x;
+  overflow: visible;
+}
+
+@media (max-width: 1439px) {
+  .container {
+    padding-left: $section-inline-scaled;
+    padding-right: $section-inline-scaled;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .skip-link {
+    transition: none;
   }
 }

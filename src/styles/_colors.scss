@@ -1,27 +1,27 @@
 // Design tokens: colors
-// Values taken from :root and repeated brand/text literals in components.
+// Prefer semantic names ($accent, $surface-inverse) over raw hue labels.
 
+// Surfaces
 $bg: #f4f4f4;
-$ink: #141414;
-$pink: #ff4fa3;
-$pink-ink: #c2186a;
-$dark: #141414;
-$muted-line: rgba(20, 20, 20, 0.16);
+$paper: #f3f3f4;
+$surface-inverse: #1c1c1c;
+
+// Text
 $text: #1c1c1c;
-$brand-pink: #f24281;
-$white: #fff;
-$footer-line: rgba(255, 255, 255, 0.1);
-$footer-sep: rgba(255, 255, 255, 0.4);
-$copyright: rgba(255, 255, 255, 0.86);
-$pink-wash: rgba(255, 79, 163, 0.14);
+
+// Accent (Figma main)
+$accent: #f24281;
+$accent-hover: #ff4fa3;
+$accent-wash: rgba(255, 79, 163, 0.14);
+
+// Inverse chrome (footer / dark bands)
+$footer-line: #5d5d5d;
+$footer-sep: rgba(243, 243, 244, 0.3);
+$copyright: rgba(243, 243, 244, 0.7);
+
+// Hero glow
 $hero-glow-core: rgba(255, 79, 163, 0.75);
 $hero-glow-mid: rgba(242, 66, 129, 0.5);
 $hero-glow-soft: rgba(255, 79, 163, 0.22);
 $hero-glow-faint: rgba(255, 79, 163, 0.06);
 $hero-glow-clear: rgba(255, 79, 163, 0);
-$media-bg: #e3e3e3;
-$media-text: #4a4a4a;
-$media-stroke: rgba(20, 20, 20, 0.15);
-$media-fill: rgba(20, 20, 20, 0.06);
-$tag-border: #c8c8c8;
-$tag-text: #242424;

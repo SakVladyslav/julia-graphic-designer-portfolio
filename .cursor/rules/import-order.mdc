@@ -1,0 +1,40 @@
+---
+description: Import group order for TypeScript/TSX files
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Import order
+
+Group imports in this order. Separate **every present group** with one blank line. Omit empty groups.
+
+1. **External packages** — `react`, `react-dom`, libraries
+2. **Components** — `components/`, and relative siblings (`./ContactArrow`, `../Logo/Logo`)
+3. **Pages** — `pages/`
+4. **Constants** — `constants/` (including `import type` from constants)
+5. **Utils** — `utils/`
+6. **Assets** — `assets/`, image/svg URL imports
+7. **Styles** — `*.scss` (always last)
+
+## Example
+
+```ts
+import { Fragment } from "react";
+
+import Contacts from "../../components/Contacts/Contacts";
+import ProjectCard from "../../components/ProjectCard/ProjectCard";
+
+import { projects } from "../../constants/projects";
+
+import { formatSectionCount } from "../../utils/formatSectionCount";
+
+import heroArrowUrl from "../../assets/hero-arrow.svg";
+
+import "./LandingPage.scss";
+```
+
+## Notes
+
+- Semicolons required (Prettier `semi: true`).
+- Within a group, keep a stable alphabetical order when practical.
+- Do not mix groups on adjacent lines without a blank line.

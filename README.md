@@ -1,32 +1,54 @@
-# React + TypeScript + Vite
+# Julia Samchuk — portfolio site
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio SPA for graphic designer Julia Samchuk.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 + TypeScript (strict)
+- Vite 8
+- Sass design tokens (`src/styles/`)
+- Oxlint + Prettier
+- Vitest + Testing Library
 
-## React Compiler
+## Scripts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Command                           | Purpose                                  |
+| --------------------------------- | ---------------------------------------- |
+| `npm run dev`                     | Local development server                 |
+| `npm run build`                   | Typecheck + production build             |
+| `npm run preview`                 | Preview production build                 |
+| `npm run lint`                    | Oxlint                                   |
+| `npm run format`                  | Prettier write                           |
+| `npm run format:check`            | Prettier check                           |
+| `npm test`                        | Unit / smoke tests                       |
+| `npm run optimize:images`         | Convert `public/projects` PNG/JPG → WebP |
+| `npm run optimize:images:replace` | Same, then delete originals              |
 
-## Expanding the Oxlint configuration
+## Project structure
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+src/
+  components/     # UI pieces (Header, Contacts, ProjectCard, …)
+  constants/      # Content data (projects, contacts, navigation)
+  pages/          # Page composition (LandingPage)
+  styles/         # Design tokens (colors, typography, spacing, sizes)
+  utils/          # Pure helpers
+  test/           # Test setup
+public/
+  fonts/          # Self-hosted Min Sans
+  projects/       # Optimized project media (WebP + SVG)
+scripts/
+  optimize-images.mjs
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Content editing
+
+- Projects → `src/constants/projects.ts`
+- Contacts / social stubs → `src/constants/contacts.ts` (replace `href: null` with real URLs)
+- Nav labels / anchors → `src/constants/navigation.ts`
+
+## Conventions
+
+- Import order: see `.cursor/rules/import-order.mdc`
+- SCSS token `@use` order: see `.cursor/rules/scss-tokens.mdc`
+- Prettier: double quotes, semicolons, trailing commas

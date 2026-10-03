@@ -1,16 +1,27 @@
-// Design tokens: sizes (font sizes, widths, heights, letter-spacing)
-// Values taken from :root --max and named type/layout sizes in components.
+// Design tokens: sizes (widths, heights, borders, radii, media geometry)
 
-$max-width: 1120px;
-$font-size-base: 16px;
-$font-size-logo: 22px;
-$font-size-hero: 160px;
-$font-size-role: 84px;
-$font-size-section: 56px;
-$font-size-count: 20px;
-$letter-spacing-nav: 0.64px;
-$letter-spacing-hero: -4.8px;
-$letter-spacing-role: -1.68px;
 $hero-title-width: 1076px;
 $hero-glow-size: 400px;
 $hero-arrow-size: 72px;
+
+$project-card-width: 616px;
+$project-media-height: 482px;
+$project-tag-radius: 999px;
+$project-tag-border-width: 1px;
+
+$lovespace-photo-height: 770px;
+$lovespace-photo-top: -144px;
+$lovespace-ring-inset-x: 27.08%;
+$lovespace-ring-aspect-width: 374;
+$lovespace-ring-aspect-height: 356;
+
+$molfaria-window-width: 131.92%;
+$molfaria-window-height: 105.37%;
+$molfaria-window-left: -16.02%;
+$molfaria-window-top: 0.04%;
+
+$contacts-panel-width: 508px;
+$contacts-panel-height: 190px;
+
+$border-strong: 2px;
+$to-top-size: 40px;
