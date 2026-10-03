@@ -1,0 +1,35 @@
+@use "../../styles/colors" as *;
+@use "../../styles/sizes" as *;
+
+.logo {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-size: $font-size-logo;
+}
+
+.logo-bracket {
+  color: $pink;
+}
+
+.logo:hover {
+  color: $pink;
+}
+
+.logo--header {
+  color: $text;
+  font-family: "Min Sans", sans-serif;
+  font-weight: 500;
+  font-size: $font-size-logo;
+  letter-spacing: normal;
+  text-transform: uppercase;
+}
+
+.logo--header .logo-bracket {
+  color: $brand-pink;
+}
+
+.logo--header:hover {
+  color: $text;
+}
