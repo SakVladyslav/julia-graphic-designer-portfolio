@@ -2,6 +2,8 @@
 
 Personal portfolio SPA for graphic designer Julia Samchuk.
 
+**Live site:** https://sakvladyslav.github.io/julia-graphic-designer-portfolio/
+
 ## Stack
 
 - React 19 + TypeScript (strict)
@@ -46,6 +48,11 @@ scripts/
 - Projects → `src/constants/projects.ts`
 - Contacts / social stubs → `src/constants/contacts.ts` (replace `href: null` with real URLs)
 - Nav labels / anchors → `src/constants/navigation.ts`
+
+## Deploy
+
+Pushes to `master` build and publish via GitHub Actions → GitHub Pages  
+(`base`: `/julia-graphic-designer-portfolio/`).
 
 ## Conventions
 

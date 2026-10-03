@@ -1,3 +1,5 @@
+import { withBaseUrl } from "../utils/withBaseUrl";
+
 type LovespaceImage = {
   kind: "lovespace";
   photo: string;
@@ -32,13 +34,13 @@ export const projects: readonly Project[] = [
     tags: ["visual identity", "rebranding"],
     image: {
       kind: "lovespace",
-      photo: "/projects/lovespace-photo.webp",
+      photo: withBaseUrl("projects/lovespace-photo.webp"),
       photoWidth: 683,
       photoHeight: 1024,
-      texture: "/projects/lovespace-texture.webp",
+      texture: withBaseUrl("projects/lovespace-texture.webp"),
       textureWidth: 900,
       textureHeight: 900,
-      ring: "/projects/lovespace-ring.svg",
+      ring: withBaseUrl("projects/lovespace-ring.svg"),
       ringWidth: 374,
       ringHeight: 356,
     },
@@ -49,7 +51,7 @@ export const projects: readonly Project[] = [
     tags: ["branding", "concept"],
     image: {
       kind: "offset",
-      src: "/projects/molfaria-window.webp",
+      src: withBaseUrl("projects/molfaria-window.webp"),
       width: 1600,
       height: 1000,
     },
@@ -60,7 +62,7 @@ export const projects: readonly Project[] = [
     tags: ["branding", "concept"],
     image: {
       kind: "cover",
-      src: "/projects/amaryllis.webp",
+      src: withBaseUrl("projects/amaryllis.webp"),
       width: 1600,
       height: 1252,
     },
@@ -71,7 +73,7 @@ export const projects: readonly Project[] = [
     tags: ["branding", "concept"],
     image: {
       kind: "cover",
-      src: "/projects/molfaria-budova.webp",
+      src: withBaseUrl("projects/molfaria-budova.webp"),
       width: 825,
       height: 1024,
     },

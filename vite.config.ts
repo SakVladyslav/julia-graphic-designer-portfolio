@@ -3,6 +3,7 @@ import { defineConfig } from "vitest/config";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/julia-graphic-designer-portfolio/",
   plugins: [react()],
   test: {
     environment: "jsdom",
@@ -10,3 +11,4 @@ export default defineConfig({
     css: true,
   },
 });
+
