@@ -1,3 +1,14 @@
+:root {
+  --bg: #f4f4f4;
+  --ink: #141414;
+  --pink: #ff4fa3;
+  --pink-ink: #c2186a;
+  --dark: #141414;
+  --muted-line: rgba(20, 20, 20, 0.16);
+  --serif: "Min Sans";
+  --max: 1120px;
+}
+
 *,
 *::before,
 *::after {
@@ -12,7 +23,7 @@ body {
   margin: 0;
   background: #f4f4f4;
   color: #141414;
-  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  font-family: "Min Sans";
   font-size: 16px;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
