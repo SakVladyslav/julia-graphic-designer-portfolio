@@ -1,12 +1,16 @@
+@use "styles/colors" as *;
+@use "styles/spacing" as *;
+@use "styles/sizes" as *;
+
 :root {
-  --bg: #f4f4f4;
-  --ink: #141414;
-  --pink: #ff4fa3;
-  --pink-ink: #c2186a;
-  --dark: #141414;
-  --muted-line: rgba(20, 20, 20, 0.16);
+  --bg: #{$bg};
+  --ink: #{$ink};
+  --pink: #{$pink};
+  --pink-ink: #{$pink-ink};
+  --dark: #{$dark};
+  --muted-line: #{$muted-line};
   --serif: "Min Sans";
-  --max: 1120px;
+  --max: #{$max-width};
 }
 
 *,
@@ -21,10 +25,10 @@ html {
 
 body {
   margin: 0;
-  background: #f4f4f4;
-  color: #141414;
+  background: $bg;
+  color: $ink;
   font-family: "Min Sans";
-  font-size: 16px;
+  font-size: $font-size-base;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
 }
@@ -48,7 +52,7 @@ ul {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid #ff4fa3;
+  outline: 2px solid $pink;
   outline-offset: 3px;
 }
 

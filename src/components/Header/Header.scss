@@ -1,5 +1,9 @@
+@use "../../styles/colors" as *;
+@use "../../styles/spacing" as *;
+@use "../../styles/sizes" as *;
+
 .wrap {
-  width: min(var(--max), calc(100% - 3.5rem));
+  width: min(#{$max-width}, calc(100% - 3.5rem));
   margin-inline: auto;
 }
 
@@ -11,9 +15,9 @@
      bar, stays visible. Logo and nav live in this stacking context, above
      the glow. The bar fills in once the page scrolls. */
   background-color: transparent;
-  color: #1c1c1c;
+  color: $text;
   text-transform: uppercase;
-  padding: 32px 88px;
+  padding: $header-padding-y $header-padding-x;
   animation: site-header-fill linear both;
   animation-timeline: scroll(root);
   animation-range: 0 24px;
@@ -25,7 +29,7 @@
   }
 
   to {
-    background-color: var(--bg);
+    background-color: $bg;
   }
 }
 
@@ -36,7 +40,7 @@
 }
 
 .site-header.is-stuck {
-  background-color: var(--bg);
+  background-color: $bg;
 }
 
 .header-inner {
@@ -48,21 +52,21 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: 24px;
-  color: #1c1c1c;
+  gap: $nav-gap;
+  color: $text;
   font-family: "Min Sans", sans-serif;
-  font-size: 16px;
+  font-size: $font-size-base;
   font-weight: 500;
-  letter-spacing: 0.64px;
+  letter-spacing: $letter-spacing-nav;
   text-transform: uppercase;
 }
 
 .nav .nav-sep {
-  color: #1c1c1c;
+  color: $text;
   opacity: 0.2;
-  font-size: 16px;
+  font-size: $font-size-base;
   font-weight: 500;
-  letter-spacing: 0.64px;
+  letter-spacing: $letter-spacing-nav;
   line-height: 1;
   pointer-events: none;
   user-select: none;
@@ -71,19 +75,19 @@
 .nav a {
   color: inherit;
   text-decoration: none;
-  font-size: 16px;
+  font-size: $font-size-base;
   font-weight: 500;
-  letter-spacing: 0.64px;
+  letter-spacing: $letter-spacing-nav;
   text-transform: uppercase;
 }
 
 .nav a:hover {
-  color: var(--pink);
+  color: $pink;
 }
 
 @media (max-width: 800px) {
   .wrap {
-    width: min(var(--max), calc(100% - 2rem));
+    width: min(#{$max-width}, calc(100% - 2rem));
   }
 
   .site-header {

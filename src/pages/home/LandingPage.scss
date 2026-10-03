@@ -1,5 +1,9 @@
+@use "../../styles/colors" as *;
+@use "../../styles/spacing" as *;
+@use "../../styles/sizes" as *;
+
 .wrap {
-  width: min(var(--max), calc(100% - 3.5rem));
+  width: min(#{$max-width}, calc(100% - 3.5rem));
   margin-inline: auto;
 }
 
@@ -11,7 +15,7 @@
 
 .hero-glow-anchor {
   position: absolute;
-  top: calc(-1 * (32px + 32px + 22px * 1.5));
+  top: calc(-1 * (#{$header-padding-y} + #{$header-padding-y} + 22px * 1.5));
   right: 0;
   bottom: 0;
   left: 0;
@@ -23,7 +27,7 @@
 .hero-block {
   position: relative;
   z-index: 1;
-  padding: 69px 0 115px;
+  padding: $hero-padding-top 0 $hero-padding-bottom;
 }
 
 .hero-glow {
@@ -31,8 +35,8 @@
   z-index: 0;
   top: 121px;
   right: calc(100% - 1440px + 116px);
-  width: 400px;
-  height: 400px;
+  width: $hero-glow-size;
+  height: $hero-glow-size;
   pointer-events: none;
 }
 
@@ -58,16 +62,16 @@
   font-family: "Min Sans", sans-serif;
   font-weight: 500;
   line-height: 1;
-  color: #1c1c1c;
+  color: $text;
   white-space: nowrap;
 }
 
 .hero h1 {
-  width: 1076px;
-  margin-left: 88px;
-  font-size: 160px;
+  width: $hero-title-width;
+  margin-left: $header-padding-x;
+  font-size: $font-size-hero;
   line-height: 1;
-  letter-spacing: -4.8px;
+  letter-spacing: $letter-spacing-hero;
   text-align: center;
 }
 
@@ -76,20 +80,20 @@
   z-index: 1;
   top: 394px;
   left: 304px;
-  width: 72px;
-  height: 72px;
-  color: #f24281;
+  width: $hero-arrow-size;
+  height: $hero-arrow-size;
+  color: $brand-pink;
   pointer-events: none;
 }
 
 .role {
-  width: 1076px;
+  width: $hero-title-width;
   margin-top: 0;
-  margin-left: 271px;
+  margin-left: $hero-role-margin-left;
   text-align: right;
-  font-size: 84px;
+  font-size: $font-size-role;
   line-height: 1;
-  letter-spacing: -1.68px;
+  letter-spacing: $letter-spacing-role;
 }
 
 @media (max-width: 1439px) {
@@ -131,27 +135,27 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 2px;
+  gap: $section-heading-gap;
   margin-top: 0;
-  margin-left: 88px;
+  margin-left: $header-padding-x;
   margin-bottom: 1.85rem;
 }
 
 .section-heading h2 {
   font-family: "Min Sans", sans-serif;
   font-weight: 500;
-  font-size: 56px;
+  font-size: $font-size-section;
   line-height: 1.2;
-  color: #1c1c1c;
+  color: $text;
   letter-spacing: 0;
 }
 
 .section-count {
   font-family: "Min Sans", sans-serif;
   font-weight: 400;
-  font-size: 20px;
+  font-size: $font-size-count;
   line-height: 1.4;
-  color: #f24281;
+  color: $brand-pink;
   letter-spacing: 0;
 }
 
@@ -178,7 +182,7 @@
 }
 
 .project-card {
-  border-bottom: 1px solid var(--muted-line);
+  border-bottom: 1px solid $muted-line;
   padding-bottom: 1.15rem;
 }
 
@@ -271,7 +275,7 @@
 }
 
 .contacts {
-  background: var(--dark);
+  background: $dark;
   color: #fff;
   padding: 5.25rem 0 3.25rem;
   scroll-margin-top: 5.5rem;
@@ -279,7 +283,7 @@
 
 .contacts h2 {
   margin-bottom: 2.4rem;
-  color: var(--pink);
+  color: $pink;
   font-size: 1.05rem;
   font-weight: 500;
 }
@@ -316,7 +320,7 @@
 
 a.contact-main {
   text-decoration: underline;
-  text-decoration-color: var(--pink);
+  text-decoration-color: $pink;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.16em;
 }
@@ -326,7 +330,7 @@ a.contact-main:hover {
 }
 
 .annotation {
-  color: var(--pink);
+  color: $pink;
   font-size: 0.72rem;
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -348,7 +352,7 @@ a.contact-main:hover {
   width: 100%;
   min-height: 4.25rem;
   padding: 1rem 1.15rem;
-  border: 1px solid var(--pink);
+  border: 1px solid $pink;
   background: transparent;
   color: #fff;
   cursor: pointer;
@@ -380,12 +384,12 @@ a.contact-main:hover {
 
 .arrow-icon {
   flex: 0 0 auto;
-  color: var(--pink);
+  color: $pink;
 }
 
 @media (max-width: 800px) {
   .wrap {
-    width: min(var(--max), calc(100% - 2rem));
+    width: min(#{$max-width}, calc(100% - 2rem));
   }
 
   .hero-glow-anchor {
