@@ -1,4 +1,3 @@
-import Contacts from "../../components/Contacts/Contacts";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 
 import { projects } from "../../constants/projects";
@@ -46,8 +45,6 @@ export default function LandingPage() {
         <h2 id="about-heading">About</h2>
         <p className="about-placeholder">Coming Soon</p>
       </section>
-
-      <Contacts />
     </main>
   );
 }

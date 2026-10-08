@@ -1,3 +1,4 @@
+import Contacts from "../Contacts/Contacts";
 import Logo from "../Logo/Logo";
 import SiteNav from "../SiteNav/SiteNav";
 
@@ -5,27 +6,28 @@ import { COPYRIGHT_YEAR, SITE_OWNER } from "../../constants/site";
 
 import { scrollToTop } from "../../utils/scrollToTop";
 
-import toTopUrl from "../../assets/to-top.svg";
-
 import "./Footer.scss";
 
-export default function Footer() {
+export type FooterTone = "inverse" | "light";
+
+interface FooterProps {
+  tone?: FooterTone;
+}
+
+export default function Footer({ tone = "inverse" }: FooterProps) {
   return (
-    <footer className="site-footer">
+    <footer className={`site-footer site-footer--${tone}`}>
+      <Contacts />
       <div className="footer-inner">
         <Logo tone="footer" />
         <SiteNav className="footer-nav" ariaLabel="Footer" />
-        <div className="footer-end">
-          <p className="copyright">
-            © {COPYRIGHT_YEAR}. {SITE_OWNER}
-          </p>
-          <button type="button" className="to-top" onClick={scrollToTop}>
-            <span className="to-top-icon">
-              <img src={toTopUrl} alt="" width={24} height={24} aria-hidden="true" />
-            </span>
-            <span className="visually-hidden">Back to top</span>
-          </button>
-        </div>
+        <p className="copyright">
+          © {COPYRIGHT_YEAR}. {SITE_OWNER}
+        </p>
+        <button type="button" className="to-top" onClick={scrollToTop}>
+          <span className="to-top-icon" aria-hidden="true" />
+          <span className="visually-hidden">Back to top</span>
+        </button>
       </div>
     </footer>
   );

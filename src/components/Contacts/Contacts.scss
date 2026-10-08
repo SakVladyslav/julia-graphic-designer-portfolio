@@ -4,24 +4,9 @@
 @use "../../styles/sizes" as *;
 
 .contacts {
-  background: $surface-inverse;
-  color: $paper;
-  padding-top: $contacts-padding-top;
-  padding-bottom: $contacts-padding-bottom;
-  padding-left: $header-padding-x;
-  padding-right: $header-padding-x;
-  margin-left: calc(-1 * #{$header-padding-x});
-  margin-right: calc(-1 * #{$header-padding-x});
+  color: inherit;
+  padding: 0;
   scroll-margin-top: 5.5rem;
-}
-
-@media (max-width: 1439px) {
-  .contacts {
-    padding-left: $section-inline-scaled;
-    padding-right: $section-inline-scaled;
-    margin-left: calc(-1 * #{$section-inline-scaled});
-    margin-right: calc(-1 * #{$section-inline-scaled});
-  }
 }
 
 .contacts h2 {
@@ -29,22 +14,23 @@
   font-family: $font-family;
   font-weight: 500;
   font-size: $font-size-contacts;
-  line-height: $line-height-heading;
+  line-height: 1;
   color: $accent;
 }
 
 .contacts-layout {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
+  gap: $nav-gap;
 }
 
 .contact-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: $nav-gap;
+  gap: $contact-row-gap;
   flex: 1 1 auto;
   min-width: min-content;
 }
@@ -52,13 +38,13 @@
 .contact-list li {
   display: flex;
   align-items: flex-start;
-  gap: $contact-inline-gap;
+  gap: $contact-annotation-gap;
 }
 
 .contact-main {
-  color: $paper;
+  color: inherit;
   font-family: $font-family;
-  font-size: $font-size-project-title;
+  font-size: $font-size-section;
   font-weight: 500;
   line-height: $line-height-heading;
   text-decoration: none;
@@ -80,15 +66,18 @@
 }
 
 .contact-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  display: flex;
+  align-items: stretch;
   flex: 0 0 auto;
   width: $contacts-panel-width;
   max-width: 100%;
-  height: $contacts-panel-height;
-  margin-top: $contacts-panel-offset;
-  border: $border-strong solid $accent;
+}
+
+.contact-action-stack {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-width: 0;
 }
 
 .contact-action {
@@ -97,11 +86,11 @@
   justify-content: center;
   gap: $contact-inline-gap;
   width: 100%;
-  height: 100%;
+  height: $contacts-action-height;
   padding: 0;
   border: 0;
   background: transparent;
-  color: $paper;
+  color: inherit;
   cursor: pointer;
   font-family: $font-family;
   font-weight: 500;
@@ -118,21 +107,38 @@
   opacity: 0.55;
 }
 
-.contact-action--linkedin {
-  grid-column: 1;
-  grid-row: 1;
-  border-bottom: $project-tag-border-width solid $accent;
-}
-
-.contact-action--instagram {
-  grid-column: 1;
-  grid-row: 2;
-}
-
 .contact-action--cv {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  border-left: $project-tag-border-width solid $accent;
+  border: $border-strong solid $accent;
+}
+
+.contact-action--linkedin {
+  border: $border-strong solid $accent;
+  border-top: 0;
+}
+
+.contact-location {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  margin: 0;
+  padding: $header-padding-y;
+  border: $border-strong solid $accent;
+  border-left: 0;
+  color: inherit;
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: $font-size-base;
+  letter-spacing: $letter-spacing-nav;
+  line-height: normal;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.contact-location-label {
+  display: block;
+  width: $contact-location-width;
 }
 
 a.contact-action:hover {
@@ -140,19 +146,25 @@ a.contact-action:hover {
 }
 
 .contact-arrow {
-  display: inline-flex;
+  display: inline-block;
   flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  -webkit-mask-image: url("../../assets/contact-arrow.svg");
+  mask-image: url("../../assets/contact-arrow.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
   transform: scaleY(-1);
 }
 
 @media (max-width: 800px) {
-  .contacts {
-    padding-top: 4rem;
-    padding-bottom: 5rem;
-  }
-
   .contacts h2 {
-    font-size: clamp(2.5rem, 12vw, 4.5rem);
+    font-size: clamp(2.5rem, 12vw, 5.25rem);
   }
 
   .contact-list {
@@ -162,7 +174,7 @@ a.contact-action:hover {
 
   .contact-list li {
     flex-wrap: wrap;
-    column-gap: $contact-inline-gap;
+    column-gap: $contact-annotation-gap;
     row-gap: 0.25rem;
   }
 
@@ -173,17 +185,16 @@ a.contact-action:hover {
   }
 
   .contact-main {
-    font-size: clamp(1.5rem, 8vw, 3rem);
+    font-size: clamp(1.5rem, 8vw, 3.5rem);
   }
 
   .contact-actions {
     width: 100%;
-    height: auto;
-    min-height: 10rem;
-    margin-top: $nav-gap;
   }
 
   .contact-action {
+    height: auto;
+    min-height: 5rem;
     white-space: normal;
     text-align: center;
     padding: 1rem;
