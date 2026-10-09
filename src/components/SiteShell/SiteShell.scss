@@ -1,0 +1,7 @@
+@use "../../styles/colors" as *;
+
+.site-shell--inverse {
+  min-height: 100vh;
+  background: $surface-inverse;
+  color: $paper;
+}
