@@ -1,7 +1,7 @@
 import ContactActionItem from "./ContactActionItem";
 import ContactDetailItem from "./ContactDetailItem";
 
-import { contactActions, contactDetails } from "../../constants/contacts";
+import { contactActions, contactDetails, contactLocation } from "../../constants/contacts";
 
 import "./Contacts.scss";
 
@@ -16,9 +16,14 @@ export default function Contacts() {
           ))}
         </ul>
         <div className="contact-actions">
-          {contactActions.map((action) => (
-            <ContactActionItem key={action.id} action={action} />
-          ))}
+          <div className="contact-action-stack">
+            {contactActions.map((action) => (
+              <ContactActionItem key={action.id} action={action} />
+            ))}
+          </div>
+          <p className="contact-location">
+            <span className="contact-location-label">{contactLocation}</span>
+          </p>
         </div>
       </div>
     </section>

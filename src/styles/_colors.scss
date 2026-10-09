@@ -5,6 +5,7 @@
 $bg: #f4f4f4;
 $paper: #f3f3f4;
 $surface-inverse: #1c1c1c;
+$surface-muted: #ededef;
 
 // Text
 $text: #1c1c1c;
@@ -14,10 +15,8 @@ $accent: #f24281;
 $accent-hover: #ff4fa3;
 $accent-wash: rgba(255, 79, 163, 0.14);
 
-// Inverse chrome (footer / dark bands)
+// Footer rule. Separators and the copyright use this text color at 30% / 70%.
 $footer-line: #5d5d5d;
-$footer-sep: rgba(243, 243, 244, 0.3);
-$copyright: rgba(243, 243, 244, 0.7);
 
 // Hero glow
 $hero-glow-core: rgba(255, 79, 163, 0.75);
