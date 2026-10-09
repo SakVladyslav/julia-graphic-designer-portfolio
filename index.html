@@ -5,6 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Julia Samchuk</title>
+    <script>
+      (function () {
+        const redirect = sessionStorage.getItem("spa-redirect");
+        if (!redirect) return;
+        sessionStorage.removeItem("spa-redirect");
+        const url = new URL(redirect);
+        if (url.origin !== location.origin) return;
+        history.replaceState(null, "", url.pathname + url.search + url.hash);
+      })();
+    </script>
     <link
       rel="preload"
       href="./fonts/MinSans-Medium_0.woff2"
@@ -13,7 +23,6 @@
       crossorigin
     />
     <link rel="stylesheet" href="./fonts/minsans.css" />
-
   </head>
   <body>
     <div id="root"></div>

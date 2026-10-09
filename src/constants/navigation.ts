@@ -1,7 +1,9 @@
+import { homeHash } from "../utils/homeHash";
+
 export type NavItem = {
   id: string;
   label: string;
-  href: `#${string}`;
+  href: string;
 };
 
 /**
@@ -11,7 +13,7 @@ export type NavItem = {
  * Later (n8n): this shape can be served from CMS/API without changing consumers.
  */
 export const navigation: readonly NavItem[] = [
-  { id: "projects", label: "Projects", href: "#projects" },
-  { id: "about", label: "About", href: "#about" },
+  { id: "projects", label: "Projects", href: homeHash("projects") },
+  { id: "about", label: "About", href: homeHash("about") },
   { id: "contacts", label: "Contacts", href: "#contacts" },
 ];

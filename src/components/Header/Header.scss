@@ -14,6 +14,10 @@
   padding: $header-padding-y 0;
 }
 
+.site-header--inverse {
+  color: $paper;
+}
+
 .header-inner {
   display: flex;
   align-items: center;
@@ -24,7 +28,7 @@
   display: flex;
   align-items: center;
   gap: $nav-gap;
-  color: $text;
+  color: inherit;
   font-family: $font-family;
   font-size: $font-size-base;
   font-weight: 500;
@@ -33,7 +37,7 @@
 }
 
 .nav .nav-sep {
-  color: $text;
+  color: inherit;
   opacity: 0.2;
   font-size: $font-size-base;
   font-weight: 500;

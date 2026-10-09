@@ -1,0 +1,345 @@
+@use "../../styles/colors" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/spacing" as *;
+@use "../../styles/sizes" as *;
+
+.case-page {
+  padding-top: $case-page-offset;
+}
+
+.case-flow > .case-section--section {
+  margin-top: $case-section-gap;
+}
+
+.case-flow > .case-section--block {
+  margin-top: $case-block-gap;
+}
+
+.case-flow > .case-section--stack {
+  margin-top: $case-stack-gap;
+}
+
+.case-flow > .case-section:first-child {
+  margin-top: 0;
+}
+
+.case-media {
+  margin: 0;
+}
+
+.case-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-intro,
+.case-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: $case-column-gap;
+  align-items: start;
+}
+
+.case-intro-title,
+.case-intro-heading,
+.case-intro-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.case-intro-title {
+  gap: $case-title-gap;
+}
+
+.case-intro-heading {
+  gap: $case-eyebrow-gap;
+  width: 100%;
+}
+
+.case-eyebrow {
+  font-size: $font-size-base;
+  font-weight: 400;
+  line-height: $line-height-annotation;
+  opacity: 0.8;
+}
+
+.case-intro h1,
+.case-split h2,
+.case-subtitle,
+.case-color-name {
+  font-weight: 500;
+}
+
+.case-intro h1 {
+  font-size: $font-size-case-title;
+  line-height: 1;
+}
+
+.case-subtitle {
+  font-size: $font-size-case-subtitle;
+  line-height: $line-height-heading;
+  opacity: 0.8;
+}
+
+.case-intro-copy {
+  gap: $case-intro-copy-gap;
+  width: 100%;
+  padding-top: $case-intro-padding-y;
+  padding-bottom: $case-intro-padding-y;
+  border-bottom: $border-strong solid currentColor;
+}
+
+.case-copy {
+  font-size: $font-size-case-body;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.case-copy p + p {
+  margin-top: 1.5em;
+}
+
+.case-split h2 {
+  font-size: $font-size-case-heading;
+  line-height: $line-height-heading;
+}
+
+.case-split .case-copy {
+  padding-top: $case-split-offset;
+}
+
+.case-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $project-tag-gap;
+  list-style: none;
+}
+
+.case-tags li {
+  padding: $project-tag-padding-y $project-tag-padding-x;
+  border: $project-tag-border-width solid currentColor;
+  border-radius: $project-tag-radius;
+  font-size: $font-size-base;
+  line-height: $line-height-annotation;
+  white-space: nowrap;
+}
+
+.case-comparison {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: $case-comparison-gap;
+}
+
+.case-comparison-panel {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: $case-comparison-height;
+  margin: 0;
+  background: $bg;
+  color: $text;
+}
+
+.case-comparison-panel figcaption {
+  position: absolute;
+  top: $case-comparison-label-inset;
+  left: $case-comparison-label-inset;
+  font-size: $font-size-base;
+  line-height: 1.5;
+}
+
+.case-comparison-panel img {
+  width: auto;
+  max-width: 71%;
+  height: auto;
+}
+
+.case-palette {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $case-palette-gap;
+  list-style: none;
+}
+
+.case-palette--short {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.case-color {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.case-color-photo {
+  display: block;
+  width: 100%;
+  height: $case-palette-swatch-tall;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.case-palette--short .case-color-photo {
+  height: $case-palette-swatch-short;
+  object-position: center;
+}
+
+.case-color-swatch {
+  border: 1px solid rgba($paper, 0.16);
+}
+
+.case-palette--tall .case-color-swatch {
+  height: $case-palette-swatch-tall;
+}
+
+.case-palette--short .case-color-swatch {
+  height: $case-palette-swatch-short;
+}
+
+.case-color-info {
+  display: flex;
+  flex-direction: column;
+  padding: $case-palette-padding;
+}
+
+.case-palette--tall .case-color-info {
+  height: $case-palette-info-tall;
+}
+
+.case-color-info--fill {
+  gap: $case-palette-copy-gap;
+  padding: $case-palette-padding-top $case-palette-padding $case-palette-padding;
+}
+
+.case-palette--tall .case-color-info--fill {
+  height: auto;
+  min-height: $case-palette-info-tall;
+}
+
+.case-color-info--fill .case-color-specs {
+  margin-top: 0;
+  font-size: $font-size-case-spec;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.case-palette--short .case-color-info {
+  height: $case-palette-info-short;
+}
+
+.case-palette--short .case-color-info--fill {
+  gap: 0;
+  height: auto;
+  min-height: $case-palette-info-short;
+  padding-top: $case-palette-short-padding-top;
+}
+
+.case-color-name {
+  font-size: $font-size-case-color;
+  line-height: 1;
+}
+
+.case-color-specs {
+  display: flex;
+  flex-direction: column;
+  gap: $case-spec-gap;
+  margin-top: auto;
+  font-size: $font-size-base;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.case-color-specs div {
+  display: flex;
+  gap: 0.35em;
+}
+
+.case-color-specs dt,
+.case-color-specs dd {
+  margin: 0;
+}
+
+.case-color-specs dt::after {
+  content: ":";
+}
+
+.case-related {
+  margin-top: $case-section-gap;
+  margin-left: calc(-1 * #{$header-padding-x});
+  margin-right: calc(-1 * #{$header-padding-x});
+  padding: $case-section-gap $header-padding-x 0;
+  background: $surface-muted;
+  color: $text;
+}
+
+.case-related h2 {
+  margin-bottom: $case-related-heading-gap;
+  font-size: $font-size-section;
+  font-weight: 500;
+  line-height: $line-height-heading;
+}
+
+.case-related-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: $header-padding-y;
+  row-gap: $project-row-gap;
+  list-style: none;
+}
+
+.case-missing {
+  padding: $case-section-gap 0;
+  font-size: $font-size-case-heading;
+  font-weight: 500;
+  line-height: $line-height-heading;
+}
+
+@media (max-width: 1439px) {
+  .case-related {
+    margin-left: calc(-1 * #{$section-inline-scaled});
+    margin-right: calc(-1 * #{$section-inline-scaled});
+    padding-left: $section-inline-scaled;
+    padding-right: $section-inline-scaled;
+  }
+}
+
+@media (max-width: 800px) {
+  .case-intro,
+  .case-split,
+  .case-comparison,
+  .case-palette,
+  .case-palette--short,
+  .case-related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-intro h1 {
+    font-size: 3rem;
+  }
+
+  .case-comparison-panel {
+    height: 20rem;
+  }
+
+  .case-flow > .case-section--section,
+  .case-related {
+    margin-top: 4.5rem;
+  }
+
+  .case-related {
+    padding-top: 4.5rem;
+  }
+
+  .case-palette--tall .case-color-info,
+  .case-palette--tall .case-color-info--fill,
+  .case-palette--short .case-color-info,
+  .case-palette--short .case-color-info--fill {
+    height: auto;
+    min-height: 0;
+    gap: $case-related-heading-gap;
+    padding-top: $case-palette-padding;
+  }
+}
