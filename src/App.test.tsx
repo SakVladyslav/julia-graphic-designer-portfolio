@@ -38,7 +38,10 @@ describe("App", () => {
     for (const link of molfariaLinks) {
       expect(link).toHaveAttribute("href", `${import.meta.env.BASE_URL}projects/molfaria`);
     }
-    expect(screen.queryByRole("link", { name: /amaryllis/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /amaryllis/i })).toHaveAttribute(
+      "href",
+      `${import.meta.env.BASE_URL}projects/amaryllis`,
+    );
   });
 
   it("gives an unknown address a main landmark", () => {

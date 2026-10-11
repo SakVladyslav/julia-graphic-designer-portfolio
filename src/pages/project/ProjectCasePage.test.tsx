@@ -51,8 +51,20 @@ describe("ProjectCasePage", () => {
     expect(screen.queryByRole("link", { name: /molfaria/i })).not.toBeInTheDocument();
   });
 
-  it("keeps the shell readable when a project has no case yet", () => {
+  it("renders the amaryllis case and keeps it out of related projects", () => {
     renderCase("amaryllis");
+
+    expect(screen.getByRole("heading", { level: 1, name: "Amaryllis" })).toBeInTheDocument();
+    expect(screen.getByText("Poster Series & Merch")).toBeInTheDocument();
+    expect(screen.getByText("// Tote Bag")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /posters beyond/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /lovespace/i })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /amaryllis/i })).not.toBeInTheDocument();
+  });
+
+  it("keeps the shell readable when a project has no case yet", () => {
+    renderCase("unpublished");
 
     expect(screen.getByText("This project is not published yet.")).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "More projects" })).not.toBeInTheDocument();

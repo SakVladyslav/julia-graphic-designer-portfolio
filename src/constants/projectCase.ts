@@ -4,10 +4,11 @@
  * without a one-off stylesheet:
  * - section: 144px, the default rhythm between blocks
  * - block: 64px, a block that belongs to the previous heading (also hero → intro)
+ * - group: 184px, a larger break between gallery groups
  * - stack: 16px, images stacked inside one gallery
  * - none: 0px, two frames that sit flush
  */
-export type CaseSpace = "section" | "block" | "stack" | "none";
+export type CaseSpace = "section" | "block" | "group" | "stack" | "none";
 
 export interface CaseSectionBase {
   spaceBefore?: CaseSpace;
@@ -32,6 +33,42 @@ export interface CaseIntroSection extends CaseSectionBase {
 export interface CaseMediaSection extends CaseSectionBase {
   type: "media";
   image: CaseImage;
+  caption?: string;
+  captionAlign?: "start" | "end";
+  framed?: boolean;
+}
+
+export interface CaseStaggerFrame {
+  image: CaseImage;
+  caption: string;
+  captionAlign: "start" | "end";
+}
+
+export interface CaseStaggerSection extends CaseSectionBase {
+  type: "stagger";
+  /** The first frame sits on the right. The second starts where that image ends. */
+  frames: readonly [CaseStaggerFrame, CaseStaggerFrame];
+  ornament?: CaseImage;
+}
+
+export interface CaseBannerSection extends CaseSectionBase {
+  type: "banner";
+  background: string;
+  ink: string;
+  title: string;
+  emphasis: string;
+  body: string;
+  mark: CaseImage;
+}
+
+export interface CaseNoteSection extends CaseSectionBase {
+  type: "note";
+  ink: string;
+  detail: string;
+  title: string;
+  emphasis: string;
+  body: string;
+  ornament: CaseImage;
 }
 
 export interface CaseComparisonSide {
@@ -98,7 +135,10 @@ export type CaseSection =
   | CaseSplitSection
   | CasePaletteSection
   | CaseMarksSection
-  | CasePosterSection;
+  | CasePosterSection
+  | CaseStaggerSection
+  | CaseBannerSection
+  | CaseNoteSection;
 
 export interface ProjectCase {
   id: string;
