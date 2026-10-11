@@ -1,29 +1,33 @@
 import type { CaseImage, CaseSpace } from "../../constants/projectCase";
 
+import CaseFrame from "./CaseFrame";
 import { sectionClass } from "./sectionClass";
 
 interface CaseMediaProps {
   image: CaseImage;
   priority?: boolean;
   spaceBefore?: CaseSpace;
+  caption?: string;
+  captionAlign?: "start" | "end";
+  framed?: boolean;
 }
 
 export default function CaseMedia({
   image,
   priority = false,
   spaceBefore = "section",
+  caption,
+  captionAlign,
+  framed = false,
 }: CaseMediaProps) {
   return (
-    <figure className={sectionClass("case-media", spaceBefore)}>
-      <img
-        src={image.src}
-        alt={image.alt}
-        width={image.width}
-        height={image.height}
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-        fetchPriority={priority ? "high" : undefined}
-      />
-    </figure>
+    <CaseFrame
+      className={sectionClass("case-media", spaceBefore)}
+      image={image}
+      caption={caption}
+      captionAlign={captionAlign}
+      framed={framed}
+      priority={priority}
+    />
   );
 }

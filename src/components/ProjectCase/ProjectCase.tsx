@@ -1,11 +1,14 @@
+import CaseBanner from "./CaseBanner";
 import CaseComparison from "./CaseComparison";
 import CaseIntro from "./CaseIntro";
 import CaseMarks from "./CaseMarks";
 import CaseMedia from "./CaseMedia";
+import CaseNote from "./CaseNote";
 import CasePalette from "./CasePalette";
 import CasePoster from "./CasePoster";
 import CaseRelated from "./CaseRelated";
 import CaseSplit from "./CaseSplit";
+import CaseStagger from "./CaseStagger";
 
 import type { CaseSection, ProjectCase as ProjectCaseData } from "../../constants/projectCase";
 import type { Project } from "../../constants/projects";
@@ -39,6 +42,9 @@ function renderSection(section: CaseSection, index: number) {
         <CaseMedia
           key={key}
           image={section.image}
+          caption={section.caption}
+          captionAlign={section.captionAlign}
+          framed={section.framed}
           priority={index === 0}
           spaceBefore={section.spaceBefore}
         />
@@ -53,5 +59,11 @@ function renderSection(section: CaseSection, index: number) {
       return <CaseMarks key={key} section={section} />;
     case "poster":
       return <CasePoster key={key} section={section} />;
+    case "stagger":
+      return <CaseStagger key={key} section={section} />;
+    case "banner":
+      return <CaseBanner key={key} section={section} />;
+    case "note":
+      return <CaseNote key={key} section={section} />;
   }
 }

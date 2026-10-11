@@ -15,6 +15,10 @@
   margin-top: $case-block-gap;
 }
 
+.case-flow > .case-section--group {
+  margin-top: $case-group-gap;
+}
+
 .case-flow > .case-section--stack {
   margin-top: $case-stack-gap;
 }
@@ -378,6 +382,132 @@
   height: auto;
 }
 
+.case-frame {
+  border: $case-frame-border solid $case-frame;
+}
+
+.case-caption {
+  margin-top: $case-caption-gap;
+  color: $case-frame-caption;
+  font-size: $font-size-case-caption;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.14px;
+  text-transform: uppercase;
+  white-space: pre-line;
+}
+
+.case-caption--end {
+  text-align: right;
+}
+
+.case-stagger {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.case-stagger-lead {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+}
+
+.case-stagger-follow {
+  grid-column: 1;
+  grid-row: 1;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+.case-stagger-ornament {
+  position: absolute;
+  z-index: 1;
+  top: -209px;
+  left: 0;
+  width: min(410px, 34%);
+  height: auto;
+  pointer-events: none;
+}
+
+.case-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: $case-banner-height;
+  padding: 4rem 6.75rem;
+  overflow: hidden;
+}
+
+.case-banner-mark {
+  position: absolute;
+  top: 12%;
+  right: -6%;
+  width: 62%;
+  height: auto;
+  transform: scaleX(-1);
+  pointer-events: none;
+}
+
+.case-banner-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $case-banner-copy-gap;
+}
+
+.case-banner h2,
+.case-note h2 {
+  margin: 0;
+  font-size: $font-size-case-display;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.case-banner h2 span,
+.case-note h2 span {
+  display: block;
+}
+
+.case-banner-title {
+  width: fit-content;
+}
+
+.case-banner-emphasis,
+.case-note-emphasis {
+  margin-top: -0.12em;
+  font-style: italic;
+}
+
+.case-banner p,
+.case-note p {
+  max-width: 35rem;
+  margin: 0;
+  font-size: $font-size-case-body;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  text-transform: uppercase;
+}
+
+.case-note {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  min-height: $case-note-min-height;
+}
+
+.case-note-ornament {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(508px, 42%);
+  height: auto;
+  pointer-events: none;
+}
+
 .case-missing {
   padding: $case-section-gap 0;
   font-size: $font-size-case-heading;
@@ -401,8 +531,55 @@
   .case-palette,
   .case-palette--short,
   .case-marks--grid,
-  .case-related-grid {
+  .case-related-grid,
+  .case-stagger,
+  .case-note {
     grid-template-columns: 1fr;
+  }
+
+  .case-stagger {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .case-stagger-follow {
+    margin-top: 0;
+  }
+
+  .case-stagger-ornament {
+    display: none;
+  }
+
+  .case-banner {
+    min-height: 0;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .case-banner-mark,
+  .case-note-ornament {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: min(16rem, 70%);
+    margin-top: 1.5rem;
+    transform: none;
+  }
+
+  .case-banner h2,
+  .case-note h2 {
+    font-size: 2.25rem;
+  }
+
+  .case-note {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 0;
+  }
+
+  .case-flow > .case-section--group {
+    margin-top: 5rem;
   }
 
   .case-marks--board li,
