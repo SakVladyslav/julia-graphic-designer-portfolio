@@ -34,7 +34,7 @@
   position: absolute;
   z-index: 0;
   top: 121px;
-  right: calc(100% - 1440px + 116px);
+  right: calc(100% - #{$page-max-width} + 116px);
   width: $hero-glow-size;
   height: $hero-glow-size;
   pointer-events: none;

@@ -39,6 +39,18 @@ describe("ProjectCasePage", () => {
     ).not.toBeInTheDocument();
   });
 
+  it("renders the molfaria case and skips the other molfaria card", () => {
+    renderCase("molfaria");
+
+    expect(screen.getByRole("heading", { level: 1, name: "Molfaria" })).toBeInTheDocument();
+    expect(screen.getByText("Specialty Coffee Branding")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Molfaria logo" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /можна не/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /lovespace/i })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /molfaria/i })).not.toBeInTheDocument();
+  });
+
   it("keeps the shell readable when a project has no case yet", () => {
     renderCase("amaryllis");
 

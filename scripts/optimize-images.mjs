@@ -10,7 +10,7 @@ const rootDir = path.resolve(__dirname, "..");
 const INPUT_DIR = path.join(rootDir, "public", "projects");
 const RASTER_EXTENSIONS = new Set([".png", ".jpg", ".jpeg"]);
 
-/** Display card ~616px × 2 (retina) + margin ≈ 1400–1600. */
+/** Homepage card ~616px × 2. Case photos display at 1264px, so pass --max-width=2400. */
 const DEFAULT_MAX_WIDTH = 1600;
 const DEFAULT_QUALITY = 82;
 
@@ -83,10 +83,29 @@ async function optimizeFile(filePath, { maxWidth, quality, deleteOriginals }) {
   }
 }
 
+async function collectRasters(directory) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const files = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      const nested = await collectRasters(fullPath);
+      files.push(...nested);
+      continue;
+    }
+
+    if (RASTER_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+      files.push(fullPath);
+    }
+  }
+
+  return files;
+}
+
 async function main() {
   const options = parseArgs(process.argv.slice(2));
-  const entries = await readdir(INPUT_DIR);
-  const rasters = entries.filter((name) => RASTER_EXTENSIONS.has(path.extname(name).toLowerCase()));
+  const rasters = await collectRasters(INPUT_DIR);
 
   if (rasters.length === 0) {
     console.log(`No PNG/JPG files found in ${path.relative(rootDir, INPUT_DIR)}`);
@@ -98,11 +117,11 @@ async function main() {
     `Optimizing ${rasters.length} file(s) → WebP (max-width=${options.maxWidth}, quality=${options.quality})`,
   );
 
-  for (const name of rasters) {
-    await optimizeFile(path.join(INPUT_DIR, name), options);
+  for (const filePath of rasters) {
+    await optimizeFile(filePath, options);
   }
 
-  console.log("Done. Update paths in src/constants/projects.ts if filenames changed.");
+  console.log("Done. Point case and project image paths at the new WebP files.");
 }
 
 main().catch((error) => {

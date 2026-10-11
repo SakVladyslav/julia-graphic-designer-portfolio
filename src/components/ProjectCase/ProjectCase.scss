@@ -19,6 +19,10 @@
   margin-top: $case-stack-gap;
 }
 
+.case-flow > .case-section--none {
+  margin-top: 0;
+}
+
 .case-flow > .case-section:first-child {
   margin-top: 0;
 }
@@ -290,6 +294,90 @@
   list-style: none;
 }
 
+.case-marks {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-marks li {
+  display: grid;
+  place-items: center;
+  margin: 0;
+}
+
+.case-marks img {
+  display: block;
+  width: auto;
+  max-width: 86%;
+  height: auto;
+}
+
+.case-marks--board {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.case-marks--board li {
+  min-height: $case-mark-board;
+}
+
+.case-marks--grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: $case-mark-gap;
+}
+
+.case-marks--grid li {
+  min-height: $case-mark-cell;
+}
+
+.case-poster {
+  position: relative;
+  aspect-ratio: 1264 / 790;
+  container-type: inline-size;
+}
+
+.case-poster-panel {
+  position: absolute;
+  inset: $case-poster-inset;
+}
+
+.case-poster-copy {
+  position: absolute;
+  z-index: 1;
+  top: 22.7%;
+  left: 9.4%;
+  display: flex;
+  flex-direction: column;
+  gap: $case-poster-copy-gap;
+  width: 49%;
+}
+
+.case-poster h2 {
+  margin: 0;
+  font-size: 8.47cqw;
+  font-weight: 500;
+  line-height: 1;
+  white-space: pre-line;
+}
+
+.case-poster p {
+  margin: 0;
+  padding-left: 0.5cqw;
+  font-size: 2.5cqw;
+  line-height: 1.2;
+  opacity: 0.8;
+}
+
+.case-poster img {
+  position: absolute;
+  z-index: 1;
+  top: 36%;
+  right: 2%;
+  width: 37.5%;
+  height: auto;
+}
+
 .case-missing {
   padding: $case-section-gap 0;
   font-size: $font-size-case-heading;
@@ -312,8 +400,48 @@
   .case-comparison,
   .case-palette,
   .case-palette--short,
+  .case-marks--grid,
   .case-related-grid {
     grid-template-columns: 1fr;
+  }
+
+  .case-marks--board li,
+  .case-marks--grid li {
+    min-height: 0;
+    height: auto;
+  }
+
+  .case-poster {
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .case-poster-panel {
+    inset: 1rem;
+  }
+
+  .case-poster-copy,
+  .case-poster img {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    width: 100%;
+  }
+
+  .case-poster h2 {
+    font-size: 3rem;
+  }
+
+  .case-poster p {
+    font-size: 1.25rem;
+  }
+
+  .case-poster img {
+    width: min(16rem, 70%);
   }
 
   .case-intro h1 {

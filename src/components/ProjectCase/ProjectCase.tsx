@@ -1,7 +1,9 @@
 import CaseComparison from "./CaseComparison";
 import CaseIntro from "./CaseIntro";
+import CaseMarks from "./CaseMarks";
 import CaseMedia from "./CaseMedia";
 import CasePalette from "./CasePalette";
+import CasePoster from "./CasePoster";
 import CaseRelated from "./CaseRelated";
 import CaseSplit from "./CaseSplit";
 
@@ -47,5 +49,9 @@ function renderSection(section: CaseSection, index: number) {
       return <CaseSplit key={key} section={section} />;
     case "palette":
       return <CasePalette key={key} section={section} />;
+    case "marks":
+      return <CaseMarks key={key} section={section} />;
+    case "poster":
+      return <CasePoster key={key} section={section} />;
   }
 }

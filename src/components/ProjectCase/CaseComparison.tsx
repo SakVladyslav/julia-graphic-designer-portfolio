@@ -19,6 +19,8 @@ export default function CaseComparison({ section }: CaseComparisonProps) {
             alt={side.image.alt}
             width={side.image.width}
             height={side.image.height}
+            loading="lazy"
+            decoding="async"
           />
         </figure>
       ))}
