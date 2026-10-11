@@ -1,5 +1,7 @@
 // Design tokens: sizes (widths, heights, borders, radii, media geometry)
 
+$page-max-width: 1440px;
+
 $hero-title-width: 1076px;
 $hero-glow-size: 400px;
 $hero-arrow-size: 72px;
@@ -25,6 +27,9 @@ $contacts-action-height: 85px;
 $contact-location-width: 130px;
 $footer-to-top-inset: 24px;
 
+$case-mark-board: 790px;
+$case-mark-cell: 336px;
+$case-poster-inset: 56px;
 $case-comparison-height: 600px;
 $case-comparison-label-inset: 24px;
 $case-palette-swatch-tall: 224px;

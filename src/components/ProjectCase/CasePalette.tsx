@@ -18,6 +18,8 @@ export default function CasePalette({ section }: CasePaletteProps) {
               alt={color.image.alt}
               width={color.image.width}
               height={color.image.height}
+              loading="lazy"
+              decoding="async"
             />
           ) : (
             <div className="case-color-swatch" style={{ backgroundColor: color.fill }} />

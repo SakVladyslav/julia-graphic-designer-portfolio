@@ -22,6 +22,7 @@ export default function CaseMedia({
         height={image.height}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
+        fetchPriority={priority ? "high" : undefined}
       />
     </figure>
   );

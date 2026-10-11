@@ -19,14 +19,16 @@ export default function SiteShell() {
     window.scrollTo(0, 0);
   }, [locationKey]);
 
-  const shellClass = isProjectPage ? "container site-shell site-shell--inverse" : "container";
+  const shellClass = isProjectPage ? "site-shell site-shell--inverse" : "site-shell";
 
   return (
     <div className={shellClass}>
-      <SkipLink />
-      <Header tone={isProjectPage ? "inverse" : "default"} />
-      <Outlet />
-      <Footer tone={isProjectPage ? "light" : "inverse"} />
+      <div className="container">
+        <SkipLink />
+        <Header tone={isProjectPage ? "inverse" : "default"} />
+        <Outlet />
+        <Footer tone={isProjectPage ? "light" : "inverse"} />
+      </div>
     </div>
   );
 }

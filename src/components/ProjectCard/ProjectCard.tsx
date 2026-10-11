@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ProjectVisual from "./ProjectVisual";
 
 import { getProjectCase } from "../../constants/projectCases";
+import { projectCaseId } from "../../utils/projectCaseId";
 
 import type { Project } from "../../constants/projects";
 
@@ -14,7 +15,8 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, priority = false }: ProjectCardProps) {
-  const hasCase = getProjectCase(project.id) !== undefined;
+  const caseId = projectCaseId(project);
+  const hasCase = getProjectCase(caseId) !== undefined;
   const content = (
     <>
       <ProjectVisual project={project} priority={priority} />
@@ -32,7 +34,7 @@ export default function ProjectCard({ project, priority = false }: ProjectCardPr
   return (
     <li className="project-card">
       {hasCase ? (
-        <Link className="project-card-link" to={`/projects/${project.id}`}>
+        <Link className="project-card-link" to={`/projects/${caseId}`}>
           {content}
         </Link>
       ) : (

@@ -1,5 +1,9 @@
 @use "../../styles/colors" as *;
 
+.site-shell {
+  overflow-x: clip;
+}
+
 .site-shell--inverse {
   min-height: 100vh;
   background: $surface-inverse;

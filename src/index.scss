@@ -1,6 +1,7 @@
 @use "styles/colors" as *;
 @use "styles/typography" as *;
 @use "styles/spacing" as *;
+@use "styles/sizes" as *;
 
 *,
 *::before,
@@ -88,6 +89,7 @@ button:focus-visible {
 
 .container {
   width: 100%;
+  max-width: $page-max-width;
   margin-inline: auto;
   padding-left: $header-padding-x;
   padding-right: $header-padding-x;

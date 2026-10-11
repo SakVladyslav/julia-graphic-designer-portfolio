@@ -5,8 +5,9 @@
  * - section: 144px, the default rhythm between blocks
  * - block: 64px, a block that belongs to the previous heading (also hero → intro)
  * - stack: 16px, images stacked inside one gallery
+ * - none: 0px, two frames that sit flush
  */
-export type CaseSpace = "section" | "block" | "stack";
+export type CaseSpace = "section" | "block" | "stack" | "none";
 
 export interface CaseSectionBase {
   spaceBefore?: CaseSpace;
@@ -67,12 +68,37 @@ export interface CasePaletteSection extends CaseSectionBase {
   colors: readonly CaseColor[];
 }
 
+export interface CaseMarkTile {
+  background: string;
+  image: CaseImage;
+}
+
+export interface CaseMarksSection extends CaseSectionBase {
+  type: "marks";
+  layout: "board" | "grid";
+  tiles: readonly CaseMarkTile[];
+}
+
+export interface CasePosterSection extends CaseSectionBase {
+  type: "poster";
+  headingId: string;
+  background: string;
+  panel: string;
+  ink: string;
+  detail: string;
+  title: string;
+  subtitle: string;
+  mark: CaseImage;
+}
+
 export type CaseSection =
   | CaseIntroSection
   | CaseMediaSection
   | CaseComparisonSection
   | CaseSplitSection
-  | CasePaletteSection;
+  | CasePaletteSection
+  | CaseMarksSection
+  | CasePosterSection;
 
 export interface ProjectCase {
   id: string;
