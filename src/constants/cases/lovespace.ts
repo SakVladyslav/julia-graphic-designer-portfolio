@@ -1,4 +1,10 @@
-import type { CaseMediaSection, CaseSpace, ProjectCase } from "../projectCase";
+import type {
+  CaseImage,
+  CaseMarksSection,
+  CaseMediaSection,
+  CaseSpace,
+  ProjectCase,
+} from "../projectCase";
 
 import { withBaseUrl } from "../../utils/withBaseUrl";
 
@@ -24,6 +30,42 @@ function media(
 
   return { type: "media", spaceBefore, image };
 }
+
+const white = "#FFFFFF";
+const ink = "#2A2A2A";
+const kissedLips = "#A23C49";
+
+const primaryLogo: CaseImage = {
+  src: asset("logo-primary.svg"),
+  width: 351,
+  height: 71,
+  alt: "Lovespace logo on white",
+};
+
+const logoOnBlack: CaseImage = {
+  src: asset("logo-light.svg"),
+  width: 351,
+  height: 71,
+  alt: "Lovespace logo on black",
+};
+
+const logoOnRed: CaseImage = {
+  src: asset("logo-light.svg"),
+  width: 351,
+  height: 71,
+  alt: "Lovespace logo on red",
+};
+
+const logoLockup: CaseMarksSection = {
+  type: "marks",
+  layout: "lockup",
+  spaceBefore: "block",
+  tiles: [
+    { background: white, image: primaryLogo },
+    { background: ink, image: logoOnBlack },
+    { background: kissedLips, image: logoOnRed },
+  ],
+};
 
 export const lovespaceCase: ProjectCase = {
   id: "lovespace",
@@ -72,7 +114,7 @@ export const lovespaceCase: ProjectCase = {
         "The circle remains at the core of the visual identity, but it is no longer perfect.",
       ],
     },
-    media("logos.webp", 1264, 816, "Lovespace logo on white, black, and red", "block"),
+    logoLockup,
     media("posters.webp", 2371, 1481, "Three Lovespace posters"),
     {
       type: "palette",
@@ -122,9 +164,29 @@ export const lovespaceCase: ProjectCase = {
         },
       ],
     },
-    media("mockup1.webp", 1256, 1510, "Open kraft Lovespace mailer box"),
-    media("mockup2.webp", 1860, 1110, "Black Lovespace mailer box", "stack"),
-    media("mockup3.webp", 1860, 1110, "Red Lovespace mailer box", "stack"),
+    {
+      type: "cluster",
+      lead: {
+        src: asset("mockup1.webp"),
+        width: 1256,
+        height: 1510,
+        alt: "Open kraft Lovespace mailer box",
+      },
+      stack: [
+        {
+          src: asset("mockup2.webp"),
+          width: 1860,
+          height: 1110,
+          alt: "Black Lovespace mailer box",
+        },
+        {
+          src: asset("mockup3.webp"),
+          width: 1860,
+          height: 1110,
+          alt: "Red Lovespace mailer box",
+        },
+      ],
+    },
     media(
       "mockup4.webp",
       2160,
@@ -132,7 +194,6 @@ export const lovespaceCase: ProjectCase = {
       "Open Lovespace box with tissue paper and an instruction card",
       "stack",
     ),
-    media("Lovespace-15.webp", 2160, 1350, "Lovespace lightbox sign", "stack"),
     media(
       "mockup5.webp",
       2160,
@@ -148,7 +209,7 @@ export const lovespaceCase: ProjectCase = {
       "Lovespace campaign card and portrait with the ring mark",
       "stack",
     ),
-    media("social.webp", 1893, 1571, "Lovespace social media posts"),
+    media("Lovespace-15.webp", 2160, 1350, "Lovespace lightbox sign", "stack"),
     {
       type: "split",
       heading: "Extended palette",
@@ -199,6 +260,7 @@ export const lovespaceCase: ProjectCase = {
         },
       ],
     },
+    media("social.webp", 1893, 1571, "Lovespace social media posts"),
     {
       type: "split",
       heading: "Brand phrases",

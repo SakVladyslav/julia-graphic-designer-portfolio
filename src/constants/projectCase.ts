@@ -38,6 +38,12 @@ export interface CaseMediaSection extends CaseSectionBase {
   framed?: boolean;
 }
 
+export interface CaseClusterSection extends CaseSectionBase {
+  type: "cluster";
+  lead: CaseImage;
+  stack: readonly [CaseImage, CaseImage];
+}
+
 export interface CaseStaggerFrame {
   image: CaseImage;
   caption: string;
@@ -112,7 +118,7 @@ export interface CaseMarkTile {
 
 export interface CaseMarksSection extends CaseSectionBase {
   type: "marks";
-  layout: "board" | "grid";
+  layout: "board" | "grid" | "lockup";
   tiles: readonly CaseMarkTile[];
 }
 
@@ -136,6 +142,7 @@ export type CaseSection =
   | CasePaletteSection
   | CaseMarksSection
   | CasePosterSection
+  | CaseClusterSection
   | CaseStaggerSection
   | CaseBannerSection
   | CaseNoteSection;
