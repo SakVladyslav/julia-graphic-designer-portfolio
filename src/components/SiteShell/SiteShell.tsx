@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { Outlet, useLocation, useMatch } from "react-router-dom";
 
 import Footer from "../Footer/Footer";
@@ -12,11 +12,11 @@ export default function SiteShell() {
   const { pathname, hash } = useLocation();
   const locationKey = `${pathname}${hash}`;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (locationKey.includes("#")) {
       return;
     }
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [locationKey]);
 
   const shellClass = isProjectPage ? "site-shell site-shell--inverse" : "site-shell";

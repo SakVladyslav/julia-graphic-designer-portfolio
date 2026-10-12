@@ -1,4 +1,5 @@
 import CaseBanner from "./CaseBanner";
+import CaseCluster from "./CaseCluster";
 import CaseComparison from "./CaseComparison";
 import CaseIntro from "./CaseIntro";
 import CaseMarks from "./CaseMarks";
@@ -59,6 +60,8 @@ function renderSection(section: CaseSection, index: number) {
       return <CaseMarks key={key} section={section} />;
     case "poster":
       return <CasePoster key={key} section={section} />;
+    case "cluster":
+      return <CaseCluster key={key} section={section} />;
     case "stagger":
       return <CaseStagger key={key} section={section} />;
     case "banner":

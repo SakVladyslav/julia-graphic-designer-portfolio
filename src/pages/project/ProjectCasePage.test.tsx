@@ -30,6 +30,17 @@ describe("ProjectCasePage", () => {
     expect(
       screen.getByRole("img", { name: /we refuse the cult of perfection/i }),
     ).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Lovespace logo on white" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Lovespace logo on black" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Lovespace logo on red" })).toBeInTheDocument();
+    expect(
+      screen.queryByRole("img", { name: "Lovespace logo on white, black, and red" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Open kraft Lovespace mailer box" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Black Lovespace mailer box" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Red Lovespace mailer box" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Lovespace lightbox sign" })).toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: "Person wearing a black Lovespace t-shirt" }),

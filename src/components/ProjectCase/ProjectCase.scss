@@ -335,6 +335,28 @@
   min-height: $case-mark-cell;
 }
 
+.case-marks--lockup {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: $case-stack-gap;
+}
+
+.case-marks--lockup li {
+  aspect-ratio: 624 / 300;
+}
+
+.case-marks--lockup li:first-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 1264 / 500;
+}
+
+.case-marks--lockup img {
+  width: 64.4%;
+}
+
+.case-marks--lockup li:first-child img {
+  width: 59.3%;
+}
+
 .case-poster {
   position: relative;
   aspect-ratio: 1264 / 790;
@@ -399,6 +421,28 @@
 
 .case-caption--end {
   text-align: right;
+}
+
+.case-cluster {
+  display: grid;
+  grid-template-columns: minmax(0, 628fr) minmax(0, 620fr);
+  gap: $case-stack-gap;
+  align-items: center;
+}
+
+.case-cluster figure {
+  margin: 0;
+}
+
+.case-cluster-stack {
+  display: grid;
+  gap: $case-stack-gap;
+}
+
+.case-cluster img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .case-stagger {
@@ -531,7 +575,9 @@
   .case-palette,
   .case-palette--short,
   .case-marks--grid,
+  .case-marks--lockup,
   .case-related-grid,
+  .case-cluster,
   .case-stagger,
   .case-note {
     grid-template-columns: 1fr;
