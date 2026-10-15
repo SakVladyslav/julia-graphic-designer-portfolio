@@ -33,11 +33,10 @@ describe("App", () => {
       "href",
       `${import.meta.env.BASE_URL}projects/lovespace`,
     );
-    const molfariaLinks = screen.getAllByRole("link", { name: /molfaria/i });
-    expect(molfariaLinks).toHaveLength(2);
-    for (const link of molfariaLinks) {
-      expect(link).toHaveAttribute("href", `${import.meta.env.BASE_URL}projects/molfaria`);
-    }
+    expect(screen.getByRole("link", { name: /molfaria/i })).toHaveAttribute(
+      "href",
+      `${import.meta.env.BASE_URL}projects/molfaria`,
+    );
     expect(screen.getByRole("link", { name: /amaryllis/i })).toHaveAttribute(
       "href",
       `${import.meta.env.BASE_URL}projects/amaryllis`,

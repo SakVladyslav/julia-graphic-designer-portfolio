@@ -81,16 +81,4 @@ export const projects: readonly Project[] = [
       height: 1185,
     },
   },
-  {
-    id: "molfaria-building",
-    caseId: "molfaria",
-    title: "Molfaria",
-    tags: ["branding", "concept"],
-    image: {
-      kind: "cover",
-      src: withBaseUrl("projects/molfaria/molfaria-budova.webp"),
-      width: 825,
-      height: 1024,
-    },
-  },
 ];
