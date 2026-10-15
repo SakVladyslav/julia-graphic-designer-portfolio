@@ -14,8 +14,16 @@ describe("Footer", () => {
     expect(screen.getByRole("contentinfo")).toHaveClass("site-footer--inverse");
     expect(screen.getByRole("heading", { name: "Contacts" })).toBeInTheDocument();
     expect(screen.getByText("Based in Kyiv, Ukraine")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Telegram" })).toHaveAttribute(
+      "href",
+      "https://t.me/juliasamchuk",
+    );
+    expect(screen.getByRole("link", { name: "LinkedIn" })).toHaveAttribute(
+      "href",
+      "https://www.linkedin.com/in/julia-samchuk-5b21791a1/",
+    );
+    expect(screen.getByText("[email]").closest("li")).toHaveClass("contact-detail--email");
     expect(screen.getByText("View CV")).toBeInTheDocument();
-    expect(screen.getByText("LinkedIn")).toBeInTheDocument();
     expect(screen.queryByText("Instagram")).not.toBeInTheDocument();
   });
 

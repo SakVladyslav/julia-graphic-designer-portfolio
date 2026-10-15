@@ -1,7 +1,10 @@
 import CaseBanner from "./CaseBanner";
 import CaseCluster from "./CaseCluster";
 import CaseComparison from "./CaseComparison";
+import CaseIconBoard from "./CaseIconBoard";
 import CaseIntro from "./CaseIntro";
+import CaseLogoPair from "./CaseLogoPair";
+import CaseLogoStack from "./CaseLogoStack";
 import CaseMarks from "./CaseMarks";
 import CaseMedia from "./CaseMedia";
 import CaseNote from "./CaseNote";
@@ -68,5 +71,11 @@ function renderSection(section: CaseSection, index: number) {
       return <CaseBanner key={key} section={section} />;
     case "note":
       return <CaseNote key={key} section={section} />;
+    case "logoStack":
+      return <CaseLogoStack key={key} section={section} />;
+    case "logoPair":
+      return <CaseLogoPair key={key} section={section} />;
+    case "iconBoard":
+      return <CaseIconBoard key={key} section={section} />;
   }
 }

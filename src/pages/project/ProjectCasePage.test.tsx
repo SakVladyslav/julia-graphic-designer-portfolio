@@ -74,6 +74,25 @@ describe("ProjectCasePage", () => {
     expect(screen.queryByRole("link", { name: /amaryllis/i })).not.toBeInTheDocument();
   });
 
+  it("renders the best budova group case and keeps it out of related projects", () => {
+    renderCase("bbg");
+
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Best Budova Group" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Construction Company Visual Identity")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Icons" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "BBG monogram" })).toBeInTheDocument();
+    expect(screen.getAllByRole("img", { name: "Best Budova Group logo" })).toHaveLength(2);
+    expect(screen.getByRole("img", { name: "House" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Best Budova Group construction fence banner" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /lovespace/i })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /best budova group/i })).not.toBeInTheDocument();
+  });
+
   it("keeps the shell readable when a project has no case yet", () => {
     renderCase("unpublished");
 

@@ -1,0 +1,25 @@
+/* e-Ukraine Light
+   Ministry of Digital Transformation of Ukraine, https://thedigital.gov.ua/fonts
+   Design: Dmytro Rastvortsev, Fedoriv. License: CC BY 4.0.
+   The file is the official OpenType release, unmodified. */
+
+@font-face {
+  font-family: "e-Ukraine";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("./e-Ukraine-Light.otf") format("opentype");
+}
+
+/* UAF Memory Medium
+   Dmytro Rastvortsev, 2023. Free for commercial and non-commercial use.
+   License: CC BY-ND 4.0. The file is the official cut, unmodified.
+   https://www.behance.net/gallery/186125291/UAF-Memory-Freeware-variable-typeface */
+
+@font-face {
+  font-family: "UAF Memory";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./UAFMemory-Medium.woff2") format("woff2");
+}

@@ -77,6 +77,42 @@ export interface CaseNoteSection extends CaseSectionBase {
   ornament: CaseImage;
 }
 
+export interface CaseLogoStackSection extends CaseSectionBase {
+  type: "logoStack";
+  background: string;
+  mark: CaseImage;
+  wordmark: CaseImage;
+}
+
+export interface CaseWordmarkLogo {
+  mark: CaseImage;
+  rule: CaseImage;
+  top: CaseImage;
+  middle: CaseImage;
+  bottom: CaseImage;
+}
+
+export interface CaseLogoPairTile {
+  background: string;
+  logo: CaseWordmarkLogo;
+}
+
+export interface CaseLogoPairSection extends CaseSectionBase {
+  type: "logoPair";
+  tiles: readonly [CaseLogoPairTile, CaseLogoPairTile];
+}
+
+export interface CaseIconSlot {
+  image: CaseImage;
+  inset: string;
+}
+
+export interface CaseIconBoardSection extends CaseSectionBase {
+  type: "iconBoard";
+  background: string;
+  icons: readonly CaseIconSlot[];
+}
+
 export interface CaseComparisonSide {
   label: string;
   image: CaseImage;
@@ -145,7 +181,10 @@ export type CaseSection =
   | CaseClusterSection
   | CaseStaggerSection
   | CaseBannerSection
-  | CaseNoteSection;
+  | CaseNoteSection
+  | CaseLogoStackSection
+  | CaseLogoPairSection
+  | CaseIconBoardSection;
 
 export interface ProjectCase {
   id: string;

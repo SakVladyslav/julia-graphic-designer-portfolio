@@ -71,6 +71,17 @@ export const projects: readonly Project[] = [
     },
   },
   {
+    id: "bbg",
+    title: "Best Budova Group",
+    tags: ["logo design", "visual identity"],
+    image: {
+      kind: "cover",
+      src: withBaseUrl("projects/bbg/BBG-01.webp"),
+      width: 1896,
+      height: 1185,
+    },
+  },
+  {
     id: "molfaria-building",
     caseId: "molfaria",
     title: "Molfaria",

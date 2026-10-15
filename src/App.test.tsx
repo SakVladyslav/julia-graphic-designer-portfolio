@@ -42,6 +42,10 @@ describe("App", () => {
       "href",
       `${import.meta.env.BASE_URL}projects/amaryllis`,
     );
+    expect(screen.getByRole("link", { name: /best budova group/i })).toHaveAttribute(
+      "href",
+      `${import.meta.env.BASE_URL}projects/bbg`,
+    );
   });
 
   it("gives an unknown address a main landmark", () => {

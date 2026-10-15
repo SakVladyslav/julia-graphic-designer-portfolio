@@ -276,9 +276,9 @@
 
 .case-related {
   margin-top: $case-section-gap;
-  margin-left: calc(-1 * #{$header-padding-x});
-  margin-right: calc(-1 * #{$header-padding-x});
-  padding: $case-section-gap $header-padding-x 0;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-top: $case-section-gap;
   background: $surface-muted;
   color: $text;
 }
@@ -371,16 +371,17 @@
 .case-poster-copy {
   position: absolute;
   z-index: 1;
-  top: 22.7%;
-  left: 9.4%;
+  top: 22.67%;
+  left: 9.44%;
   display: flex;
   flex-direction: column;
   gap: $case-poster-copy-gap;
-  width: 49%;
+  width: 50.08%;
 }
 
 .case-poster h2 {
   margin: 0;
+  font-family: $font-family-poster-title;
   font-size: 8.47cqw;
   font-weight: 500;
   line-height: 1;
@@ -390,7 +391,9 @@
 .case-poster p {
   margin: 0;
   padding-left: 0.5cqw;
+  font-family: $font-family-poster-detail;
   font-size: 2.5cqw;
+  font-weight: 300;
   line-height: 1.2;
   opacity: 0.8;
 }
@@ -404,8 +407,139 @@
   height: auto;
 }
 
+.case-logo-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1264 / 900;
+  container-type: inline-size;
+  gap: 9.334cqw;
+}
+
+.case-logo-stack-mark,
+.case-logo-stack-word {
+  position: relative;
+}
+
+.case-logo-stack-mark {
+  width: 34.8101%;
+  aspect-ratio: 440 / 441.491;
+}
+
+.case-logo-stack-word {
+  width: 33.3673%;
+  aspect-ratio: 421.766 / 117.754;
+}
+
+.case-logo-stack-mark img,
+.case-logo-stack-word img {
+  position: absolute;
+  max-width: none;
+}
+
+.case-logo-stack-mark img {
+  inset: -0.03% -0.11% -0.5% 0.23%;
+}
+
+.case-logo-stack-word img {
+  inset: -6.25% -1.74%;
+}
+
+.case-logo-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-logo-pair li {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 632 / 600;
+  margin: 0;
+}
+
+.case-wordmark-logo {
+  position: relative;
+  width: 65.3334%;
+  aspect-ratio: 412.907 / 176.96;
+}
+
+.case-wordmark-mark,
+.case-wordmark-type img {
+  position: absolute;
+  max-width: none;
+}
+
+.case-wordmark-mark {
+  inset: 18.61% 70.15% 17.25% 2.38%;
+}
+
+.case-wordmark-rule {
+  position: absolute;
+  inset: 8.61% 63.02% 6.42% 35.91%;
+  container-type: size;
+}
+
+.case-wordmark-rule img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100cqh;
+  height: 100cqw;
+  max-width: none;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.case-wordmark-type {
+  position: absolute;
+  inset: 4.44% 2.38% 3.92% 42.69%;
+}
+
+.case-wordmark-top {
+  inset: 0 41.56% 67.27% 0;
+}
+
+.case-wordmark-middle {
+  inset: 33.64% 0;
+}
+
+.case-wordmark-bottom {
+  inset: 67.27% 15.58% 0 0;
+}
+
+.case-icon-board {
+  display: grid;
+  grid-template-columns: repeat(4, 130px);
+  justify-content: space-between;
+  row-gap: 56px;
+  margin: 0;
+  padding: 72px 168px;
+  list-style: none;
+}
+
+.case-icon-board li {
+  position: relative;
+  aspect-ratio: 1;
+  margin: 0;
+}
+
+.case-icon-board img {
+  position: absolute;
+  max-width: none;
+}
+
 .case-frame {
+  overflow: hidden;
   border: $case-frame-border solid $case-frame;
+}
+
+.case-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .case-caption {
@@ -559,15 +693,6 @@
   line-height: $line-height-heading;
 }
 
-@media (max-width: 1439px) {
-  .case-related {
-    margin-left: calc(-1 * #{$section-inline-scaled});
-    margin-right: calc(-1 * #{$section-inline-scaled});
-    padding-left: $section-inline-scaled;
-    padding-right: $section-inline-scaled;
-  }
-}
-
 @media (max-width: 800px) {
   .case-intro,
   .case-split,
@@ -576,6 +701,7 @@
   .case-palette--short,
   .case-marks--grid,
   .case-marks--lockup,
+  .case-logo-pair,
   .case-related-grid,
   .case-cluster,
   .case-stagger,
@@ -669,6 +795,12 @@
 
   .case-intro h1 {
     font-size: 3rem;
+  }
+
+  .case-icon-board {
+    grid-template-columns: repeat(4, 18%);
+    row-gap: 2rem;
+    padding: 2.5rem 1.25rem;
   }
 
   .case-comparison-panel {

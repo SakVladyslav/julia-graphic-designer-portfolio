@@ -13,12 +13,14 @@ export default function CaseRelated({ projects }: CaseRelatedProps) {
 
   return (
     <section className="case-related" aria-labelledby="more-projects-heading">
-      <h2 id="more-projects-heading">More projects</h2>
-      <ul className="case-related-grid">
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </ul>
+      <div className="container">
+        <h2 id="more-projects-heading">More projects</h2>
+        <ul className="case-related-grid">
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
