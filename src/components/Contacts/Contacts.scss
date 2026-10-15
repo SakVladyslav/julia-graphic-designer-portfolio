@@ -2,6 +2,7 @@
 @use "../../styles/typography" as *;
 @use "../../styles/spacing" as *;
 @use "../../styles/sizes" as *;
+@use "../../styles/breakpoints" as *;
 
 .contacts {
   color: inherit;
@@ -20,10 +21,10 @@
 
 .contacts-layout {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  gap: $nav-gap;
+  gap: 0;
 }
 
 .contact-list {
@@ -31,7 +32,8 @@
   display: flex;
   flex-direction: column;
   gap: $contact-row-gap;
-  flex: 1 1 auto;
+  flex: 0 1 620px;
+  max-width: 100%;
   min-width: min-content;
 }
 
@@ -162,41 +164,86 @@ a.contact-action:hover {
   transform: scaleY(-1);
 }
 
-@media (max-width: 800px) {
+@media (max-width: #{$bp-desktop - 1px}) {
+  .contact-list {
+    flex-basis: clamp(580px, calc(580px + (100vw - #{$bp-laptop}) * 40 / 240), 620px);
+  }
+
+  .contact-main {
+    font-size: clamp(48px, calc(48px + (100vw - #{$bp-tablet}) * 8 / 416), #{$font-size-section});
+  }
+
+  .contact-actions {
+    width: clamp(436px, calc(436px + (100vw - #{$bp-laptop}) * 72 / 240), #{$contacts-panel-width});
+  }
+}
+
+@media (max-width: #{$bp-laptop - 1px}) {
+  .contact-list {
+    flex-basis: clamp(540px, calc(540px + (100vw - #{$bp-tablet}) * 40 / 176), 580px);
+  }
+
+  .contact-actions {
+    width: clamp(320px, calc(320px + (100vw - #{$bp-tablet}) * 116 / 176), 436px);
+  }
+}
+
+@media (max-width: $bp-stack) {
   .contacts h2 {
-    font-size: clamp(2.5rem, 12vw, 5.25rem);
+    margin-bottom: clamp(40px, calc(40px + (100vw - 768px) * 8 / 219), #{$contacts-heading-gap});
+  }
+
+  .contacts-layout {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 48px;
   }
 
   .contact-list {
     width: 100%;
+    flex-basis: auto;
     min-width: 0;
-  }
-
-  .contact-list li {
-    flex-wrap: wrap;
-    column-gap: $contact-annotation-gap;
-    row-gap: 0.25rem;
-  }
-
-  .contact-main,
-  .annotation {
-    white-space: normal;
-    overflow-wrap: anywhere;
-  }
-
-  .contact-main {
-    font-size: clamp(1.5rem, 8vw, 3.5rem);
+    gap: clamp(28px, calc(28px + (100vw - 768px) * 4 / 219), #{$contact-row-gap});
   }
 
   .contact-actions {
     width: 100%;
   }
+}
 
-  .contact-action {
-    height: auto;
-    min-height: 5rem;
-    white-space: normal;
-    text-align: center;
-    padding: 1rem;
+@media (max-width: $bp-phone) {
+  .contacts h2 {
+    margin-bottom: clamp(32px, calc(32px + (100vw - 390px) * 8 / 378), 40px);
+    font-size: clamp(48px, calc(48px + (100vw - 390px) * 36 / 378), #{$font-size-contacts});
+    line-height: $line-height-heading;
+  }
+
+  .contacts-layout {
+    gap: clamp(40px, calc(40px + (100vw - 390px) * 8 / 378), 48px);
+  }
+
+  .contact-list {
+    gap: clamp(24px, calc(24px + (100vw - 390px) * 4 / 378), 28px);
+  }
+
+  .contact-main {
+    font-size: clamp(32px, calc(32px + (100vw - 390px) * 16 / 378), 48px);
+  }
+
+  .annotation {
+    font-size: clamp(14px, calc(14px + (100vw - 390px) * 2 / 378), #{$font-size-base});
+  }
+
+  .contact-detail--email .annotation {
+    display: none;
+  }
+
+  .contact-location {
+    padding-inline: 16px;
+  }
+
+  .contact-location-label {
+    width: auto;
+    max-width: 100%;
   }
 }

@@ -1,0 +1,10 @@
+// Footer frames are checkpoints, not separate layouts.
+// Structure changes at $bp-stack (contacts and the bar reflow)
+// and $bp-phone (the bar centers, the email note hides).
+// 988px is the desktop layout at a narrower width, so it has no breakpoint.
+
+$bp-desktop: 1440px;
+$bp-laptop: 1200px;
+$bp-tablet: 1024px;
+$bp-stack: 987px;
+$bp-phone: 767px;

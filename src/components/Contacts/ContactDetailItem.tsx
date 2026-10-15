@@ -1,5 +1,7 @@
 import type { ContactDetail } from "../../constants/contacts";
 
+import { isExternalHref } from "../../utils/isExternalHref";
+
 type ContactDetailItemProps = {
   detail: ContactDetail;
 };
@@ -8,9 +10,17 @@ export default function ContactDetailItem({ detail }: ContactDetailItemProps) {
   const isStubLink = detail.role === "link" && detail.href === null;
 
   return (
-    <li>
+    <li
+      className={detail.id === "email" ? "contact-detail contact-detail--email" : "contact-detail"}
+    >
       {detail.role === "link" && detail.href !== null ? (
-        <a className="contact-main" href={detail.href}>
+        <a
+          className="contact-main"
+          href={detail.href}
+          {...(isExternalHref(detail.href)
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : undefined)}
+        >
           {detail.label}
         </a>
       ) : (

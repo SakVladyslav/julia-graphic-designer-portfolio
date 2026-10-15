@@ -27,8 +27,8 @@ export default function SiteShell() {
         <SkipLink />
         <Header tone={isProjectPage ? "inverse" : "default"} />
         <Outlet />
-        <Footer tone={isProjectPage ? "light" : "inverse"} />
       </div>
+      <Footer tone={isProjectPage ? "light" : "inverse"} />
     </div>
   );
 }

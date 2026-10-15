@@ -24,9 +24,7 @@ export type ContactAction = {
 /**
  * Contact content as data (not JSX).
  *
- * TODO(owner): replace every stub `href: null` (role: "link") with real links:
- * - Telegram (t.me/...)
- * - LinkedIn
+ * TODO(owner): replace the remaining stub `href: null` with a real link:
  * - CV (PDF URL or file under /public)
  *
  * Later (n8n): same fields can be filled from automation/CMS.
@@ -36,7 +34,7 @@ export const contactDetails: readonly ContactDetail[] = [
     id: "telegram",
     label: "Telegram",
     annotation: "[direct message]",
-    href: null,
+    href: "https://t.me/juliasamchuk",
     role: "link",
   },
   {
@@ -61,6 +59,6 @@ export const contactActions: readonly ContactAction[] = [
     id: "linkedin",
     label: "LinkedIn",
     variant: "linkedin",
-    href: null,
+    href: "https://www.linkedin.com/in/julia-samchuk-5b21791a1/",
   },
 ];
