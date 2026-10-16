@@ -119,6 +119,21 @@ export interface CaseIconBoardSection extends CaseSectionBase {
   icons: readonly CaseIconSlot[];
 }
 
+export interface CaseTypefacePanel {
+  role: "logo" | "communication";
+  label: string;
+  weights: readonly string[];
+  name: string;
+}
+
+export interface CaseTypefacesSection extends CaseSectionBase {
+  type: "typefaces";
+  background: string;
+  ink: string;
+  accent: string;
+  panels: readonly [CaseTypefacePanel, CaseTypefacePanel];
+}
+
 export interface CaseComparisonSide {
   label: string;
   image: CaseImage;
@@ -190,7 +205,8 @@ export type CaseSection =
   | CaseNoteSection
   | CaseLogoStackSection
   | CaseLogoPairSection
-  | CaseIconBoardSection;
+  | CaseIconBoardSection
+  | CaseTypefacesSection;
 
 export interface ProjectCase {
   id: string;

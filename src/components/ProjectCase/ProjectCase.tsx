@@ -13,6 +13,7 @@ import CasePoster from "./CasePoster";
 import CaseRelated from "./CaseRelated";
 import CaseSplit from "./CaseSplit";
 import CaseStagger from "./CaseStagger";
+import CaseTypefaces from "./CaseTypefaces";
 
 import type { CaseSection, ProjectCase as ProjectCaseData } from "../../constants/projectCase";
 import type { Project } from "../../constants/projects";
@@ -77,5 +78,7 @@ function renderSection(section: CaseSection, index: number) {
       return <CaseLogoPair key={key} section={section} />;
     case "iconBoard":
       return <CaseIconBoard key={key} section={section} />;
+    case "typefaces":
+      return <CaseTypefaces key={key} section={section} />;
   }
 }

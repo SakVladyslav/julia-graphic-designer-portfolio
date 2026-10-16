@@ -6,6 +6,7 @@ import type {
   CaseLogoStackSection,
   CaseMediaSection,
   CaseSpace,
+  CaseTypefacesSection,
   CaseWordmarkLogo,
   ProjectCase,
 } from "../projectCase";
@@ -75,6 +76,28 @@ function icon(
   return { image: picture(file, width, height, alt), inset };
 }
 
+const typefaces: CaseTypefacesSection = {
+  type: "typefaces",
+  spaceBefore: "section",
+  background: paper,
+  ink,
+  accent: blue,
+  panels: [
+    {
+      role: "logo",
+      label: "Logo typeface",
+      weights: ["Regular"],
+      name: "Lexend\nDeca",
+    },
+    {
+      role: "communication",
+      label: "Communication typeface",
+      weights: ["Medium", "SemiBold"],
+      name: "Wix Madefor Display",
+    },
+  ],
+};
+
 const iconBoard: CaseIconBoardSection = {
   type: "iconBoard",
   spaceBefore: "block",
@@ -111,12 +134,13 @@ export const bbgCase: ProjectCase = {
     logoStack,
     logoPair,
     media(
-      "BBG-04.webp",
-      1896,
-      1350,
-      "Best Budova Group lightbox sign on a concrete wall",
+      "BBG-07.webp",
+      1264,
+      900,
+      "Best Budova Group lightbox sign on a concrete facade",
       "section",
     ),
+    typefaces,
     {
       type: "split",
       spaceBefore: "section",

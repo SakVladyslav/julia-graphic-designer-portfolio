@@ -81,6 +81,13 @@ describe("ProjectCasePage", () => {
       screen.getByRole("heading", { level: 1, name: "Best Budova Group" }),
     ).toBeInTheDocument();
     expect(screen.getByText("Construction Company Visual Identity")).toBeInTheDocument();
+    expect(screen.getByText("Logo typeface")).toBeInTheDocument();
+    expect(screen.getByText(/lexend\s*deca/i)).toBeInTheDocument();
+    expect(screen.getByText("Wix Madefor Display")).toBeInTheDocument();
+    expect(screen.getByText("Communication typeface")).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Best Budova Group lightbox sign on a concrete facade" }),
+    ).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Icons" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "BBG monogram" })).toBeInTheDocument();
     expect(screen.getAllByRole("img", { name: "Best Budova Group logo" })).toHaveLength(2);
