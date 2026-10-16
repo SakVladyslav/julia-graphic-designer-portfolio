@@ -20,20 +20,26 @@ type FramedImage = {
   height: number;
 };
 
-export type Project = {
+export interface Project {
   id: string;
   /** Case page this card opens. Defaults to `id`. */
   caseId?: string;
   title: string;
   tags: readonly string[];
   image: LovespaceImage | FramedImage;
-};
+}
+
+export interface ProjectGroup {
+  id: string;
+  title: string;
+  projectIds: readonly string[];
+}
 
 export const projects: readonly Project[] = [
   {
     id: "lovespace",
     title: "Lovespace",
-    tags: ["visual identity", "rebranding"],
+    tags: ["visual identity", "rebranding", "art direction"],
     image: {
       kind: "lovespace",
       photo: withBaseUrl("projects/lovespace/lovespace-photo.webp"),
@@ -51,7 +57,7 @@ export const projects: readonly Project[] = [
     id: "molfaria-window",
     caseId: "molfaria",
     title: "Molfaria",
-    tags: ["branding", "concept"],
+    tags: ["brand identity", "coffee branding", "art direction"],
     image: {
       kind: "offset",
       src: withBaseUrl("projects/molfaria/molfaria-window.webp"),
@@ -61,8 +67,8 @@ export const projects: readonly Project[] = [
   },
   {
     id: "amaryllis",
-    title: "Amaryllis",
-    tags: ["branding", "concept"],
+    title: "Amaryllis Poster Series",
+    tags: ["poster design", "merch design"],
     image: {
       kind: "cover",
       src: withBaseUrl("projects/amaryllis/amaryllis.webp"),
@@ -76,9 +82,39 @@ export const projects: readonly Project[] = [
     tags: ["logo design", "visual identity"],
     image: {
       kind: "cover",
-      src: withBaseUrl("projects/bbg/BBG-01.webp"),
+      src: withBaseUrl("projects/bbg/BBG-04.webp"),
       width: 1896,
-      height: 1185,
+      height: 1350,
     },
+  },
+  {
+    id: "olx",
+    title: "OLX Business Hub",
+    tags: ["web design", "ui/ux redesign", "wireframing"],
+    image: {
+      kind: "cover",
+      src: withBaseUrl("projects/olx/OLX.webp"),
+      width: 1232,
+      height: 964,
+    },
+  },
+  {
+    id: "novyny",
+    title: "Novyny LIVE",
+    tags: ["logo design", "brand mark"],
+    image: {
+      kind: "cover",
+      src: withBaseUrl("projects/novyny/Novyny.webp"),
+      width: 1232,
+      height: 964,
+    },
+  },
+];
+
+export const projectGroups: readonly ProjectGroup[] = [
+  {
+    id: "web-design",
+    title: "[Web Design Experience]",
+    projectIds: ["olx", "novyny"],
   },
 ];
