@@ -87,7 +87,7 @@ export interface CaseLogoStackSection extends CaseSectionBase {
   type: "logoStack";
   background: string;
   mark: CaseImage;
-  wordmark: CaseImage;
+  letters: readonly [CaseImage, CaseImage, CaseImage];
 }
 
 export interface CaseWordmarkLogo {

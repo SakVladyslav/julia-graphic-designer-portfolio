@@ -54,7 +54,11 @@ const logoStack: CaseLogoStackSection = {
   spaceBefore: "section",
   background: blue,
   mark: picture("mark.svg", 439, 444, "BBG monogram"),
-  wordmark: picture("wordmark.svg", 436, 132, ""),
+  letters: [
+    picture("B-1.svg", 117, 133, ""),
+    picture("B-2.svg", 112, 133, ""),
+    picture("G.svg", 112, 133, ""),
+  ],
 };
 
 const logoPair: CaseLogoPairSection = {

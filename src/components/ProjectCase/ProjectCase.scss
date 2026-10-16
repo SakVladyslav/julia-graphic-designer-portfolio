@@ -453,36 +453,36 @@
   justify-content: center;
   aspect-ratio: 1264 / 900;
   container-type: inline-size;
-  gap: 9.334cqw;
-}
-
-.case-logo-stack-mark,
-.case-logo-stack-word {
-  position: relative;
 }
 
 .case-logo-stack-mark {
+  position: relative;
   width: 34.8101%;
   aspect-ratio: 440 / 441.491;
 }
 
-.case-logo-stack-word {
-  width: 33.3673%;
-  aspect-ratio: 421.766 / 117.754;
-}
-
-.case-logo-stack-mark img,
-.case-logo-stack-word img {
+.case-logo-stack-mark img {
   position: absolute;
+  top: -0.03%;
+  left: 0.23%;
+  width: 99.88%;
+  height: 100.53%;
   max-width: none;
 }
 
-.case-logo-stack-mark img {
-  inset: -0.03% -0.11% -0.5% 0.23%;
+.case-logo-stack-letters {
+  display: flex;
+  align-items: center;
+  height: 10.6791cqw;
+  margin-top: 8.7025cqw;
+  gap: 5.0061cqw;
 }
 
-.case-logo-stack-word img {
-  inset: -6.25% -1.74%;
+.case-logo-stack-letters img {
+  display: block;
+  flex-shrink: 0;
+  width: auto;
+  height: 100%;
 }
 
 .case-logo-pair {
