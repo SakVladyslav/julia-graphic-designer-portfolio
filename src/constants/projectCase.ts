@@ -21,6 +21,11 @@ export interface CaseImage {
   alt: string;
 }
 
+export interface CaseIntroLink {
+  label: string;
+  href: string;
+}
+
 export interface CaseIntroSection extends CaseSectionBase {
   type: "intro";
   eyebrow: string;
@@ -28,6 +33,7 @@ export interface CaseIntroSection extends CaseSectionBase {
   subtitle: string;
   paragraphs: readonly string[];
   tags: readonly string[];
+  link?: CaseIntroLink;
 }
 
 export interface CaseMediaSection extends CaseSectionBase {

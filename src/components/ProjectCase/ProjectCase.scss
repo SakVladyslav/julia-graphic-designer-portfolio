@@ -91,6 +91,45 @@
   opacity: 0.8;
 }
 
+.case-intro-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $project-tag-gap;
+  margin-top: calc(#{$header-padding-y} - #{$case-title-gap});
+  padding: 12px $header-padding-y;
+  border-radius: $project-tag-radius;
+  background: $paper;
+  color: $text;
+  font-weight: 700;
+  font-size: $font-size-base;
+  letter-spacing: 0.32px;
+  line-height: $line-height-annotation;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.case-intro-link:hover {
+  background: $accent;
+  color: $paper;
+}
+
+.case-intro-link-arrow {
+  display: block;
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  -webkit-mask-image: url("../../assets/contact-arrow.svg");
+  mask-image: url("../../assets/contact-arrow.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transform: scaleY(-1);
+}
+
 .case-intro-copy {
   gap: $case-intro-copy-gap;
   width: 100%;

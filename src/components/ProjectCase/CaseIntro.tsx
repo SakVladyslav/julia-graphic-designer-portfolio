@@ -1,5 +1,7 @@
 import type { CaseIntroSection } from "../../constants/projectCase";
 
+import { isExternalHref } from "../../utils/isExternalHref";
+
 import { sectionClass } from "./sectionClass";
 
 interface CaseIntroProps {
@@ -18,6 +20,18 @@ export default function CaseIntro({ section }: CaseIntroProps) {
           <h1 id="case-title">{section.title}</h1>
         </div>
         <p className="case-subtitle">{section.subtitle}</p>
+        {section.link ? (
+          <a
+            className="case-intro-link"
+            href={section.link.href}
+            {...(isExternalHref(section.link.href)
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : undefined)}
+          >
+            {section.link.label}
+            <span className="case-intro-link-arrow" aria-hidden="true" />
+          </a>
+        ) : null}
       </div>
       <div className="case-intro-copy">
         <div className="case-copy">

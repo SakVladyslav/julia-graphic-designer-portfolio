@@ -129,9 +129,34 @@
   }
 }
 
-.projects {
-  padding: 1rem 0 6.5rem;
+.home-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-bottom: 6.5rem;
   scroll-margin-top: 5.5rem;
+}
+
+.project-group {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-top: $case-stack-gap;
+}
+
+.project-group h2 {
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: $font-size-project-title;
+  line-height: $line-height-heading;
+  color: $text;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 0;
 }
 
 .section-heading {
@@ -139,15 +164,14 @@
   flex-direction: row;
   align-items: flex-start;
   gap: $section-heading-gap;
-  margin-top: 0;
-  margin-bottom: 1.85rem;
+  margin: 0;
 }
 
 .section-heading h2 {
   font-family: $font-family;
   font-weight: 500;
-  font-size: $font-size-section;
-  line-height: 1.2;
+  font-size: $font-size-projects;
+  line-height: 1.1;
   color: $text;
   letter-spacing: 0;
 }
@@ -155,10 +179,11 @@
 .section-count {
   font-family: $font-family;
   font-weight: 400;
-  font-size: $font-size-count;
-  line-height: 1.4;
+  font-size: $font-size-base;
+  line-height: $line-height-annotation;
   color: $accent;
   letter-spacing: 0;
+  opacity: 0.8;
 }
 
 @media (max-width: 1439px) {
@@ -167,11 +192,11 @@
   }
 
   .section-heading h2 {
-    font-size: 3.888889vw;
+    font-size: 5vw;
   }
 
   .section-count {
-    font-size: 1.388889vw;
+    font-size: 1.111111vw;
   }
 }
 
@@ -222,7 +247,7 @@
     padding-bottom: 3.5rem;
   }
 
-  .projects {
+  .home-projects {
     padding-bottom: 4rem;
   }
 }
