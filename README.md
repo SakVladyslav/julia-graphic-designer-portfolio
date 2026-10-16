@@ -14,17 +14,18 @@ Personal portfolio SPA for graphic designer Julia Samchuk.
 
 ## Scripts
 
-| Command                           | Purpose                                  |
-| --------------------------------- | ---------------------------------------- |
-| `npm run dev`                     | Local development server                 |
-| `npm run build`                   | Typecheck + production build             |
-| `npm run preview`                 | Preview production build                 |
-| `npm run lint`                    | Oxlint                                   |
-| `npm run format`                  | Prettier write                           |
-| `npm run format:check`            | Prettier check                           |
-| `npm test`                        | Unit / smoke tests                       |
-| `npm run optimize:images`         | Convert `public/projects` PNG/JPG → WebP |
-| `npm run optimize:images:replace` | Same, then delete originals              |
+| Command                           | Purpose                                      |
+| --------------------------------- | -------------------------------------------- |
+| `npm run dev`                     | Local development server                     |
+| `npm run build`                   | Typecheck + production build                 |
+| `npm run preview`                 | Preview production build                     |
+| `npm run lint`                    | Oxlint                                       |
+| `npm run format`                  | Prettier write                               |
+| `npm run format:check`            | Prettier check                               |
+| `npm test`                        | Unit / smoke tests                           |
+| `npm run og:image`                | Rebuild the share-card image `public/og.png` |
+| `npm run optimize:images`         | Convert `public/projects` PNG/JPG → WebP     |
+| `npm run optimize:images:replace` | Same, then delete originals                  |
 
 ## Project structure
 
@@ -51,8 +52,10 @@ scripts/
 
 ## Deploy
 
-Pushes to `master` build and publish via GitHub Actions → GitHub Pages  
-(`base`: `/julia-graphic-designer-portfolio/`).
+Pull requests run lint, tests, and the production build.  
+A push to `master` does the same, then publishes `dist` to GitHub Pages  
+(`base`: `/julia-graphic-designer-portfolio/`).  
+A failing check skips the publish.
 
 ## Conventions
 

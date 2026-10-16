@@ -110,6 +110,7 @@ function poster(
   title: string,
   subtitle: string,
   mark: CaseImage,
+  lang?: string,
 ): CasePosterSection {
   return {
     type: "poster",
@@ -122,6 +123,7 @@ function poster(
     title,
     subtitle,
     mark,
+    ...(lang === undefined ? {} : { lang }),
   };
 }
 
@@ -160,6 +162,7 @@ export const molfariaCase: ProjectCase = {
       "Можна не\nпоспішати",
       "Допивай каву спокійно",
       blueMark,
+      "uk",
     ),
     media("molf-mockup-8.webp", 2400, 1583, "Molfaria cup carrier", "stack"),
     media("molf-mockup-9.webp", 2400, 1583, "Iced coffee and Molfaria coasters", "stack"),
@@ -174,6 +177,7 @@ export const molfariaCase: ProjectCase = {
       "Смакуй\nпо-своєму",
       "Навіть якщо це фільтр з молоком",
       creamMark,
+      "uk",
     ),
   ],
 };

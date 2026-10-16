@@ -14,7 +14,7 @@ export default function CasePoster({ section }: CasePosterProps) {
       aria-labelledby={section.headingId}
     >
       <div className="case-poster-panel" style={{ backgroundColor: section.panel }} />
-      <div className="case-poster-copy">
+      <div className="case-poster-copy" lang={section.lang}>
         <h2 id={section.headingId}>{section.title}</h2>
         <p style={{ color: section.detail }}>{section.subtitle}</p>
       </div>
