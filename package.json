@@ -12,6 +12,7 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "og:image": "node scripts/render-og-image.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
     "optimize:images:replace": "node scripts/optimize-images.mjs --delete-originals"
   },

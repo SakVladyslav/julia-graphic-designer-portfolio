@@ -189,6 +189,8 @@ export interface CasePosterSection extends CaseSectionBase {
   title: string;
   subtitle: string;
   mark: CaseImage;
+  /** BCP 47 language of the poster copy, when it differs from the page language. */
+  lang?: string;
 }
 
 export type CaseSection =

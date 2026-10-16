@@ -8,6 +8,9 @@ describe("githubPagesFallbackHtml", () => {
 
     expect(html).toContain('sessionStorage.setItem("spa-redirect", location.href)');
     expect(html).toContain('location.replace("/julia-graphic-designer-portfolio/")');
+    expect(html).toContain(
+      '<meta property="og:image" content="https://sakvladyslav.github.io/julia-graphic-designer-portfolio/og.png" />',
+    );
   });
 
   it("keeps a trailing slash on the redirect", () => {
