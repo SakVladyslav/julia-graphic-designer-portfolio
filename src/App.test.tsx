@@ -45,6 +45,15 @@ describe("App", () => {
       "href",
       `${import.meta.env.BASE_URL}projects/bbg`,
     );
+    expect(screen.getByRole("link", { name: /olx business hub/i })).toHaveAttribute(
+      "href",
+      `${import.meta.env.BASE_URL}projects/olx`,
+    );
+    expect(screen.getByRole("heading", { name: "[Web Design Experience]" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /novyny live/i })).toHaveAttribute(
+      "href",
+      `${import.meta.env.BASE_URL}projects/novyny`,
+    );
   });
 
   it("gives an unknown address a main landmark", () => {

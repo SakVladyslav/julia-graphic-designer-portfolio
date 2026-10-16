@@ -1,12 +1,25 @@
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 
-import { projects } from "../../constants/projects";
+import { projectGroups, projects } from "../../constants/projects";
+
+import type { Project } from "../../constants/projects";
 
 import { formatSectionCount } from "../../utils/formatSectionCount";
 
 import heroArrowUrl from "../../assets/hero-arrow.svg";
 
 import "./LandingPage.scss";
+
+const groupedProjectIds = new Set(projectGroups.flatMap((group) => group.projectIds));
+
+const selectedProjects = projects.filter((project) => !groupedProjectIds.has(project.id));
+
+function projectsForGroup(projectIds: readonly string[]): Project[] {
+  return projectIds.flatMap((id) => {
+    const project = projects.find((item) => item.id === id);
+    return project === undefined ? [] : [project];
+  });
+}
 
 export default function LandingPage() {
   return (
@@ -29,17 +42,30 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="projects" id="projects" aria-labelledby="projects-heading">
-        <div className="section-heading">
-          <h2 id="projects-heading">Selected Projects</h2>
-          <span className="section-count">{formatSectionCount(projects.length)}</span>
-        </div>
-        <ul className="project-grid">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} priority={index === 0} />
-          ))}
-        </ul>
-      </section>
+      <div className="home-projects" id="projects">
+        <section className="projects" aria-labelledby="projects-heading">
+          <div className="section-heading">
+            <h2 id="projects-heading">Projects</h2>
+            <span className="section-count">{formatSectionCount(selectedProjects.length)}</span>
+          </div>
+          <ul className="project-grid">
+            {selectedProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} priority={index === 0} />
+            ))}
+          </ul>
+        </section>
+
+        {projectGroups.map((group) => (
+          <section key={group.id} className="project-group" aria-labelledby={`${group.id}-heading`}>
+            <h2 id={`${group.id}-heading`}>{group.title}</h2>
+            <ul className="project-grid">
+              {projectsForGroup(group.projectIds).map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
 
       <section className="about" id="about" aria-labelledby="about-heading">
         <h2 id="about-heading">About</h2>

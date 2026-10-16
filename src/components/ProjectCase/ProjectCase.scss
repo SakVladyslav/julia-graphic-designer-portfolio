@@ -91,6 +91,45 @@
   opacity: 0.8;
 }
 
+.case-intro-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $project-tag-gap;
+  margin-top: calc(#{$header-padding-y} - #{$case-title-gap});
+  padding: 12px $header-padding-y;
+  border-radius: $project-tag-radius;
+  background: $paper;
+  color: $text;
+  font-weight: 700;
+  font-size: $font-size-base;
+  letter-spacing: 0.32px;
+  line-height: $line-height-annotation;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.case-intro-link:hover {
+  background: $accent;
+  color: $paper;
+}
+
+.case-intro-link-arrow {
+  display: block;
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  -webkit-mask-image: url("../../assets/contact-arrow.svg");
+  mask-image: url("../../assets/contact-arrow.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transform: scaleY(-1);
+}
+
 .case-intro-copy {
   gap: $case-intro-copy-gap;
   width: 100%;
@@ -414,36 +453,36 @@
   justify-content: center;
   aspect-ratio: 1264 / 900;
   container-type: inline-size;
-  gap: 9.334cqw;
-}
-
-.case-logo-stack-mark,
-.case-logo-stack-word {
-  position: relative;
 }
 
 .case-logo-stack-mark {
+  position: relative;
   width: 34.8101%;
   aspect-ratio: 440 / 441.491;
 }
 
-.case-logo-stack-word {
-  width: 33.3673%;
-  aspect-ratio: 421.766 / 117.754;
-}
-
-.case-logo-stack-mark img,
-.case-logo-stack-word img {
+.case-logo-stack-mark img {
   position: absolute;
+  top: -0.03%;
+  left: 0.23%;
+  width: 99.88%;
+  height: 100.53%;
   max-width: none;
 }
 
-.case-logo-stack-mark img {
-  inset: -0.03% -0.11% -0.5% 0.23%;
+.case-logo-stack-letters {
+  display: flex;
+  align-items: center;
+  height: 10.6791cqw;
+  margin-top: 8.7025cqw;
+  gap: 5.0061cqw;
 }
 
-.case-logo-stack-word img {
-  inset: -6.25% -1.74%;
+.case-logo-stack-letters img {
+  display: block;
+  flex-shrink: 0;
+  width: auto;
+  height: 100%;
 }
 
 .case-logo-pair {
@@ -459,6 +498,75 @@
   place-items: center;
   aspect-ratio: 632 / 600;
   margin: 0;
+}
+
+.case-typefaces {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: $case-stack-gap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-typeface {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 624 / 500;
+  margin: 0;
+  padding: $header-padding-y;
+  container-type: inline-size;
+}
+
+.case-typeface-meta,
+.case-typeface-weights,
+.case-typeface-name {
+  margin: 0;
+}
+
+.case-typeface-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $project-tag-gap;
+  font-size: $font-size-case-body;
+  line-height: normal;
+}
+
+.case-typeface--logo .case-typeface-meta {
+  font-family: $font-family-bbg-logo;
+  font-weight: 400;
+}
+
+.case-typeface--communication .case-typeface-meta {
+  font-family: $font-family-bbg-communication;
+  font-weight: 500;
+}
+
+.case-typeface-weights {
+  display: flex;
+  gap: $project-tag-gap;
+  text-align: center;
+}
+
+.case-typeface-name {
+  font-size: 13.9286cqw;
+}
+
+.case-typeface--logo .case-typeface-name {
+  font-family: $font-family-bbg-logo;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: pre-line;
+}
+
+.case-typeface--communication .case-typeface-name {
+  font-family: $font-family-bbg-communication;
+  font-weight: 600;
+  font-size: 12.8571cqw;
+  line-height: 1.05;
 }
 
 .case-wordmark-logo {
@@ -702,6 +810,7 @@
   .case-marks--grid,
   .case-marks--lockup,
   .case-logo-pair,
+  .case-typefaces,
   .case-related-grid,
   .case-cluster,
   .case-stagger,

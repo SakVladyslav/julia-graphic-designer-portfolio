@@ -81,6 +81,13 @@ describe("ProjectCasePage", () => {
       screen.getByRole("heading", { level: 1, name: "Best Budova Group" }),
     ).toBeInTheDocument();
     expect(screen.getByText("Construction Company Visual Identity")).toBeInTheDocument();
+    expect(screen.getByText("Logo typeface")).toBeInTheDocument();
+    expect(screen.getByText(/lexend\s*deca/i)).toBeInTheDocument();
+    expect(screen.getByText("Wix Madefor Display")).toBeInTheDocument();
+    expect(screen.getByText("Communication typeface")).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Best Budova Group lightbox sign on a concrete facade" }),
+    ).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Icons" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "BBG monogram" })).toBeInTheDocument();
     expect(screen.getAllByRole("img", { name: "Best Budova Group logo" })).toHaveLength(2);
@@ -91,6 +98,42 @@ describe("ProjectCasePage", () => {
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /lovespace/i })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /best budova group/i })).not.toBeInTheDocument();
+  });
+
+  it("renders the olx business hub case and links the full case on behance", () => {
+    renderCase("olx");
+
+    expect(screen.getByRole("heading", { level: 1, name: "OLX Business Hub" })).toBeInTheDocument();
+    expect(screen.getByText("B2B Website Redesign")).toBeInTheDocument();
+    expect(screen.getByText("[Agency project]")).toBeInTheDocument();
+    expect(screen.getByText("wireframing")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /olx business hub on a laptop/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /view case on behance/i })).toHaveAttribute(
+      "href",
+      "https://www.behance.net/gallery/217930743/OLX-B2B-UIUX-Redesign",
+    );
+    expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /lovespace/i })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /olx business hub/i })).not.toBeInTheDocument();
+  });
+
+  it("renders the novyny live case and links the full case on behance", () => {
+    renderCase("novyny");
+
+    expect(screen.getByRole("heading", { level: 1, name: "Novyny LIVE" })).toBeInTheDocument();
+    expect(screen.getByText("News Website Redesign")).toBeInTheDocument();
+    expect(screen.getByText("[Agency project]")).toBeInTheDocument();
+    expect(screen.getByText("design system")).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: /novyny live homepage on a desktop/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /view case on behance/i })).toHaveAttribute(
+      "href",
+      "https://www.behance.net/gallery/172888923/novini-LIVE-News-website-redesign",
+    );
+    expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /lovespace/i })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /novyny live/i })).not.toBeInTheDocument();
   });
 
   it("keeps the shell readable when a project has no case yet", () => {

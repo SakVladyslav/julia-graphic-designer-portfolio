@@ -28,7 +28,10 @@ export default function ProjectCasePage() {
     );
   }
 
-  const related = projects.filter((project) => projectCaseId(project) !== projectCase.id);
+  const related = projects.filter((project) => {
+    const caseId = projectCaseId(project);
+    return caseId !== projectCase.id && getProjectCase(caseId) !== undefined;
+  });
 
   return (
     <main id="main-content" tabIndex={-1}>

@@ -22,15 +22,18 @@ export default function CaseLogoStack({ section }: CaseLogoStackProps) {
           decoding="async"
         />
       </div>
-      <div className="case-logo-stack-word">
-        <img
-          src={section.wordmark.src}
-          alt={section.wordmark.alt}
-          width={section.wordmark.width}
-          height={section.wordmark.height}
-          loading="lazy"
-          decoding="async"
-        />
+      <div className="case-logo-stack-letters">
+        {section.letters.map((letter) => (
+          <img
+            key={letter.src}
+            src={letter.src}
+            alt={letter.alt}
+            width={letter.width}
+            height={letter.height}
+            loading="lazy"
+            decoding="async"
+          />
+        ))}
       </div>
     </div>
   );

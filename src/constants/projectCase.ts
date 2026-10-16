@@ -21,6 +21,11 @@ export interface CaseImage {
   alt: string;
 }
 
+export interface CaseIntroLink {
+  label: string;
+  href: string;
+}
+
 export interface CaseIntroSection extends CaseSectionBase {
   type: "intro";
   eyebrow: string;
@@ -28,6 +33,7 @@ export interface CaseIntroSection extends CaseSectionBase {
   subtitle: string;
   paragraphs: readonly string[];
   tags: readonly string[];
+  link?: CaseIntroLink;
 }
 
 export interface CaseMediaSection extends CaseSectionBase {
@@ -81,7 +87,7 @@ export interface CaseLogoStackSection extends CaseSectionBase {
   type: "logoStack";
   background: string;
   mark: CaseImage;
-  wordmark: CaseImage;
+  letters: readonly [CaseImage, CaseImage, CaseImage];
 }
 
 export interface CaseWordmarkLogo {
@@ -111,6 +117,21 @@ export interface CaseIconBoardSection extends CaseSectionBase {
   type: "iconBoard";
   background: string;
   icons: readonly CaseIconSlot[];
+}
+
+export interface CaseTypefacePanel {
+  role: "logo" | "communication";
+  label: string;
+  weights: readonly string[];
+  name: string;
+}
+
+export interface CaseTypefacesSection extends CaseSectionBase {
+  type: "typefaces";
+  background: string;
+  ink: string;
+  accent: string;
+  panels: readonly [CaseTypefacePanel, CaseTypefacePanel];
 }
 
 export interface CaseComparisonSide {
@@ -184,7 +205,8 @@ export type CaseSection =
   | CaseNoteSection
   | CaseLogoStackSection
   | CaseLogoPairSection
-  | CaseIconBoardSection;
+  | CaseIconBoardSection
+  | CaseTypefacesSection;
 
 export interface ProjectCase {
   id: string;
