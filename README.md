@@ -63,8 +63,8 @@ Set the `SITE_ORIGIN` environment variable to the public URL (no trailing slash)
 when a custom domain replaces the `workers.dev` address. Until then the canonical
 and share-card URLs use that Workers hostname.
 
-Vite `base` is `/`. `public/_redirects` sends unknown paths to `index.html`
-so project pages keep their address.
+Vite `base` is `/`. The Worker serves `index.html` for unknown paths, so a project
+page keeps its address when opened directly.
 
 ## Conventions
 

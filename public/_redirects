@@ -1,2 +1,0 @@
-# Real files are served first. Every other path loads the SPA so client routes keep their URL.
-/*    /index.html   200
