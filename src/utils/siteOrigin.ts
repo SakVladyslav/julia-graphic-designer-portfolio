@@ -1,7 +1,7 @@
 import { env } from "node:process";
 
-/** Cloudflare Workers hostname for this repository. */
-const DEFAULT_SITE_ORIGIN = "https://julia-graphic-designer-portfolio.vladyslav-sak.workers.dev";
+/** Public site address. Override with SITE_ORIGIN when it changes. */
+const DEFAULT_SITE_ORIGIN = "https://julia-s.com";
 
 /** Stable public origin for canonical and share-card URLs. */
 export function siteOrigin(): string {

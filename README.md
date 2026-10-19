@@ -2,7 +2,7 @@
 
 Personal portfolio SPA for graphic designer Julia Samchuk.
 
-**Live site:** https://julia-graphic-designer-portfolio.vladyslav-sak.workers.dev
+**Live site:** https://julia-s.com
 
 ## Stack
 
@@ -55,13 +55,11 @@ scripts/
 Pull requests and pushes to `master` run lint, tests, and the production build.
 
 [Cloudflare Workers](https://developers.cloudflare.com/workers/static-assets/) publishes `dist` from `master`.
-The production address is
-`https://julia-graphic-designer-portfolio.vladyslav-sak.workers.dev`.
+The production address is `https://julia-s.com`.
 Build command: `npm run build`. Output directory: `dist`.
 
-Set the `SITE_ORIGIN` environment variable to the public URL (no trailing slash)
-when a custom domain replaces the `workers.dev` address. Until then the canonical
-and share-card URLs use that Workers hostname.
+Canonical and share-card URLs use that address. Set the `SITE_ORIGIN` environment
+variable (no trailing slash) when the public address changes.
 
 Vite `base` is `/`. The Worker serves `index.html` for unknown paths, so a project
 page keeps its address when opened directly.

@@ -15,10 +15,10 @@ describe("siteOrigin", () => {
     env.SITE_ORIGIN = original;
   });
 
-  it("uses the Cloudflare Workers hostname by default", () => {
+  it("uses the public site address by default", () => {
     delete env.SITE_ORIGIN;
 
-    expect(siteOrigin()).toBe("https://julia-graphic-designer-portfolio.vladyslav-sak.workers.dev");
+    expect(siteOrigin()).toBe("https://julia-s.com");
   });
 
   it("uses SITE_ORIGIN and drops a trailing slash", () => {
@@ -30,6 +30,6 @@ describe("siteOrigin", () => {
   it("ignores a blank SITE_ORIGIN", () => {
     env.SITE_ORIGIN = "   ";
 
-    expect(siteOrigin()).toBe("https://julia-graphic-designer-portfolio.vladyslav-sak.workers.dev");
+    expect(siteOrigin()).toBe("https://julia-s.com");
   });
 });

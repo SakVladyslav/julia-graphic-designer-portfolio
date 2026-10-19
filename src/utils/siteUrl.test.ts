@@ -4,14 +4,10 @@ import { siteUrl } from "./siteUrl";
 
 describe("siteUrl", () => {
   it("joins the site origin with the Vite base", () => {
-    expect(siteUrl("/")).toBe(
-      "https://julia-graphic-designer-portfolio.vladyslav-sak.workers.dev/",
-    );
+    expect(siteUrl("/")).toBe("https://julia-s.com/");
   });
 
   it("adds a missing leading and trailing slash", () => {
-    expect(siteUrl("portfolio")).toBe(
-      "https://julia-graphic-designer-portfolio.vladyslav-sak.workers.dev/portfolio/",
-    );
+    expect(siteUrl("portfolio")).toBe("https://julia-s.com/portfolio/");
   });
 });
