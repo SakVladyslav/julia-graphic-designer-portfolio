@@ -17,7 +17,7 @@ Personal portfolio SPA for graphic designer Julia Samchuk.
 | Command                           | Purpose                                      |
 | --------------------------------- | -------------------------------------------- |
 | `npm run dev`                     | Local development server                     |
-| `npm run build`                   | Tests, then typecheck and production build   |
+| `npm run build`                   | Typecheck + production build                 |
 | `npm run preview`                 | Preview production build                     |
 | `npm run lint`                    | Oxlint                                       |
 | `npm run format`                  | Prettier write                               |
@@ -56,7 +56,7 @@ Pull requests and pushes to `master` run lint, tests, and the production build.
 
 [Cloudflare Workers](https://developers.cloudflare.com/workers/static-assets/) publishes `dist` from `master`.
 The production address is `https://julia-s.com`.
-Build command: `npm run build` (runs the tests first). Output directory: `dist`.
+Build command: `npm run build`. Output directory: `dist`.
 
 Canonical and share-card URLs use that address. Set the `SITE_ORIGIN` environment
 variable (no trailing slash) when the public address changes.
