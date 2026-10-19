@@ -6,16 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Julia Samchuk</title>
     <!-- description and share-card tags are inserted by the site-head plugin -->
-    <script>
-      (function () {
-        const redirect = sessionStorage.getItem("spa-redirect");
-        if (!redirect) return;
-        sessionStorage.removeItem("spa-redirect");
-        const url = new URL(redirect);
-        if (url.origin !== location.origin) return;
-        history.replaceState(null, "", url.pathname + url.search + url.hash);
-      })();
-    </script>
     <link
       rel="preload"
       href="/fonts/MinSans-Medium_0.woff2"

@@ -1,5 +1,5 @@
-# Lint, test, and build on pull requests. Publish to GitHub Pages only after that passes.
-name: Deploy static content to Pages
+# Lint, test, and build. Cloudflare Pages publishes the site from master.
+name: Verify
 
 on:
   push:
@@ -33,36 +33,3 @@ jobs:
         run: npm test
       - name: Build
         run: npm run build
-
-  deploy:
-    needs: verify
-    if: github.event_name != 'pull_request'
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-      - name: Set up Node
-        uses: actions/setup-node@v5
-        with:
-          node-version: lts/*
-          cache: npm
-      - name: Install dependencies
-        run: npm ci
-      - name: Build
-        run: npm run build
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: ./dist
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4

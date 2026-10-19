@@ -5,7 +5,7 @@ import { SITE_DESCRIPTION } from "../constants/site";
 import { siteHeadTags } from "./siteHeadTags";
 
 describe("siteHeadTags", () => {
-  const tags = siteHeadTags("https://sakvladyslav.github.io/julia-graphic-designer-portfolio/");
+  const tags = siteHeadTags("https://julia-graphic-designer-portfolio.vladyslav-sak.workers.dev/");
 
   it("keeps the search snippet short enough for Google", () => {
     expect(SITE_DESCRIPTION.length).toBeLessThanOrEqual(160);
@@ -14,7 +14,7 @@ describe("siteHeadTags", () => {
 
   it("points the share card at an absolute image URL", () => {
     expect(tags).toContain(
-      '<meta property="og:image" content="https://sakvladyslav.github.io/julia-graphic-designer-portfolio/og.png" />',
+      '<meta property="og:image" content="https://julia-graphic-designer-portfolio.vladyslav-sak.workers.dev/og.png" />',
     );
     expect(tags).toContain('<meta property="og:image:width" content="1200" />');
     expect(tags).toContain('<meta property="og:image:height" content="630" />');
@@ -23,7 +23,7 @@ describe("siteHeadTags", () => {
 
   it("sets one canonical URL for the site", () => {
     expect(tags).toContain(
-      '<link rel="canonical" href="https://sakvladyslav.github.io/julia-graphic-designer-portfolio/" />',
+      '<link rel="canonical" href="https://julia-graphic-designer-portfolio.vladyslav-sak.workers.dev/" />',
     );
   });
 });

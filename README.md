@@ -2,7 +2,7 @@
 
 Personal portfolio SPA for graphic designer Julia Samchuk.
 
-**Live site:** https://sakvladyslav.github.io/julia-graphic-designer-portfolio/
+**Live site:** https://julia-graphic-designer-portfolio.vladyslav-sak.workers.dev
 
 ## Stack
 
@@ -52,10 +52,19 @@ scripts/
 
 ## Deploy
 
-Pull requests run lint, tests, and the production build.  
-A push to `master` does the same, then publishes `dist` to GitHub Pages  
-(`base`: `/julia-graphic-designer-portfolio/`).  
-A failing check skips the publish.
+Pull requests and pushes to `master` run lint, tests, and the production build.
+
+[Cloudflare Workers](https://developers.cloudflare.com/workers/static-assets/) publishes `dist` from `master`.
+The production address is
+`https://julia-graphic-designer-portfolio.vladyslav-sak.workers.dev`.
+Build command: `npm run build`. Output directory: `dist`.
+
+Set the `SITE_ORIGIN` environment variable to the public URL (no trailing slash)
+when a custom domain replaces the `workers.dev` address. Until then the canonical
+and share-card URLs use that Workers hostname.
+
+Vite `base` is `/`. `public/_redirects` sends unknown paths to `index.html`
+so project pages keep their address.
 
 ## Conventions
 

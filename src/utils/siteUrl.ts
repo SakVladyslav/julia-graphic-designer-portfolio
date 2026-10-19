@@ -1,11 +1,11 @@
-import { SITE_ORIGIN } from "../constants/site.ts";
+import { siteOrigin } from "./siteOrigin.ts";
 
-/** Absolute site URL. `basePath` is Vite's `base`, for example `/julia-graphic-designer-portfolio/`. */
+/** Absolute site URL. `basePath` is Vite's `base`, for example `/`. */
 export function siteUrl(basePath: string): string {
   const withLeadingSlash = basePath.startsWith("/") ? basePath : `/${basePath}`;
   const withTrailingSlash = withLeadingSlash.endsWith("/")
     ? withLeadingSlash
     : `${withLeadingSlash}/`;
 
-  return `${SITE_ORIGIN}${withTrailingSlash}`;
+  return `${siteOrigin()}${withTrailingSlash}`;
 }
