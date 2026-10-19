@@ -1,4 +1,4 @@
-# Lint, test, and build. Cloudflare Pages publishes the site from master.
+# Lint, test, and build. Cloudflare Workers publishes the site from master.
 name: Verify
 
 on:
@@ -29,7 +29,5 @@ jobs:
         run: npm ci
       - name: Lint
         run: npm run lint
-      - name: Test
-        run: npm test
-      - name: Build
+      - name: Test and build
         run: npm run build
