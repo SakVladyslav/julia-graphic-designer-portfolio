@@ -15,7 +15,7 @@
   font-family: $font-family;
   font-weight: 500;
   font-size: $font-size-contacts;
-  line-height: 1;
+  line-height: 1.1;
   color: $accent;
 }
 
@@ -214,7 +214,7 @@ a.contact-action:hover {
 @media (max-width: $bp-phone) {
   .contacts h2 {
     margin-bottom: clamp(32px, calc(32px + (100vw - 390px) * 8 / 378), 40px);
-    font-size: clamp(48px, calc(48px + (100vw - 390px) * 36 / 378), #{$font-size-contacts});
+    font-size: clamp(48px, calc(48px + (100vw - 390px) * 24 / 378), #{$font-size-contacts});
     line-height: $line-height-heading;
   }
 

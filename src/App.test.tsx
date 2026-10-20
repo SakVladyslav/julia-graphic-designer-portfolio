@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 import App from "./App";
@@ -54,6 +54,17 @@ describe("App", () => {
       "href",
       `${import.meta.env.BASE_URL}projects/novyny`,
     );
+    expect(screen.getByText("[06]")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Twitchvrotfl" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Book covers" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /twitchvrotfl/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /book covers/i })).not.toBeInTheDocument();
+
+    const header = screen.getByRole("banner");
+    expect(within(header).queryByRole("link", { name: "About" })).not.toBeInTheDocument();
+    expect(
+      within(screen.getByRole("contentinfo")).queryByRole("link", { name: "About" }),
+    ).not.toBeInTheDocument();
   });
 
   it("gives an unknown address a main landmark", () => {

@@ -4,10 +4,10 @@ import { navigation } from "../../constants/navigation";
 
 import "./SiteNav.scss";
 
-type SiteNavProps = {
+interface SiteNavProps {
   className: string;
   ariaLabel: string;
-};
+}
 
 export default function SiteNav({ className, ariaLabel }: SiteNavProps) {
   return (

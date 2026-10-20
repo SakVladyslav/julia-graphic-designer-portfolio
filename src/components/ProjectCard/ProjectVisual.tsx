@@ -1,4 +1,13 @@
+import type { CSSProperties } from "react";
+
 import type { Project } from "../../constants/projects";
+
+interface CropFrameStyle extends CSSProperties {
+  "--crop-width": string;
+  "--crop-height": string;
+  "--crop-left": string;
+  "--crop-top": string;
+}
 
 type ProjectVisualProps = {
   project: Project;
@@ -49,8 +58,22 @@ export default function ProjectVisual({ project, priority = false }: ProjectVisu
     );
   }
 
+  const cropStyle: CropFrameStyle | undefined =
+    image.crop === undefined
+      ? undefined
+      : {
+          "--crop-width": image.crop.width,
+          "--crop-height": image.crop.height,
+          "--crop-left": image.crop.left,
+          "--crop-top": image.crop.top,
+        };
+  const mediaClass =
+    image.crop === undefined
+      ? `project-media project-media--${image.kind}`
+      : `project-media project-media--${image.kind} project-media--crop`;
+
   return (
-    <div className={`project-media project-media--${image.kind}`}>
+    <div className={mediaClass} style={cropStyle}>
       <img
         src={image.src}
         alt={project.title}

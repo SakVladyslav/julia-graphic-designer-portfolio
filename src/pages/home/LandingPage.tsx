@@ -66,11 +66,6 @@ export default function LandingPage() {
           </section>
         ))}
       </div>
-
-      <section className="about" id="about" aria-labelledby="about-heading">
-        <h2 id="about-heading">About</h2>
-        <p className="about-placeholder">Coming Soon</p>
-      </section>
     </main>
   );
 }

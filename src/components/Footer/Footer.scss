@@ -145,7 +145,7 @@
   .site-footer > .container {
     --footer-pad: clamp(40px, calc(40px + (100vw - 768px) * 8 / 220), 48px);
     --footer-edge: 0px;
-    gap: clamp(144px, calc(144px + (100vw - 768px) * 40 / 219), #{$contacts-footer-gap});
+    gap: clamp(144px, calc(144px + (100vw - 768px) * 32 / 219), #{$contacts-footer-gap});
   }
 
   .footer-inner {

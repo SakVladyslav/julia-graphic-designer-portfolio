@@ -13,11 +13,19 @@ type LovespaceImage = {
   ringHeight: number;
 };
 
+export interface ImageCrop {
+  width: string;
+  height: string;
+  left: string;
+  top: string;
+}
+
 type FramedImage = {
   kind: "offset" | "cover";
   src: string;
   width: number;
   height: number;
+  crop?: ImageCrop;
 };
 
 export interface Project {
@@ -88,25 +96,65 @@ export const projects: readonly Project[] = [
     },
   },
   {
+    id: "twitchvrotfl",
+    title: "Twitchvrotfl",
+    tags: ["logo design", "brand mark"],
+    image: {
+      kind: "cover",
+      src: withBaseUrl("projects/twitchvrotfl/cover.webp"),
+      width: 1232,
+      height: 964,
+    },
+  },
+  {
+    id: "book-covers",
+    title: "Book covers",
+    tags: ["visual identity", "rebranding"],
+    image: {
+      kind: "cover",
+      src: withBaseUrl("projects/book-covers/cover.webp"),
+      width: 1920,
+      height: 1439,
+      crop: {
+        width: "119.16%",
+        height: "119.07%",
+        left: "-9.58%",
+        top: "-11.39%",
+      },
+    },
+  },
+  {
     id: "olx",
     title: "OLX Business Hub",
     tags: ["web design", "ui/ux redesign", "wireframing"],
     image: {
       kind: "cover",
       src: withBaseUrl("projects/olx/OLX.webp"),
-      width: 1232,
-      height: 964,
+      width: 2400,
+      height: 1600,
+      crop: {
+        width: "163.19%",
+        height: "145.02%",
+        left: "-23.73%",
+        top: "-22.51%",
+      },
     },
   },
   {
     id: "novyny",
     title: "Novyny LIVE",
-    tags: ["logo design", "brand mark"],
+    tags: ["web design", "ui design", "design system"],
     image: {
       kind: "cover",
       src: withBaseUrl("projects/novyny/Novyny.webp"),
-      width: 1232,
-      height: 964,
+      width: 1400,
+      height: 701,
+      crop: {
+        width: "217.46%",
+        height: "145.18%",
+        left: "-87.46%",
+        top: "-9.47%",
+      },
     },
   },
 ];

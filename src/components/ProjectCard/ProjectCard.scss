@@ -85,6 +85,15 @@
   object-fit: cover;
 }
 
+.project-media--cover.project-media--crop img {
+  inset: auto;
+  width: var(--crop-width);
+  height: var(--crop-height);
+  left: var(--crop-left);
+  top: var(--crop-top);
+  object-fit: fill;
+}
+
 .project-media--offset img {
   width: $molfaria-window-width;
   height: $molfaria-window-height;
