@@ -1,5 +1,6 @@
 @use "../../styles/colors" as *;
 @use "../../styles/typography" as *;
+@use "../../styles/breakpoints" as *;
 
 .logo {
   color: inherit;
@@ -21,6 +22,12 @@
 
 .logo--header {
   color: inherit;
+}
+
+@media (max-width: $bp-stack) {
+  .logo--header {
+    font-size: 20px;
+  }
 }
 
 .logo--footer {

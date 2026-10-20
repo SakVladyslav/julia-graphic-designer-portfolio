@@ -7,11 +7,13 @@ import "./SiteNav.scss";
 interface SiteNavProps {
   className: string;
   ariaLabel: string;
+  id?: string;
+  onNavigate?: () => void;
 }
 
-export default function SiteNav({ className, ariaLabel }: SiteNavProps) {
+export default function SiteNav({ className, ariaLabel, id, onNavigate }: SiteNavProps) {
   return (
-    <nav className={className} aria-label={ariaLabel}>
+    <nav className={className} aria-label={ariaLabel} id={id} onClick={onNavigate}>
       {navigation.map((item, index) => (
         <Fragment key={item.id}>
           {index > 0 ? (

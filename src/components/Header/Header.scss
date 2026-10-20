@@ -1,6 +1,7 @@
 @use "../../styles/colors" as *;
 @use "../../styles/typography" as *;
 @use "../../styles/spacing" as *;
+@use "../../styles/breakpoints" as *;
 
 .site-header {
   position: relative;
@@ -22,6 +23,59 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.nav-toggle {
+  display: none;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.nav-toggle-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-color: currentColor;
+  -webkit-mask-image: url("../../assets/menu.svg");
+  mask-image: url("../../assets/menu.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon {
+  position: relative;
+  background: transparent;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon::before,
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon::after {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 3px;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon::before {
+  transform: rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon::after {
+  transform: rotate(-45deg);
 }
 
 .nav {
@@ -58,13 +112,41 @@
   color: $accent-hover;
 }
 
-@media (max-width: 800px) {
+@media (max-width: $bp-phone) {
   .site-header {
-    padding: 0.85rem 0;
+    padding: 24px 0;
   }
 
   .header-inner {
-    flex-wrap: wrap;
-    row-gap: 0.75rem;
+    position: relative;
+  }
+
+  .nav-toggle {
+    display: grid;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .nav-toggle[aria-expanded="true"] ~ .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: calc(100% + 24px);
+    right: calc(-1 * var(--page-pad, #{$header-padding-x}));
+    left: calc(-1 * var(--page-pad, #{$header-padding-x}));
+    z-index: 30;
+    padding: 8px var(--page-pad, #{$header-padding-x}) 24px;
+    background: $bg;
+  }
+
+  .nav-toggle[aria-expanded="true"] ~ .nav .nav-sep {
+    display: none;
+  }
+
+  .site-header--inverse .nav-toggle[aria-expanded="true"] ~ .nav {
+    background: $surface-inverse;
   }
 }

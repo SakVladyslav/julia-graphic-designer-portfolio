@@ -9,7 +9,7 @@
 }
 
 .site-footer > .container {
-  --footer-pad: #{$header-padding-x};
+  --footer-pad: var(--page-pad, #{$header-padding-x});
   --footer-edge: #{$footer-to-top-inset};
   display: flex;
   flex-direction: column;
@@ -116,38 +116,38 @@
 }
 
 @media (max-width: #{$bp-desktop - 1px}) {
+  .site-footer {
+    padding-top: fluid(136px, $contacts-padding-top, $bp-laptop, $bp-desktop);
+  }
+
   .site-footer > .container {
-    --footer-pad: clamp(
-      56px,
-      calc(56px + (100vw - #{$bp-laptop}) * 32 / 240),
-      #{$header-padding-x}
-    );
-    --footer-edge: clamp(
-      8px,
-      calc(8px + (100vw - #{$bp-laptop}) * 16 / 240),
-      #{$footer-to-top-inset}
-    );
+    --footer-edge: #{fluid(8px, $footer-to-top-inset, $bp-laptop, $bp-desktop)};
+    gap: fluid(168px, $contacts-footer-gap, $bp-laptop, $bp-desktop);
   }
 }
 
 @media (max-width: #{$bp-laptop - 1px}) {
+  .site-footer {
+    padding-top: fluid(128px, 136px, $bp-tablet, $bp-laptop);
+  }
+
   .site-footer > .container {
-    --footer-pad: clamp(48px, calc(48px + (100vw - #{$bp-tablet}) * 8 / 176), 56px);
-    --footer-edge: clamp(0px, calc((100vw - #{$bp-tablet}) * 8 / 176), 8px);
+    --footer-edge: #{fluid(0px, 8px, $bp-tablet, $bp-laptop)};
+    gap: fluid(160px, 168px, $bp-tablet, $bp-laptop);
+  }
+}
+
+@media (max-width: #{$bp-tablet - 1px}) {
+  .site-footer {
+    padding-top: fluid(120px, 128px, $bp-stack, $bp-tablet);
+  }
+
+  .site-footer > .container {
+    gap: fluid(144px, 160px, $bp-stack, $bp-tablet);
   }
 }
 
 @media (max-width: $bp-stack) {
-  .site-footer {
-    padding-top: clamp(120px, calc(120px + (100vw - 768px) * 24 / 219), #{$contacts-padding-top});
-  }
-
-  .site-footer > .container {
-    --footer-pad: clamp(40px, calc(40px + (100vw - 768px) * 8 / 220), 48px);
-    --footer-edge: 0px;
-    gap: clamp(144px, calc(144px + (100vw - 768px) * 32 / 219), #{$contacts-footer-gap});
-  }
-
   .footer-inner {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
@@ -179,25 +179,28 @@
     right: auto;
     bottom: auto;
     grid-area: top;
+    justify-self: end;
     margin: 0;
   }
 }
 
-@media (max-width: $bp-phone) {
+@media (max-width: #{$bp-stack - 1px}) {
   .site-footer {
-    padding-top: clamp(100px, calc(100px + (100vw - 390px) * 20 / 378), 120px);
+    padding-top: fluid(104px, 120px, 390px, $bp-stack);
   }
 
   .site-footer > .container {
-    --footer-pad: clamp(24px, calc(24px + (100vw - 390px) * 16 / 378), 40px);
-    gap: clamp(120px, calc(120px + (100vw - 390px) * 24 / 378), 144px);
+    gap: fluid(120px, 144px, 390px, $bp-stack);
   }
+}
 
+@media (max-width: $bp-phone) {
   .footer-inner {
     grid-template-areas:
       "logo logo"
       "nav nav"
       "copy copy";
+    row-gap: $header-padding-y;
     justify-items: center;
     padding-top: $header-padding-y;
     padding-bottom: $header-padding-y;

@@ -2,6 +2,7 @@
 @use "../../styles/typography" as *;
 @use "../../styles/spacing" as *;
 @use "../../styles/sizes" as *;
+@use "../../styles/breakpoints" as *;
 
 .hero {
   position: relative;
@@ -11,12 +12,11 @@
 
 .hero-glow-anchor {
   position: absolute;
-  top: calc(-1 * (#{$header-padding-y} + #{$header-padding-y} + #{$font-size-logo} * 1.5));
-  /* Break out of .container horizontal padding so glow/arrow use the 1440
-     frame coordinates and the soft radial can fade past the viewport edge. */
-  right: calc(-1 * #{$header-padding-x});
+  top: 0;
+  /* Break out of .container padding so glow and arrow use frame coordinates. */
+  right: calc(-1 * var(--page-pad, #{$header-padding-x}));
   bottom: 0;
-  left: calc(-1 * #{$header-padding-x});
+  left: calc(-1 * var(--page-pad, #{$header-padding-x}));
   width: auto;
   margin: 0;
   pointer-events: none;
@@ -33,10 +33,10 @@
 .hero-glow {
   position: absolute;
   z-index: 0;
-  top: 121px;
-  right: calc(100% - #{$page-max-width} + 116px);
-  width: $hero-glow-size;
-  height: $hero-glow-size;
+  top: 28px;
+  right: 116px;
+  width: clamp(108px, 27.777778vw, #{$hero-glow-size});
+  height: clamp(108px, 27.777778vw, #{$hero-glow-size});
   pointer-events: none;
 }
 
@@ -67,17 +67,17 @@
 }
 
 .hero h1 {
-  width: $hero-title-width;
-  font-size: $font-size-hero;
+  max-width: 100%;
+  font-size: clamp(44px, 11.111111vw, #{$font-size-hero});
   line-height: 1;
-  letter-spacing: $letter-spacing-hero;
-  text-align: center;
+  letter-spacing: -0.03em;
+  text-align: left;
 }
 
 .hero-arrow {
   position: absolute;
   z-index: 1;
-  top: 394px;
+  top: 301px;
   left: 412px;
   width: $hero-arrow-size;
   height: $hero-arrow-size;
@@ -86,47 +86,12 @@
 }
 
 .role {
-  width: $hero-title-width;
+  width: 100%;
   margin-top: 0;
-  margin-left: calc(#{$hero-role-margin-left} - #{$header-padding-x});
   text-align: right;
   font-size: $font-size-role;
   line-height: 1;
-  letter-spacing: $letter-spacing-role;
-}
-
-@media (max-width: 1439px) {
-  .hero-glow-anchor {
-    left: calc(-1 * #{$section-inline-scaled});
-    right: calc(-1 * #{$section-inline-scaled});
-  }
-
-  .hero-glow {
-    top: 8.402778vw;
-    right: calc(100% - 100vw + 8.055556vw);
-    width: 27.777778vw;
-    height: 27.777778vw;
-  }
-
-  .hero-arrow {
-    top: 27.361111vw;
-    left: 28.611111vw;
-    width: 5vw;
-    height: 5vw;
-  }
-
-  .hero h1 {
-    width: 74.722222vw;
-    font-size: 11.111111vw;
-    letter-spacing: -0.333333vw;
-  }
-
-  .role {
-    width: 74.722222vw;
-    margin-left: calc(18.819444vw - #{$section-inline-scaled});
-    font-size: 6.111111vw;
-    letter-spacing: -0.122222vw;
-  }
+  letter-spacing: -0.02em;
 }
 
 .home-projects {
@@ -186,20 +151,6 @@
   opacity: 0.8;
 }
 
-@media (max-width: 1439px) {
-  .section-heading {
-    gap: 0.138889vw;
-  }
-
-  .section-heading h2 {
-    font-size: 5vw;
-  }
-
-  .section-count {
-    font-size: 1.111111vw;
-  }
-}
-
 .project-grid {
   list-style: none;
   display: grid;
@@ -213,17 +164,192 @@
   min-width: 0;
 }
 
-@media (max-width: 800px) {
-  .hero-glow-anchor {
-    top: calc(-1 * (0.85rem + 0.85rem + 22px * 1.5));
+@media (max-width: #{$bp-desktop - 1px}) {
+  .hero-block {
+    padding-top: fluid(57.5px, $hero-padding-top, $bp-laptop, $bp-desktop);
+    padding-bottom: fluid(104.5px, $hero-padding-bottom, $bp-laptop, $bp-desktop);
   }
 
-  .hero-block {
-    padding-top: 3.75rem;
-    padding-bottom: 3.5rem;
+  .hero-glow {
+    top: fluid(23px, 28px, $bp-laptop, $bp-desktop);
+    right: fluid(79px, 116px, $bp-laptop, $bp-desktop);
+  }
+
+  .hero-arrow {
+    top: fluid(254px, 301px, $bp-laptop, $bp-desktop);
+    left: fluid(394px, 412px, $bp-laptop, $bp-desktop);
+    width: fluid(56px, $hero-arrow-size, $bp-laptop, $bp-desktop);
+    height: fluid(56px, $hero-arrow-size, $bp-laptop, $bp-desktop);
+  }
+
+  .role {
+    font-size: fluid(74px, $font-size-role, $bp-laptop, $bp-desktop);
   }
 
   .home-projects {
-    padding-bottom: 4rem;
+    padding-bottom: fluid(136px, $case-section-gap, $bp-laptop, $bp-desktop);
+  }
+
+  .section-heading h2 {
+    font-size: fluid(64px, $font-size-projects, $bp-laptop, $bp-desktop);
+  }
+
+  .project-grid {
+    column-gap: fluid(24px, $header-padding-y, $bp-laptop, $bp-desktop);
+  }
+}
+
+@media (max-width: #{$bp-laptop - 1px}) {
+  .hero-block {
+    padding-top: fluid(49px, 57.5px, $bp-tablet, $bp-laptop);
+    padding-bottom: fluid(93px, 104.5px, $bp-tablet, $bp-laptop);
+  }
+
+  .hero-glow {
+    top: fluid(20px, 23px, $bp-tablet, $bp-laptop);
+    right: fluid(67px, 79px, $bp-tablet, $bp-laptop);
+  }
+
+  .hero-arrow {
+    top: fluid(217px, 254px, $bp-tablet, $bp-laptop);
+    left: fluid(336px, 394px, $bp-tablet, $bp-laptop);
+    width: fluid(48px, 56px, $bp-tablet, $bp-laptop);
+    height: fluid(48px, 56px, $bp-tablet, $bp-laptop);
+  }
+
+  .role {
+    font-size: fluid(64px, 74px, $bp-tablet, $bp-laptop);
+  }
+
+  .home-projects {
+    padding-bottom: fluid(128px, 136px, $bp-tablet, $bp-laptop);
+  }
+
+  .section-heading h2 {
+    font-size: fluid(60px, 64px, $bp-tablet, $bp-laptop);
+  }
+
+  .project-group h2 {
+    font-size: fluid(40px, $font-size-project-title, $bp-tablet, $bp-laptop);
+  }
+
+  .home-projects .project-card h3 {
+    font-size: fluid(32px, $font-size-case-heading, $bp-tablet, $bp-laptop);
+  }
+
+  .project-grid {
+    column-gap: fluid(20px, 24px, $bp-tablet, $bp-laptop);
+    row-gap: fluid(56px, $project-row-gap, $bp-tablet, $bp-laptop);
+  }
+}
+
+@media (max-width: #{$bp-tablet - 1px}) {
+  .hero-block {
+    padding-top: fluid(36px, 49px, $bp-stack, $bp-tablet);
+    padding-bottom: fluid(82px, 93px, $bp-stack, $bp-tablet);
+  }
+
+  .hero-glow {
+    top: fluid(15px, 20px, $bp-stack, $bp-tablet);
+    right: fluid(51px, 67px, $bp-stack, $bp-tablet);
+  }
+
+  .hero-arrow {
+    top: fluid(170px, 217px, $bp-stack, $bp-tablet);
+    left: fluid(275px, 336px, $bp-stack, $bp-tablet);
+    width: fluid(32px, 48px, $bp-stack, $bp-tablet);
+    height: fluid(32px, 48px, $bp-stack, $bp-tablet);
+  }
+
+  .role {
+    font-size: fluid(50px, 64px, $bp-stack, $bp-tablet);
+  }
+
+  .home-projects,
+  .projects {
+    gap: fluid(40px, 48px, $bp-stack, $bp-tablet);
+  }
+
+  .home-projects {
+    padding-bottom: fluid(120px, 128px, $bp-stack, $bp-tablet);
+  }
+
+  .section-heading h2 {
+    font-size: fluid(56px, 60px, $bp-stack, $bp-tablet);
+  }
+
+  .project-group {
+    gap: fluid(32px, 40px, $bp-stack, $bp-tablet);
+  }
+
+  .project-group h2 {
+    font-size: fluid(32px, 40px, $bp-stack, $bp-tablet);
+  }
+
+  .home-projects .project-card h3 {
+    font-size: fluid(28px, 32px, $bp-stack, $bp-tablet);
+  }
+
+  .project-grid {
+    column-gap: fluid(16px, 20px, $bp-stack, $bp-tablet);
+    row-gap: fluid(48px, 56px, $bp-stack, $bp-tablet);
+  }
+}
+
+@media (max-width: #{$bp-stack - 1px}) {
+  .hero-block {
+    padding-top: fluid(18px, 36px, 390px, $bp-stack);
+    padding-bottom: fluid(53px, 82px, 390px, $bp-stack);
+  }
+
+  .hero-glow {
+    top: fluid(4px, 15px, 390px, $bp-stack);
+    right: fluid(26px, 51px, 390px, $bp-stack);
+  }
+
+  .hero-arrow {
+    top: fluid(99px, 170px, 390px, $bp-stack);
+    left: fluid(104px, 275px, 390px, $bp-stack);
+    width: fluid(16px, 32px, 390px, $bp-stack);
+    height: fluid(16px, 32px, 390px, $bp-stack);
+  }
+
+  .role {
+    font-size: fluid(29px, 50px, 390px, $bp-stack);
+  }
+
+  .home-projects,
+  .projects {
+    gap: fluid(32px, 40px, 390px, $bp-stack);
+  }
+
+  .home-projects {
+    padding-bottom: fluid(136px, 120px, 390px, $bp-stack);
+  }
+
+  .section-heading h2 {
+    font-size: fluid(40px, 56px, 390px, $bp-stack);
+  }
+
+  .section-count {
+    font-size: fluid(14px, $font-size-base, 390px, $bp-stack);
+  }
+
+  .project-group h2 {
+    font-size: fluid(28px, 32px, 390px, $bp-stack);
+  }
+
+  .home-projects .project-card h3 {
+    font-size: fluid(24px, 28px, 390px, $bp-stack);
+  }
+
+  .project-grid {
+    row-gap: fluid(40px, 48px, 390px, $bp-stack);
+  }
+}
+
+@media (max-width: $bp-single) {
+  .project-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

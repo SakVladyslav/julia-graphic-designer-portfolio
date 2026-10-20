@@ -1,10 +1,25 @@
-// Footer frames are checkpoints, not separate layouts.
-// Structure changes at $bp-stack (contacts and the bar reflow)
-// and $bp-phone (the bar centers, the email note hides).
-// 988px is the desktop layout at a narrower width, so it has no breakpoint.
+@use "sass:math";
 
+// Homepage frames: 1440, 1200, 1024, 768, 390.
+// Values fluidly bridge those widths. Structure changes only where a frame
+// already uses a different composition, or where the wider frame no longer fits.
 $bp-desktop: 1440px;
 $bp-laptop: 1200px;
 $bp-tablet: 1024px;
-$bp-stack: 987px;
-$bp-phone: 767px;
+$bp-stack: 768px;
+$bp-single: 599px;
+$bp-phone: 479px;
+
+/// Linear size between two frame widths. `$from` is the value at `$from-viewport`.
+@function fluid($from, $to, $from-viewport, $to-viewport) {
+  $delta: math.div($to, 1px) - math.div($from, 1px);
+  $span: math.div($to-viewport, 1px) - math.div($from-viewport, 1px);
+  $lower: math.min($from, $to);
+  $upper: math.max($from, $to);
+
+  @return clamp(
+    #{$lower},
+    calc(#{$from} + (100vw - #{$from-viewport}) * #{$delta} / #{$span}),
+    #{$upper}
+  );
+}

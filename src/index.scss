@@ -2,6 +2,7 @@
 @use "styles/typography" as *;
 @use "styles/spacing" as *;
 @use "styles/sizes" as *;
+@use "styles/breakpoints" as *;
 
 *,
 *::before,
@@ -88,18 +89,36 @@ button:focus-visible {
 }
 
 .container {
+  --page-pad: #{$header-padding-x};
   width: 100%;
   max-width: $page-max-width;
   margin-inline: auto;
-  padding-left: $header-padding-x;
-  padding-right: $header-padding-x;
+  padding-left: var(--page-pad);
+  padding-right: var(--page-pad);
   overflow: visible;
 }
 
-@media (max-width: 1439px) {
+@media (max-width: #{$bp-desktop - 1px}) {
   .container {
-    padding-left: $section-inline-scaled;
-    padding-right: $section-inline-scaled;
+    --page-pad: #{fluid(56px, $header-padding-x, $bp-laptop, $bp-desktop)};
+  }
+}
+
+@media (max-width: #{$bp-laptop - 1px}) {
+  .container {
+    --page-pad: #{fluid(48px, 56px, $bp-tablet, $bp-laptop)};
+  }
+}
+
+@media (max-width: #{$bp-tablet - 1px}) {
+  .container {
+    --page-pad: #{fluid(40px, 48px, $bp-stack, $bp-tablet)};
+  }
+}
+
+@media (max-width: #{$bp-stack - 1px}) {
+  .container {
+    --page-pad: #{fluid(24px, 40px, 390px, $bp-stack)};
   }
 }
 

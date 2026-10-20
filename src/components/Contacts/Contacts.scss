@@ -32,7 +32,7 @@
   display: flex;
   flex-direction: column;
   gap: $contact-row-gap;
-  flex: 0 1 620px;
+  flex: 1 1 auto;
   max-width: 100%;
   min-width: min-content;
 }
@@ -165,32 +165,38 @@ a.contact-action:hover {
 }
 
 @media (max-width: #{$bp-desktop - 1px}) {
-  .contact-list {
-    flex-basis: clamp(580px, calc(580px + (100vw - #{$bp-laptop}) * 40 / 240), 620px);
+  .contacts h2 {
+    margin-bottom: fluid(40px, $contacts-heading-gap, $bp-laptop, $bp-desktop);
+    font-size: fluid(64px, $font-size-contacts, $bp-laptop, $bp-desktop);
   }
 
   .contact-main {
-    font-size: clamp(48px, calc(48px + (100vw - #{$bp-tablet}) * 8 / 416), #{$font-size-section});
+    font-size: fluid(52px, $font-size-section, $bp-laptop, $bp-desktop);
   }
 
   .contact-actions {
-    width: clamp(436px, calc(436px + (100vw - #{$bp-laptop}) * 72 / 240), #{$contacts-panel-width});
+    width: fluid(436px, $contacts-panel-width, $bp-laptop, $bp-desktop);
   }
 }
 
 @media (max-width: #{$bp-laptop - 1px}) {
-  .contact-list {
-    flex-basis: clamp(540px, calc(540px + (100vw - #{$bp-tablet}) * 40 / 176), 580px);
+  .contacts h2 {
+    font-size: fluid(60px, 64px, $bp-tablet, $bp-laptop);
+  }
+
+  .contact-main {
+    font-size: fluid(48px, 52px, $bp-tablet, $bp-laptop);
   }
 
   .contact-actions {
-    width: clamp(320px, calc(320px + (100vw - #{$bp-tablet}) * 116 / 176), 436px);
+    width: fluid(320px, 436px, $bp-tablet, $bp-laptop);
   }
 }
 
-@media (max-width: $bp-stack) {
+@media (max-width: #{$bp-tablet - 1px}) {
   .contacts h2 {
-    margin-bottom: clamp(40px, calc(40px + (100vw - 768px) * 8 / 219), #{$contacts-heading-gap});
+    margin-bottom: fluid(32px, 40px, $bp-stack, $bp-tablet);
+    font-size: fluid(56px, 60px, $bp-stack, $bp-tablet);
   }
 
   .contacts-layout {
@@ -201,9 +207,12 @@ a.contact-action:hover {
 
   .contact-list {
     width: 100%;
-    flex-basis: auto;
     min-width: 0;
-    gap: clamp(28px, calc(28px + (100vw - 768px) * 4 / 219), #{$contact-row-gap});
+    gap: fluid(28px, $contact-row-gap, $bp-stack, $bp-tablet);
+  }
+
+  .annotation {
+    font-size: fluid(14px, $font-size-base, $bp-stack, $bp-tablet);
   }
 
   .contact-actions {
@@ -211,29 +220,25 @@ a.contact-action:hover {
   }
 }
 
-@media (max-width: $bp-phone) {
+@media (max-width: #{$bp-stack - 1px}) {
   .contacts h2 {
-    margin-bottom: clamp(32px, calc(32px + (100vw - 390px) * 8 / 378), 40px);
-    font-size: clamp(48px, calc(48px + (100vw - 390px) * 24 / 378), #{$font-size-contacts});
-    line-height: $line-height-heading;
+    font-size: fluid(40px, 56px, 390px, $bp-stack);
   }
 
   .contacts-layout {
-    gap: clamp(40px, calc(40px + (100vw - 390px) * 8 / 378), 48px);
+    gap: fluid(40px, 48px, 390px, $bp-stack);
   }
 
   .contact-list {
-    gap: clamp(24px, calc(24px + (100vw - 390px) * 4 / 378), 28px);
+    gap: fluid(24px, 28px, 390px, $bp-stack);
   }
 
   .contact-main {
-    font-size: clamp(32px, calc(32px + (100vw - 390px) * 16 / 378), 48px);
+    font-size: fluid(30px, 48px, 390px, $bp-stack);
   }
+}
 
-  .annotation {
-    font-size: clamp(14px, calc(14px + (100vw - 390px) * 2 / 378), #{$font-size-base});
-  }
-
+@media (max-width: $bp-phone) {
   .contact-detail--email .annotation {
     display: none;
   }
