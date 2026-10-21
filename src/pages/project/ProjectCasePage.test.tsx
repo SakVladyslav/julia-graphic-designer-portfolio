@@ -27,6 +27,8 @@ describe("ProjectCasePage", () => {
     expect(screen.getByRole("heading", { name: "Brand philosophy" })).toBeInTheDocument();
     expect(screen.getByText("Kissed Lips")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /molfaria/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /amaryllis/i })).toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: /we refuse the cult of perfection/i }),
     ).toBeInTheDocument();
@@ -70,7 +72,8 @@ describe("ProjectCasePage", () => {
       "uk",
     );
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /lovespace/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /amaryllis/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /best budova group/i })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /molfaria/i })).not.toBeInTheDocument();
   });
 
@@ -82,8 +85,10 @@ describe("ProjectCasePage", () => {
     expect(screen.getByText("// Tote Bag")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /posters beyond/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /lovespace/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /best budova group/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Twitchvrotfl" })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /amaryllis/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /twitchvrotfl/i })).not.toBeInTheDocument();
   });
 
   it("renders the best budova group case and keeps it out of related projects", () => {
@@ -108,8 +113,11 @@ describe("ProjectCasePage", () => {
       screen.getByRole("img", { name: "Best Budova Group construction fence banner" }),
     ).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /lovespace/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Twitchvrotfl" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Book covers" })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /best budova group/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /twitchvrotfl/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /book covers/i })).not.toBeInTheDocument();
   });
 
   it("renders the olx business hub case and links the full case on behance", () => {
@@ -125,6 +133,7 @@ describe("ProjectCasePage", () => {
       "https://www.behance.net/gallery/217930743/OLX-B2B-UIUX-Redesign",
     );
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /novyny live/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /lovespace/i })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /olx business hub/i })).not.toBeInTheDocument();
   });
@@ -145,6 +154,7 @@ describe("ProjectCasePage", () => {
     );
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /lovespace/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /molfaria/i })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /novyny live/i })).not.toBeInTheDocument();
   });
 

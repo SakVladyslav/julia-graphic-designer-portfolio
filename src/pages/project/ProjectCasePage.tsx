@@ -5,7 +5,8 @@ import ProjectCase from "../../components/ProjectCase/ProjectCase";
 
 import { getProjectCase } from "../../constants/projectCases";
 import { projects } from "../../constants/projects";
-import { projectCaseId } from "../../utils/projectCaseId";
+
+import { nextProjects } from "../../utils/nextProjects";
 
 export default function ProjectCasePage() {
   const { projectId } = useParams();
@@ -28,10 +29,7 @@ export default function ProjectCasePage() {
     );
   }
 
-  const related = projects.filter((project) => {
-    const caseId = projectCaseId(project);
-    return caseId !== projectCase.id && getProjectCase(caseId) !== undefined;
-  });
+  const related = nextProjects(projects, projectCase.id, 2);
 
   return (
     <main id="main-content" tabIndex={-1}>
