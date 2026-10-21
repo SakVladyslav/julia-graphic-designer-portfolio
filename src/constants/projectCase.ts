@@ -118,6 +118,7 @@ export interface CaseLogoPairSection extends CaseSectionBase {
 export interface CaseIconSlot {
   image: CaseImage;
   inset: string;
+  bleed?: string;
 }
 
 export interface CaseIconBoardSection extends CaseSectionBase {

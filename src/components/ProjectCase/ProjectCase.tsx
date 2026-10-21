@@ -26,7 +26,11 @@ interface ProjectCaseProps {
 }
 
 export default function ProjectCase({ projectCase, related }: ProjectCaseProps) {
-  const pageClass = projectCase.id === "bbg" ? "case-page case-page--bbg" : "case-page";
+  const caseModifier =
+    projectCase.id === "bbg" || projectCase.id === "olx" || projectCase.id === "novyny"
+      ? `case-page--${projectCase.id}`
+      : "";
+  const pageClass = caseModifier === "" ? "case-page" : `case-page ${caseModifier}`;
 
   return (
     <article className={pageClass}>

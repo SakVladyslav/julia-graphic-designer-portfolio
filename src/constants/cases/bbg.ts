@@ -91,8 +91,15 @@ function icon(
   height: number,
   alt: string,
   inset: string,
+  bleed?: string,
 ): CaseIconSlot {
-  return { image: picture(file, width, height, alt), inset };
+  const image = picture(file, width, height, alt);
+
+  if (bleed === undefined) {
+    return { image, inset };
+  }
+
+  return { image, inset, bleed };
 }
 
 const typefaces: CaseTypefacesSection = {
@@ -123,13 +130,20 @@ const iconBoard: CaseIconBoardSection = {
   background: blue,
   icons: [
     icon("icon-house.svg", 117, 106, "House", "9.29% 4.83%"),
-    icon("icon-brush.svg", 87, 108, "Paint roller", "8.46% 16.4%"),
+    icon("icon-brush.svg", 87, 108, "Paint roller", "8.46% 16.4% 8.46% 16.41%"),
     icon("icon-wall.svg", 118, 94, "Brick wall", "13.94% 4.81%"),
     icon("icon-helmet.svg", 120, 80, "Safety helmet", "19.24% 3.85%"),
     icon("icon-advice.svg", 120, 113, "Consultation", "6.4% 3.85%"),
-    icon("icon-wardrobe.svg", 94, 115, "Wardrobe", "5.73% 13.81%"),
+    icon("icon-wardrobe.svg", 94, 115, "Wardrobe", "5.73% 13.81% 5.72% 13.81%"),
     icon("icon-plan.svg", 105, 105, "Floor plan", "9.61% 9.62% 9.61% 9.61%"),
-    icon("icon-last.svg", 115, 104, "Building facade", "10.86% 6.05% 10.86% 7.22%"),
+    icon(
+      "icon-last.svg",
+      115,
+      104,
+      "Building facade",
+      "10.86% 6.05% 10.86% 7.22%",
+      "-2.28% -2.06%",
+    ),
   ],
 };
 
