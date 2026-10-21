@@ -235,13 +235,13 @@
       padding-bottom: 40px;
     }
 
-    .case-media img {
-      aspect-ratio: 1;
-      object-fit: cover;
-    }
-
     .case-related-grid {
       row-gap: 40px;
     }
+  }
+
+  .case-page--olx .case-media img {
+    aspect-ratio: 343 / 342;
+    object-fit: cover;
   }
 }

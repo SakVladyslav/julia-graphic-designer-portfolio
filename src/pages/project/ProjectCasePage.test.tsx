@@ -134,6 +134,12 @@ describe("ProjectCasePage", () => {
     expect(screen.getByText("[Agency project]")).toBeInTheDocument();
     expect(screen.getByText("wireframing")).toBeInTheDocument();
     expect(screen.getByRole("img", { name: /olx business hub on a laptop/i })).toBeInTheDocument();
+    expect(
+      screen
+        .getByRole("img", { name: /olx business hub on a laptop/i })
+        .parentElement?.querySelector("source")
+        ?.getAttribute("srcset"),
+    ).toContain("Cover_OLX-phone.webp");
     expect(screen.getByRole("link", { name: /view case on behance/i })).toHaveAttribute(
       "href",
       "https://www.behance.net/gallery/217930743/OLX-B2B-UIUX-Redesign",
