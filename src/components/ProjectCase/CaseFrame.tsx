@@ -22,7 +22,7 @@ export default function CaseFrame({
   style,
 }: CaseFrameProps) {
   const captionClass = captionAlign === "end" ? "case-caption case-caption--end" : "case-caption";
-  const picture = (
+  const img = (
     <img
       src={image.src}
       alt={image.alt}
@@ -33,6 +33,20 @@ export default function CaseFrame({
       fetchPriority={priority ? "high" : undefined}
     />
   );
+  const picture =
+    image.phone === undefined ? (
+      img
+    ) : (
+      <picture>
+        <source
+          media="(max-width: 479px)"
+          srcSet={image.phone.src}
+          width={image.phone.width}
+          height={image.phone.height}
+        />
+        {img}
+      </picture>
+    );
 
   return (
     <figure className={className} style={style}>

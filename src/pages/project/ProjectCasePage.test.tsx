@@ -112,6 +112,12 @@ describe("ProjectCasePage", () => {
     expect(
       screen.getByRole("img", { name: "Best Budova Group construction fence banner" }),
     ).toBeInTheDocument();
+    expect(
+      screen
+        .getByRole("img", { name: "Best Budova Group construction fence banner" })
+        .parentElement?.querySelector("source")
+        ?.getAttribute("srcset"),
+    ).toContain("BBG-01-phone.webp");
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Twitchvrotfl" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Book covers" })).toBeInTheDocument();

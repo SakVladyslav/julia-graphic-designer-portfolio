@@ -39,6 +39,21 @@ function media(
   return { type: "media", spaceBefore, image };
 }
 
+function withPhone(
+  section: CaseMediaSection,
+  file: string,
+  width: number,
+  height: number,
+): CaseMediaSection {
+  return {
+    ...section,
+    image: {
+      ...section.image,
+      phone: { src: asset(file), width, height },
+    },
+  };
+}
+
 function wordmarkLogo(tone: "light" | "dark"): CaseWordmarkLogo {
   return {
     mark: picture(`logo-${tone}-mark.svg`, 111, 113, "Best Budova Group logo"),
@@ -122,7 +137,12 @@ export const bbgCase: ProjectCase = {
   id: "bbg",
   title: "Best Budova Group",
   sections: [
-    media("BBG-01.webp", 1896, 1185, "Best Budova Group construction fence banner"),
+    withPhone(
+      media("BBG-01.webp", 1896, 1185, "Best Budova Group construction fence banner"),
+      "BBG-01-phone.webp",
+      684,
+      700,
+    ),
     {
       type: "intro",
       spaceBefore: "block",
@@ -137,12 +157,17 @@ export const bbgCase: ProjectCase = {
     },
     logoStack,
     logoPair,
-    media(
-      "BBG-07.webp",
-      1264,
-      900,
-      "Best Budova Group lightbox sign on a concrete facade",
-      "section",
+    withPhone(
+      media(
+        "BBG-07.webp",
+        1264,
+        900,
+        "Best Budova Group lightbox sign on a concrete facade",
+        "section",
+      ),
+      "BBG-07-phone.webp",
+      684,
+      800,
     ),
     typefaces,
     {
@@ -155,6 +180,11 @@ export const bbgCase: ProjectCase = {
     },
     iconBoard,
     media("BBG-05.webp", 1896, 1350, "Best Budova Group Instagram profile on a phone", "stack"),
-    media("BBG-06.webp", 1896, 1350, "Best Budova Group business cards on concrete", "section"),
+    withPhone(
+      media("BBG-06.webp", 1896, 1350, "Best Budova Group business cards on concrete", "section"),
+      "BBG-06-phone.webp",
+      684,
+      800,
+    ),
   ],
 };

@@ -26,8 +26,10 @@ interface ProjectCaseProps {
 }
 
 export default function ProjectCase({ projectCase, related }: ProjectCaseProps) {
+  const pageClass = projectCase.id === "bbg" ? "case-page case-page--bbg" : "case-page";
+
   return (
-    <article className="case-page">
+    <article className={pageClass}>
       <div className="case-flow">
         {projectCase.sections.map((section, index) => renderSection(section, index))}
       </div>

@@ -14,11 +14,18 @@ export interface CaseSectionBase {
   spaceBefore?: CaseSpace;
 }
 
+export interface CaseImagePhone {
+  src: string;
+  width: number;
+  height: number;
+}
+
 export interface CaseImage {
   src: string;
   width: number;
   height: number;
   alt: string;
+  phone?: CaseImagePhone;
 }
 
 export interface CaseIntroLink {
