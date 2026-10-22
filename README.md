@@ -8,6 +8,7 @@ Personal portfolio SPA for graphic designer Julia Samchuk.
 
 - React 19 + TypeScript (strict)
 - Vite 8
+- Node 22 or newer (`.node-version`). Node 20 cannot run the tests.
 - Sass design tokens (`src/styles/`)
 - Oxlint + Prettier
 - Vitest + Testing Library
@@ -38,7 +39,7 @@ src/
   utils/          # Pure helpers
   test/           # Test setup
 public/
-  fonts/          # Self-hosted Min Sans
+  fonts/          # Self-hosted WOFF2 files. Face rules are in src/styles/_fonts.scss
   projects/       # Optimized project media (WebP + SVG)
 scripts/
   optimize-images.mjs
