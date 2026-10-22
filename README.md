@@ -69,6 +69,13 @@ page is `index.html` inside that folder. `wrangler.jsonc` serves it at
 other address with `dist/404.html` and HTTP 404 (`not_found_handling: "404-page"`).
 The `name` in that file has to match the Worker in the Cloudflare dashboard.
 
+`public/_headers` is copied into `dist` and applied by Workers. There is no Worker
+script, so these rules reach every static response. `/assets/*` (Vite's hashed
+files) is cached for a year. HTML, fonts, and project images keep Cloudflare's
+default `max-age=0, must-revalidate`, because those URLs stay the same when the
+file changes. Do not add a second `Cache-Control` for the same path: Workers
+joins duplicate header values with a comma instead of replacing them.
+
 ## Conventions
 
 - Import order: see `.cursor/rules/import-order.mdc`
