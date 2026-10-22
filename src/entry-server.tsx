@@ -1,5 +1,5 @@
 import { StrictMode } from "react";
-import { renderToString } from "react-dom/server";
+import { renderToReadableStream } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 
 import { AppRoutes } from "./App.tsx";
@@ -18,14 +18,16 @@ export interface RenderedPage {
   head: string;
 }
 
-function renderPage(page: PrerenderPage): RenderedPage {
-  const html = renderToString(
+async function renderPage(page: PrerenderPage): Promise<RenderedPage> {
+  const stream = await renderToReadableStream(
     <StrictMode>
       <StaticRouter basename={routerBasename()} location={page.pathname}>
         <AppRoutes />
       </StaticRouter>
     </StrictMode>,
   );
+  await stream.allReady;
+  const html = await new Response(stream).text();
 
   return {
     pathname: page.pathname,
@@ -36,6 +38,6 @@ function renderPage(page: PrerenderPage): RenderedPage {
   };
 }
 
-export function renderPages(): RenderedPage[] {
-  return prerenderPages().map((page) => renderPage(page));
+export function renderPages(): Promise<RenderedPage[]> {
+  return Promise.all(prerenderPages().map((page) => renderPage(page)));
 }

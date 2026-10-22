@@ -1,7 +1,5 @@
-import { listProjectCases } from "../constants/projectCases.ts";
-import { OG_IMAGE, SITE_DESCRIPTION, SITE_OWNER } from "../constants/site.ts";
-
-import type { CaseIntroSection, ProjectCase } from "../constants/projectCase.ts";
+import { caseCopy, caseCopyById } from "../constants/caseCopy.ts";
+import { OG_IMAGE, SITE_DESCRIPTION, SITE_OWNER, SITE_ROLE } from "../constants/site.ts";
 
 import type { SharePage } from "./siteHeadTags.ts";
 
@@ -62,37 +60,22 @@ export function headForPath(pathname: string): ResolvedHead | undefined {
   return { page: missing, canonicalPath: normalized === "" ? "/" : normalized };
 }
 
-function introSection(projectCase: ProjectCase): CaseIntroSection | undefined {
-  const section = projectCase.sections.find((item) => item.type === "intro");
-  if (section === undefined || section.type !== "intro") {
+function projectPage(id: string): PrerenderPage | undefined {
+  const copy = caseCopyById(id);
+  if (copy === undefined) {
     return undefined;
   }
 
-  return section;
-}
-
-function projectDescription(projectCase: ProjectCase): string {
-  const intro = introSection(projectCase);
-  if (intro === undefined) {
-    return SITE_DESCRIPTION;
-  }
-
-  const lead = intro.paragraphs[0];
-  if (lead === undefined) {
-    return intro.subtitle;
-  }
-
-  return clampMetaDescription(`${intro.subtitle}. ${lead}`);
-}
-
-function projectShare(projectCase: ProjectCase): SharePage {
-  const description = projectDescription(projectCase);
-
   return {
-    title: `${projectCase.title} — ${SITE_OWNER}`,
-    description,
-    imageFile: OG_IMAGE.file,
-    imageAlt: `${projectCase.title}, ${SITE_OWNER}`,
+    pathname: `/projects/${id}`,
+    output: `projects/${id}/index.html`,
+    title: copy.title,
+    share: {
+      title: copy.title,
+      description: copy.description,
+      imageFile: OG_IMAGE.file,
+      imageAlt: copy.imageAlt,
+    },
   };
 }
 
@@ -107,15 +90,14 @@ export function prerenderPages(): readonly PrerenderPage[] {
       description: SITE_DESCRIPTION,
       imageFile: OG_IMAGE.file,
       imageAlt: OG_IMAGE.alt,
+      jobTitle: SITE_ROLE,
     },
   };
 
-  const projects = listProjectCases().map((projectCase) => ({
-    pathname: `/projects/${projectCase.id}`,
-    output: `projects/${projectCase.id}/index.html`,
-    title: `${projectCase.title} — ${SITE_OWNER}`,
-    share: projectShare(projectCase),
-  }));
+  const projects = caseCopy.flatMap((item) => {
+    const page = projectPage(item.id);
+    return page === undefined ? [] : [page];
+  });
 
   const notFound: PrerenderPage = {
     pathname: "/404",

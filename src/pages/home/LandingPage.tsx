@@ -1,7 +1,7 @@
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 
 import { projectGroups, projects } from "../../constants/projects";
-import { SITE_OWNER } from "../../constants/site";
+import { SITE_OWNER, SITE_ROLE } from "../../constants/site";
 
 import type { Project } from "../../constants/projects";
 
@@ -42,7 +42,7 @@ export default function LandingPage() {
         </div>
         <div className="hero-block">
           <h1 id="hero-heading">Julia Samchuk</h1>
-          <p className="role">Graphic Designer</p>
+          <p className="role">{SITE_ROLE}</p>
         </div>
       </section>
 

@@ -1,7 +1,9 @@
 # Workers reads this from dist. It is not a page.
-# A header named twice is joined with a comma, so Cache-Control is set only
-# on hashed files. Everything else keeps the platform default:
-# public, max-age=0, must-revalidate.
+# A header named twice in one block is joined with a comma, so each
+# Cache-Control lives in its own block. Paths without a block keep the
+# platform default: public, max-age=0, must-revalidate.
+# HTML under /projects/ is not matched below, so a text edit is not stuck
+# behind the image cache. A replaced font or image needs a new filename.
 
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains
@@ -11,11 +13,19 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; frame-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; frame-src 'none'; upgrade-insecure-requests
 
 # Vite fingerprints these filenames. A new build is a new URL.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Filenames stay stable, so a font change has to rename the file.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# One folder deep: /projects/lovespace/hero.webp. Not the case HTML.
+/projects/*/*.webp
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 
 # Preview hostnames should not be indexed. The custom domain does not match.
 https://:version.:subdomain.workers.dev/*

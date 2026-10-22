@@ -265,7 +265,7 @@ export const lovespaceCase: ProjectCase = {
       type: "split",
       heading: "Brand phrases",
       paragraphs: [
-        "Brendov had his own signature, recognizable phrases that he used for merchandise; they were important to the community. That’s why I kept them in the updated brand identity, incorporating them into the new design.",
+        "The brand had its own signature, recognizable phrases used on merchandise; they were important to the community. That’s why I kept them in the updated brand identity, incorporating them into the new design.",
       ],
     },
     media("merch1.webp", 2400, 1599, "Two Lovespace tote bags", "block"),

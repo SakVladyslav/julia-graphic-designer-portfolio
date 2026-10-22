@@ -1,0 +1,178 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/spacing" as *;
+@use "../../../styles/sizes" as *;
+
+.case-page {
+  padding-top: $case-page-offset;
+}
+
+.case-flow > .case-section--section {
+  margin-top: $case-section-gap;
+}
+
+.case-flow > .case-section--block {
+  margin-top: $case-block-gap;
+}
+
+.case-flow > .case-section--group {
+  margin-top: $case-group-gap;
+}
+
+.case-flow > .case-section--stack {
+  margin-top: $case-stack-gap;
+}
+
+.case-flow > .case-section--none {
+  margin-top: 0;
+}
+
+.case-flow > .case-section:first-child {
+  margin-top: 0;
+}
+
+.case-media {
+  margin: 0;
+}
+
+.case-media picture {
+  display: block;
+}
+
+.case-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-intro,
+.case-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: $case-column-gap;
+  align-items: start;
+}
+
+.case-intro-title,
+.case-intro-heading,
+.case-intro-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.case-intro-title {
+  gap: $case-title-gap;
+}
+
+.case-intro-heading {
+  gap: $case-eyebrow-gap;
+  width: 100%;
+}
+
+.case-eyebrow {
+  font-size: $font-size-base;
+  font-weight: 400;
+  line-height: $line-height-annotation;
+  opacity: 0.8;
+}
+
+.case-intro h1,
+.case-split h2,
+.case-subtitle,
+.case-color-name {
+  font-weight: 500;
+}
+
+.case-intro h1 {
+  font-size: $font-size-case-title;
+  line-height: 1;
+}
+
+.case-subtitle {
+  font-size: $font-size-case-subtitle;
+  line-height: $line-height-heading;
+  opacity: 0.8;
+}
+
+.case-intro-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $project-tag-gap;
+  margin-top: calc(#{$header-padding-y} - #{$case-title-gap});
+  padding: 12px $header-padding-y;
+  border-radius: $project-tag-radius;
+  background: $paper;
+  color: $text;
+  font-weight: 700;
+  font-size: $font-size-base;
+  letter-spacing: 0.32px;
+  line-height: $line-height-annotation;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.case-intro-link:hover {
+  background: $accent;
+  color: $paper;
+}
+
+.case-intro-link-arrow {
+  display: block;
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  -webkit-mask-image: url("../../../assets/contact-arrow.svg");
+  mask-image: url("../../../assets/contact-arrow.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transform: scaleY(-1);
+}
+
+.case-intro-copy {
+  gap: $case-intro-copy-gap;
+  width: 100%;
+  padding-top: $case-intro-padding-y;
+  padding-bottom: $case-intro-padding-y;
+  border-bottom: $border-strong solid currentColor;
+}
+
+.case-copy {
+  font-size: $font-size-case-body;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.case-copy p + p {
+  margin-top: 1.5em;
+}
+
+.case-split h2 {
+  font-size: $font-size-case-heading;
+  line-height: $line-height-heading;
+}
+
+.case-split .case-copy {
+  padding-top: $case-split-offset;
+}
+
+.case-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $project-tag-gap;
+  list-style: none;
+}
+
+.case-tags li {
+  padding: $project-tag-padding-y $project-tag-padding-x;
+  border: $project-tag-border-width solid currentColor;
+  border-radius: $project-tag-radius;
+  font-size: $font-size-base;
+  line-height: $line-height-annotation;
+  white-space: nowrap;
+}

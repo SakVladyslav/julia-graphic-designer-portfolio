@@ -1,0 +1,28 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/spacing" as *;
+@use "../../../styles/sizes" as *;
+
+.case-related {
+  margin-top: $case-section-gap;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-top: $case-section-gap;
+  background: $surface-muted;
+  color: $text;
+}
+
+.case-related h2 {
+  margin-bottom: $case-related-heading-gap;
+  font-size: $font-size-section;
+  font-weight: 500;
+  line-height: $line-height-heading;
+}
+
+.case-related-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: $header-padding-y;
+  row-gap: $project-row-gap;
+  list-style: none;
+}

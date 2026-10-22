@@ -28,6 +28,10 @@
   color: $text;
 }
 
+.site-footer--light .annotation {
+  color: $accent-text;
+}
+
 .footer-inner {
   position: relative;
   display: grid;
