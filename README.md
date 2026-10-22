@@ -68,7 +68,7 @@ Vite `base` is `/`. The build writes one HTML file per page (`dist/index.html`,
 page is `index.html` inside that folder. `wrangler.jsonc` serves it at
 `/projects/lovespace` (`html_handling: "drop-trailing-slash"`) and answers every
 other address with `dist/404.html` and HTTP 404 (`not_found_handling: "404-page"`).
-The `name` in that file has to match the Worker in the Cloudflare dashboard.
+The `name` in that file is `julia-graphic-designer-portfolio`, the Worker already in the Cloudflare dashboard. A different name makes the next deploy fail and leaves the live site unchanged.
 
 `public/_headers` is copied into `dist` and applied by Workers. There is no Worker
 script, so these rules reach every static response. `/assets/*` (Vite's hashed
