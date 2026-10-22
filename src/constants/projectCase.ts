@@ -49,6 +49,8 @@ export interface CaseMediaSection extends CaseSectionBase {
   caption?: string;
   captionAlign?: "start" | "end";
   framed?: boolean;
+  /** Extra `case-media--*` classes. Space-separated, for frame-specific crops. */
+  modifier?: string;
 }
 
 export interface CaseClusterSection extends CaseSectionBase {
@@ -118,6 +120,7 @@ export interface CaseLogoPairSection extends CaseSectionBase {
 export interface CaseIconSlot {
   image: CaseImage;
   inset: string;
+  bleed?: string;
 }
 
 export interface CaseIconBoardSection extends CaseSectionBase {

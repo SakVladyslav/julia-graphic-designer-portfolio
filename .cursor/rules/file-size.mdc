@@ -1,0 +1,18 @@
+---
+description: Keep source files under 1000 lines by splitting on responsibility
+alwaysApply: true
+---
+
+# File size
+
+Keep each source file under 1000 lines. Split by responsibility before the file reaches that size. A new feature gets its own file instead of being appended to an already long one.
+
+A file may pass 1000 lines only when splitting it would make the code harder to follow, for example one media query that must stay with every selector it changes. State that reason in the change summary.
+
+The limit covers project source: `src/`, `scripts/`, tests, and styles. It does not cover generated output, `dist/`, `node_modules/`, or lockfiles.
+
+```scss
+@use "./case-base";
+@use "./bbg";
+@use "./olx-novyny";
+```

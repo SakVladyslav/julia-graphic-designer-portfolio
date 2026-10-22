@@ -26,7 +26,14 @@ interface ProjectCaseProps {
 }
 
 export default function ProjectCase({ projectCase, related }: ProjectCaseProps) {
-  const pageClass = projectCase.id === "bbg" ? "case-page case-page--bbg" : "case-page";
+  const caseModifier =
+    projectCase.id === "bbg" ||
+    projectCase.id === "olx" ||
+    projectCase.id === "novyny" ||
+    projectCase.id === "molfaria"
+      ? `case-page--${projectCase.id}`
+      : "";
+  const pageClass = caseModifier === "" ? "case-page" : `case-page ${caseModifier}`;
 
   return (
     <article className={pageClass}>
@@ -52,6 +59,7 @@ function renderSection(section: CaseSection, index: number) {
           caption={section.caption}
           captionAlign={section.captionAlign}
           framed={section.framed}
+          modifier={section.modifier}
           priority={index === 0}
           spaceBefore={section.spaceBefore}
         />

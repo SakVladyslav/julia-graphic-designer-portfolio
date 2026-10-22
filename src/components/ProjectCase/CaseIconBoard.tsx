@@ -14,15 +14,18 @@ export default function CaseIconBoard({ section }: CaseIconBoardProps) {
     >
       {section.icons.map((slot) => (
         <li key={slot.image.src}>
-          <img
-            src={slot.image.src}
-            alt={slot.image.alt}
-            width={slot.image.width}
-            height={slot.image.height}
-            style={{ inset: slot.inset }}
-            loading="lazy"
-            decoding="async"
-          />
+          <span className="case-icon-board-glyph" style={{ inset: slot.inset }}>
+            <span style={{ inset: slot.bleed ?? "0" }}>
+              <img
+                src={slot.image.src}
+                alt={slot.image.alt}
+                width={slot.image.width}
+                height={slot.image.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
+          </span>
         </li>
       ))}
     </ul>

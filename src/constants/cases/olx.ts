@@ -24,15 +24,35 @@ function media(
   return { type: "media", spaceBefore, image };
 }
 
+function withPhone(
+  section: CaseMediaSection,
+  file: string,
+  width: number,
+  height: number,
+): CaseMediaSection {
+  return {
+    ...section,
+    image: {
+      ...section.image,
+      phone: { src: asset(file), width, height },
+    },
+  };
+}
+
 export const olxCase: ProjectCase = {
   id: "olx",
   title: "OLX Business Hub",
   sections: [
-    media(
-      "Cover_OLX.webp",
-      2528,
-      1580,
-      "OLX Business Hub on a laptop, with the site open on a mint background",
+    withPhone(
+      media(
+        "Cover_OLX.webp",
+        2528,
+        1580,
+        "OLX Business Hub on a laptop, with the site open on a mint background",
+      ),
+      "Cover_OLX-phone.webp",
+      1029,
+      1026,
     ),
     {
       type: "intro",

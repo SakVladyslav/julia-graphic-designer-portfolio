@@ -1,0 +1,484 @@
+@use "../../styles/typography" as *;
+@use "../../styles/spacing" as *;
+@use "../../styles/sizes" as *;
+@use "../../styles/breakpoints" as *;
+
+// 1440 frame. 1200, 1024, 768, and 390 bridge up to it.
+.case-page--molfaria {
+  padding-top: 24px;
+
+  .case-intro h1 {
+    font-size: $font-size-case-title;
+    line-height: 1.1;
+  }
+
+  .case-subtitle {
+    font-size: $font-size-case-subtitle;
+    line-height: 1.3;
+  }
+
+  .case-intro-copy {
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .case-marks img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  // Shares of the 1264px content row and the 628px mark cell. The 1200 frame uses the same shares.
+  .case-marks--board img {
+    width: 52.061%;
+  }
+
+  .case-marks--grid {
+    gap: 8px;
+  }
+
+  .case-marks--grid li:nth-child(odd) img {
+    width: 57.199%;
+  }
+
+  .case-marks--grid li:nth-child(even) img {
+    width: 67.725%;
+  }
+
+  .case-related {
+    margin-top: 160px;
+    padding-top: 128px;
+    padding-bottom: 64px;
+  }
+
+  .case-related h2 {
+    margin-bottom: 48px;
+    font-size: $font-size-projects;
+    line-height: 1.1;
+  }
+}
+
+@media (max-width: #{$bp-desktop - 1px}) {
+  .case-page--molfaria {
+    .case-intro {
+      gap: fluid(24px, $case-column-gap, $bp-laptop, $bp-desktop);
+    }
+
+    .case-intro h1 {
+      font-size: fluid(72px, $font-size-case-title, $bp-laptop, $bp-desktop);
+    }
+
+    .case-subtitle {
+      font-size: fluid(24px, $font-size-case-subtitle, $bp-laptop, $bp-desktop);
+    }
+
+    .case-intro-copy {
+      padding-top: fluid(32px, 40px, $bp-laptop, $bp-desktop);
+    }
+
+    .case-flow > .case-section--section {
+      margin-top: fluid(136px, $case-section-gap, $bp-laptop, $bp-desktop);
+    }
+
+    .case-marks--board li {
+      min-height: fluid(680px, $case-mark-board, $bp-laptop, $bp-desktop);
+    }
+
+    .case-marks--grid li {
+      min-height: fluid(290px, $case-mark-cell, $bp-laptop, $bp-desktop);
+    }
+
+    .case-poster-panel {
+      inset: fluid(48px, $case-poster-inset, $bp-laptop, $bp-desktop);
+    }
+
+    .case-poster-copy {
+      gap: fluid(15px, $case-poster-copy-gap, $bp-laptop, $bp-desktop);
+    }
+
+    .case-poster h2 {
+      font-size: fluid(94px, 107px, $bp-laptop, $bp-desktop);
+    }
+
+    .case-poster p {
+      font-size: fluid(28px, 31.6px, $bp-laptop, $bp-desktop);
+    }
+
+    .case-related {
+      margin-top: fluid(152px, 160px, $bp-laptop, $bp-desktop);
+      padding-top: fluid(112px, 128px, $bp-laptop, $bp-desktop);
+      padding-bottom: fluid(72px, 64px, $bp-laptop, $bp-desktop);
+    }
+
+    .case-related h2 {
+      margin-bottom: fluid(40px, 48px, $bp-laptop, $bp-desktop);
+      font-size: fluid(64px, $font-size-projects, $bp-laptop, $bp-desktop);
+    }
+
+    .case-related-grid {
+      column-gap: fluid(24px, $header-padding-y, $bp-laptop, $bp-desktop);
+    }
+  }
+}
+
+@media (max-width: #{$bp-laptop - 1px}) {
+  .case-page--molfaria {
+    padding-top: fluid(16px, 24px, $bp-tablet, $bp-laptop);
+
+    .case-intro {
+      gap: fluid(20px, 24px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-intro h1 {
+      font-size: fluid(64px, 72px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-subtitle {
+      font-size: fluid(22px, 24px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-flow > .case-section--block {
+      margin-top: fluid(56px, $case-block-gap, $bp-tablet, $bp-laptop);
+    }
+
+    .case-flow > .case-section--section {
+      margin-top: fluid(128px, 136px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-marks--board li {
+      min-height: fluid(580px, 680px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-marks--grid li {
+      min-height: fluid(246px, 290px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-poster-panel {
+      inset: fluid(41px, 48px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-poster-copy {
+      gap: fluid(13px, 15px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-poster h2 {
+      font-size: fluid(80px, 94px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-poster p {
+      font-size: fluid(24px, 28px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-related {
+      margin-top: fluid(144px, 152px, $bp-tablet, $bp-laptop);
+      padding-top: fluid(104px, 112px, $bp-tablet, $bp-laptop);
+      padding-bottom: fluid(64px, 72px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-related h2 {
+      font-size: fluid(60px, 64px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-related-grid {
+      column-gap: fluid(20px, 24px, $bp-tablet, $bp-laptop);
+    }
+
+    .project-card h3 {
+      font-size: fluid(32px, $font-size-case-heading, $bp-tablet, $bp-laptop);
+    }
+  }
+}
+
+@media (max-width: #{$bp-tablet - 1px}) {
+  .case-page--molfaria {
+    .case-intro {
+      gap: fluid(16px, 20px, $bp-stack, $bp-tablet);
+    }
+
+    .case-intro h1 {
+      font-size: fluid(52px, 64px, $bp-stack, $bp-tablet);
+    }
+
+    .case-subtitle {
+      font-size: fluid(20px, 22px, $bp-stack, $bp-tablet);
+    }
+
+    .case-eyebrow,
+    .case-intro .case-tags li {
+      font-size: fluid(14px, $font-size-base, $bp-stack, $bp-tablet);
+    }
+
+    .case-copy {
+      font-size: fluid(16px, $font-size-case-body, $bp-stack, $bp-tablet);
+    }
+
+    .case-flow > .case-section--section {
+      margin-top: fluid(96px, 128px, $bp-stack, $bp-tablet);
+    }
+
+    .case-marks--board li {
+      min-height: fluid(430px, 580px, $bp-stack, $bp-tablet);
+    }
+
+    .case-marks--grid li {
+      min-height: fluid(182px, 246px, $bp-stack, $bp-tablet);
+    }
+
+    .case-poster-panel {
+      inset: fluid(31px, 41px, $bp-stack, $bp-tablet);
+    }
+
+    .case-poster-copy {
+      gap: fluid(10px, 13px, $bp-stack, $bp-tablet);
+    }
+
+    .case-poster h2 {
+      font-size: fluid(60px, 80px, $bp-stack, $bp-tablet);
+    }
+
+    .case-poster p {
+      font-size: fluid(18px, 24px, $bp-stack, $bp-tablet);
+    }
+
+    .case-related {
+      margin-top: fluid(112px, 144px, $bp-stack, $bp-tablet);
+      padding-top: fluid(96px, 104px, $bp-stack, $bp-tablet);
+      padding-bottom: fluid(24px, 64px, $bp-stack, $bp-tablet);
+    }
+
+    .case-related h2 {
+      margin-bottom: fluid(32px, 40px, $bp-stack, $bp-tablet);
+      font-size: fluid(56px, 60px, $bp-stack, $bp-tablet);
+    }
+
+    .case-related-grid {
+      column-gap: fluid(16px, 20px, $bp-stack, $bp-tablet);
+    }
+
+    .project-card h3 {
+      font-size: fluid(28px, 32px, $bp-stack, $bp-tablet);
+    }
+  }
+}
+
+// The shared fallback stacks these at 800px. This frame is still two columns.
+@media (max-width: 800px) {
+  .case-page--molfaria {
+    .case-intro,
+    .case-marks--grid,
+    .case-related-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .case-poster {
+      display: block;
+      aspect-ratio: 1264 / 790;
+      padding: 0;
+    }
+
+    .case-poster-copy {
+      position: absolute;
+      top: 22.67%;
+      left: 9.44%;
+      width: 50.08%;
+    }
+
+    .case-poster img {
+      position: absolute;
+      top: 36%;
+      right: 2%;
+      left: auto;
+      width: 37.5%;
+    }
+  }
+}
+
+.case-page--molfaria .case-media--phone,
+.case-page--molfaria .case-media--phone-inset {
+  display: none;
+}
+
+@media (max-width: #{$bp-stack - 1px}) {
+  .case-page--molfaria {
+    padding-top: fluid(8px, 16px, 390px, $bp-stack);
+
+    .case-intro h1 {
+      font-size: fluid(48px, 52px, 390px, $bp-stack);
+    }
+
+    .case-intro-copy {
+      padding-bottom: fluid(40px, 48px, 390px, $bp-stack);
+    }
+
+    .case-flow > .case-section--block {
+      margin-top: fluid(40px, 56px, 390px, $bp-stack);
+    }
+
+    .case-flow > .case-section--section {
+      margin-top: fluid(80px, 96px, 390px, $bp-stack);
+    }
+
+    .case-related {
+      margin-top: fluid(80px, 112px, 390px, $bp-stack);
+      padding-top: fluid(80px, 96px, 390px, $bp-stack);
+      padding-bottom: fluid(0px, 24px, 390px, $bp-stack);
+    }
+
+    .case-related h2 {
+      font-size: fluid(40px, 56px, 390px, $bp-stack);
+    }
+
+    .case-related-grid {
+      row-gap: fluid(40px, $project-row-gap, 390px, $bp-stack);
+    }
+
+    .project-card h3 {
+      font-size: fluid(24px, 28px, 390px, $bp-stack);
+    }
+  }
+}
+
+@media (max-width: $bp-phone) {
+  .case-page--molfaria {
+    .case-intro,
+    .case-marks--grid,
+    .case-related-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .case-intro {
+      gap: 20px;
+    }
+
+    .case-intro-title {
+      gap: 12px;
+    }
+
+    .case-intro-copy {
+      padding-top: 0;
+    }
+
+    .case-flow > .case-marks--board {
+      margin-top: 72px;
+    }
+
+    .case-marks--board li {
+      min-height: 0;
+      aspect-ratio: 342 / 428;
+    }
+
+    .case-marks--board img {
+      width: 78.947%;
+    }
+
+    .case-marks--grid li:nth-child(odd) {
+      display: none;
+    }
+
+    .case-marks--grid li {
+      min-height: 0;
+      aspect-ratio: 342 / 200;
+    }
+
+    .case-marks--grid li:nth-child(even) img {
+      width: 70.175%;
+    }
+
+    .case-media--wide {
+      display: none;
+    }
+
+    .case-media--phone {
+      display: block;
+    }
+
+    .case-media--hero img,
+    .case-media--portrait img,
+    .case-media--bottom img,
+    .case-media--half-left img,
+    .case-media--half-right img {
+      aspect-ratio: 342 / 428;
+      object-fit: cover;
+    }
+
+    .case-media--bottom img {
+      object-position: center bottom;
+    }
+
+    .case-media--half-left img {
+      aspect-ratio: 1080 / 1350;
+      object-position: left center;
+    }
+
+    .case-media--half-right img {
+      aspect-ratio: 1080 / 1350;
+      object-position: right center;
+    }
+
+    .case-media--window img,
+    .case-media--short img {
+      aspect-ratio: 342 / 260;
+      object-fit: cover;
+    }
+
+    .case-media--window img {
+      object-position: center 46%;
+    }
+
+    .case-media--short img {
+      object-position: center bottom;
+    }
+
+    .case-media--square img {
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .case-media--menu img {
+      aspect-ratio: 342 / 427;
+      object-fit: cover;
+      object-position: right center;
+    }
+
+    .case-media--phone-inset {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 342 / 428;
+      background: #fff4f2;
+    }
+
+    .case-media--phone-inset img {
+      width: 71.93%;
+    }
+
+    .case-poster {
+      aspect-ratio: 342 / 428;
+    }
+
+    .case-poster-panel {
+      inset: 5.61% 7.02%;
+    }
+
+    .case-poster-copy {
+      top: 18.69%;
+      left: 50%;
+      gap: 8px;
+      width: 75.44%;
+      transform: translateX(-50%);
+    }
+
+    .case-poster h2 {
+      font-size: 43px;
+    }
+
+    .case-poster p {
+      font-size: 13px;
+    }
+
+    .case-poster img {
+      top: 55.84%;
+      right: 3.22%;
+      width: 51.46%;
+    }
+  }
+}

@@ -10,6 +10,7 @@ interface CaseMediaProps {
   caption?: string;
   captionAlign?: "start" | "end";
   framed?: boolean;
+  modifier?: string;
 }
 
 export default function CaseMedia({
@@ -19,10 +20,20 @@ export default function CaseMedia({
   caption,
   captionAlign,
   framed = false,
+  modifier,
 }: CaseMediaProps) {
+  const modifierClass =
+    modifier === undefined
+      ? ""
+      : modifier
+          .split(" ")
+          .map((name) => `case-media--${name}`)
+          .join(" ");
+  const frameClass = modifierClass === "" ? "case-media" : `case-media ${modifierClass}`;
+
   return (
     <CaseFrame
-      className={sectionClass("case-media", spaceBefore)}
+      className={sectionClass(frameClass, spaceBefore)}
       image={image}
       caption={caption}
       captionAlign={captionAlign}

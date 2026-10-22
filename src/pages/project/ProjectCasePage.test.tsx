@@ -58,6 +58,9 @@ describe("ProjectCasePage", () => {
     expect(screen.getByRole("heading", { level: 1, name: "Molfaria" })).toBeInTheDocument();
     expect(screen.getByText("Specialty Coffee Branding")).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Molfaria logo" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Two Molfaria coffee bags" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Molfaria cap", hidden: true })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Molfaria shopping bag", hidden: true })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /можна не/i }).parentElement).toHaveAttribute(
       "lang",
       "uk",
@@ -134,6 +137,12 @@ describe("ProjectCasePage", () => {
     expect(screen.getByText("[Agency project]")).toBeInTheDocument();
     expect(screen.getByText("wireframing")).toBeInTheDocument();
     expect(screen.getByRole("img", { name: /olx business hub on a laptop/i })).toBeInTheDocument();
+    expect(
+      screen
+        .getByRole("img", { name: /olx business hub on a laptop/i })
+        .parentElement?.querySelector("source")
+        ?.getAttribute("srcset"),
+    ).toContain("Cover_OLX-phone.webp");
     expect(screen.getByRole("link", { name: /view case on behance/i })).toHaveAttribute(
       "href",
       "https://www.behance.net/gallery/217930743/OLX-B2B-UIUX-Redesign",
