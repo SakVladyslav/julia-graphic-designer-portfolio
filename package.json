@@ -14,7 +14,8 @@
     "test:watch": "vitest",
     "og:image": "node scripts/render-og-image.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
-    "optimize:images:replace": "node scripts/optimize-images.mjs --delete-originals"
+    "optimize:images:replace": "node scripts/optimize-images.mjs --delete-originals",
+    "images:cards": "node scripts/card-image-variants.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",
