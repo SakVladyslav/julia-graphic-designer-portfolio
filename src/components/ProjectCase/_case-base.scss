@@ -822,13 +822,6 @@
   pointer-events: none;
 }
 
-.case-missing {
-  padding: $case-section-gap 0;
-  font-size: $font-size-case-heading;
-  font-weight: 500;
-  line-height: $line-height-heading;
-}
-
 @media (max-width: 800px) {
   .case-intro,
   .case-split,

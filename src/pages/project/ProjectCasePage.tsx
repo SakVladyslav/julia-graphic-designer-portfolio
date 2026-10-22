@@ -1,32 +1,28 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import ProjectCase from "../../components/ProjectCase/ProjectCase";
 
+import NotFoundPage from "../not-found/NotFoundPage";
+
 import { getProjectCase } from "../../constants/projectCases";
 import { projects } from "../../constants/projects";
+import { SITE_OWNER } from "../../constants/site";
 
 import { nextProjects } from "../../utils/nextProjects";
+import { usePageTitle } from "../../utils/usePageTitle";
 
 export default function ProjectCasePage() {
   const { projectId } = useParams();
   const projectCase = projectId === undefined ? undefined : getProjectCase(projectId);
+  const title =
+    projectCase === undefined
+      ? `Page not found — ${SITE_OWNER}`
+      : `${projectCase.title} — ${SITE_OWNER}`;
 
-  useEffect(() => {
-    const previousTitle = document.title;
-    document.title =
-      projectCase === undefined ? "Julia Samchuk" : `${projectCase.title} — Julia Samchuk`;
-    return () => {
-      document.title = previousTitle;
-    };
-  }, [projectCase]);
+  usePageTitle(title);
 
   if (projectCase === undefined) {
-    return (
-      <main className="case-page" id="main-content" tabIndex={-1}>
-        <p className="case-missing">This project is not published yet.</p>
-      </main>
-    );
+    return <NotFoundPage />;
   }
 
   const related = nextProjects(projects, projectCase.id, 2);

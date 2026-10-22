@@ -1,25 +1,47 @@
 import { OG_IMAGE, SITE_DESCRIPTION, SITE_OWNER } from "../constants/site.ts";
 
+import { siteOrigin } from "./siteOrigin.ts";
+
+export interface SharePage {
+  title: string;
+  description: string;
+  imageFile: string;
+  imageAlt: string;
+  robots?: string;
+}
+
+const homeSharePage: SharePage = {
+  title: SITE_OWNER,
+  description: SITE_DESCRIPTION,
+  imageFile: OG_IMAGE.file,
+  imageAlt: OG_IMAGE.alt,
+};
+
 function escapeAttribute(value: string): string {
   return value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;");
 }
 
-/** Description, canonical URL, and the share-card tags. One card for the whole site. */
-export function siteHeadTags(pageUrl: string): string {
-  const url = pageUrl.endsWith("/") ? pageUrl : `${pageUrl}/`;
-  const imageUrl = `${url}${OG_IMAGE.file}`;
-  const title = escapeAttribute(SITE_OWNER);
-  const description = escapeAttribute(SITE_DESCRIPTION);
-  const imageAlt = escapeAttribute(OG_IMAGE.alt);
+/** Description, canonical URL, and the share-card tags for one page. */
+export function siteHeadTags(pageUrl: string, page: SharePage = homeSharePage): string {
+  const title = escapeAttribute(page.title);
+  const description = escapeAttribute(page.description);
+  const imageAlt = escapeAttribute(page.imageAlt);
+  const canonical = escapeAttribute(pageUrl);
+  const imageUrl = escapeAttribute(`${siteOrigin()}/${page.imageFile}`);
+  const robots =
+    page.robots === undefined
+      ? []
+      : [`<meta name="robots" content="${escapeAttribute(page.robots)}" />`];
 
   return [
     `<meta name="description" content="${description}" />`,
-    `<link rel="canonical" href="${url}" />`,
+    ...robots,
+    `<link rel="canonical" href="${canonical}" />`,
     `<meta property="og:type" content="website" />`,
-    `<meta property="og:site_name" content="${title}" />`,
+    `<meta property="og:site_name" content="${escapeAttribute(SITE_OWNER)}" />`,
     `<meta property="og:title" content="${title}" />`,
     `<meta property="og:description" content="${description}" />`,
-    `<meta property="og:url" content="${url}" />`,
+    `<meta property="og:url" content="${canonical}" />`,
     `<meta property="og:image" content="${imageUrl}" />`,
     `<meta property="og:image:width" content="${OG_IMAGE.width}" />`,
     `<meta property="og:image:height" content="${OG_IMAGE.height}" />`,

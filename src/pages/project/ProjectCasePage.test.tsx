@@ -22,6 +22,7 @@ describe("ProjectCasePage", () => {
   it("renders the lovespace case from the shared sections", () => {
     renderCase("lovespace");
 
+    expect(document.title).toBe("Lovespace — Julia Samchuk");
     expect(screen.getByRole("heading", { level: 1, name: "Lovespace" })).toBeInTheDocument();
     expect(screen.getByText("Visual Identity Redesign")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Brand philosophy" })).toBeInTheDocument();
@@ -60,7 +61,9 @@ describe("ProjectCasePage", () => {
     expect(screen.getByRole("img", { name: "Molfaria logo" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Two Molfaria coffee bags" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Molfaria cap", hidden: true })).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Molfaria shopping bag", hidden: true })).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Molfaria shopping bag", hidden: true }),
+    ).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /можна не/i }).parentElement).toHaveAttribute(
       "lang",
       "uk",
@@ -173,10 +176,11 @@ describe("ProjectCasePage", () => {
     expect(screen.queryByRole("link", { name: /novyny live/i })).not.toBeInTheDocument();
   });
 
-  it("keeps the shell readable when a project has no case yet", () => {
+  it("answers an unknown project address with the not-found page", () => {
     renderCase("unpublished");
 
-    expect(screen.getByText("This project is not published yet.")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "This page does not exist." })).toBeInTheDocument();
+    expect(document.title).toBe("Page not found — Julia Samchuk");
     expect(screen.queryByRole("heading", { name: "More projects" })).not.toBeInTheDocument();
   });
 });

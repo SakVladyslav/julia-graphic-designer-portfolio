@@ -1,10 +1,12 @@
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 
 import { projectGroups, projects } from "../../constants/projects";
+import { SITE_OWNER } from "../../constants/site";
 
 import type { Project } from "../../constants/projects";
 
 import { formatSectionCount } from "../../utils/formatSectionCount";
+import { usePageTitle } from "../../utils/usePageTitle";
 
 import heroArrowUrl from "../../assets/hero-arrow.svg";
 
@@ -22,6 +24,8 @@ function projectsForGroup(projectIds: readonly string[]): Project[] {
 }
 
 export default function LandingPage() {
+  usePageTitle(SITE_OWNER);
+
   return (
     <main id="main-content" tabIndex={-1}>
       <section className="hero" aria-labelledby="hero-heading">
