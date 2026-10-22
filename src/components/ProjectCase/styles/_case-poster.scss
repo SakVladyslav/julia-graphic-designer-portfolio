@@ -1,0 +1,54 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/spacing" as *;
+@use "../../../styles/sizes" as *;
+
+.case-poster {
+  position: relative;
+  aspect-ratio: 1264 / 790;
+  container-type: inline-size;
+}
+
+.case-poster-panel {
+  position: absolute;
+  inset: $case-poster-inset;
+}
+
+.case-poster-copy {
+  position: absolute;
+  z-index: 1;
+  top: 22.67%;
+  left: 9.44%;
+  display: flex;
+  flex-direction: column;
+  gap: $case-poster-copy-gap;
+  width: 50.08%;
+}
+
+.case-poster h2 {
+  margin: 0;
+  font-family: $font-family-poster-title;
+  font-size: 8.47cqw;
+  font-weight: 500;
+  line-height: 1;
+  white-space: pre-line;
+}
+
+.case-poster p {
+  margin: 0;
+  padding-left: 0.5cqw;
+  font-family: $font-family-poster-detail;
+  font-size: 2.5cqw;
+  font-weight: 300;
+  line-height: 1.2;
+  opacity: 0.8;
+}
+
+.case-poster img {
+  position: absolute;
+  z-index: 1;
+  top: 36%;
+  right: 2%;
+  width: 37.5%;
+  height: auto;
+}

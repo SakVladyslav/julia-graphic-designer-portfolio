@@ -1,5 +1,6 @@
 import { OG_IMAGE, SITE_DESCRIPTION, SITE_OWNER } from "../constants/site.ts";
 
+import { personJsonLd } from "./personJsonLd.ts";
 import { siteOrigin } from "./siteOrigin.ts";
 
 export interface SharePage {
@@ -8,6 +9,8 @@ export interface SharePage {
   imageFile: string;
   imageAlt: string;
   robots?: string;
+  /** Set on the homepage. Becomes schema.org/Person in the document head. */
+  jobTitle?: string;
 }
 
 const homeSharePage: SharePage = {
@@ -33,10 +36,17 @@ export function siteHeadTags(pageUrl: string, page: SharePage = homeSharePage): 
       ? []
       : [`<meta name="robots" content="${escapeAttribute(page.robots)}" />`];
 
+  const canonicalLink =
+    page.robots === "noindex" ? [] : [`<link rel="canonical" href="${canonical}" />`];
+  const structuredData =
+    page.jobTitle === undefined
+      ? []
+      : [`<script type="application/ld+json">${personJsonLd(pageUrl, page.jobTitle)}</script>`];
+
   return [
     `<meta name="description" content="${description}" />`,
     ...robots,
-    `<link rel="canonical" href="${canonical}" />`,
+    ...canonicalLink,
     `<meta property="og:type" content="website" />`,
     `<meta property="og:site_name" content="${escapeAttribute(SITE_OWNER)}" />`,
     `<meta property="og:title" content="${title}" />`,
@@ -50,5 +60,6 @@ export function siteHeadTags(pageUrl: string, page: SharePage = homeSharePage): 
     `<meta name="twitter:title" content="${title}" />`,
     `<meta name="twitter:description" content="${description}" />`,
     `<meta name="twitter:image" content="${imageUrl}" />`,
+    ...structuredData,
   ].join("\n    ");
 }

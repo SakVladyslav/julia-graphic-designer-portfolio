@@ -1,0 +1,63 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/spacing" as *;
+@use "../../../styles/sizes" as *;
+
+.case-marks {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-marks li {
+  display: grid;
+  place-items: center;
+  margin: 0;
+}
+
+.case-marks img {
+  display: block;
+  width: auto;
+  max-width: 86%;
+  height: auto;
+}
+
+.case-marks--board {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.case-marks--board li {
+  min-height: $case-mark-board;
+}
+
+.case-marks--grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: $case-mark-gap;
+}
+
+.case-marks--grid li {
+  min-height: $case-mark-cell;
+}
+
+.case-marks--lockup {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: $case-stack-gap;
+}
+
+.case-marks--lockup li {
+  aspect-ratio: 624 / 300;
+}
+
+.case-marks--lockup li:first-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 1264 / 500;
+}
+
+.case-marks--lockup img {
+  width: 64.4%;
+}
+
+.case-marks--lockup li:first-child img {
+  width: 59.3%;
+}

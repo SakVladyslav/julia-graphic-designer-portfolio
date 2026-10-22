@@ -1,0 +1,114 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/spacing" as *;
+@use "../../../styles/sizes" as *;
+
+.case-palette {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $case-palette-gap;
+  list-style: none;
+}
+
+.case-palette--short {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.case-color {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.case-color-photo {
+  display: block;
+  width: 100%;
+  height: $case-palette-swatch-tall;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.case-palette--short .case-color-photo {
+  height: $case-palette-swatch-short;
+  object-position: center;
+}
+
+.case-color-swatch {
+  border: 1px solid rgba($paper, 0.16);
+}
+
+.case-palette--tall .case-color-swatch {
+  height: $case-palette-swatch-tall;
+}
+
+.case-palette--short .case-color-swatch {
+  height: $case-palette-swatch-short;
+}
+
+.case-color-info {
+  display: flex;
+  flex-direction: column;
+  padding: $case-palette-padding;
+}
+
+.case-palette--tall .case-color-info {
+  height: $case-palette-info-tall;
+}
+
+.case-color-info--fill {
+  gap: $case-palette-copy-gap;
+  padding: $case-palette-padding-top $case-palette-padding $case-palette-padding;
+}
+
+.case-palette--tall .case-color-info--fill {
+  height: auto;
+  min-height: $case-palette-info-tall;
+}
+
+.case-color-info--fill .case-color-specs {
+  margin-top: 0;
+  font-size: $font-size-case-spec;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.case-palette--short .case-color-info {
+  height: $case-palette-info-short;
+}
+
+.case-palette--short .case-color-info--fill {
+  gap: 0;
+  height: auto;
+  min-height: $case-palette-info-short;
+  padding-top: $case-palette-short-padding-top;
+}
+
+.case-color-name {
+  font-size: $font-size-case-color;
+  line-height: 1;
+}
+
+.case-color-specs {
+  display: flex;
+  flex-direction: column;
+  gap: $case-spec-gap;
+  margin-top: auto;
+  font-size: $font-size-base;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.case-color-specs div {
+  display: flex;
+  gap: 0.35em;
+}
+
+.case-color-specs dt,
+.case-color-specs dd {
+  margin: 0;
+}
+
+.case-color-specs dt::after {
+  content: ":";
+}

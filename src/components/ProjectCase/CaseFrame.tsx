@@ -2,6 +2,8 @@ import type { CSSProperties } from "react";
 
 import type { CaseImage } from "../../constants/projectCase";
 
+import { caseImageSizes, optionalSrcSet } from "../../utils/cardSources";
+
 interface CaseFrameProps {
   image: CaseImage;
   caption?: string;
@@ -22,9 +24,12 @@ export default function CaseFrame({
   style,
 }: CaseFrameProps) {
   const captionClass = captionAlign === "end" ? "case-caption case-caption--end" : "case-caption";
+  const srcSet = optionalSrcSet(image.src, image.width);
   const img = (
     <img
       src={image.src}
+      srcSet={srcSet}
+      sizes={srcSet === undefined ? undefined : caseImageSizes()}
       alt={image.alt}
       width={image.width}
       height={image.height}
@@ -33,6 +38,8 @@ export default function CaseFrame({
       fetchPriority={priority ? "high" : undefined}
     />
   );
+  const phoneSrcSet =
+    image.phone === undefined ? undefined : optionalSrcSet(image.phone.src, image.phone.width);
   const picture =
     image.phone === undefined ? (
       img
@@ -40,7 +47,8 @@ export default function CaseFrame({
       <picture>
         <source
           media="(max-width: 479px)"
-          srcSet={image.phone.src}
+          srcSet={phoneSrcSet ?? image.phone.src}
+          sizes={phoneSrcSet === undefined ? undefined : "100vw"}
           width={image.phone.width}
           height={image.phone.height}
         />

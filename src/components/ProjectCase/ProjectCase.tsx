@@ -18,7 +18,7 @@ import CaseTypefaces from "./CaseTypefaces";
 import type { CaseSection, ProjectCase as ProjectCaseData } from "../../constants/projectCase";
 import type { Project } from "../../constants/projects";
 
-import "./ProjectCase.scss";
+import "./styles/ProjectCase.scss";
 
 interface ProjectCaseProps {
   projectCase: ProjectCaseData;

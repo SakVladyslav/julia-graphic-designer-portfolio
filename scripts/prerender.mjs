@@ -13,6 +13,7 @@ if (template.includes('property="og:title"')) {
 
 const serverEntry = pathToFileURL(join(dist, "server", "entry-server.js")).href;
 const { renderPages } = await import(serverEntry);
+const pages = await renderPages();
 const assetsDir = join(dist, "assets");
 const arrowFile = readdirSync(assetsDir).find(
   (name) => name.startsWith("hero-arrow-") && name.endsWith(".svg"),
@@ -30,7 +31,7 @@ function escapeText(value) {
   return value.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
 }
 
-for (const page of renderPages()) {
+for (const page of pages) {
   if (!/<title>[\s\S]*?<\/title>/.test(template)) {
     throw new Error("Prerender could not find the document title", {
       cause: { pathname: page.pathname },

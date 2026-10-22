@@ -11,7 +11,7 @@ interface CropFrameStyle extends CSSProperties {
 
 type ProjectVisualProps = {
   project: Project;
-  /** First visible card loads immediately. High priority goes to the texture: it is the largest paint. */
+  /** First visible card loads immediately. High priority goes to the photo: that is the LCP element. */
   priority?: boolean;
 };
 
@@ -33,6 +33,7 @@ export default function ProjectVisual({ project, priority = false }: ProjectVisu
           height={image.photoHeight}
           loading={loading}
           decoding="async"
+          fetchPriority={fetchPriority}
         />
         <img
           className="lovespace-texture"
@@ -43,8 +44,7 @@ export default function ProjectVisual({ project, priority = false }: ProjectVisu
           width={image.textureWidth}
           height={image.textureHeight}
           loading={loading}
-          decoding={priority ? "sync" : "async"}
-          fetchPriority={fetchPriority}
+          decoding="async"
           aria-hidden="true"
         />
         <div className="lovespace-ring">

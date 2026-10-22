@@ -1,0 +1,112 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/spacing" as *;
+@use "../../../styles/sizes" as *;
+
+.case-icon-board {
+  display: grid;
+  grid-template-columns: repeat(4, 130px);
+  justify-content: space-between;
+  row-gap: 56px;
+  margin: 0;
+  padding: 72px 168px;
+  list-style: none;
+}
+
+.case-icon-board li {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  margin: 0;
+}
+
+.case-icon-board-glyph,
+.case-icon-board-glyph > span {
+  position: absolute;
+}
+
+.case-icon-board img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: fill;
+}
+
+.case-frame {
+  overflow: hidden;
+  border: $case-frame-border solid $case-frame;
+}
+
+.case-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-caption {
+  margin-top: $case-caption-gap;
+  color: $case-frame-caption;
+  font-size: $font-size-case-caption;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.14px;
+  text-transform: uppercase;
+  white-space: pre-line;
+}
+
+.case-caption--end {
+  text-align: right;
+}
+
+.case-cluster {
+  display: grid;
+  grid-template-columns: minmax(0, 628fr) minmax(0, 620fr);
+  gap: $case-stack-gap;
+  align-items: center;
+}
+
+.case-cluster figure {
+  margin: 0;
+}
+
+.case-cluster-stack {
+  display: grid;
+  gap: $case-stack-gap;
+}
+
+.case-cluster img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.case-stagger {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.case-stagger-lead {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+}
+
+.case-stagger-follow {
+  grid-column: 1;
+  grid-row: 1;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+.case-stagger-ornament {
+  position: absolute;
+  z-index: 1;
+  top: -209px;
+  left: 0;
+  width: min(410px, 34%);
+  height: auto;
+  pointer-events: none;
+}

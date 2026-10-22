@@ -5,7 +5,7 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import SkipLink from "../SkipLink/SkipLink";
 
-import { getProjectCase } from "../../constants/projectCases";
+import { publishedProjectIds } from "../../constants/publishedProjectIds";
 
 import { useDocumentHead } from "../../utils/useDocumentHead";
 
@@ -16,7 +16,7 @@ const useBrowserLayoutEffect = typeof window === "undefined" ? useEffect : useLa
 export default function SiteShell() {
   const projectMatch = useMatch("/projects/:projectId");
   const projectId = projectMatch?.params.projectId;
-  const isProjectPage = projectId !== undefined && getProjectCase(projectId) !== undefined;
+  const isProjectPage = projectId !== undefined && publishedProjectIds().includes(projectId);
   const { pathname, hash } = useLocation();
   const locationKey = `${pathname}${hash}`;
 

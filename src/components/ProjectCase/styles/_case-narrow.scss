@@ -1,0 +1,139 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/spacing" as *;
+@use "../../../styles/sizes" as *;
+
+@media (max-width: 800px) {
+  .case-intro,
+  .case-split,
+  .case-comparison,
+  .case-palette,
+  .case-palette--short,
+  .case-marks--grid,
+  .case-marks--lockup,
+  .case-logo-pair,
+  .case-typefaces,
+  .case-related-grid,
+  .case-cluster,
+  .case-stagger,
+  .case-note {
+    grid-template-columns: 1fr;
+  }
+
+  .case-stagger {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .case-stagger-follow {
+    margin-top: 0;
+  }
+
+  .case-stagger-ornament {
+    display: none;
+  }
+
+  .case-banner {
+    min-height: 0;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .case-banner-mark,
+  .case-note-ornament {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: min(16rem, 70%);
+    margin-top: 1.5rem;
+    transform: none;
+  }
+
+  .case-banner h2,
+  .case-note h2 {
+    font-size: 2.25rem;
+  }
+
+  .case-note {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 0;
+  }
+
+  .case-flow > .case-section--group {
+    margin-top: 5rem;
+  }
+
+  .case-marks--board li,
+  .case-marks--grid li {
+    min-height: 0;
+    height: auto;
+  }
+
+  .case-poster {
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .case-poster-panel {
+    inset: 1rem;
+  }
+
+  .case-poster-copy,
+  .case-poster img {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    width: 100%;
+  }
+
+  .case-poster h2 {
+    font-size: 3rem;
+  }
+
+  .case-poster p {
+    font-size: 1.25rem;
+  }
+
+  .case-poster img {
+    width: min(16rem, 70%);
+  }
+
+  .case-intro h1 {
+    font-size: 3rem;
+  }
+
+  .case-icon-board {
+    grid-template-columns: repeat(4, 18%);
+    row-gap: 2rem;
+    padding: 2.5rem 1.25rem;
+  }
+
+  .case-comparison-panel {
+    height: 20rem;
+  }
+
+  .case-flow > .case-section--section,
+  .case-related {
+    margin-top: 4.5rem;
+  }
+
+  .case-related {
+    padding-top: 4.5rem;
+  }
+
+  .case-palette--tall .case-color-info,
+  .case-palette--tall .case-color-info--fill,
+  .case-palette--short .case-color-info,
+  .case-palette--short .case-color-info--fill {
+    height: auto;
+    min-height: 0;
+    gap: $case-related-heading-gap;
+    padding-top: $case-palette-padding;
+  }
+}

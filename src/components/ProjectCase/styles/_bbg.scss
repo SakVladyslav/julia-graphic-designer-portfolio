@@ -1,0 +1,423 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/spacing" as *;
+@use "../../../styles/sizes" as *;
+@use "../../../styles/breakpoints" as *;
+
+.case-page--bbg {
+  padding-top: 24px;
+}
+
+.case-page--bbg .case-intro h1 {
+  font-size: $font-size-case-title;
+  line-height: 1.1;
+}
+
+.case-page--bbg .case-subtitle {
+  font-size: $font-size-case-subtitle;
+  line-height: 1.3;
+}
+
+.case-page--bbg .case-related h2 {
+  font-size: $font-size-projects;
+  line-height: 1.1;
+}
+
+.case-page--bbg .case-intro-copy {
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+
+.case-page--bbg .case-typeface--logo .case-typeface-name {
+  font-size: 78px;
+}
+
+.case-page--bbg .case-typeface--communication .case-typeface-name {
+  font-size: 72px;
+}
+
+@media (max-width: #{$bp-desktop - 1px}) {
+  .case-page--bbg .case-intro h1 {
+    font-size: fluid(72px, $font-size-case-title, $bp-laptop, $bp-desktop);
+  }
+
+  .case-page--bbg .case-subtitle {
+    font-size: fluid(24px, $font-size-case-subtitle, $bp-laptop, $bp-desktop);
+  }
+
+  .case-page--bbg .case-flow > .case-section--section,
+  .case-page--bbg .case-related {
+    margin-top: fluid(136px, $case-section-gap, $bp-laptop, $bp-desktop);
+  }
+
+  .case-page--bbg .case-related {
+    padding-top: fluid(128px, $case-section-gap, $bp-laptop, $bp-desktop);
+  }
+
+  .case-page--bbg .case-related h2 {
+    font-size: fluid(64px, $font-size-projects, $bp-laptop, $bp-desktop);
+  }
+
+  .case-page--bbg .case-related-grid {
+    column-gap: fluid(24px, $header-padding-y, $bp-laptop, $bp-desktop);
+  }
+
+  .case-page--bbg .case-icon-board {
+    grid-template-columns: repeat(4, #{fluid(120px, 130px, $bp-laptop, $bp-desktop)});
+    padding: 72px #{fluid(144px, 168px, $bp-laptop, $bp-desktop)};
+  }
+
+  .case-page--bbg .case-typeface {
+    aspect-ratio: 536 / 500;
+  }
+
+  .case-page--bbg .case-intro-copy {
+    padding-top: fluid(32px, 40px, $bp-laptop, $bp-desktop);
+  }
+
+  .case-page--bbg .case-typeface--logo .case-typeface-name {
+    font-size: fluid(76px, 78px, $bp-laptop, $bp-desktop);
+  }
+}
+
+@media (max-width: #{$bp-laptop - 1px}) {
+  .case-page--bbg {
+    padding-top: fluid(16px, 24px, $bp-tablet, $bp-laptop);
+  }
+
+  .case-page--bbg .case-intro h1 {
+    font-size: fluid(64px, 72px, $bp-tablet, $bp-laptop);
+  }
+
+  .case-page--bbg .case-subtitle {
+    font-size: fluid(22px, 24px, $bp-tablet, $bp-laptop);
+  }
+
+  .case-page--bbg .case-intro-copy {
+    padding-top: $header-padding-y;
+  }
+
+  .case-page--bbg .case-typeface-meta {
+    font-size: fluid(16px, $font-size-case-body, $bp-tablet, $bp-laptop);
+  }
+
+  .case-page--bbg .case-typeface--logo .case-typeface-name {
+    font-size: fluid(65px, 76px, $bp-tablet, $bp-laptop);
+  }
+
+  .case-page--bbg .case-typeface--communication .case-typeface-name {
+    font-size: fluid(62px, 72px, $bp-tablet, $bp-laptop);
+  }
+
+  .case-page--bbg .case-flow > .case-section--block {
+    margin-top: fluid(56px, $case-block-gap, $bp-tablet, $bp-laptop);
+  }
+
+  .case-page--bbg .case-flow > .case-section--section,
+  .case-page--bbg .case-related {
+    margin-top: fluid(128px, 136px, $bp-tablet, $bp-laptop);
+  }
+
+  .case-page--bbg .case-related {
+    padding-top: fluid(104px, 128px, $bp-tablet, $bp-laptop);
+  }
+
+  .case-page--bbg .case-split h2 {
+    font-size: fluid(32px, $font-size-case-heading, $bp-tablet, $bp-laptop);
+  }
+
+  .case-page--bbg .case-related h2 {
+    font-size: fluid(60px, 64px, $bp-tablet, $bp-laptop);
+  }
+
+  .case-page--bbg .case-related-grid {
+    column-gap: fluid(20px, 24px, $bp-tablet, $bp-laptop);
+  }
+
+  .case-page--bbg .project-card h3 {
+    font-size: fluid(32px, $font-size-case-heading, $bp-tablet, $bp-laptop);
+  }
+
+  .case-page--bbg .case-icon-board {
+    grid-template-columns: repeat(4, #{fluid(110px, 120px, $bp-tablet, $bp-laptop)});
+    padding: 64px #{fluid(120px, 144px, $bp-tablet, $bp-laptop)};
+  }
+
+  .case-page--bbg .case-typeface {
+    aspect-ratio: 456 / 420;
+    padding: 24px;
+  }
+}
+
+@media (max-width: #{$bp-tablet - 1px}) {
+  .case-page--bbg .case-intro h1 {
+    font-size: fluid(52px, 64px, $bp-stack, $bp-tablet);
+  }
+
+  .case-page--bbg .case-subtitle {
+    font-size: fluid(20px, 22px, $bp-stack, $bp-tablet);
+  }
+
+  .case-page--bbg .case-flow > .case-section--section,
+  .case-page--bbg .case-related {
+    margin-top: fluid(96px, 128px, $bp-stack, $bp-tablet);
+  }
+
+  .case-page--bbg .case-related {
+    padding-top: fluid(96px, 104px, $bp-stack, $bp-tablet);
+  }
+
+  .case-page--bbg .case-split h2 {
+    font-size: fluid(28px, 32px, $bp-stack, $bp-tablet);
+  }
+
+  .case-page--bbg .case-related h2 {
+    font-size: fluid(56px, 60px, $bp-stack, $bp-tablet);
+  }
+
+  .case-page--bbg .case-related-grid {
+    column-gap: fluid(16px, 20px, $bp-stack, $bp-tablet);
+  }
+
+  .case-page--bbg .project-card h3 {
+    font-size: fluid(28px, 32px, $bp-stack, $bp-tablet);
+  }
+
+  .case-page--bbg .case-icon-board {
+    grid-template-columns: repeat(4, #{fluid(96px, 110px, $bp-stack, $bp-tablet)});
+    row-gap: 56px;
+    padding: 56px #{fluid(72px, 120px, $bp-stack, $bp-tablet)};
+  }
+
+  .case-page--bbg .case-typeface {
+    aspect-ratio: 336 / 320;
+  }
+
+  .case-page--bbg .case-copy {
+    font-size: fluid(16px, $font-size-case-body, $bp-stack, $bp-tablet);
+  }
+
+  .case-page--bbg .case-eyebrow,
+  .case-page--bbg .case-tags li,
+  .case-page--bbg .case-typeface-meta {
+    font-size: fluid(14px, 16px, $bp-stack, $bp-tablet);
+  }
+
+  .case-page--bbg .case-typeface--logo .case-typeface-name {
+    font-size: fluid(47px, 65px, $bp-stack, $bp-tablet);
+  }
+
+  .case-page--bbg .case-typeface--communication .case-typeface-name {
+    font-size: fluid(45px, 62px, $bp-stack, $bp-tablet);
+  }
+}
+
+@media (max-width: 800px) {
+  .case-page--bbg .case-intro,
+  .case-page--bbg .case-split,
+  .case-page--bbg .case-logo-pair,
+  .case-page--bbg .case-typefaces,
+  .case-page--bbg .case-related-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: #{$bp-stack - 1px}) {
+  .case-page--bbg {
+    padding-top: fluid(8px, 16px, 390px, $bp-stack);
+  }
+
+  .case-page--bbg .case-intro h1 {
+    font-size: fluid(48px, 52px, 390px, $bp-stack);
+  }
+
+  .case-page--bbg .case-copy {
+    font-size: 16px;
+  }
+
+  .case-page--bbg .case-flow > .case-section--block {
+    margin-top: fluid(40px, 56px, 390px, $bp-stack);
+  }
+
+  .case-page--bbg .case-flow > .case-section--section,
+  .case-page--bbg .case-related {
+    margin-top: fluid(80px, 96px, 390px, $bp-stack);
+  }
+
+  .case-page--bbg .case-related {
+    padding-top: fluid(80px, 96px, 390px, $bp-stack);
+  }
+
+  .case-page--bbg .case-split h2 {
+    font-size: fluid(24px, 28px, 390px, $bp-stack);
+  }
+
+  .case-page--bbg .case-related h2 {
+    font-size: fluid(40px, 56px, 390px, $bp-stack);
+  }
+
+  .case-page--bbg .project-card h3 {
+    font-size: fluid(24px, 28px, 390px, $bp-stack);
+  }
+
+  .case-page--bbg .case-related-grid {
+    row-gap: fluid(40px, $project-row-gap, 390px, $bp-stack);
+  }
+
+  .case-page--bbg .case-icon-board {
+    grid-template-columns: repeat(4, #{fluid(72px, 96px, $bp-phone, $bp-stack)});
+    row-gap: fluid(32px, 56px, $bp-phone, $bp-stack);
+    padding: #{fluid(40px, 56px, $bp-phone, $bp-stack)} #{fluid(16px, 72px, $bp-phone, $bp-stack)};
+  }
+}
+
+@media (max-width: $bp-stack) {
+  .case-page--bbg .case-typeface--logo .case-typeface-meta {
+    white-space: nowrap;
+  }
+
+  .case-page--bbg .case-typeface--communication .case-typeface-meta {
+    gap: 16px;
+  }
+
+  .case-page--bbg .case-typeface--communication .case-typeface-meta > p:first-child {
+    flex: 1;
+    min-width: 0;
+    line-height: 1.1;
+  }
+
+  .case-page--bbg .case-typeface-weights {
+    flex-shrink: 0;
+    gap: 4px;
+    white-space: nowrap;
+  }
+}
+
+.case-page--bbg .case-flow > .case-media:nth-child(10) img {
+  aspect-ratio: 1264 / 1000;
+  object-fit: cover;
+}
+
+@media (max-width: $bp-phone) {
+  .case-page--bbg .case-intro,
+  .case-page--bbg .case-split,
+  .case-page--bbg .case-logo-pair,
+  .case-page--bbg .case-typefaces,
+  .case-page--bbg .case-related-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .case-page--bbg .case-intro {
+    gap: 20px;
+  }
+
+  .case-page--bbg .case-intro-title {
+    gap: 12px;
+  }
+
+  .case-page--bbg .case-eyebrow {
+    font-size: 14px;
+  }
+
+  .case-page--bbg .case-intro-copy {
+    padding-top: 0;
+    padding-bottom: 40px;
+  }
+
+  .case-page--bbg .case-tags li {
+    font-size: 14px;
+  }
+
+  .case-page--bbg .case-split {
+    gap: $case-stack-gap;
+  }
+
+  .case-page--bbg .case-split .case-copy {
+    padding-top: 0;
+  }
+
+  .case-page--bbg .case-logo-stack {
+    aspect-ratio: 342 / 500;
+  }
+
+  .case-page--bbg .case-logo-stack-mark {
+    width: 58.48%;
+  }
+
+  .case-page--bbg .case-logo-stack-letters {
+    height: 16.96cqw;
+    margin-top: 13.04cqw;
+  }
+
+  .case-page--bbg .case-logo-pair li {
+    aspect-ratio: 342 / 260;
+  }
+
+  .case-page--bbg .case-typefaces {
+    gap: 8px;
+  }
+
+  .case-page--bbg .case-typeface {
+    aspect-ratio: 342 / 246;
+  }
+
+  .case-page--bbg .case-typeface-meta {
+    font-size: 14px;
+  }
+
+  .case-page--bbg .case-typeface--logo .case-typeface-meta {
+    white-space: nowrap;
+  }
+
+  .case-page--bbg .case-typeface--communication .case-typeface-meta {
+    gap: 16px;
+  }
+
+  .case-page--bbg .case-typeface--communication .case-typeface-meta > p:first-child {
+    flex: 1;
+    min-width: 0;
+    line-height: 1.1;
+  }
+
+  .case-page--bbg .case-typeface-weights {
+    flex-shrink: 0;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .case-page--bbg .case-typeface--logo .case-typeface-name {
+    font-size: 47px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .case-page--bbg .case-typeface--communication .case-typeface-name {
+    font-size: 45px;
+    line-height: 1.05;
+  }
+
+  .case-page--bbg .case-flow > .case-media:nth-child(1) img {
+    aspect-ratio: 342 / 350;
+    object-fit: cover;
+  }
+
+  .case-page--bbg .case-flow > .case-media:nth-child(5) img,
+  .case-page--bbg .case-flow > .case-media:nth-child(10) img {
+    aspect-ratio: 342 / 400;
+    object-fit: cover;
+  }
+
+  .case-page--bbg .case-icon-board {
+    grid-auto-flow: column;
+    grid-template-rows: repeat(4, 72px);
+    grid-template-columns: repeat(2, 72px);
+    justify-content: center;
+    column-gap: 48px;
+    row-gap: 32px;
+    padding: 40px 64px;
+  }
+}
+
+.case-page--bbg .case-flow > .case-section:first-child {
+  margin-top: 0;
+}

@@ -5,11 +5,17 @@ import App from "./App.tsx";
 
 import "./index.scss";
 
-const rootElement = document.getElementById("root");
+async function start(): Promise<void> {
+  if (window.location.pathname.includes("/projects/")) {
+    await import("./pages/project/ProjectCasePage");
+  }
 
-if (rootElement === null) {
-  console.error("Root element #root not found");
-} else {
+  const rootElement = document.getElementById("root");
+  if (rootElement === null) {
+    console.error("Root element #root not found");
+    return;
+  }
+
   const app = (
     <StrictMode>
       <App />
@@ -18,7 +24,10 @@ if (rootElement === null) {
 
   if (rootElement.childElementCount === 0) {
     createRoot(rootElement).render(app);
-  } else {
-    hydrateRoot(rootElement, app);
+    return;
   }
+
+  hydrateRoot(rootElement, app);
 }
+
+void start();

@@ -21,6 +21,16 @@ export function cardSizes(displayScale = 1): string {
   return `(max-width: 599px) ${mobile}, ${desktop}px`;
 }
 
+const CASE_PAGE_MAX_PX = 1440;
+
+/**
+ * Full-bleed case frames. Below the page max the slot is the viewport,
+ * so a phone does not download the 2400px original.
+ */
+export function caseImageSizes(): string {
+  return `(max-width: ${CASE_PAGE_MAX_PX}px) 100vw, ${CASE_PAGE_MAX_PX}px`;
+}
+
 function variantPath(src: string, width: number): string {
   return src.replace(/\.webp$/i, `-${width}w.webp`);
 }
@@ -32,4 +42,18 @@ export function cardSrcSet(src: string, fullWidth: number): string {
   );
 
   return [...variants, `${src} ${fullWidth}w`].join(", ");
+}
+
+/** Width descriptors when smaller files exist. Logos, spaced names, and already-small frames stay on `src` alone. */
+export function optionalSrcSet(src: string, fullWidth: number): string | undefined {
+  if (!src.toLowerCase().endsWith(".webp") || src.includes(" ") || src.includes("%20")) {
+    return undefined;
+  }
+
+  const set = cardSrcSet(src, fullWidth);
+  if (set === `${src} ${fullWidth}w`) {
+    return undefined;
+  }
+
+  return set;
 }

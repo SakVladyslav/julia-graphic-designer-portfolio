@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import { OG_IMAGE, SITE_OWNER } from "../constants/site.ts";
 
+import { personJsonLd } from "./personJsonLd.ts";
 import { headForPath } from "./prerenderPages.ts";
 
 interface MetaTag {
@@ -38,8 +39,13 @@ function upsertMeta(tag: MetaTag): void {
   existing.setAttribute("content", tag.content);
 }
 
-function upsertCanonical(href: string): void {
+function upsertCanonical(href: string | undefined): void {
   const existing = document.head.querySelector('link[rel="canonical"]');
+  if (href === undefined) {
+    existing?.remove();
+    return;
+  }
+
   if (existing === null) {
     const created = document.createElement("link");
     created.rel = "canonical";
@@ -51,6 +57,23 @@ function upsertCanonical(href: string): void {
   existing.setAttribute("href", href);
 }
 
+function upsertJsonLd(json: string | undefined): void {
+  const existing = document.getElementById("person-jsonld");
+  if (json === undefined) {
+    existing?.remove();
+    return;
+  }
+
+  const script =
+    existing instanceof HTMLScriptElement ? existing : document.createElement("script");
+  script.id = "person-jsonld";
+  script.type = "application/ld+json";
+  script.textContent = json;
+  if (existing === null) {
+    document.head.append(script);
+  }
+}
+
 /** Keeps the live document head on the page after a client-side navigation. */
 export function useDocumentHead(pathname: string): void {
   useEffect(() => {
@@ -60,8 +83,10 @@ export function useDocumentHead(pathname: string): void {
     }
 
     const { page } = resolved;
-    const canonical = browserCanonical(resolved.canonicalPath);
+    const canonical =
+      page.share.robots === "noindex" ? undefined : browserCanonical(resolved.canonicalPath);
     const imageUrl = `${window.location.origin}/${page.share.imageFile}`;
+    document.documentElement.lang = "en";
     document.title = page.title;
 
     const tags: readonly MetaTag[] = [
@@ -71,7 +96,7 @@ export function useDocumentHead(pathname: string): void {
       { attribute: "property", key: "og:site_name", content: SITE_OWNER },
       { attribute: "property", key: "og:title", content: page.share.title },
       { attribute: "property", key: "og:description", content: page.share.description },
-      { attribute: "property", key: "og:url", content: canonical },
+      { attribute: "property", key: "og:url", content: browserCanonical(resolved.canonicalPath) },
       { attribute: "property", key: "og:image", content: imageUrl },
       { attribute: "property", key: "og:image:width", content: String(OG_IMAGE.width) },
       { attribute: "property", key: "og:image:height", content: String(OG_IMAGE.height) },
@@ -83,6 +108,11 @@ export function useDocumentHead(pathname: string): void {
     ];
 
     upsertCanonical(canonical);
+    upsertJsonLd(
+      page.share.jobTitle === undefined
+        ? undefined
+        : personJsonLd(browserCanonical(resolved.canonicalPath), page.share.jobTitle),
+    );
     for (const tag of tags) {
       upsertMeta(tag);
     }

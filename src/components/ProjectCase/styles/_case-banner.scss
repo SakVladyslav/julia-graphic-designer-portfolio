@@ -1,0 +1,81 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/spacing" as *;
+@use "../../../styles/sizes" as *;
+
+.case-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: $case-banner-height;
+  padding: 4rem 6.75rem;
+  overflow: hidden;
+}
+
+.case-banner-mark {
+  position: absolute;
+  top: 12%;
+  right: -6%;
+  width: 62%;
+  height: auto;
+  transform: scaleX(-1);
+  pointer-events: none;
+}
+
+.case-banner-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $case-banner-copy-gap;
+}
+
+.case-banner h2,
+.case-note h2 {
+  margin: 0;
+  font-size: $font-size-case-display;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.case-banner h2 span,
+.case-note h2 span {
+  display: block;
+}
+
+.case-banner-title {
+  width: fit-content;
+}
+
+.case-banner-emphasis,
+.case-note-emphasis {
+  margin-top: -0.12em;
+  font-style: italic;
+}
+
+.case-banner p,
+.case-note p {
+  max-width: 35rem;
+  margin: 0;
+  font-size: $font-size-case-body;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  text-transform: uppercase;
+}
+
+.case-note {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  min-height: $case-note-min-height;
+}
+
+.case-note-ornament {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(508px, 42%);
+  height: auto;
+  pointer-events: none;
+}

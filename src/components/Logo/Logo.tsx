@@ -2,9 +2,9 @@ import { homeHash } from "../../utils/homeHash";
 
 import "./Logo.scss";
 
-type LogoProps = {
+interface LogoProps {
   tone?: "header" | "footer";
-};
+}
 
 export default function Logo({ tone }: LogoProps) {
   const className = tone ? `logo logo--${tone}` : "logo";

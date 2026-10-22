@@ -1,9 +1,11 @@
+import { readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import sharp from "sharp";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const projectsDir = path.join(rootDir, "public", "projects");
 
 /** Keep in step with `CARD_VARIANT_WIDTHS` in `src/utils/cardSources.ts`. */
 const WIDTHS = [640, 960, 1280];
@@ -14,21 +16,33 @@ const QUALITY = 80;
  * keeps the largest first paint from downloading the full 900px file.
  */
 const TEXTURE_QUALITY = 50;
-
-const FILES = [
-  { file: "public/projects/lovespace/lovespace-photo.webp", quality: QUALITY },
-  { file: "public/projects/lovespace/lovespace-texture.webp", quality: TEXTURE_QUALITY },
-  { file: "public/projects/molfaria/molfaria-window.webp", quality: QUALITY },
-  { file: "public/projects/amaryllis/amaryllis.webp", quality: QUALITY },
-  { file: "public/projects/bbg/BBG-04.webp", quality: QUALITY },
-  { file: "public/projects/twitchvrotfl/cover.webp", quality: QUALITY },
-  { file: "public/projects/book-covers/cover.webp", quality: QUALITY },
-  { file: "public/projects/olx/OLX.webp", quality: QUALITY },
-  { file: "public/projects/novyny/Novyny.webp", quality: QUALITY },
-];
+const TEXTURE_FILE = "public/projects/lovespace/lovespace-texture.webp";
 
 function formatKb(bytes) {
   return `${(bytes / 1024).toFixed(1)} KB`;
+}
+
+function collectWebp(directory) {
+  const files = [];
+  for (const entry of readdirSync(directory, { recursive: true, withFileTypes: true })) {
+    if (
+      !entry.isFile() ||
+      !entry.name.endsWith(".webp") ||
+      entry.name.includes(" ") ||
+      /-\d+w\.webp$/.test(entry.name)
+    ) {
+      continue;
+    }
+
+    const parent = entry.parentPath ?? entry.path;
+    const relative = path
+      .relative(rootDir, path.join(parent, entry.name))
+      .split(path.sep)
+      .join("/");
+    files.push(relative);
+  }
+
+  return files;
 }
 
 async function writeVariant(filePath, width, quality) {
@@ -53,9 +67,12 @@ async function writeVariant(filePath, width, quality) {
   );
 }
 
-for (const entry of FILES) {
-  const filePath = path.join(rootDir, entry.file);
+const files = collectWebp(projectsDir);
+
+for (const relative of files) {
+  const filePath = path.join(rootDir, relative);
+  const quality = relative === TEXTURE_FILE ? TEXTURE_QUALITY : QUALITY;
   for (const width of WIDTHS) {
-    await writeVariant(filePath, width, entry.quality);
+    await writeVariant(filePath, width, quality);
   }
 }

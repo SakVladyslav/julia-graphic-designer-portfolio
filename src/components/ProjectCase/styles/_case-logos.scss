@@ -1,0 +1,190 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/spacing" as *;
+@use "../../../styles/sizes" as *;
+
+.case-logo-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1264 / 900;
+  container-type: inline-size;
+}
+
+.case-logo-stack-mark {
+  position: relative;
+  width: 34.8101%;
+  aspect-ratio: 440 / 441.491;
+}
+
+.case-logo-stack-mark img {
+  position: absolute;
+  top: -0.03%;
+  left: 0.23%;
+  width: 99.88%;
+  height: 100.53%;
+  max-width: none;
+}
+
+.case-logo-stack-letters {
+  display: flex;
+  align-items: center;
+  height: 10.6791cqw;
+  margin-top: 8.7025cqw;
+  gap: 5.0061cqw;
+}
+
+.case-logo-stack-letters img {
+  display: block;
+  flex-shrink: 0;
+  width: auto;
+  height: 100%;
+}
+
+.case-logo-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-logo-pair li {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 632 / 600;
+  margin: 0;
+  overflow: hidden;
+}
+
+.case-typefaces {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: $case-stack-gap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-typeface {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 624 / 500;
+  margin: 0;
+  padding: $header-padding-y;
+  container-type: inline-size;
+}
+
+.case-typeface-meta,
+.case-typeface-weights,
+.case-typeface-name {
+  margin: 0;
+}
+
+.case-typeface-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $project-tag-gap;
+  font-size: $font-size-case-body;
+  line-height: normal;
+}
+
+.case-typeface--logo .case-typeface-meta {
+  font-family: $font-family-bbg-logo;
+  font-weight: 400;
+}
+
+.case-typeface--communication .case-typeface-meta {
+  font-family: $font-family-bbg-communication;
+  font-weight: 500;
+}
+
+.case-typeface-weights {
+  display: flex;
+  gap: $project-tag-gap;
+  text-align: center;
+}
+
+.case-typeface-name {
+  font-size: 13.9286cqw;
+}
+
+.case-typeface--logo .case-typeface-name {
+  font-family: $font-family-bbg-logo;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: pre-line;
+}
+
+.case-typeface--communication .case-typeface-name {
+  font-family: $font-family-bbg-communication;
+  font-weight: 600;
+  font-size: 12.8571cqw;
+  line-height: 1.05;
+}
+
+.case-wordmark-logo {
+  position: relative;
+  width: 65.3334%;
+  aspect-ratio: 412.907 / 176.96;
+}
+
+.case-wordmark-mark,
+.case-wordmark-type img {
+  position: absolute;
+  max-width: none;
+  object-fit: fill;
+}
+
+.case-wordmark-mark {
+  top: 18.61%;
+  left: 2.38%;
+  width: 27.47%;
+  height: 64.14%;
+}
+
+.case-wordmark-rule {
+  position: absolute;
+  inset: 8.61% 63.02% 6.42% 35.91%;
+  container-type: size;
+}
+
+.case-wordmark-rule img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100cqh;
+  height: 100cqw;
+  max-width: none;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.case-wordmark-type {
+  position: absolute;
+  inset: 4.44% 2.38% 3.92% 42.69%;
+}
+
+.case-wordmark-top {
+  top: 0;
+  left: 0;
+  width: 58.44%;
+  height: 32.73%;
+}
+
+.case-wordmark-middle {
+  top: 33.64%;
+  left: 0;
+  width: 100%;
+  height: 32.72%;
+}
+
+.case-wordmark-bottom {
+  top: 67.27%;
+  left: 0;
+  width: 84.42%;
+  height: 32.73%;
+}

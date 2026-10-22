@@ -11,7 +11,7 @@ export default defineConfig({
   plugins: [react(), siteHead(), siteDiscovery(), previewRoutes()],
   test: {
     environment: "jsdom",
-    setupFiles: "./src/test/setup.ts",
+    setupFiles: "./src/tests/setup.ts",
     css: true,
   },
 });
