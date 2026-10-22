@@ -17,6 +17,7 @@ function media(
   height: number,
   alt: string,
   spaceBefore?: CaseSpace,
+  modifier?: string,
 ): CaseMediaSection {
   const image = {
     src: asset(file),
@@ -25,11 +26,27 @@ function media(
     alt,
   };
 
-  if (spaceBefore === undefined) {
-    return { type: "media", image };
-  }
+  return {
+    type: "media",
+    image,
+    ...(spaceBefore === undefined ? {} : { spaceBefore }),
+    ...(modifier === undefined ? {} : { modifier }),
+  };
+}
 
-  return { type: "media", spaceBefore, image };
+function withPhone(
+  section: CaseMediaSection,
+  file: string,
+  width: number,
+  height: number,
+): CaseMediaSection {
+  return {
+    ...section,
+    image: {
+      ...section.image,
+      phone: { src: asset(file), width, height },
+    },
+  };
 }
 
 const cream = "#FFF4F2";
@@ -131,7 +148,14 @@ export const molfariaCase: ProjectCase = {
   id: "molfaria",
   title: "Molfaria",
   sections: [
-    media("molf-hero.webp", 2400, 1500, "Molfaria paper cup under an espresso machine"),
+    media(
+      "molf-hero.webp",
+      2400,
+      1500,
+      "Molfaria paper cup under an espresso machine",
+      undefined,
+      "hero",
+    ),
     {
       type: "intro",
       spaceBefore: "block",
@@ -147,12 +171,44 @@ export const molfariaCase: ProjectCase = {
     },
     logoBoard,
     logoGrid,
-    media("molf-mockup-1.webp", 2200, 1375, "Two Molfaria posters in a shop window"),
-    media("molf-mockup-2.webp", 2200, 1375, "Molfaria lightbox sign on a concrete facade", "stack"),
-    media("molf-mockup-3.webp", 2400, 1500, "Barista in a Molfaria t-shirt", "stack"),
-    media("molf-mockup-4.webp", 2000, 1250, "Molfaria menu cards", "stack"),
-    media("molf-mockup-5.webp", 2160, 1350, "Molfaria coffee cup and a cold brew can", "stack"),
-    media("molf-mockup-6.webp", 2160, 1350, "Molfaria shopping bag and cap", "none"),
+    media(
+      "molf-mockup-1.webp",
+      2200,
+      1375,
+      "Two Molfaria posters in a shop window",
+      undefined,
+      "window",
+    ),
+    media(
+      "molf-mockup-2.webp",
+      2200,
+      1375,
+      "Molfaria lightbox sign on a concrete facade",
+      "stack",
+      "square",
+    ),
+    media("molf-mockup-3.webp", 2400, 1500, "Barista in a Molfaria t-shirt", "stack", "bottom"),
+    media("molf-mockup-4.webp", 2000, 1250, "Molfaria menu cards", "stack", "menu"),
+    media(
+      "molf-mockup-5.webp",
+      2160,
+      1350,
+      "Molfaria coffee cup and a cold brew can",
+      "stack",
+      "wide",
+    ),
+    media(
+      "molf-mockup-5.webp",
+      2160,
+      1350,
+      "Molfaria coffee cup and a pastry",
+      "stack",
+      "phone half-left",
+    ),
+    media("molf-mockup-5.webp", 2160, 1350, "Molfaria cold brew can", "stack", "phone-inset half-right"),
+    media("molf-mockup-6.webp", 2160, 1350, "Molfaria shopping bag and cap", "none", "wide"),
+    media("molf-mockup-6.webp", 2160, 1350, "Molfaria cap", "stack", "phone half-right"),
+    media("molf-mockup-6.webp", 2160, 1350, "Molfaria shopping bag", "stack", "phone-inset half-left"),
     poster(
       "case-poster-slow",
       blue,
@@ -164,10 +220,21 @@ export const molfariaCase: ProjectCase = {
       blueMark,
       "uk",
     ),
-    media("molf-mockup-8.webp", 2400, 1583, "Molfaria cup carrier", "stack"),
-    media("molf-mockup-9.webp", 2400, 1583, "Iced coffee and Molfaria coasters", "stack"),
-    media("molf-mockup-10.webp", 2400, 1600, "Molfaria tote bag", "stack"),
-    media("molf-mockup-11.webp", 2400, 1500, "Three Molfaria coffee bags", "stack"),
+    media("molf-mockup-8.webp", 2400, 1583, "Molfaria cup carrier", "stack", "bottom"),
+    media("molf-mockup-9.webp", 2400, 1583, "Iced coffee and Molfaria coasters", "stack", "short"),
+    media("molf-mockup-10.webp", 2400, 1600, "Molfaria tote bag", "stack", "portrait"),
+    withPhone(
+      media("molf-mockup-11.webp", 2400, 1500, "Three Molfaria coffee bags", "stack", "square"),
+      "molf-mockup-11-phone.webp",
+      1447,
+      1447,
+    ),
+    withPhone(
+      media("molf-mockup-12.webp", 2085, 1390, "Two Molfaria coffee bags", "stack", "portrait"),
+      "molf-mockup-12-phone.webp",
+      785,
+      981,
+    ),
     poster(
       "case-poster-taste",
       cream,

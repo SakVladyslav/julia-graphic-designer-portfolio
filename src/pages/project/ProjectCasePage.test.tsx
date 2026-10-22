@@ -58,6 +58,9 @@ describe("ProjectCasePage", () => {
     expect(screen.getByRole("heading", { level: 1, name: "Molfaria" })).toBeInTheDocument();
     expect(screen.getByText("Specialty Coffee Branding")).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Molfaria logo" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Two Molfaria coffee bags" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Molfaria cap", hidden: true })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Molfaria shopping bag", hidden: true })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /можна не/i }).parentElement).toHaveAttribute(
       "lang",
       "uk",
