@@ -8,16 +8,22 @@ import ProjectCasePage from "./pages/project/ProjectCasePage";
 
 import { routerBasename } from "./utils/routerBasename";
 
+export function AppRoutes() {
+  return (
+    <Routes>
+      <Route element={<SiteShell />}>
+        <Route index element={<LandingPage />} />
+        <Route path="projects/:projectId" element={<ProjectCasePage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter basename={routerBasename()}>
-      <Routes>
-        <Route element={<SiteShell />}>
-          <Route index element={<LandingPage />} />
-          <Route path="projects/:projectId" element={<ProjectCasePage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

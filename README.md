@@ -8,6 +8,7 @@ Personal portfolio SPA for graphic designer Julia Samchuk.
 
 - React 19 + TypeScript (strict)
 - Vite 8
+- Node 22 or newer (`.node-version`). Node 20 cannot run the tests.
 - Sass design tokens (`src/styles/`)
 - Oxlint + Prettier
 - Vitest + Testing Library
@@ -38,7 +39,7 @@ src/
   utils/          # Pure helpers
   test/           # Test setup
 public/
-  fonts/          # Self-hosted Min Sans
+  fonts/          # Self-hosted WOFF2 files. Face rules are in src/styles/_fonts.scss
   projects/       # Optimized project media (WebP + SVG)
 scripts/
   optimize-images.mjs
@@ -61,8 +62,20 @@ Build command: `npm run build`. Output directory: `dist`.
 Canonical and share-card URLs use that address. Set the `SITE_ORIGIN` environment
 variable (no trailing slash) when the public address changes.
 
-Vite `base` is `/`. The Worker serves `index.html` for unknown paths, so a project
-page keeps its address when opened directly.
+Vite `base` is `/`. The build writes one HTML file per page (`dist/index.html`,
+`dist/projects/lovespace/index.html`, and the other cases), plus `robots.txt` and
+`sitemap.xml`. Project images already live in `dist/projects/lovespace/`, so the
+page is `index.html` inside that folder. `wrangler.jsonc` serves it at
+`/projects/lovespace` (`html_handling: "drop-trailing-slash"`) and answers every
+other address with `dist/404.html` and HTTP 404 (`not_found_handling: "404-page"`).
+The `name` in that file is `julia-graphic-designer-portfolio`, the Worker already in the Cloudflare dashboard. A different name makes the next deploy fail and leaves the live site unchanged.
+
+`public/_headers` is copied into `dist` and applied by Workers. There is no Worker
+script, so these rules reach every static response. `/assets/*` (Vite's hashed
+files) is cached for a year. HTML, fonts, and project images keep Cloudflare's
+default `max-age=0, must-revalidate`, because those URLs stay the same when the
+file changes. Do not add a second `Cache-Control` for the same path: Workers
+joins duplicate header values with a comma instead of replacing them.
 
 ## Conventions
 

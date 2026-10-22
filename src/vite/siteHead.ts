@@ -13,7 +13,11 @@ export function siteHead(): Plugin {
     },
     transformIndexHtml: {
       order: "pre",
-      handler(html) {
+      handler(html, ctx) {
+        if (ctx.server === undefined) {
+          return html;
+        }
+
         if (config === undefined) {
           throw new Error("Site head ran before Vite resolved the config");
         }

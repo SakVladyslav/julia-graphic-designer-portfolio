@@ -10,8 +10,10 @@ $surface-muted: #ededef;
 // Text
 $text: #1c1c1c;
 
-// Accent (Figma main)
+// Accent (Figma main). Too light for small text: about 3:1 on $bg.
 $accent: #f24281;
+// Same hue, dark enough for 16px text on $bg (4.5:1).
+$accent-text: #bf3466;
 $accent-hover: #ff4fa3;
 $accent-wash: rgba(255, 79, 163, 0.14);
 

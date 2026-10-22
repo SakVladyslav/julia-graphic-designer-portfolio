@@ -16,6 +16,10 @@ const projectCases: readonly ProjectCase[] = [
   novynyCase,
 ];
 
+export function listProjectCases(): readonly ProjectCase[] {
+  return projectCases;
+}
+
 export function getProjectCase(id: string): ProjectCase | undefined {
   return projectCases.find((projectCase) => projectCase.id === id);
 }

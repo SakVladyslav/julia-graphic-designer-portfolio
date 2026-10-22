@@ -7,4 +7,5 @@ Design: Dmytro Rastvortsev, Fedoriv
 License: Creative Commons Attribution 4.0 International (CC BY 4.0)
 https://creativecommons.org/licenses/by/4.0/
 
-This file is the official OpenType release, unmodified.
+The site serves a WOFF2 compression of the official OpenType release.
+The outlines are unchanged. Attribution stays with the designers above.
