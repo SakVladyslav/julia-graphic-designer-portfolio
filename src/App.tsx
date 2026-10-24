@@ -6,9 +6,10 @@ import SiteShell from "./components/SiteShell/SiteShell";
 import LandingPage from "./pages/home/LandingPage";
 import NotFoundPage from "./pages/not-found/NotFoundPage";
 
+import { loadProjectCasePage } from "./pages/project/loadProjectCasePage";
 import { routerBasename } from "./utils/routerBasename";
 
-const ProjectCasePage = lazy(() => import("./pages/project/ProjectCasePage"));
+const ProjectCasePage = lazy(loadProjectCasePage);
 
 function ProjectRoute() {
   return (

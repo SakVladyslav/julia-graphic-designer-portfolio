@@ -2,12 +2,14 @@ import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 
 import App from "./App.tsx";
+import { loadProjectCasePage } from "./pages/project/loadProjectCasePage.ts";
 
 import "./index.scss";
 
 async function start(): Promise<void> {
+  const projectCase = loadProjectCasePage();
   if (window.location.pathname.includes("/projects/")) {
-    await import("./pages/project/ProjectCasePage");
+    await projectCase;
   }
 
   const rootElement = document.getElementById("root");

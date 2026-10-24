@@ -2,6 +2,7 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 import App from "../App";
+import { loadProjectCasePage } from "../pages/project/loadProjectCasePage";
 import { routerBasename } from "../utils/routerBasename";
 
 describe("App", () => {
@@ -92,6 +93,14 @@ describe("App", () => {
       await screen.findByRole("heading", { name: "This page does not exist." }),
     ).toBeInTheDocument();
     expect(document.querySelector(".site-shell--inverse")).not.toBeInTheDocument();
+  });
+
+  it("shows a published case on the first render after the page module has loaded", async () => {
+    window.history.pushState({}, "", `${import.meta.env.BASE_URL}projects/lovespace`);
+    await loadProjectCasePage();
+    render(<App />);
+
+    expect(screen.getByRole("heading", { level: 1, name: "Lovespace" })).toBeInTheDocument();
   });
 
   it("uses the inverse shell for a published project", async () => {
