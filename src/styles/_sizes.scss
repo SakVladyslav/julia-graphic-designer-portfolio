@@ -1,3 +1,5 @@
+@use "spacing" as *;
+
 // Design tokens: sizes (widths, heights, borders, radii, media geometry)
 
 $page-max-width: 1440px;
@@ -25,7 +27,6 @@ $molfaria-window-top: -2.13%;
 $contacts-panel-width: 508px;
 $contacts-action-height: 85px;
 $contact-location-width: 130px;
-$footer-to-top-inset: 24px;
 
 $case-mark-board: 790px;
 $case-mark-cell: 336px;
@@ -34,11 +35,10 @@ $case-frame-border: 3px;
 $case-banner-height: 900px;
 $case-note-min-height: 472px;
 $case-comparison-height: 600px;
-$case-comparison-label-inset: 24px;
 $case-palette-swatch-tall: 224px;
 $case-palette-info-tall: 300px;
 $case-palette-swatch-short: 180px;
 $case-palette-info-short: 220px;
 
-$border-strong: 2px;
-$to-top-size: 40px;
+$border-strong: $space-2;
+$to-top-size: $space-40;

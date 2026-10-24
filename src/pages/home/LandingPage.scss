@@ -83,6 +83,7 @@
   height: $hero-arrow-size;
   color: $accent;
   pointer-events: none;
+  transform: scaleX(-1);
 }
 
 .role {
@@ -97,22 +98,22 @@
 .home-projects {
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  padding-bottom: $case-section-gap;
-  scroll-margin-top: 5.5rem;
+  gap: $space-48;
+  padding-bottom: $space-144;
+  scroll-margin-top: $space-16;
 }
 
 .project-group {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding-top: $case-stack-gap;
+  gap: $space-40;
+  padding-top: $space-16;
 }
 
 .project-group h2 {
   font-family: $font-family;
   font-weight: 500;
-  font-size: $font-size-project-title;
+  font-size: $font-size-48;
   line-height: $line-height-heading;
   color: $text;
 }
@@ -120,7 +121,7 @@
 .projects {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: $space-48;
   padding: 0;
 }
 
@@ -128,14 +129,14 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: $section-heading-gap;
+  gap: $space-2;
   margin: 0;
 }
 
 .section-heading h2 {
   font-family: $font-family;
   font-weight: 500;
-  font-size: $font-size-projects;
+  font-size: $font-size-72;
   line-height: 1.1;
   color: $text;
   letter-spacing: 0;
@@ -154,8 +155,8 @@
   list-style: none;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  column-gap: $header-padding-y;
-  row-gap: $project-row-gap;
+  column-gap: $space-32;
+  row-gap: $space-64;
 }
 
 .project-grid > .project-card {
@@ -186,15 +187,15 @@
   }
 
   .home-projects {
-    padding-bottom: fluid(136px, $case-section-gap, $bp-laptop, $bp-desktop);
+    padding-bottom: fluid(136px, $space-144, $bp-laptop, $bp-desktop);
   }
 
   .section-heading h2 {
-    font-size: fluid(64px, $font-size-projects, $bp-laptop, $bp-desktop);
+    font-size: fluid($font-size-64, $font-size-72, $bp-laptop, $bp-desktop);
   }
 
   .project-grid {
-    column-gap: fluid(24px, $header-padding-y, $bp-laptop, $bp-desktop);
+    column-gap: fluid($space-24, $space-32, $bp-laptop, $bp-desktop);
   }
 }
 
@@ -217,7 +218,7 @@
   }
 
   .role {
-    font-size: fluid(64px, 74px, $bp-tablet, $bp-laptop);
+    font-size: fluid($font-size-64, 74px, $bp-tablet, $bp-laptop);
   }
 
   .home-projects {
@@ -225,20 +226,20 @@
   }
 
   .section-heading h2 {
-    font-size: fluid(60px, 64px, $bp-tablet, $bp-laptop);
+    font-size: fluid($font-size-60, $font-size-64, $bp-tablet, $bp-laptop);
   }
 
   .project-group h2 {
-    font-size: fluid(40px, $font-size-project-title, $bp-tablet, $bp-laptop);
+    font-size: fluid($font-size-40, $font-size-48, $bp-tablet, $bp-laptop);
   }
 
   .home-projects .project-card h3 {
-    font-size: fluid(32px, $font-size-case-heading, $bp-tablet, $bp-laptop);
+    font-size: fluid($font-size-32, $font-size-40, $bp-tablet, $bp-laptop);
   }
 
   .project-grid {
-    column-gap: fluid(20px, 24px, $bp-tablet, $bp-laptop);
-    row-gap: fluid(56px, $project-row-gap, $bp-tablet, $bp-laptop);
+    column-gap: fluid($space-20, $space-24, $bp-tablet, $bp-laptop);
+    row-gap: fluid(56px, $space-64, $bp-tablet, $bp-laptop);
   }
 }
 
@@ -261,12 +262,12 @@
   }
 
   .role {
-    font-size: fluid(50px, 64px, $bp-stack, $bp-tablet);
+    font-size: fluid(50px, $font-size-64, $bp-stack, $bp-tablet);
   }
 
   .home-projects,
   .projects {
-    gap: fluid(40px, 48px, $bp-stack, $bp-tablet);
+    gap: fluid($space-40, $space-48, $bp-stack, $bp-tablet);
   }
 
   .home-projects {
@@ -274,24 +275,24 @@
   }
 
   .section-heading h2 {
-    font-size: fluid(56px, 60px, $bp-stack, $bp-tablet);
+    font-size: fluid($font-size-56, $font-size-60, $bp-stack, $bp-tablet);
   }
 
   .project-group {
-    gap: fluid(32px, 40px, $bp-stack, $bp-tablet);
+    gap: fluid($space-32, $space-40, $bp-stack, $bp-tablet);
   }
 
   .project-group h2 {
-    font-size: fluid(32px, 40px, $bp-stack, $bp-tablet);
+    font-size: fluid($font-size-32, $font-size-40, $bp-stack, $bp-tablet);
   }
 
   .home-projects .project-card h3 {
-    font-size: fluid(28px, 32px, $bp-stack, $bp-tablet);
+    font-size: fluid($font-size-28, $font-size-32, $bp-stack, $bp-tablet);
   }
 
   .project-grid {
-    column-gap: fluid(16px, 20px, $bp-stack, $bp-tablet);
-    row-gap: fluid(48px, 56px, $bp-stack, $bp-tablet);
+    column-gap: fluid($space-16, $space-20, $bp-stack, $bp-tablet);
+    row-gap: fluid($space-48, 56px, $bp-stack, $bp-tablet);
   }
 }
 
@@ -319,31 +320,31 @@
 
   .home-projects,
   .projects {
-    gap: fluid(32px, 40px, 390px, $bp-stack);
+    gap: fluid($space-32, $space-40, 390px, $bp-stack);
   }
 
   .home-projects {
-    padding-bottom: fluid(136px, 120px, 390px, $bp-stack);
+    padding-bottom: fluid(104px, 120px, 390px, $bp-stack);
   }
 
   .section-heading h2 {
-    font-size: fluid(40px, 56px, 390px, $bp-stack);
+    font-size: fluid($font-size-40, $font-size-56, 390px, $bp-stack);
   }
 
   .section-count {
-    font-size: fluid(14px, $font-size-base, 390px, $bp-stack);
+    font-size: fluid($font-size-14, $font-size-base, 390px, $bp-stack);
   }
 
   .project-group h2 {
-    font-size: fluid(28px, 32px, 390px, $bp-stack);
+    font-size: fluid($font-size-28, $font-size-32, 390px, $bp-stack);
   }
 
   .home-projects .project-card h3 {
-    font-size: fluid(24px, 28px, 390px, $bp-stack);
+    font-size: fluid($font-size-24, $font-size-28, 390px, $bp-stack);
   }
 
   .project-grid {
-    row-gap: fluid(40px, 48px, 390px, $bp-stack);
+    row-gap: fluid($space-40, $space-48, 390px, $bp-stack);
   }
 }
 

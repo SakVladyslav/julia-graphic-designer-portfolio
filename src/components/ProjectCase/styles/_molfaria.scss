@@ -5,21 +5,21 @@
 
 // 1440 frame. 1200, 1024, 768, and 390 bridge up to it.
 .case-page--molfaria {
-  padding-top: 24px;
+  padding-top: $space-24;
 
   .case-intro h1 {
-    font-size: $font-size-case-title;
+    font-size: $font-size-80;
     line-height: 1.1;
   }
 
   .case-subtitle {
-    font-size: $font-size-case-subtitle;
+    font-size: $font-size-28;
     line-height: 1.3;
   }
 
   .case-intro-copy {
-    padding-top: 40px;
-    padding-bottom: 48px;
+    padding-top: $space-40;
+    padding-bottom: $space-48;
   }
 
   .case-marks img {
@@ -33,7 +33,7 @@
   }
 
   .case-marks--grid {
-    gap: 8px;
+    gap: $space-8;
   }
 
   .case-marks--grid li:nth-child(odd) img {
@@ -47,12 +47,12 @@
   .case-related {
     margin-top: 160px;
     padding-top: 128px;
-    padding-bottom: 64px;
+    padding-bottom: $space-64;
   }
 
   .case-related h2 {
-    margin-bottom: 48px;
-    font-size: $font-size-projects;
+    margin-bottom: $space-48;
+    font-size: $font-size-72;
     line-height: 1.1;
   }
 }
@@ -60,23 +60,23 @@
 @media (max-width: #{$bp-desktop - 1px}) {
   .case-page--molfaria {
     .case-intro {
-      gap: fluid(24px, $case-column-gap, $bp-laptop, $bp-desktop);
+      gap: fluid($space-24, $space-32, $bp-laptop, $bp-desktop);
     }
 
     .case-intro h1 {
-      font-size: fluid(72px, $font-size-case-title, $bp-laptop, $bp-desktop);
+      font-size: fluid($font-size-72, $font-size-80, $bp-laptop, $bp-desktop);
     }
 
     .case-subtitle {
-      font-size: fluid(24px, $font-size-case-subtitle, $bp-laptop, $bp-desktop);
+      font-size: fluid($font-size-24, $font-size-28, $bp-laptop, $bp-desktop);
     }
 
     .case-intro-copy {
-      padding-top: fluid(32px, 40px, $bp-laptop, $bp-desktop);
+      padding-top: fluid($space-32, $space-40, $bp-laptop, $bp-desktop);
     }
 
     .case-flow > .case-section--section {
-      margin-top: fluid(136px, $case-section-gap, $bp-laptop, $bp-desktop);
+      margin-top: fluid(136px, $space-144, $bp-laptop, $bp-desktop);
     }
 
     .case-marks--board li {
@@ -95,49 +95,41 @@
       gap: fluid(15px, $case-poster-copy-gap, $bp-laptop, $bp-desktop);
     }
 
-    .case-poster h2 {
-      font-size: fluid(94px, 107px, $bp-laptop, $bp-desktop);
-    }
-
-    .case-poster p {
-      font-size: fluid(28px, 31.6px, $bp-laptop, $bp-desktop);
-    }
-
     .case-related {
       margin-top: fluid(152px, 160px, $bp-laptop, $bp-desktop);
       padding-top: fluid(112px, 128px, $bp-laptop, $bp-desktop);
-      padding-bottom: fluid(72px, 64px, $bp-laptop, $bp-desktop);
+      padding-bottom: fluid(72px, $space-64, $bp-laptop, $bp-desktop);
     }
 
     .case-related h2 {
-      margin-bottom: fluid(40px, 48px, $bp-laptop, $bp-desktop);
-      font-size: fluid(64px, $font-size-projects, $bp-laptop, $bp-desktop);
+      margin-bottom: fluid($space-40, $space-48, $bp-laptop, $bp-desktop);
+      font-size: fluid($font-size-64, $font-size-72, $bp-laptop, $bp-desktop);
     }
 
     .case-related-grid {
-      column-gap: fluid(24px, $header-padding-y, $bp-laptop, $bp-desktop);
+      column-gap: fluid($space-24, $space-32, $bp-laptop, $bp-desktop);
     }
   }
 }
 
 @media (max-width: #{$bp-laptop - 1px}) {
   .case-page--molfaria {
-    padding-top: fluid(16px, 24px, $bp-tablet, $bp-laptop);
+    padding-top: fluid($space-16, $space-24, $bp-tablet, $bp-laptop);
 
     .case-intro {
-      gap: fluid(20px, 24px, $bp-tablet, $bp-laptop);
+      gap: fluid($space-20, $space-24, $bp-tablet, $bp-laptop);
     }
 
     .case-intro h1 {
-      font-size: fluid(64px, 72px, $bp-tablet, $bp-laptop);
+      font-size: fluid($font-size-64, $font-size-72, $bp-tablet, $bp-laptop);
     }
 
     .case-subtitle {
-      font-size: fluid(22px, 24px, $bp-tablet, $bp-laptop);
+      font-size: fluid($font-size-22, $font-size-24, $bp-tablet, $bp-laptop);
     }
 
     .case-flow > .case-section--block {
-      margin-top: fluid(56px, $case-block-gap, $bp-tablet, $bp-laptop);
+      margin-top: fluid(56px, $space-64, $bp-tablet, $bp-laptop);
     }
 
     .case-flow > .case-section--section {
@@ -160,30 +152,22 @@
       gap: fluid(13px, 15px, $bp-tablet, $bp-laptop);
     }
 
-    .case-poster h2 {
-      font-size: fluid(80px, 94px, $bp-tablet, $bp-laptop);
-    }
-
-    .case-poster p {
-      font-size: fluid(24px, 28px, $bp-tablet, $bp-laptop);
-    }
-
     .case-related {
-      margin-top: fluid(144px, 152px, $bp-tablet, $bp-laptop);
+      margin-top: fluid($space-144, 152px, $bp-tablet, $bp-laptop);
       padding-top: fluid(104px, 112px, $bp-tablet, $bp-laptop);
-      padding-bottom: fluid(64px, 72px, $bp-tablet, $bp-laptop);
+      padding-bottom: fluid($space-64, 72px, $bp-tablet, $bp-laptop);
     }
 
     .case-related h2 {
-      font-size: fluid(60px, 64px, $bp-tablet, $bp-laptop);
+      font-size: fluid($font-size-60, $font-size-64, $bp-tablet, $bp-laptop);
     }
 
     .case-related-grid {
-      column-gap: fluid(20px, 24px, $bp-tablet, $bp-laptop);
+      column-gap: fluid($space-20, $space-24, $bp-tablet, $bp-laptop);
     }
 
     .project-card h3 {
-      font-size: fluid(32px, $font-size-case-heading, $bp-tablet, $bp-laptop);
+      font-size: fluid($font-size-32, $font-size-40, $bp-tablet, $bp-laptop);
     }
   }
 }
@@ -191,24 +175,24 @@
 @media (max-width: #{$bp-tablet - 1px}) {
   .case-page--molfaria {
     .case-intro {
-      gap: fluid(16px, 20px, $bp-stack, $bp-tablet);
+      gap: fluid($space-16, $space-20, $bp-stack, $bp-tablet);
     }
 
     .case-intro h1 {
-      font-size: fluid(52px, 64px, $bp-stack, $bp-tablet);
+      font-size: fluid($font-size-52, $font-size-64, $bp-stack, $bp-tablet);
     }
 
     .case-subtitle {
-      font-size: fluid(20px, 22px, $bp-stack, $bp-tablet);
+      font-size: fluid($font-size-20, $font-size-22, $bp-stack, $bp-tablet);
     }
 
     .case-eyebrow,
     .case-intro .case-tags li {
-      font-size: fluid(14px, $font-size-base, $bp-stack, $bp-tablet);
+      font-size: fluid($font-size-14, $font-size-base, $bp-stack, $bp-tablet);
     }
 
     .case-copy {
-      font-size: fluid(16px, $font-size-case-body, $bp-stack, $bp-tablet);
+      font-size: fluid($font-size-base, $font-size-18, $bp-stack, $bp-tablet);
     }
 
     .case-flow > .case-section--section {
@@ -231,31 +215,23 @@
       gap: fluid(10px, 13px, $bp-stack, $bp-tablet);
     }
 
-    .case-poster h2 {
-      font-size: fluid(60px, 80px, $bp-stack, $bp-tablet);
-    }
-
-    .case-poster p {
-      font-size: fluid(18px, 24px, $bp-stack, $bp-tablet);
-    }
-
     .case-related {
-      margin-top: fluid(112px, 144px, $bp-stack, $bp-tablet);
+      margin-top: fluid(112px, $space-144, $bp-stack, $bp-tablet);
       padding-top: fluid(96px, 104px, $bp-stack, $bp-tablet);
-      padding-bottom: fluid(24px, 64px, $bp-stack, $bp-tablet);
+      padding-bottom: fluid($space-24, $space-64, $bp-stack, $bp-tablet);
     }
 
     .case-related h2 {
-      margin-bottom: fluid(32px, 40px, $bp-stack, $bp-tablet);
-      font-size: fluid(56px, 60px, $bp-stack, $bp-tablet);
+      margin-bottom: fluid($space-32, $space-40, $bp-stack, $bp-tablet);
+      font-size: fluid($font-size-56, $font-size-60, $bp-stack, $bp-tablet);
     }
 
     .case-related-grid {
-      column-gap: fluid(16px, 20px, $bp-stack, $bp-tablet);
+      column-gap: fluid($space-16, $space-20, $bp-stack, $bp-tablet);
     }
 
     .project-card h3 {
-      font-size: fluid(28px, 32px, $bp-stack, $bp-tablet);
+      font-size: fluid($font-size-28, $font-size-32, $bp-stack, $bp-tablet);
     }
   }
 }
@@ -282,6 +258,14 @@
       width: 50.08%;
     }
 
+    .case-poster h2 {
+      font-size: 8.47cqw;
+    }
+
+    .case-poster p {
+      font-size: 2.5cqw;
+    }
+
     .case-poster img {
       position: absolute;
       top: 36%;
@@ -292,25 +276,24 @@
   }
 }
 
-.case-page--molfaria .case-media--phone,
-.case-page--molfaria .case-media--phone-inset {
+.case-page--molfaria .case-media--phone {
   display: none;
 }
 
 @media (max-width: #{$bp-stack - 1px}) {
   .case-page--molfaria {
-    padding-top: fluid(8px, 16px, 390px, $bp-stack);
+    padding-top: fluid($space-8, $space-16, 390px, $bp-stack);
 
     .case-intro h1 {
-      font-size: fluid(48px, 52px, 390px, $bp-stack);
+      font-size: fluid($font-size-48, $font-size-52, 390px, $bp-stack);
     }
 
     .case-intro-copy {
-      padding-bottom: fluid(40px, 48px, 390px, $bp-stack);
+      padding-bottom: fluid($space-40, $space-48, 390px, $bp-stack);
     }
 
     .case-flow > .case-section--block {
-      margin-top: fluid(40px, 56px, 390px, $bp-stack);
+      margin-top: fluid($space-40, 56px, 390px, $bp-stack);
     }
 
     .case-flow > .case-section--section {
@@ -320,25 +303,27 @@
     .case-related {
       margin-top: fluid(80px, 112px, 390px, $bp-stack);
       padding-top: fluid(80px, 96px, 390px, $bp-stack);
-      padding-bottom: fluid(0px, 24px, 390px, $bp-stack);
+      padding-bottom: fluid(0px, $space-24, 390px, $bp-stack);
     }
 
     .case-related h2 {
-      font-size: fluid(40px, 56px, 390px, $bp-stack);
+      font-size: fluid($font-size-40, $font-size-56, 390px, $bp-stack);
     }
 
     .case-related-grid {
-      row-gap: fluid(40px, $project-row-gap, 390px, $bp-stack);
+      row-gap: fluid($space-40, $space-64, 390px, $bp-stack);
     }
 
     .project-card h3 {
-      font-size: fluid(24px, 28px, 390px, $bp-stack);
+      font-size: fluid($font-size-24, $font-size-28, 390px, $bp-stack);
     }
   }
 }
 
 @media (max-width: $bp-phone) {
   .case-page--molfaria {
+    padding-top: $space-8;
+
     .case-intro,
     .case-marks--grid,
     .case-related-grid {
@@ -346,11 +331,11 @@
     }
 
     .case-intro {
-      gap: 20px;
+      gap: $space-20;
     }
 
     .case-intro-title {
-      gap: 12px;
+      gap: $space-12;
     }
 
     .case-intro-copy {
@@ -439,16 +424,10 @@
       object-position: right center;
     }
 
-    .case-media--phone-inset {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      aspect-ratio: 342 / 428;
-      background: #fff4f2;
-    }
-
-    .case-media--phone-inset img {
-      width: 71.93%;
+    .case-media--full img {
+      aspect-ratio: 984 / 1288;
+      object-fit: cover;
+      object-position: center;
     }
 
     .case-poster {
@@ -462,17 +441,17 @@
     .case-poster-copy {
       top: 18.69%;
       left: 50%;
-      gap: 8px;
+      gap: $space-8;
       width: 75.44%;
       transform: translateX(-50%);
     }
 
     .case-poster h2 {
-      font-size: 43px;
+      font-size: 12.57cqw;
     }
 
     .case-poster p {
-      font-size: 13px;
+      font-size: 3.8cqw;
     }
 
     .case-poster img {
@@ -481,4 +460,9 @@
       width: 51.46%;
     }
   }
+}
+
+// Below 1440 the section rhythm is more specific than the shared first-child reset.
+.case-page--molfaria .case-flow > .case-media--hero {
+  margin-top: 0;
 }

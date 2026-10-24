@@ -1,26 +1,30 @@
-// Design tokens: typography (family, sizes, tracking, leading)
+// Design tokens: typography (family, sizes, tracking, leading).
+// A size that shows up in more than one place has one name: the step itself.
 
 $font-family: "Min Sans", sans-serif;
-$font-family-poster-title: "UAF Memory", "Min Sans", sans-serif;
-$font-family-poster-detail: "e-Ukraine", "Min Sans", sans-serif;
-$font-family-bbg-logo: "Lexend Deca", "Min Sans", sans-serif;
-$font-family-bbg-communication: "Wix Madefor Display", "Min Sans", sans-serif;
+$font-family-poster-title: "UAF Memory", $font-family;
+$font-family-poster-detail: "e-Ukraine", $font-family;
+$font-family-bbg-logo: "Lexend Deca", $font-family;
+$font-family-bbg-communication: "Wix Madefor Display", $font-family;
 
+$font-size-14: 14px;
 $font-size-base: 16px;
-$font-size-logo: 22px;
-$font-size-count: 20px;
-$font-size-section: 56px;
-$font-size-projects: 72px;
-$font-size-project-title: 48px;
-$font-size-contacts: 72px;
-$font-size-case-title: 80px;
-$font-size-case-subtitle: 28px;
-$font-size-case-heading: 40px;
-$font-size-case-body: 18px;
+$font-size-18: 18px;
+$font-size-20: 20px;
+$font-size-22: 22px;
+$font-size-24: 24px;
+$font-size-28: 28px;
+$font-size-32: 32px;
+$font-size-40: 40px;
+$font-size-48: 48px;
+$font-size-52: 52px;
+$font-size-56: 56px;
+$font-size-60: 60px;
+$font-size-64: 64px;
+$font-size-72: 72px;
+$font-size-80: 80px;
+
 $font-size-case-display: 70px;
-$font-size-case-caption: 14px;
-$font-size-case-color: 32px;
-$font-size-case-spec: 20px;
 $font-size-role: 88px;
 $font-size-hero: 160px;
 

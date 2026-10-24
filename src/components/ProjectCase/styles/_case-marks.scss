@@ -42,7 +42,7 @@
 
 .case-marks--lockup {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: $case-stack-gap;
+  gap: $space-16;
 }
 
 .case-marks--lockup li {

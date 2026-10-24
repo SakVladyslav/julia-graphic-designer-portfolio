@@ -12,7 +12,7 @@
   background-color: transparent;
   color: $text;
   text-transform: uppercase;
-  padding: $header-padding-y 0;
+  padding: $space-32 0;
 }
 
 .site-header--inverse {
@@ -81,7 +81,7 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: $nav-gap;
+  gap: $space-24;
   color: inherit;
   font-family: $font-family;
   font-size: $font-size-base;
@@ -114,7 +114,7 @@
 
 @media (max-width: $bp-phone) {
   .site-header {
-    padding: 24px 0;
+    padding: $space-24 0;
   }
 
   .header-inner {
@@ -134,11 +134,11 @@
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
-    top: calc(100% + 24px);
+    top: calc(100% + #{$space-24});
     right: calc(-1 * var(--page-pad, #{$header-padding-x}));
     left: calc(-1 * var(--page-pad, #{$header-padding-x}));
     z-index: 30;
-    padding: 8px var(--page-pad, #{$header-padding-x}) 24px;
+    padding: $space-8 var(--page-pad, #{$header-padding-x}) $space-24;
     background: $bg;
   }
 

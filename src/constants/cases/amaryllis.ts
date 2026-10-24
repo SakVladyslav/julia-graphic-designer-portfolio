@@ -26,7 +26,7 @@ function media(
   height: number,
   alt: string,
   spaceBefore?: CaseSpace,
-  extras?: Pick<CaseMediaSection, "caption" | "captionAlign" | "framed">,
+  extras?: Pick<CaseMediaSection, "caption" | "captionAlign" | "framed" | "modifier">,
 ): CaseMediaSection {
   const image = picture(file, width, height, alt);
 
@@ -38,14 +38,29 @@ function media(
   };
 }
 
-const leaf = picture("leaf.svg", 410, 779, "");
+function withPhone(
+  section: CaseMediaSection,
+  file: string,
+  width: number,
+  height: number,
+  modifier: string,
+): CaseMediaSection {
+  return {
+    ...section,
+    modifier,
+    image: {
+      ...section.image,
+      phone: { src: asset(file), width, height },
+    },
+  };
+}
+
 const leafSmall = picture("leaf-small.svg", 508, 463, "");
 const line = picture("line.svg", 906, 1084, "");
 
 const posters: CaseStaggerSection = {
   type: "stagger",
   spaceBefore: "section",
-  ornament: leaf,
   frames: [
     {
       image: picture(
@@ -75,9 +90,9 @@ const banner: CaseBannerSection = {
   spaceBefore: "stack",
   background: lime,
   ink,
-  title: "Poster with Linear Illustration",
-  emphasis: "& Bold Color Accent",
-  body: "This poster has a special place in the series. It reframes the concept in a more abstract and graphic style, while maintaining the consistency of the visual system.",
+  title: "Linear Illustration",
+  emphasis: "& Bold Color",
+  body: "This poster takes the concept in a more abstract and graphic direction. The linear illustration and bold color create a different mood while keeping the visual language consistent with the rest of the series.",
   mark: line,
 };
 
@@ -88,7 +103,7 @@ const note: CaseNoteSection = {
   detail: caption,
   title: "Posters Beyond",
   emphasis: "the Wall",
-  body: "To extend the project, I created a range of items with these prints to explore how the poster designs could be transformed into merchandise and applied in real-life contexts.",
+  body: "To extend the project, I applied the poster designs to a range of merchandise, exploring how the visual system could work across different formats and real-life applications.",
   ornament: leafSmall,
 };
 
@@ -113,7 +128,13 @@ export const amaryllisCase: ProjectCase = {
   id: "amaryllis",
   title: "Amaryllis",
   sections: [
-    media("hero.webp", 1896, 1185, "Amaryllis poster leaning on a green sofa"),
+    withPhone(
+      media("hero.webp", 1896, 1185, "Amaryllis poster leaning on a green sofa"),
+      "hero-phone.webp",
+      1026,
+      1284,
+      "cover",
+    ),
     {
       type: "intro",
       spaceBefore: "block",
@@ -121,31 +142,59 @@ export const amaryllisCase: ProjectCase = {
       title: "Amaryllis",
       subtitle: "Poster Series & Merch",
       paragraphs: [
-        "Each poster was created from the same graphic elements, arranged according to different composition principles. The amaryllis flower became the main visual motif.",
+        "The project explores composition through a series of posters built within one visual system. Each poster uses the same set of graphic elements arranged in different ways, with the amaryllis flower as the main visual motif. The system was then extended into merchandise applications.",
       ],
       tags: ["poster design", "merch design"],
     },
     posters,
-    media("frames.webp", 1896, 1317, "Three framed Amaryllis posters on a concrete wall", "group"),
+    withPhone(
+      media(
+        "frames.webp",
+        1896,
+        1317,
+        "Three framed Amaryllis posters on a concrete wall",
+        "group",
+      ),
+      "frames-phone.webp",
+      1200,
+      1200,
+      "posters",
+    ),
     banner,
-    media(
-      "line-poster.webp",
-      2160,
-      1500,
-      "Framed lime line-illustration poster in a sunlit room",
-      "stack",
+    withPhone(
+      media(
+        "line-poster.webp",
+        2160,
+        1500,
+        "Framed lime line-illustration poster in a sunlit room",
+        "stack",
+      ),
+      "line-poster-phone.webp",
+      1026,
+      1284,
+      "line",
     ),
     note,
     media("tote.webp", 1896, 2202, "Person holding an Amaryllis tote bag", "group", {
       caption: "// Tote Bag",
       framed: true,
+      modifier: "tote",
     }),
     merch,
     media("vinyl.webp", 1896, 1680, "Amaryllis record sleeve and a green vinyl", "group", {
       caption: "// Vinyl Record",
       framed: true,
+      modifier: "vinyl",
     }),
-    media("tshirt.webp", 1896, 1317, "Person wearing a black Amaryllis t-shirt", "group"),
-    media("thanks.webp", 2160, 1500, "Framed poster that reads Thanks for watching", "stack"),
+    media("tshirt.webp", 1896, 1317, "Person wearing a black Amaryllis t-shirt", "group", {
+      modifier: "shirt",
+    }),
+    withPhone(
+      media("thanks.webp", 2160, 1500, "Framed poster that reads Thanks for watching", "stack"),
+      "thanks-phone.webp",
+      1026,
+      1284,
+      "thanks",
+    ),
   ],
 };

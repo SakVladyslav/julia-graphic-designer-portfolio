@@ -2,17 +2,18 @@
 @use "../../../styles/typography" as *;
 @use "../../../styles/spacing" as *;
 @use "../../../styles/sizes" as *;
+@use "../../../styles/breakpoints" as *;
 
 .case-page {
   padding-top: $case-page-offset;
 }
 
 .case-flow > .case-section--section {
-  margin-top: $case-section-gap;
+  margin-top: $space-144;
 }
 
 .case-flow > .case-section--block {
-  margin-top: $case-block-gap;
+  margin-top: $space-64;
 }
 
 .case-flow > .case-section--group {
@@ -20,7 +21,7 @@
 }
 
 .case-flow > .case-section--stack {
-  margin-top: $case-stack-gap;
+  margin-top: $space-16;
 }
 
 .case-flow > .case-section--none {
@@ -49,7 +50,7 @@
 .case-split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: $case-column-gap;
+  gap: $space-32;
   align-items: start;
 }
 
@@ -62,11 +63,11 @@
 }
 
 .case-intro-title {
-  gap: $case-title-gap;
+  gap: $space-16;
 }
 
 .case-intro-heading {
-  gap: $case-eyebrow-gap;
+  gap: $space-4;
   width: 100%;
 }
 
@@ -85,12 +86,12 @@
 }
 
 .case-intro h1 {
-  font-size: $font-size-case-title;
+  font-size: $font-size-80;
   line-height: 1;
 }
 
 .case-subtitle {
-  font-size: $font-size-case-subtitle;
+  font-size: $font-size-28;
   line-height: $line-height-heading;
   opacity: 0.8;
 }
@@ -98,9 +99,9 @@
 .case-intro-link {
   display: inline-flex;
   align-items: center;
-  gap: $project-tag-gap;
-  margin-top: calc(#{$header-padding-y} - #{$case-title-gap});
-  padding: 12px $header-padding-y;
+  gap: $space-8;
+  margin-top: calc(#{$space-32} - #{$space-16});
+  padding: $space-12 $space-32;
   border-radius: $project-tag-radius;
   background: $paper;
   color: $text;
@@ -135,15 +136,15 @@
 }
 
 .case-intro-copy {
-  gap: $case-intro-copy-gap;
+  gap: $space-32;
   width: 100%;
-  padding-top: $case-intro-padding-y;
-  padding-bottom: $case-intro-padding-y;
+  padding-top: $space-48;
+  padding-bottom: $space-48;
   border-bottom: $border-strong solid currentColor;
 }
 
 .case-copy {
-  font-size: $font-size-case-body;
+  font-size: $font-size-18;
   line-height: 1.5;
   opacity: 0.8;
 }
@@ -153,26 +154,32 @@
 }
 
 .case-split h2 {
-  font-size: $font-size-case-heading;
+  font-size: $font-size-40;
   line-height: $line-height-heading;
 }
 
 .case-split .case-copy {
-  padding-top: $case-split-offset;
+  padding-top: $space-8;
 }
 
 .case-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: $project-tag-gap;
+  gap: $space-8;
   list-style: none;
 }
 
 .case-tags li {
-  padding: $project-tag-padding-y $project-tag-padding-x;
+  padding: $space-4 $space-12;
   border: $project-tag-border-width solid currentColor;
   border-radius: $project-tag-radius;
   font-size: $font-size-base;
   line-height: $line-height-annotation;
   white-space: nowrap;
+}
+
+@media (max-width: $bp-stack) {
+  .case-tags li {
+    font-size: $font-size-14;
+  }
 }

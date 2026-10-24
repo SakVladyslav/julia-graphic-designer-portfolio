@@ -154,8 +154,8 @@ export const bbgCase: ProjectCase = {
     withPhone(
       media("BBG-01.webp", 1896, 1185, "Best Budova Group construction fence banner"),
       "BBG-01-phone.webp",
-      684,
-      700,
+      1026,
+      1284,
     ),
     {
       type: "intro",
@@ -180,8 +180,8 @@ export const bbgCase: ProjectCase = {
         "section",
       ),
       "BBG-07-phone.webp",
-      684,
-      800,
+      1026,
+      1284,
     ),
     typefaces,
     {
@@ -197,8 +197,8 @@ export const bbgCase: ProjectCase = {
     withPhone(
       media("BBG-06.webp", 1896, 1350, "Best Budova Group business cards on concrete", "section"),
       "BBG-06-phone.webp",
-      684,
-      800,
+      1026,
+      1284,
     ),
   ],
 };

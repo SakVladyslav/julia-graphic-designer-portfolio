@@ -30,7 +30,8 @@ export default function ProjectCase({ projectCase, related }: ProjectCaseProps) 
     projectCase.id === "bbg" ||
     projectCase.id === "olx" ||
     projectCase.id === "novyny" ||
-    projectCase.id === "molfaria"
+    projectCase.id === "molfaria" ||
+    projectCase.id === "amaryllis"
       ? `case-page--${projectCase.id}`
       : "";
   const pageClass = caseModifier === "" ? "case-page" : `case-page ${caseModifier}`;
