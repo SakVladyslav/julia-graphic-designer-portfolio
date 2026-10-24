@@ -11,10 +11,10 @@
 }
 
 .contacts h2 {
-  margin-bottom: $contacts-heading-gap;
+  margin-bottom: $space-48;
   font-family: $font-family;
   font-weight: 500;
-  font-size: $font-size-contacts;
+  font-size: $font-size-72;
   line-height: 1.1;
   color: $accent;
 }
@@ -31,7 +31,7 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: $contact-row-gap;
+  gap: $space-32;
   flex: 1 1 auto;
   max-width: 100%;
   min-width: min-content;
@@ -40,13 +40,13 @@
 .contact-list li {
   display: flex;
   align-items: flex-start;
-  gap: $contact-annotation-gap;
+  gap: $space-2;
 }
 
 .contact-main {
   color: inherit;
   font-family: $font-family;
-  font-size: $font-size-section;
+  font-size: $font-size-56;
   font-weight: 500;
   line-height: $line-height-heading;
   text-decoration: none;
@@ -86,7 +86,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: $contact-inline-gap;
+  gap: $space-4;
   width: 100%;
   height: $contacts-action-height;
   padding: 0;
@@ -125,7 +125,7 @@
   justify-content: center;
   min-width: 0;
   margin: 0;
-  padding: $header-padding-y;
+  padding: $space-32;
   border: $border-strong solid $accent;
   border-left: 0;
   color: inherit;
@@ -166,12 +166,12 @@ a.contact-action:hover {
 
 @media (max-width: #{$bp-desktop - 1px}) {
   .contacts h2 {
-    margin-bottom: fluid(40px, $contacts-heading-gap, $bp-laptop, $bp-desktop);
-    font-size: fluid(64px, $font-size-contacts, $bp-laptop, $bp-desktop);
+    margin-bottom: fluid($space-40, $space-48, $bp-laptop, $bp-desktop);
+    font-size: fluid($font-size-64, $font-size-72, $bp-laptop, $bp-desktop);
   }
 
   .contact-main {
-    font-size: fluid(52px, $font-size-section, $bp-laptop, $bp-desktop);
+    font-size: fluid($font-size-52, $font-size-56, $bp-laptop, $bp-desktop);
   }
 
   .contact-actions {
@@ -181,11 +181,11 @@ a.contact-action:hover {
 
 @media (max-width: #{$bp-laptop - 1px}) {
   .contacts h2 {
-    font-size: fluid(60px, 64px, $bp-tablet, $bp-laptop);
+    font-size: fluid($font-size-60, $font-size-64, $bp-tablet, $bp-laptop);
   }
 
   .contact-main {
-    font-size: fluid(48px, 52px, $bp-tablet, $bp-laptop);
+    font-size: fluid($font-size-48, $font-size-52, $bp-tablet, $bp-laptop);
   }
 
   .contact-actions {
@@ -195,24 +195,24 @@ a.contact-action:hover {
 
 @media (max-width: #{$bp-tablet - 1px}) {
   .contacts h2 {
-    margin-bottom: fluid(32px, 40px, $bp-stack, $bp-tablet);
-    font-size: fluid(56px, 60px, $bp-stack, $bp-tablet);
+    margin-bottom: fluid($space-32, $space-40, $bp-stack, $bp-tablet);
+    font-size: fluid($font-size-56, $font-size-60, $bp-stack, $bp-tablet);
   }
 
   .contacts-layout {
     flex-direction: column;
     align-items: stretch;
-    gap: 48px;
+    gap: $space-48;
   }
 
   .contact-list {
     width: 100%;
     min-width: 0;
-    gap: fluid(28px, $contact-row-gap, $bp-stack, $bp-tablet);
+    gap: fluid(28px, $space-32, $bp-stack, $bp-tablet);
   }
 
   .annotation {
-    font-size: fluid(14px, $font-size-base, $bp-stack, $bp-tablet);
+    font-size: fluid($font-size-14, $font-size-base, $bp-stack, $bp-tablet);
   }
 
   .contact-actions {
@@ -222,19 +222,19 @@ a.contact-action:hover {
 
 @media (max-width: #{$bp-stack - 1px}) {
   .contacts h2 {
-    font-size: fluid(40px, 56px, 390px, $bp-stack);
+    font-size: fluid($font-size-40, $font-size-56, 390px, $bp-stack);
   }
 
   .contacts-layout {
-    gap: fluid(40px, 48px, 390px, $bp-stack);
+    gap: fluid($space-40, $space-48, 390px, $bp-stack);
   }
 
   .contact-list {
-    gap: fluid(24px, 28px, 390px, $bp-stack);
+    gap: fluid($space-24, 28px, 390px, $bp-stack);
   }
 
   .contact-main {
-    font-size: fluid(30px, 48px, 390px, $bp-stack);
+    font-size: fluid(30px, $font-size-48, 390px, $bp-stack);
   }
 }
 
@@ -244,7 +244,7 @@ a.contact-action:hover {
   }
 
   .contact-location {
-    padding-inline: 16px;
+    padding-inline: $space-16;
   }
 
   .contact-location-label {

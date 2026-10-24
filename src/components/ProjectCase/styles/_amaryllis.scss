@@ -1,0 +1,178 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/typography" as *;
+@use "../../../styles/spacing" as *;
+@use "../../../styles/sizes" as *;
+@use "../../../styles/breakpoints" as *;
+
+@media (max-width: $bp-phone) {
+  .case-page--amaryllis {
+    padding-top: $space-8;
+  }
+
+  .case-page--amaryllis .case-flow > .case-intro {
+    margin-top: $space-40;
+    gap: $space-20;
+  }
+
+  .case-page--amaryllis .case-intro-title {
+    gap: $space-12;
+  }
+
+  .case-page--amaryllis .case-intro h1 {
+    font-size: $font-size-48;
+    line-height: 1.1;
+  }
+
+  .case-page--amaryllis .case-subtitle {
+    font-size: $font-size-20;
+    line-height: 1.3;
+  }
+
+  .case-page--amaryllis .case-eyebrow,
+  .case-page--amaryllis .case-tags li {
+    font-size: $font-size-14;
+  }
+
+  .case-page--amaryllis .case-copy {
+    font-size: $font-size-base;
+  }
+
+  .case-page--amaryllis .case-intro-copy {
+    padding-top: 0;
+    padding-bottom: $space-40;
+  }
+
+  .case-page--amaryllis .case-flow > .case-section:first-child {
+    margin-top: 0;
+  }
+
+  .case-page--amaryllis .case-flow > .case-stagger.case-section--section {
+    margin-top: 72px;
+  }
+
+  .case-page--amaryllis .case-stagger:has(.case-stagger-ornament) .case-stagger-follow {
+    display: none;
+  }
+
+  .case-page--amaryllis .case-stagger:not(:has(.case-stagger-ornament)) {
+    gap: 80px;
+  }
+
+  .case-page--amaryllis .case-caption {
+    margin-top: $space-16;
+  }
+
+  .case-page--amaryllis .case-frame {
+    border-width: $space-2;
+  }
+
+  .case-page--amaryllis .case-stagger:has(.case-stagger-ornament) .case-frame {
+    border-width: $case-frame-border;
+  }
+
+  .case-page--amaryllis .case-media--cover img,
+  .case-page--amaryllis .case-media--line img,
+  .case-page--amaryllis .case-media--thanks img,
+  .case-page--amaryllis .case-media--shirt img,
+  .case-page--amaryllis .case-media--tote img {
+    aspect-ratio: 1026 / 1284;
+    object-fit: cover;
+  }
+
+  .case-page--amaryllis .case-media--posters img {
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .case-page--amaryllis .case-media--vinyl img {
+    aspect-ratio: 1128 / 1000;
+    object-fit: cover;
+  }
+
+  .case-page--amaryllis .case-media--vinyl .case-caption {
+    text-align: right;
+  }
+
+  .case-page--amaryllis .case-banner {
+    height: 460px;
+    align-items: flex-start;
+    padding: 88px $space-16 $space-16;
+    container-type: inline-size;
+  }
+
+  .case-page--amaryllis .case-banner-copy {
+    gap: $space-16;
+    max-width: 311px;
+  }
+
+  .case-page--amaryllis .case-banner h2 {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .case-page--amaryllis .case-banner-emphasis {
+    font-weight: 600;
+  }
+
+  .case-page--amaryllis .case-banner p,
+  .case-page--amaryllis .case-note p {
+    max-width: none;
+    font-size: $font-size-14;
+    letter-spacing: 0.14px;
+  }
+
+  .case-page--amaryllis .case-banner-mark {
+    position: absolute;
+    top: calc(50% + 243px);
+    right: auto;
+    bottom: auto;
+    left: 48.69%;
+    width: 92.71cqw;
+    height: calc(92.71cqw * 1084 / 906);
+    margin: 0;
+    transform: translateY(-50%) scaleX(-1);
+  }
+
+  .case-page--amaryllis .case-flow > .case-note {
+    margin-top: 80px;
+  }
+
+  .case-page--amaryllis .case-note-ornament {
+    display: none;
+  }
+
+  .case-page--amaryllis .case-note-copy {
+    display: flex;
+    flex-direction: column;
+    gap: $space-24;
+  }
+
+  .case-page--amaryllis .case-note h2 {
+    font-size: 42px;
+    line-height: 1.1;
+  }
+
+  .case-page--amaryllis .case-flow > .case-media--tote {
+    margin-top: $space-48;
+  }
+
+  .case-page--amaryllis .case-related {
+    margin-top: 0;
+    padding-top: 80px;
+    padding-bottom: 0;
+  }
+
+  .case-page--amaryllis .case-related h2 {
+    margin-bottom: $space-32;
+    font-size: $font-size-40;
+  }
+
+  .case-page--amaryllis .case-related-grid {
+    row-gap: $space-40;
+  }
+
+  .case-page--amaryllis .project-card h3 {
+    font-size: $font-size-24;
+  }
+}

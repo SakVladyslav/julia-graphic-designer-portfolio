@@ -1,4 +1,5 @@
 import { cleanup, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { afterEach, describe, expect, it } from "vitest";
 
@@ -91,6 +92,12 @@ describe("ProjectCasePage", () => {
     renderCase("amaryllis");
 
     expect(screen.getByRole("heading", { level: 1, name: "Amaryllis" })).toBeInTheDocument();
+    expect(
+      screen
+        .getByRole("img", { name: /amaryllis poster leaning on a green sofa/i })
+        .parentElement?.querySelector("source")
+        ?.getAttribute("srcset"),
+    ).toContain("hero-phone.webp");
     expect(screen.getByText("Poster Series & Merch")).toBeInTheDocument();
     expect(screen.getByText("// Tote Bag")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /posters beyond/i })).toBeInTheDocument();
@@ -170,6 +177,12 @@ describe("ProjectCasePage", () => {
     expect(
       screen.getByRole("img", { name: /novyny live homepage on a desktop/i }),
     ).toBeInTheDocument();
+    expect(
+      screen
+        .getByRole("img", { name: /novyny live homepage on a desktop/i })
+        .parentElement?.querySelector("source")
+        ?.getAttribute("srcset"),
+    ).toContain("Cover_Novyny-phone.webp");
     expect(screen.getByRole("link", { name: /view case on behance/i })).toHaveAttribute(
       "href",
       "https://www.behance.net/gallery/172888923/novini-LIVE-News-website-redesign",
@@ -178,6 +191,21 @@ describe("ProjectCasePage", () => {
     expect(screen.getByRole("link", { name: /lovespace/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /molfaria/i })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /novyny live/i })).not.toBeInTheDocument();
+  });
+
+  it("replaces the previous cover when opening the next project", async () => {
+    const user = userEvent.setup();
+    renderCase("lovespace");
+
+    const previousCover = screen.getByRole("img", {
+      name: "Lovespace visual identity, a portrait framed by an open ring",
+    });
+
+    await user.click(screen.getByRole("link", { name: /molfaria/i }));
+
+    expect(previousCover).not.toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /paper cup/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: "Molfaria" })).toBeInTheDocument();
   });
 
   it("answers an unknown project address with the not-found page", () => {

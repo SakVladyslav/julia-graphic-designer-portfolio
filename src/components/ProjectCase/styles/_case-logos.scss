@@ -61,7 +61,7 @@
 .case-typefaces {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: $case-stack-gap;
+  gap: $space-16;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -73,7 +73,7 @@
   justify-content: space-between;
   aspect-ratio: 624 / 500;
   margin: 0;
-  padding: $header-padding-y;
+  padding: $space-32;
   container-type: inline-size;
 }
 
@@ -87,8 +87,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: $project-tag-gap;
-  font-size: $font-size-case-body;
+  gap: $space-8;
+  font-size: $font-size-18;
   line-height: normal;
 }
 
@@ -104,7 +104,7 @@
 
 .case-typeface-weights {
   display: flex;
-  gap: $project-tag-gap;
+  gap: $space-8;
   text-align: center;
 }
 

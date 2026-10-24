@@ -1,7 +1,13 @@
+import type { CSSProperties } from "react";
+
 import type { CaseStaggerSection } from "../../constants/projectCase";
 
 import CaseFrame from "./CaseFrame";
 import { sectionClass } from "./sectionClass";
+
+interface StaggerFollowStyle extends CSSProperties {
+  "--stagger-offset": string;
+}
 
 interface CaseStaggerProps {
   section: CaseStaggerSection;
@@ -9,7 +15,9 @@ interface CaseStaggerProps {
 
 export default function CaseStagger({ section }: CaseStaggerProps) {
   const [lead, follow] = section.frames;
-  const followOffset = `${(lead.image.height / lead.image.width) * 100}%`;
+  const followStyle: StaggerFollowStyle = {
+    "--stagger-offset": `${(lead.image.height / lead.image.width) * 100}%`,
+  };
 
   return (
     <div className={sectionClass("case-stagger", section.spaceBefore)}>
@@ -37,7 +45,7 @@ export default function CaseStagger({ section }: CaseStaggerProps) {
         caption={follow.caption}
         captionAlign={follow.captionAlign}
         framed
-        style={{ marginTop: followOffset }}
+        style={followStyle}
       />
     </div>
   );

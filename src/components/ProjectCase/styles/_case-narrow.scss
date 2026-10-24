@@ -133,7 +133,7 @@
   .case-palette--short .case-color-info--fill {
     height: auto;
     min-height: 0;
-    gap: $case-related-heading-gap;
-    padding-top: $case-palette-padding;
+    gap: $space-32;
+    padding-top: $space-24;
   }
 }

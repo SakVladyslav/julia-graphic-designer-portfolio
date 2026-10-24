@@ -6,7 +6,7 @@
 .case-comparison {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: $case-comparison-gap;
+  gap: $space-8;
 }
 
 .case-comparison-panel {
@@ -21,8 +21,8 @@
 
 .case-comparison-panel figcaption {
   position: absolute;
-  top: $case-comparison-label-inset;
-  left: $case-comparison-label-inset;
+  top: $space-24;
+  left: $space-24;
   font-size: $font-size-base;
   line-height: 1.5;
 }

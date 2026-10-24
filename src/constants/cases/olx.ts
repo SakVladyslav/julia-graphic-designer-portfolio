@@ -51,8 +51,8 @@ export const olxCase: ProjectCase = {
         "OLX Business Hub on a laptop, with the site open on a mint background",
       ),
       "Cover_OLX-phone.webp",
-      1029,
-      1026,
+      1368,
+      1712,
     ),
     {
       type: "intro",

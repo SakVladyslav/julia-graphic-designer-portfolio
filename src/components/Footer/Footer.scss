@@ -5,12 +5,12 @@
 @use "../../styles/breakpoints" as *;
 
 .site-footer {
-  padding-top: $contacts-padding-top;
+  padding-top: $space-144;
 }
 
 .site-footer > .container {
   --footer-pad: var(--page-pad, #{$header-padding-x});
-  --footer-edge: #{$footer-to-top-inset};
+  --footer-edge: #{$space-24};
   display: flex;
   flex-direction: column;
   gap: $contacts-footer-gap;
@@ -37,8 +37,8 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  padding-top: $header-padding-y;
-  padding-bottom: $header-padding-y;
+  padding-top: $space-32;
+  padding-bottom: $space-32;
   border-top: $border-strong solid $footer-line;
 }
 
@@ -46,7 +46,7 @@
   justify-self: center;
   display: flex;
   align-items: center;
-  gap: $nav-gap;
+  gap: $space-24;
 }
 
 .footer-nav .nav-sep {
@@ -121,11 +121,11 @@
 
 @media (max-width: #{$bp-desktop - 1px}) {
   .site-footer {
-    padding-top: fluid(136px, $contacts-padding-top, $bp-laptop, $bp-desktop);
+    padding-top: fluid(136px, $space-144, $bp-laptop, $bp-desktop);
   }
 
   .site-footer > .container {
-    --footer-edge: #{fluid(8px, $footer-to-top-inset, $bp-laptop, $bp-desktop)};
+    --footer-edge: #{fluid($space-8, $space-24, $bp-laptop, $bp-desktop)};
     gap: fluid(168px, $contacts-footer-gap, $bp-laptop, $bp-desktop);
   }
 }
@@ -136,7 +136,7 @@
   }
 
   .site-footer > .container {
-    --footer-edge: #{fluid(0px, 8px, $bp-tablet, $bp-laptop)};
+    --footer-edge: #{fluid(0px, $space-8, $bp-tablet, $bp-laptop)};
     gap: fluid(160px, 168px, $bp-tablet, $bp-laptop);
   }
 }
@@ -147,7 +147,7 @@
   }
 
   .site-footer > .container {
-    gap: fluid(144px, 160px, $bp-stack, $bp-tablet);
+    gap: fluid($space-144, 160px, $bp-stack, $bp-tablet);
   }
 }
 
@@ -157,7 +157,7 @@
     grid-template-areas:
       "logo nav"
       "copy top";
-    row-gap: $nav-gap;
+    row-gap: $space-24;
     align-items: center;
   }
 
@@ -194,7 +194,7 @@
   }
 
   .site-footer > .container {
-    gap: fluid(120px, 144px, 390px, $bp-stack);
+    gap: fluid(120px, $space-144, 390px, $bp-stack);
   }
 }
 
@@ -204,10 +204,10 @@
       "logo logo"
       "nav nav"
       "copy copy";
-    row-gap: $header-padding-y;
+    row-gap: $space-32;
     justify-items: center;
-    padding-top: $header-padding-y;
-    padding-bottom: $header-padding-y;
+    padding-top: $space-32;
+    padding-bottom: $space-32;
   }
 
   .footer-inner > .logo {
@@ -215,9 +215,10 @@
   }
 
   .footer-nav {
-    justify-self: stretch;
-    width: 100%;
-    justify-content: space-between;
+    justify-self: center;
+    width: auto;
+    justify-content: center;
+    gap: $space-24;
   }
 
   .copyright {
@@ -228,7 +229,7 @@
   .to-top {
     position: absolute;
     right: 0;
-    bottom: $header-padding-y;
+    bottom: $space-32;
     top: auto;
   }
 }

@@ -25,7 +25,7 @@ export const caseCopy: readonly CaseCopy[] = [
     id: "amaryllis",
     title: "Amaryllis — Julia Samchuk",
     description:
-      "Poster Series & Merch. Each poster was created from the same graphic elements, arranged according to different composition principles. The amaryllis flower…",
+      "Poster Series & Merch. The project explores composition through a series of posters built within one visual system. Each poster uses the same set of graphic elements…",
     imageAlt: "Amaryllis, Julia Samchuk",
   },
   {

@@ -35,7 +35,7 @@ export default function ProjectCasePage() {
 
   return (
     <main id="main-content" tabIndex={-1}>
-      <ProjectCase projectCase={projectCase} related={related} />
+      <ProjectCase key={projectCase.id} projectCase={projectCase} related={related} />
     </main>
   );
 }

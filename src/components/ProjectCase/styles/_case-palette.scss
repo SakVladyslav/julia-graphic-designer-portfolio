@@ -6,7 +6,7 @@
 .case-palette {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: $case-palette-gap;
+  gap: $space-16;
   list-style: none;
 }
 
@@ -49,7 +49,7 @@
 .case-color-info {
   display: flex;
   flex-direction: column;
-  padding: $case-palette-padding;
+  padding: $space-24;
 }
 
 .case-palette--tall .case-color-info {
@@ -58,7 +58,7 @@
 
 .case-color-info--fill {
   gap: $case-palette-copy-gap;
-  padding: $case-palette-padding-top $case-palette-padding $case-palette-padding;
+  padding: $space-32 $space-24 $space-24;
 }
 
 .case-palette--tall .case-color-info--fill {
@@ -68,7 +68,7 @@
 
 .case-color-info--fill .case-color-specs {
   margin-top: 0;
-  font-size: $font-size-case-spec;
+  font-size: $font-size-20;
   line-height: 1;
   opacity: 0.8;
 }
@@ -85,14 +85,14 @@
 }
 
 .case-color-name {
-  font-size: $font-size-case-color;
+  font-size: $font-size-32;
   line-height: 1;
 }
 
 .case-color-specs {
   display: flex;
   flex-direction: column;
-  gap: $case-spec-gap;
+  gap: $space-8;
   margin-top: auto;
   font-size: $font-size-base;
   font-weight: 400;

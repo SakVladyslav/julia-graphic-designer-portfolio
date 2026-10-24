@@ -24,15 +24,35 @@ function media(
   return { type: "media", spaceBefore, image };
 }
 
+function withPhone(
+  section: CaseMediaSection,
+  file: string,
+  width: number,
+  height: number,
+): CaseMediaSection {
+  return {
+    ...section,
+    image: {
+      ...section.image,
+      phone: { src: asset(file), width, height },
+    },
+  };
+}
+
 export const novynyCase: ProjectCase = {
   id: "novyny",
   title: "Novyny LIVE",
   sections: [
-    media(
-      "Cover_Novyny.webp",
-      1896,
-      1185,
-      "Novyny LIVE homepage on a desktop, set against portraits and an orange band",
+    withPhone(
+      media(
+        "Cover_Novyny.webp",
+        1896,
+        1185,
+        "Novyny LIVE homepage on a desktop, set against portraits and an orange band",
+      ),
+      "Cover_Novyny-phone.webp",
+      1368,
+      1712,
     ),
     {
       type: "intro",
