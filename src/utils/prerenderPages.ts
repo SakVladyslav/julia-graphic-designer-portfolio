@@ -72,7 +72,7 @@ function projectPage(id: string): PrerenderPage | undefined {
     title: copy.title,
     share: {
       title: copy.title,
-      description: copy.description,
+      description: clampMetaDescription(copy.description),
       imageFile: OG_IMAGE.file,
       imageAlt: copy.imageAlt,
     },
