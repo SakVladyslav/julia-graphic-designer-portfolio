@@ -10,7 +10,6 @@ const WIDTHS = [640, 960, 1280] as const;
 
 const STATIC_FILES = [
   "public/Favicon.svg",
-  "public/favicon-32.png",
   "public/apple-touch-icon.png",
   "public/og.png",
   "src/assets/hero-arrow.svg",
