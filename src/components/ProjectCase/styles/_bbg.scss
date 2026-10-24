@@ -267,7 +267,8 @@
   .case-page--bbg .case-icon-board {
     grid-template-columns: repeat(4, #{fluid(72px, 96px, $bp-phone, $bp-stack)});
     row-gap: fluid($space-32, 56px, $bp-phone, $bp-stack);
-    padding: #{fluid($space-40, 56px, $bp-phone, $bp-stack)} #{fluid($space-16, 72px, $bp-phone, $bp-stack)};
+    padding: #{fluid($space-40, 56px, $bp-phone, $bp-stack)}
+      #{fluid($space-16, 72px, $bp-phone, $bp-stack)};
   }
 }
 
