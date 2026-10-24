@@ -95,14 +95,6 @@
       gap: fluid(15px, $case-poster-copy-gap, $bp-laptop, $bp-desktop);
     }
 
-    .case-poster h2 {
-      font-size: fluid(94px, 107px, $bp-laptop, $bp-desktop);
-    }
-
-    .case-poster p {
-      font-size: fluid($font-size-28, 31.6px, $bp-laptop, $bp-desktop);
-    }
-
     .case-related {
       margin-top: fluid(152px, 160px, $bp-laptop, $bp-desktop);
       padding-top: fluid(112px, 128px, $bp-laptop, $bp-desktop);
@@ -158,14 +150,6 @@
 
     .case-poster-copy {
       gap: fluid(13px, 15px, $bp-tablet, $bp-laptop);
-    }
-
-    .case-poster h2 {
-      font-size: fluid($font-size-80, 94px, $bp-tablet, $bp-laptop);
-    }
-
-    .case-poster p {
-      font-size: fluid($font-size-24, $font-size-28, $bp-tablet, $bp-laptop);
     }
 
     .case-related {
@@ -231,14 +215,6 @@
       gap: fluid(10px, 13px, $bp-stack, $bp-tablet);
     }
 
-    .case-poster h2 {
-      font-size: fluid($font-size-60, $font-size-80, $bp-stack, $bp-tablet);
-    }
-
-    .case-poster p {
-      font-size: fluid($font-size-18, $font-size-24, $bp-stack, $bp-tablet);
-    }
-
     .case-related {
       margin-top: fluid(112px, $space-144, $bp-stack, $bp-tablet);
       padding-top: fluid(96px, 104px, $bp-stack, $bp-tablet);
@@ -280,6 +256,14 @@
       top: 22.67%;
       left: 9.44%;
       width: 50.08%;
+    }
+
+    .case-poster h2 {
+      font-size: 8.47cqw;
+    }
+
+    .case-poster p {
+      font-size: 2.5cqw;
     }
 
     .case-poster img {
@@ -463,11 +447,11 @@
     }
 
     .case-poster h2 {
-      font-size: 43px;
+      font-size: 12.57cqw;
     }
 
     .case-poster p {
-      font-size: 13px;
+      font-size: 3.8cqw;
     }
 
     .case-poster img {

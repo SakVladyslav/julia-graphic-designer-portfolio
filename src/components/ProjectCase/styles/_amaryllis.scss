@@ -50,11 +50,7 @@
     margin-top: 72px;
   }
 
-  .case-page--amaryllis .case-stagger:has(.case-stagger-ornament) .case-stagger-follow {
-    display: none;
-  }
-
-  .case-page--amaryllis .case-stagger:not(:has(.case-stagger-ornament)) {
+  .case-page--amaryllis .case-stagger {
     gap: 80px;
   }
 
@@ -64,10 +60,6 @@
 
   .case-page--amaryllis .case-frame {
     border-width: $space-2;
-  }
-
-  .case-page--amaryllis .case-stagger:has(.case-stagger-ornament) .case-frame {
-    border-width: $case-frame-border;
   }
 
   .case-page--amaryllis .case-media--cover img,
@@ -94,15 +86,16 @@
   }
 
   .case-page--amaryllis .case-banner {
-    height: 460px;
-    align-items: flex-start;
-    padding: 88px $space-16 $space-16;
-    container-type: inline-size;
+    height: auto;
+    min-height: 460px;
+    padding: 64px $space-16 185px;
   }
 
   .case-page--amaryllis .case-banner-copy {
-    gap: $space-16;
+    position: relative;
+    width: 100%;
     max-width: 311px;
+    gap: $space-16;
   }
 
   .case-page--amaryllis .case-banner h2 {
@@ -112,7 +105,9 @@
   }
 
   .case-page--amaryllis .case-banner-emphasis {
+    margin-top: -2px;
     font-weight: 600;
+    line-height: 1;
   }
 
   .case-page--amaryllis .case-banner p,
@@ -124,14 +119,15 @@
 
   .case-page--amaryllis .case-banner-mark {
     position: absolute;
-    top: calc(50% + 243px);
+    top: calc(100% - 177px);
     right: auto;
     bottom: auto;
     left: 48.69%;
-    width: 92.71cqw;
-    height: calc(92.71cqw * 1084 / 906);
+    width: 92.71%;
+    height: auto;
+    aspect-ratio: 906 / 1084;
     margin: 0;
-    transform: translateY(-50%) scaleX(-1);
+    transform: scaleX(-1);
   }
 
   .case-page--amaryllis .case-flow > .case-note {

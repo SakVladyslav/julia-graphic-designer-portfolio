@@ -55,14 +55,12 @@ function withPhone(
   };
 }
 
-const leaf = picture("leaf.svg", 410, 779, "");
 const leafSmall = picture("leaf-small.svg", 508, 463, "");
 const line = picture("line.svg", 906, 1084, "");
 
 const posters: CaseStaggerSection = {
   type: "stagger",
   spaceBefore: "section",
-  ornament: leaf,
   frames: [
     {
       image: picture(

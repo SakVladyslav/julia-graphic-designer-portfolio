@@ -414,6 +414,64 @@
   }
 }
 
+// Below 700 the two type cards stack. 1440–701 stays the shared two-column frame.
+@media (max-width: 700px) {
+  .case-page--bbg .case-typefaces {
+    grid-template-columns: minmax(0, 1fr);
+    gap: $space-8;
+  }
+
+  .case-page--bbg .case-typeface {
+    aspect-ratio: auto;
+    height: fluid(246px, 300px, 530px, 700px);
+    padding: $space-24;
+  }
+
+  .case-page--bbg .case-typeface-meta {
+    font-size: $font-size-14;
+  }
+
+  .case-page--bbg .case-typeface--logo .case-typeface-name {
+    font-size: fluid(47px, 65px, 530px, 700px);
+  }
+
+  .case-page--bbg .case-typeface--communication .case-typeface-name {
+    font-size: fluid(45px, 62px, 530px, 700px);
+  }
+}
+
+@media (max-width: 360px) {
+  .case-page--bbg .case-typeface {
+    padding: $space-20;
+  }
+
+  .case-page--bbg .case-typeface--logo .case-typeface-name {
+    font-size: fluid(40px, 47px, 320px, 360px);
+  }
+
+  .case-page--bbg .case-typeface--communication .case-typeface-name {
+    font-size: fluid(38px, 45px, 320px, 360px);
+  }
+
+  .case-page--bbg .case-typeface--communication .case-typeface-meta {
+    gap: 56px;
+  }
+
+  .case-page--bbg .case-typeface--communication .case-typeface-meta > p:first-child {
+    line-height: 1.3;
+  }
+
+  .case-page--bbg .case-typeface-weights {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0;
+  }
+
+  .case-page--bbg .case-typeface-weights span:nth-child(2) {
+    display: none;
+  }
+}
+
 .case-page--bbg .case-flow > .case-section:first-child {
   margin-top: 0;
 }
