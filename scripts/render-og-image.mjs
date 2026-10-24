@@ -30,5 +30,7 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
   <text x="72" y="440" font-family="Min Sans" font-size="36" font-weight="500" fill="#f24281">Graphic Designer</text>
 </svg>`;
 
-await sharp(Buffer.from(svg)).png().toFile("public/og.png");
+await sharp(Buffer.from(svg))
+  .png({ compressionLevel: 9, palette: true, quality: 100, effort: 10 })
+  .toFile("public/og.png");
 console.log("wrote public/og.png");
