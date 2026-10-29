@@ -8,6 +8,7 @@ import CaseLogoStack from "./CaseLogoStack";
 import CaseMarks from "./CaseMarks";
 import CaseMedia from "./CaseMedia";
 import CaseNote from "./CaseNote";
+import CasePair from "./CasePair";
 import CasePalette from "./CasePalette";
 import CasePoster from "./CasePoster";
 import CaseRelated from "./CaseRelated";
@@ -77,6 +78,8 @@ function renderSection(section: CaseSection, index: number) {
       return <CasePoster key={key} section={section} />;
     case "cluster":
       return <CaseCluster key={key} section={section} />;
+    case "pair":
+      return <CasePair key={key} section={section} />;
     case "stagger":
       return <CaseStagger key={key} section={section} />;
     case "banner":

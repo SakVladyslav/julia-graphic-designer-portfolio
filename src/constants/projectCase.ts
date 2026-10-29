@@ -59,6 +59,27 @@ export interface CaseClusterSection extends CaseSectionBase {
   stack: readonly [CaseImage, CaseImage];
 }
 
+export interface CaseGrain {
+  src: string;
+  width: number;
+  height: number;
+  turned: boolean;
+}
+
+export interface CasePairFrame {
+  image: CaseImage;
+  /** Cover keeps the photo's proportions. Fill stretches it to the frame. */
+  fit: "cover" | "fill";
+  grain: CaseGrain;
+  mark?: CaseImage;
+}
+
+/** Two frames in one row, flush. They stack on a narrow screen. */
+export interface CasePairSection extends CaseSectionBase {
+  type: "pair";
+  frames: readonly [CasePairFrame, CasePairFrame];
+}
+
 export interface CaseStaggerFrame {
   image: CaseImage;
   caption: string;
@@ -212,6 +233,7 @@ export type CaseSection =
   | CaseMarksSection
   | CasePosterSection
   | CaseClusterSection
+  | CasePairSection
   | CaseStaggerSection
   | CaseBannerSection
   | CaseNoteSection

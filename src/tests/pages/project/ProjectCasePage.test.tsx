@@ -32,7 +32,7 @@ describe("ProjectCasePage", () => {
     expect(screen.getByRole("link", { name: /molfaria/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /amaryllis/i })).toBeInTheDocument();
     expect(
-      screen.getByRole("img", { name: /we refuse the cult of perfection/i }),
+      screen.getByRole("img", { name: /close-up of skin texture/i }),
     ).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Lovespace logo on white" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Lovespace logo on black" })).toBeInTheDocument();
@@ -45,6 +45,15 @@ describe("ProjectCasePage", () => {
     ).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Black Lovespace mailer box" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Red Lovespace mailer box" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Portrait with the Lovespace ring mark" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Lovespace shopping bag" })).toBeInTheDocument();
+    expect(
+      screen.queryByRole("img", {
+        name: "Lovespace shopping bag beside a portrait with the ring mark",
+      }),
+    ).not.toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Lovespace lightbox sign" })).toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: "Person wearing a black Lovespace t-shirt" }),
@@ -198,7 +207,7 @@ describe("ProjectCasePage", () => {
     renderCase("lovespace");
 
     const previousCover = screen.getByRole("img", {
-      name: "Lovespace visual identity, a portrait framed by an open ring",
+      name: "Lovespace visual identity, close-up of skin folds",
     });
 
     await user.click(screen.getByRole("link", { name: /molfaria/i }));

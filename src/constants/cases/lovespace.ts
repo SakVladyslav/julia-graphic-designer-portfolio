@@ -71,7 +71,7 @@ export const lovespaceCase: ProjectCase = {
   id: "lovespace",
   title: "Lovespace",
   sections: [
-    media("hero.webp", 2160, 1278, "Lovespace visual identity, a portrait framed by an open ring"),
+    media("hero.webp", 1896, 1185, "Lovespace visual identity, close-up of skin folds"),
     {
       type: "intro",
       spaceBefore: "block",
@@ -105,7 +105,7 @@ export const lovespaceCase: ProjectCase = {
         },
       },
     },
-    media("statement.webp", 1264, 746, "We refuse the cult of perfection"),
+    media("statement.webp", 1896, 1119, "Close-up of skin texture with natural stretch marks"),
     {
       type: "split",
       heading: "Brand philosophy",
@@ -115,7 +115,7 @@ export const lovespaceCase: ProjectCase = {
       ],
     },
     logoLockup,
-    media("posters.webp", 2371, 1481, "Three Lovespace posters"),
+    media("posters.webp", 1264, 1580, "Lovespace fitting-room poster"),
     {
       type: "palette",
       size: "tall",
@@ -168,48 +168,77 @@ export const lovespaceCase: ProjectCase = {
       type: "cluster",
       lead: {
         src: asset("mockup1.webp"),
-        width: 1256,
-        height: 1510,
+        width: 1248,
+        height: 1522,
         alt: "Open kraft Lovespace mailer box",
       },
       stack: [
         {
           src: asset("mockup2.webp"),
-          width: 1860,
-          height: 1110,
+          width: 1872,
+          height: 1119,
           alt: "Black Lovespace mailer box",
         },
         {
           src: asset("mockup3.webp"),
-          width: 1860,
-          height: 1110,
+          width: 1872,
+          height: 1119,
           alt: "Red Lovespace mailer box",
         },
       ],
     },
     media(
       "mockup4.webp",
-      2160,
-      1350,
+      1896,
+      1185,
       "Open Lovespace box with tissue paper and an instruction card",
       "stack",
     ),
-    media(
-      "mockup5.webp",
-      2160,
-      1350,
-      "Lovespace shopping bag beside a portrait with the ring mark",
-      "stack",
-    ),
-    media("mockup6.webp", 2160, 1350, "Lovespace instruction sheet", "stack"),
-    media(
-      "mockup7.webp",
-      2160,
-      1350,
-      "Lovespace campaign card and portrait with the ring mark",
-      "stack",
-    ),
-    media("Lovespace-15.webp", 2160, 1350, "Lovespace lightbox sign", "stack"),
+    {
+      type: "pair",
+      spaceBefore: "stack",
+      frames: [
+        {
+          image: {
+            src: asset("ring-portrait.webp"),
+            width: 1264,
+            height: 1580,
+            alt: "Portrait with the Lovespace ring mark",
+          },
+          fit: "cover",
+          grain: {
+            src: asset("lovespace-grain.webp"),
+            width: 1024,
+            height: 1024,
+            turned: true,
+          },
+          mark: {
+            src: asset("portrait-ring.svg"),
+            width: 290,
+            height: 276,
+            alt: "",
+          },
+        },
+        {
+          image: {
+            src: asset("shopping-bag.webp"),
+            width: 1264,
+            height: 1580,
+            alt: "Lovespace shopping bag",
+          },
+          fit: "fill",
+          grain: {
+            src: asset("lovespace-grain.webp"),
+            width: 1024,
+            height: 1024,
+            turned: false,
+          },
+        },
+      ],
+    },
+    media("mockup6.webp", 1700, 1076, "Lovespace instruction sheet", "stack"),
+    media("mockup7.webp", 1264, 1580, "Close-up of arms and knees with natural skin marks", "stack"),
+    media("Lovespace-15.webp", 1896, 1185, "Lovespace lightbox sign", "stack"),
     {
       type: "split",
       heading: "Extended palette",
@@ -269,7 +298,7 @@ export const lovespaceCase: ProjectCase = {
       ],
     },
     media("merch1.webp", 2400, 1599, "Two Lovespace tote bags", "block"),
-    media("merch2.webp", 2160, 2234, "Lovespace tote bag on a red sofa", "stack"),
-    media("merch3.webp", 2160, 1350, "Person wearing a black Lovespace t-shirt", "stack"),
+    media("merch2.webp", 1400, 1446, "Lovespace tote bag on a red sofa", "stack"),
+    media("merch3.webp", 1896, 1185, "Person wearing a black Lovespace t-shirt", "stack"),
   ],
 };
