@@ -26,6 +26,12 @@ describe("ProjectCasePage", () => {
     expect(document.title).toBe("Lovespace — Julia Samchuk");
     expect(screen.getByRole("heading", { level: 1, name: "Lovespace" })).toBeInTheDocument();
     expect(screen.getByText("Visual Identity Redesign")).toBeInTheDocument();
+    expect(
+      screen
+        .getByRole("img", { name: /close-up of skin folds/i })
+        .parentElement?.querySelector("source")
+        ?.getAttribute("srcset"),
+    ).toContain("hero-phone.webp");
     expect(screen.getByRole("heading", { name: "Brand philosophy" })).toBeInTheDocument();
     expect(screen.getByText("Kissed Lips")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
@@ -41,10 +47,26 @@ describe("ProjectCasePage", () => {
       screen.queryByRole("img", { name: "Lovespace logo on white, black, and red" }),
     ).not.toBeInTheDocument();
     expect(
-      screen.getByRole("img", { name: "Open kraft Lovespace mailer box" }),
-    ).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Black Lovespace mailer box" })).toBeInTheDocument();
+      screen
+        .getByRole("img", { name: "Open kraft Lovespace mailer box" })
+        .parentElement?.querySelector("source")
+        ?.getAttribute("srcset"),
+    ).toContain("mockup1-phone.webp");
+    expect(
+      screen
+        .getByRole("img", { name: "Black Lovespace mailer box" })
+        .parentElement?.querySelector("source")
+        ?.getAttribute("srcset"),
+    ).toContain("mockup2-phone.webp");
     expect(screen.getByRole("img", { name: "Red Lovespace mailer box" })).toBeInTheDocument();
+    expect(
+      screen
+        .getByRole("img", {
+          name: "Open Lovespace box with tissue paper and an instruction card",
+        })
+        .parentElement?.querySelector("source")
+        ?.getAttribute("srcset"),
+    ).toContain("mockup4-phone.webp");
     expect(
       screen.getByRole("img", { name: "Portrait with the Lovespace ring mark" }),
     ).toBeInTheDocument();

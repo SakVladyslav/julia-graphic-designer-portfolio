@@ -1,0 +1,32 @@
+@use "../../../styles/breakpoints" as *;
+
+@media (max-width: $bp-phone) {
+  .case-page--lovespace .case-media--hero img,
+  .case-page--lovespace .case-media--statement img {
+    aspect-ratio: 1026 / 1284;
+    object-fit: cover;
+  }
+
+  .case-page--lovespace .case-media--posters img,
+  .case-page--lovespace .case-media--box-inside img,
+  .case-page--lovespace .case-cluster > figure img,
+  .case-page--lovespace .case-cluster-stack > figure:first-child img {
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  // Packaging Showcase on phone: kraft, black, then open box — no red lid.
+  .case-page--lovespace .case-cluster-stack > figure:last-child {
+    display: none;
+  }
+
+  .case-page--lovespace .case-media--instructions img {
+    aspect-ratio: 1181 / 1476;
+    object-fit: cover;
+  }
+
+  .case-page--lovespace .case-media--tshirt img {
+    aspect-ratio: 1368 / 1040;
+    object-fit: cover;
+  }
+}

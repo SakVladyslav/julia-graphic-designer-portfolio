@@ -31,6 +31,23 @@ function media(
   return { type: "media", spaceBefore, image };
 }
 
+function withPhone(
+  section: CaseMediaSection,
+  file: string,
+  width: number,
+  height: number,
+  modifier: string,
+): CaseMediaSection {
+  return {
+    ...section,
+    modifier,
+    image: {
+      ...section.image,
+      phone: { src: asset(file), width, height },
+    },
+  };
+}
+
 const white = "#FFFFFF";
 const ink = "#2A2A2A";
 const kissedLips = "#A23C49";
@@ -71,7 +88,13 @@ export const lovespaceCase: ProjectCase = {
   id: "lovespace",
   title: "Lovespace",
   sections: [
-    media("hero.webp", 1896, 1185, "Lovespace visual identity, close-up of skin folds"),
+    withPhone(
+      media("hero.webp", 1896, 1185, "Lovespace visual identity, close-up of skin folds"),
+      "hero-phone.webp",
+      1023,
+      1284,
+      "hero",
+    ),
     {
       type: "intro",
       spaceBefore: "block",
@@ -105,7 +128,13 @@ export const lovespaceCase: ProjectCase = {
         },
       },
     },
-    media("statement.webp", 1896, 1119, "Close-up of skin texture with natural stretch marks"),
+    withPhone(
+      media("statement.webp", 1896, 1119, "Close-up of skin texture with natural stretch marks"),
+      "statement-phone.webp",
+      1026,
+      1284,
+      "statement",
+    ),
     {
       type: "split",
       heading: "Brand philosophy",
@@ -115,7 +144,13 @@ export const lovespaceCase: ProjectCase = {
       ],
     },
     logoLockup,
-    media("posters.webp", 1264, 1580, "Lovespace fitting-room poster"),
+    withPhone(
+      media("posters.webp", 1264, 1580, "Lovespace fitting-room poster"),
+      "posters-phone.webp",
+      1368,
+      1368,
+      "posters",
+    ),
     {
       type: "palette",
       size: "tall",
@@ -171,6 +206,7 @@ export const lovespaceCase: ProjectCase = {
         width: 1248,
         height: 1522,
         alt: "Open kraft Lovespace mailer box",
+        phone: { src: asset("mockup1-phone.webp"), width: 1368, height: 1368 },
       },
       stack: [
         {
@@ -178,6 +214,7 @@ export const lovespaceCase: ProjectCase = {
           width: 1872,
           height: 1119,
           alt: "Black Lovespace mailer box",
+          phone: { src: asset("mockup2-phone.webp"), width: 1368, height: 1368 },
         },
         {
           src: asset("mockup3.webp"),
@@ -187,12 +224,18 @@ export const lovespaceCase: ProjectCase = {
         },
       ],
     },
-    media(
-      "mockup4.webp",
-      1896,
-      1185,
-      "Open Lovespace box with tissue paper and an instruction card",
-      "stack",
+    withPhone(
+      media(
+        "mockup4.webp",
+        1896,
+        1185,
+        "Open Lovespace box with tissue paper and an instruction card",
+        "stack",
+      ),
+      "mockup4-phone.webp",
+      1368,
+      1368,
+      "box-inside",
     ),
     {
       type: "pair",
@@ -236,8 +279,20 @@ export const lovespaceCase: ProjectCase = {
         },
       ],
     },
-    media("mockup6.webp", 1700, 1076, "Lovespace instruction sheet", "stack"),
-    media("mockup7.webp", 1264, 1580, "Close-up of arms and knees with natural skin marks", "stack"),
+    withPhone(
+      media("mockup6.webp", 1700, 1076, "Lovespace instruction sheet", "stack"),
+      "mockup6-phone.webp",
+      1181,
+      1476,
+      "instructions",
+    ),
+    media(
+      "mockup7.webp",
+      1264,
+      1580,
+      "Close-up of arms and knees with natural skin marks",
+      "stack",
+    ),
     media("Lovespace-15.webp", 1896, 1185, "Lovespace lightbox sign", "stack"),
     {
       type: "split",
@@ -299,6 +354,12 @@ export const lovespaceCase: ProjectCase = {
     },
     media("merch1.webp", 2400, 1599, "Two Lovespace tote bags", "block"),
     media("merch2.webp", 1400, 1446, "Lovespace tote bag on a red sofa", "stack"),
-    media("merch3.webp", 1896, 1185, "Person wearing a black Lovespace t-shirt", "stack"),
+    withPhone(
+      media("merch3.webp", 1896, 1185, "Person wearing a black Lovespace t-shirt", "stack"),
+      "merch3-phone.webp",
+      1368,
+      1040,
+      "tshirt",
+    ),
   ],
 };
