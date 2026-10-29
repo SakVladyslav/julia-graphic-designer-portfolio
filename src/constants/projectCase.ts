@@ -26,6 +26,8 @@ export interface CaseImage {
   height: number;
   alt: string;
   phone?: CaseImagePhone;
+  /** Centered brand mark drawn over the photo (for example the Lovespace ring). */
+  mark?: CaseImage;
 }
 
 export interface CaseIntroLink {
@@ -43,6 +45,15 @@ export interface CaseIntroSection extends CaseSectionBase {
   link?: CaseIntroLink;
 }
 
+/** Centered quote over a media frame (Lovespace brand statement). */
+export interface CaseMediaQuote {
+  panel: CaseImage;
+  accent: CaseImage;
+  lines: readonly [string, string];
+  /** Word inside `lines[0]` that sits on the accent stroke. */
+  accentWord: string;
+}
+
 export interface CaseMediaSection extends CaseSectionBase {
   type: "media";
   image: CaseImage;
@@ -51,6 +62,7 @@ export interface CaseMediaSection extends CaseSectionBase {
   framed?: boolean;
   /** Extra `case-media--*` classes. Space-separated, for frame-specific crops. */
   modifier?: string;
+  quote?: CaseMediaQuote;
 }
 
 export interface CaseClusterSection extends CaseSectionBase {

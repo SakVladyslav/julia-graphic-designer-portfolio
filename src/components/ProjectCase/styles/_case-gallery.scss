@@ -178,7 +178,13 @@
   max-width: none;
 }
 
-.case-pair-mark {
+.case-media-stage {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.case-ring {
   position: absolute;
   top: 50%;
   left: $lovespace-ring-inset-x;
@@ -188,7 +194,7 @@
   pointer-events: none;
 }
 
-.case-pair-mark img {
+.case-ring img {
   display: block;
   width: 100%;
   height: 100%;

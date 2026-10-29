@@ -57,7 +57,7 @@ export default function CasePair({ section }: CasePairProps) {
               </div>
             )}
             {frame.mark === undefined ? null : (
-              <div className="case-pair-mark" aria-hidden="true">
+              <div className="case-ring" aria-hidden="true">
                 <img
                   src={frame.mark.src}
                   alt=""

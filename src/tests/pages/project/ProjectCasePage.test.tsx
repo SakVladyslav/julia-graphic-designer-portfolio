@@ -29,17 +29,29 @@ describe("ProjectCasePage", () => {
     expect(
       screen
         .getByRole("img", { name: /close-up of skin folds/i })
-        .parentElement?.querySelector("source")
+        .closest("picture")
+        ?.querySelector("source")
         ?.getAttribute("srcset"),
     ).toContain("hero-phone.webp");
+    expect(
+      screen.getByRole("img", { name: /close-up of skin folds/i }).closest(".case-media-stage")
+        ?.querySelector(".case-ring img"),
+    ).toHaveAttribute("src", expect.stringContaining("portrait-ring.svg"));
     expect(screen.getByRole("heading", { name: "Brand philosophy" })).toBeInTheDocument();
     expect(screen.getByText("Kissed Lips")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /molfaria/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /amaryllis/i })).toBeInTheDocument();
     expect(
-      screen.getByRole("img", { name: /close-up of skin texture/i }),
+      screen.getByRole("img", { name: /we refuse the cult of perfection/i }),
     ).toBeInTheDocument();
+    expect(document.querySelector(".case-statement-copy")).toHaveTextContent(
+      /We refuse the cult\s*of perfection/,
+    );
+    expect(document.querySelector(".case-statement-panel")).toHaveAttribute(
+      "src",
+      expect.stringContaining("statement-ring.svg"),
+    );
     expect(screen.getByRole("img", { name: "Lovespace logo on white" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Lovespace logo on black" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Lovespace logo on red" })).toBeInTheDocument();
@@ -47,36 +59,35 @@ describe("ProjectCasePage", () => {
       screen.queryByRole("img", { name: "Lovespace logo on white, black, and red" }),
     ).not.toBeInTheDocument();
     expect(
-      screen
-        .getByRole("img", { name: "Open kraft Lovespace mailer box" })
-        .parentElement?.querySelector("source")
-        ?.getAttribute("srcset"),
-    ).toContain("mockup1-phone.webp");
+      screen.getByRole("img", { name: "Two Lovespace posters side by side", hidden: true }),
+    ).toHaveAttribute("src", expect.stringContaining("posters-duo-phone.webp"));
     expect(
-      screen
-        .getByRole("img", { name: "Black Lovespace mailer box" })
-        .parentElement?.querySelector("source")
-        ?.getAttribute("srcset"),
-    ).toContain("mockup2-phone.webp");
-    expect(screen.getByRole("img", { name: "Red Lovespace mailer box" })).toBeInTheDocument();
+      screen.getAllByRole("img", { name: "Open kraft Lovespace mailer box", hidden: true }),
+    ).toHaveLength(2);
     expect(
-      screen
-        .getByRole("img", {
-          name: "Open Lovespace box with tissue paper and an instruction card",
-        })
-        .parentElement?.querySelector("source")
-        ?.getAttribute("srcset"),
-    ).toContain("mockup4-phone.webp");
+      screen.getAllByRole("img", { name: "Black Lovespace mailer box", hidden: true }),
+    ).toHaveLength(2);
     expect(
-      screen.getByRole("img", { name: "Portrait with the Lovespace ring mark" }),
-    ).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Lovespace shopping bag" })).toBeInTheDocument();
+      screen.getAllByRole("img", { name: "Red Lovespace mailer box", hidden: true }),
+    ).toHaveLength(2);
     expect(
-      screen.queryByRole("img", {
-        name: "Lovespace shopping bag beside a portrait with the ring mark",
+      screen.getAllByRole("img", {
+        name: "Open Lovespace box with tissue paper and an instruction card",
+        hidden: true,
       }),
-    ).not.toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Lovespace lightbox sign" })).toBeInTheDocument();
+    ).toHaveLength(2);
+    expect(
+      screen.getAllByRole("img", { name: "Portrait with the Lovespace ring mark", hidden: true }),
+    ).toHaveLength(2);
+    expect(
+      screen.getAllByRole("img", { name: "Lovespace shopping bag", hidden: true }),
+    ).toHaveLength(2);
+    expect(
+      screen.getAllByRole("img", { name: "Lovespace fitting-room poster", hidden: true }),
+    ).toHaveLength(2);
+    expect(
+      screen.getAllByRole("img", { name: "Lovespace lightbox sign", hidden: true }),
+    ).toHaveLength(2);
     expect(
       screen.getByRole("img", { name: "Person wearing a black Lovespace t-shirt" }),
     ).toBeInTheDocument();
