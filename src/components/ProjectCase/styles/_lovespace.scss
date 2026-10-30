@@ -2,6 +2,7 @@
 @use "../../../styles/typography" as *;
 @use "../../../styles/spacing" as *;
 @use "../../../styles/sizes" as *;
+@use "./case-scale" as *;
 
 $lovespace-ink: #2a2a2a;
 $lovespace-panel: #f6f6f6;
@@ -16,16 +17,9 @@ $lovespace-statement-size: 5.5556cqw;
   display: none;
 }
 
-.case-page--lovespace .case-intro h1 {
-  line-height: 1.1;
-}
-
-.case-page--lovespace .case-subtitle {
-  line-height: 1.3;
-}
-
-.case-page--lovespace .case-intro-copy {
-  padding-top: $space-40;
+.case-page--lovespace {
+  @include case-intro-1440;
+  @include case-related-1440;
 }
 
 // Figma strokes the tag inside its box.
@@ -44,6 +38,7 @@ $lovespace-statement-size: 5.5556cqw;
 
 .case-page--lovespace .case-comparison-panel figcaption {
   color: $lovespace-ink;
+  font-family: $font-family-lovespace;
   font-size: $font-size-20;
   line-height: 1.2;
   opacity: 0.8;
@@ -133,7 +128,6 @@ $lovespace-statement-size: 5.5556cqw;
   pointer-events: none;
 }
 
-.case-page--lovespace .case-comparison-panel figcaption,
 .case-page--lovespace .case-color-name,
 .case-page--lovespace .case-color-specs {
   font-family: $font-family-lovespace;
@@ -166,16 +160,219 @@ $lovespace-statement-size: 5.5556cqw;
   object-fit: cover;
 }
 
-.case-page--lovespace .case-related {
-  margin-top: $space-160;
-  padding-top: $space-128;
-  padding-bottom: $space-64;
+// 1200 frame. The lower bound keeps these values off the phone layout, which sets only some of them.
+@media (min-width: #{$bp-phone + 1px}) and (max-width: #{$bp-desktop - 1px}) {
+  .case-page--lovespace {
+    padding-top: fluid($space-24, $case-page-offset, $bp-laptop, $bp-desktop);
+
+    .case-flow > .case-section--section:not(:first-child) {
+      margin-top: fluid(136px, $space-144, $bp-laptop, $bp-desktop);
+    }
+
+    @include case-intro-1200;
+
+    .case-comparison-panel {
+      height: fluid(540px, $case-comparison-height, $bp-laptop, $bp-desktop);
+    }
+
+    // The tiles keep their 500px and 300px heights while the row narrows.
+    .case-marks--lockup li {
+      aspect-ratio: auto;
+      height: 300px;
+    }
+
+    .case-marks--lockup li:first-child {
+      height: 500px;
+    }
+
+    // 720px at 1200 and 59.3% of 1264px at 1440.
+    .case-marks--lockup li:first-child img {
+      width: fluid(720px, 749.6px, $bp-laptop, $bp-desktop);
+    }
+
+    .case-palette--tall {
+      padding: fluid(120px, $space-128, $bp-laptop, $bp-desktop)
+        fluid(93px, 124px, $bp-laptop, $bp-desktop);
+    }
+
+    .case-palette--tall .case-color-info--fill {
+      gap: fluid(104px, $case-palette-copy-gap, $bp-laptop, $bp-desktop);
+      min-height: fluid(268px, $case-palette-info-tall, $bp-laptop, $bp-desktop);
+    }
+
+    // Below 1440 the row is as tall as the stacked boxes; the lead fills it instead of being clipped.
+    .case-cluster {
+      align-items: stretch;
+      aspect-ratio: auto;
+    }
+
+    .case-cluster > figure {
+      height: 100%;
+    }
+
+    .case-cluster > figure img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .case-palette--short .case-color-info--fill {
+      min-height: fluid(212px, $case-palette-info-short, $bp-laptop, $bp-desktop);
+      padding-top: fluid(112px, $case-palette-short-padding-top, $bp-laptop, $bp-desktop);
+    }
+
+    @include case-related-1200;
+  }
 }
 
-.case-page--lovespace .case-related h2 {
-  margin-bottom: $space-48;
-  font-size: $font-size-72;
-  line-height: 1.1;
+// 1024 frame. These bridge up to the 1200 values; below 1024 they hold until the next frame.
+@media (min-width: #{$bp-phone + 1px}) and (max-width: #{$bp-laptop - 1px}) {
+  .case-page--lovespace {
+    padding-top: fluid($space-16, $space-24, $bp-tablet, $bp-laptop);
+
+    // The intro is the only block that does not follow a split.
+    .case-flow > .case-section--block {
+      margin-top: fluid($space-56, $space-64, $bp-tablet, $bp-laptop);
+    }
+
+    .case-flow > .case-section--section:not(:first-child) {
+      margin-top: fluid($space-128, 136px, $bp-tablet, $bp-laptop);
+    }
+
+    // Logos, the short palette, and the first merch photo sit under their headings.
+    .case-flow > .case-split + * {
+      margin-top: fluid($space-48, $space-56, $bp-tablet, $bp-laptop);
+    }
+
+    @include case-intro-1024;
+
+    .case-comparison-panel {
+      height: fluid(460px, 540px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-split h2 {
+      font-size: fluid($font-size-32, $font-size-40, $bp-tablet, $bp-laptop);
+    }
+
+    // 16.91% inset on the tile at both 1024 and 1200. From 1200 up the inset changes, so that range stays in px.
+    .case-marks--lockup li:first-child img {
+      width: 66.18%;
+    }
+
+    .case-palette--tall {
+      padding: 120px fluid(79px, 93px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-palette--tall .case-color-name {
+      font-size: fluid(26px, $font-size-32, $bp-tablet, $bp-laptop);
+    }
+
+    .case-color-info--fill {
+      padding-inline: fluid($space-20, $space-24, $bp-tablet, $bp-laptop);
+    }
+
+    .case-color-info--fill .case-color-specs {
+      font-size: fluid($font-size-base, $font-size-20, $bp-tablet, $bp-laptop);
+    }
+
+    // Gap and type already sum to the frame. The 1200 min-height would leave empty space under the specs.
+    .case-palette--tall .case-color-info--fill,
+    .case-palette--short .case-color-info--fill {
+      min-height: auto;
+    }
+
+    .case-palette--tall .case-color-info--fill {
+      gap: fluid($space-80, 104px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-palette--short .case-color-info--fill {
+      padding-top: fluid(96px, 112px, $bp-tablet, $bp-laptop);
+    }
+
+    @include case-related-1024;
+  }
+}
+
+// 768 frame. Bridges up to the 1024 values; below 768 they hold until the phone layout.
+@media (min-width: #{$bp-phone + 1px}) and (max-width: #{$bp-tablet - 1px}) {
+  .case-page--lovespace {
+    // The shared fallback stacks these at 800px. This frame keeps the desktop columns.
+    .case-intro,
+    .case-split,
+    .case-comparison,
+    .case-marks--lockup,
+    .case-cluster,
+    .case-pair,
+    .case-related-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .case-palette--tall {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .case-palette--short {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .case-pair {
+      gap: 0;
+    }
+
+    .case-flow > .case-section--section:not(:first-child) {
+      margin-top: fluid(96px, $space-128, $bp-stack, $bp-tablet);
+    }
+
+    .case-flow > .case-split + * {
+      margin-top: fluid($space-40, $space-48, $bp-stack, $bp-tablet);
+    }
+
+    @include case-intro-768;
+
+    .case-comparison-panel {
+      height: fluid(340px, 460px, $bp-stack, $bp-tablet);
+    }
+
+    .case-comparison-panel figcaption {
+      font-size: fluid($font-size-base, $font-size-20, $bp-stack, $bp-tablet);
+    }
+
+    .case-split h2 {
+      font-size: fluid($font-size-28, $font-size-32, $bp-stack, $bp-tablet);
+    }
+
+    .case-palette {
+      gap: fluid($space-8, $space-16, $bp-stack, $bp-tablet);
+    }
+
+    .case-palette--tall {
+      padding: fluid(88px, 120px, $bp-stack, $bp-tablet)
+        fluid($space-32, 79px, $bp-stack, $bp-tablet);
+    }
+
+    .case-color-info--fill {
+      padding: fluid($space-24, $space-32, $bp-stack, $bp-tablet)
+        fluid($space-12, $space-20, $bp-stack, $bp-tablet)
+        fluid($space-20, $space-24, $bp-stack, $bp-tablet);
+    }
+
+    .case-palette--tall .case-color-info--fill {
+      gap: fluid($space-64, $space-80, $bp-stack, $bp-tablet);
+    }
+
+    .case-palette--tall .case-color-name {
+      font-size: fluid($font-size-22, 26px, $bp-stack, $bp-tablet);
+    }
+
+    .case-palette--short .case-color-info--fill {
+      padding-top: fluid($space-80, 96px, $bp-stack, $bp-tablet);
+    }
+
+    .case-palette--short .case-color-info--fill .case-color-specs {
+      font-size: fluid($font-size-15, $font-size-base, $bp-stack, $bp-tablet);
+    }
+
+    @include case-related-768;
+  }
 }
 
 @media (max-width: $bp-phone) {
@@ -220,6 +417,10 @@ $lovespace-statement-size: 5.5556cqw;
 
   .case-page--lovespace .case-intro-title {
     gap: $space-12;
+  }
+
+  .case-page--lovespace .case-intro h1 {
+    font-size: $font-size-48;
   }
 
   .case-page--lovespace .case-eyebrow {
