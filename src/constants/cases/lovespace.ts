@@ -51,6 +51,10 @@ function withPhone(
   };
 }
 
+function post(number: string, alt: string): CaseImage {
+  return { src: asset(`post-${number}.webp`), width: 832, height: 1040, alt };
+}
+
 const white = "#FFFFFF";
 const ink = "#2A2A2A";
 const kissedLips = "#A23C49";
@@ -421,7 +425,17 @@ export const lovespaceCase: ProjectCase = {
         },
       ],
     },
-    media("social.webp", 1893, 1571, "Lovespace social media posts"),
+    {
+      type: "grid",
+      images: [
+        post("01", "Lovespace post: questions for a gynecologist"),
+        post("02", "Lovespace post: don't be perfect, be yourself"),
+        post("03", "Lovespace post: how to choose a lubricant"),
+        post("04", "Lovespace post: where there are no templates, only you"),
+        post("05", "Lovespace post: your period, your vibe"),
+        post("06", "Lovespace post: a woman's morning be like"),
+      ],
+    },
     {
       type: "split",
       heading: "Brand phrases",
@@ -430,7 +444,13 @@ export const lovespaceCase: ProjectCase = {
       ],
     },
     media("merch1.webp", 2400, 1599, "Two Lovespace tote bags", "block", "wide"),
-    media("merch2.webp", 1400, 1446, "Lovespace tote bag on a red sofa", "stack"),
+    withPhone(
+      media("merch2.webp", 1400, 1446, "Lovespace tote bag on a red sofa", "stack"),
+      "merch2-phone.webp",
+      1368,
+      1712,
+      "tote",
+    ),
     withPhone(
       media("merch3.webp", 1896, 1185, "Person wearing a black Lovespace t-shirt", "stack"),
       "merch3-phone.webp",

@@ -1,6 +1,7 @@
 import CaseBanner from "./CaseBanner";
 import CaseCluster from "./CaseCluster";
 import CaseComparison from "./CaseComparison";
+import CaseGrid from "./CaseGrid";
 import CaseIconBoard from "./CaseIconBoard";
 import CaseIntro from "./CaseIntro";
 import CaseLogoPair from "./CaseLogoPair";
@@ -82,6 +83,8 @@ function renderSection(section: CaseSection, index: number) {
       return <CaseCluster key={key} section={section} />;
     case "pair":
       return <CasePair key={key} section={section} />;
+    case "grid":
+      return <CaseGrid key={key} section={section} />;
     case "stagger":
       return <CaseStagger key={key} section={section} />;
     case "banner":

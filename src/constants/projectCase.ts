@@ -92,6 +92,12 @@ export interface CasePairSection extends CaseSectionBase {
   frames: readonly [CasePairFrame, CasePairFrame];
 }
 
+export interface CaseGridSection extends CaseSectionBase {
+  type: "grid";
+  /** Reading order on desktop. Phone reordering lives in the case stylesheet. */
+  images: readonly CaseImage[];
+}
+
 export interface CaseStaggerFrame {
   image: CaseImage;
   caption: string;
@@ -246,6 +252,7 @@ export type CaseSection =
   | CasePosterSection
   | CaseClusterSection
   | CasePairSection
+  | CaseGridSection
   | CaseStaggerSection
   | CaseBannerSection
   | CaseNoteSection

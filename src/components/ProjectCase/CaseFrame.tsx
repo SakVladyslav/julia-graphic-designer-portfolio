@@ -13,6 +13,8 @@ interface CaseFrameProps {
   className?: string;
   style?: CSSProperties;
   quote?: CaseMediaQuote;
+  /** Slot width for `srcset`. Defaults to a full-bleed frame. */
+  sizes?: string;
 }
 
 function quoteCopy(quote: CaseMediaQuote): ReactNode {
@@ -53,6 +55,7 @@ export default function CaseFrame({
   className,
   style,
   quote,
+  sizes = caseImageSizes(),
 }: CaseFrameProps) {
   const captionClass = captionAlign === "end" ? "case-caption case-caption--end" : "case-caption";
   const srcSet = optionalSrcSet(image.src, image.width);
@@ -61,7 +64,7 @@ export default function CaseFrame({
       className="case-media-photo"
       src={image.src}
       srcSet={srcSet}
-      sizes={srcSet === undefined ? undefined : caseImageSizes()}
+      sizes={srcSet === undefined ? undefined : sizes}
       alt={image.alt}
       width={image.width}
       height={image.height}

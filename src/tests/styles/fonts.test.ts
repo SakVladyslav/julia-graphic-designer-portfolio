@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 
@@ -59,5 +59,14 @@ describe("homepage type", () => {
     expect(html).not.toContain("/fonts/bbg-type.css");
     expect(faces).toContain("/fonts/e-Ukraine-Light.woff2");
     expect(faces).not.toContain(".otf");
+  });
+
+  it("finds every font face file in public", () => {
+    const faces = readProjectFile("src/styles/_fonts.scss");
+    const urls = [...faces.matchAll(/url\("(\/fonts\/[^"]+)"\)/g)].map((match) => match[1]);
+    const missing = urls.filter((url) => !existsSync(path.join(process.cwd(), "public", url)));
+
+    expect(urls).toContain("/fonts/MazzardM-Regular.woff2");
+    expect(missing).toEqual([]);
   });
 });

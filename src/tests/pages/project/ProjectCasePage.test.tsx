@@ -34,7 +34,9 @@ describe("ProjectCasePage", () => {
         ?.getAttribute("srcset"),
     ).toContain("hero-phone.webp");
     expect(
-      screen.getByRole("img", { name: /close-up of skin folds/i }).closest(".case-media-stage")
+      screen
+        .getByRole("img", { name: /close-up of skin folds/i })
+        .closest(".case-media-stage")
         ?.querySelector(".case-ring img"),
     ).toHaveAttribute("src", expect.stringContaining("portrait-ring.svg"));
     expect(screen.getByRole("heading", { name: "Brand philosophy" })).toBeInTheDocument();
@@ -91,6 +93,16 @@ describe("ProjectCasePage", () => {
     expect(
       screen.getByRole("img", { name: "Person wearing a black Lovespace t-shirt" }),
     ).toBeInTheDocument();
+    const posts = [...document.querySelectorAll(".case-grid img")];
+    expect(posts.map((post) => post.getAttribute("src"))).toEqual(
+      ["01", "02", "03", "04", "05", "06"].map((number) =>
+        expect.stringContaining(`post-${number}.webp`),
+      ),
+    );
+    expect(posts[0]).toHaveAttribute("srcset", expect.stringContaining("post-01-640w.webp 640w"));
+    expect(
+      screen.queryByRole("img", { name: "Lovespace social media posts" }),
+    ).not.toBeInTheDocument();
     expect(
       screen.queryByRole("img", { name: /packaging, signage, bags/i }),
     ).not.toBeInTheDocument();

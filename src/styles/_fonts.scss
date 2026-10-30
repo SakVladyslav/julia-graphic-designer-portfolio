@@ -169,6 +169,26 @@
   src: url("/fonts/UAFMemory-Medium.woff2") format("woff2");
 }
 
+/* Mazzard M Regular and SemiBold
+   Oleh Lishchuk, Pepper Type, 2019. Commercial license with web embedding.
+   https://pprtype.com/fonts/mazzard-m */
+
+@font-face {
+  font-family: "Mazzard M";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/MazzardM-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Mazzard M";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/MazzardM-SemiBold.woff2") format("woff2");
+}
+
 /* Lexend Deca Regular
    Thomas Jockin, 2018. SIL Open Font License 1.1.
    https://fonts.google.com/specimen/Lexend+Deca */
