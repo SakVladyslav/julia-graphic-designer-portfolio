@@ -21,6 +21,8 @@ export default function CasePair({ section }: CasePairProps) {
         const photoSet = optionalSrcSet(frame.image.src, frame.image.width);
         const grainSet = optionalSrcSet(frame.grain.src, frame.grain.width);
         const fitClass = frame.fit === "cover" ? "case-pair-photo--cover" : "case-pair-photo--fill";
+        const grainStyle =
+          frame.grain.opacity === undefined ? undefined : { opacity: frame.grain.opacity };
         const grain = (
           <img
             src={frame.grain.src}
@@ -49,10 +51,12 @@ export default function CasePair({ section }: CasePairProps) {
             />
             {frame.grain.turned ? (
               <div className="case-pair-grain case-pair-grain--turned" aria-hidden="true">
-                <span className="case-pair-grain-turn">{grain}</span>
+                <span className="case-pair-grain-turn" style={grainStyle}>
+                  {grain}
+                </span>
               </div>
             ) : (
-              <div className="case-pair-grain" aria-hidden="true">
+              <div className="case-pair-grain" style={grainStyle} aria-hidden="true">
                 {grain}
               </div>
             )}

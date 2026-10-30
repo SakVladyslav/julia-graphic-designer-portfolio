@@ -4,12 +4,68 @@
 @use "../../../styles/sizes" as *;
 
 $lovespace-ink: #2a2a2a;
+$lovespace-panel: #f6f6f6;
 $lovespace-palette-grain: url("/projects/lovespace/lovespace-grain.webp");
 $lovespace-palette-grain-tile: 1024px;
 $lovespace-palette-grain-opacity: 0.07;
+$lovespace-statement-panel: url("/projects/lovespace/statement-ring.svg");
+// 70.222px on the 1264px photo: the quote scales with the photo, not the viewport.
+$lovespace-statement-size: 5.5556cqw;
 
 .case-page--lovespace .case-media--phone {
   display: none;
+}
+
+.case-page--lovespace .case-intro h1 {
+  line-height: 1.1;
+}
+
+.case-page--lovespace .case-subtitle {
+  line-height: 1.3;
+}
+
+.case-page--lovespace .case-intro-copy {
+  padding-top: $space-40;
+}
+
+// Figma strokes the tag inside its box.
+.case-page--lovespace .case-intro .case-tags li {
+  padding: calc(#{$space-4} - #{$project-tag-border-width})
+    calc(#{$space-12} - #{$project-tag-border-width});
+}
+
+.case-page--lovespace .case-flow > .case-split + * {
+  margin-top: $space-56;
+}
+
+.case-page--lovespace .case-comparison-panel {
+  background: $lovespace-panel;
+}
+
+.case-page--lovespace .case-comparison-panel figcaption {
+  color: $lovespace-ink;
+  font-size: $font-size-20;
+  line-height: 1.2;
+  opacity: 0.8;
+}
+
+.case-page--lovespace .case-comparison-panel img {
+  max-width: none;
+}
+
+// Logo width over the 628px panel.
+.case-page--lovespace .case-comparison-panel:first-child img {
+  width: 71.34%;
+}
+
+.case-page--lovespace .case-comparison-panel:last-child img {
+  width: 55.9%;
+}
+
+// 388.7px ring on the 1264px cover.
+.case-page--lovespace .case-media--hero .case-ring {
+  left: 34.62%;
+  right: 34.62%;
 }
 
 // Size containment lives on the absolute overlay: on the stage it would collapse the photo's height.
@@ -22,18 +78,23 @@ $lovespace-palette-grain-opacity: 0.07;
   pointer-events: none;
 }
 
+// The mask keeps the backdrop blur inside the ring shape.
 .case-page--lovespace .case-statement-panel {
   position: absolute;
-  // 284/342 on the 390 frame; cap by height so landscape desktop stays inside the photo.
-  width: min(83.04cqw, calc(79cqh * 284 / 248));
+  // 284/342 on the 390 frame; 605.67/746 tall on the 1440 frame.
+  width: min(83.04cqw, calc(81.19cqh * 284 / 248));
   height: auto;
   aspect-ratio: 284 / 248;
   max-width: none;
   object-fit: fill;
+  backdrop-filter: blur(fluid(3.88px, 10px, 390px, $bp-desktop));
+  mask: $lovespace-statement-panel center / 100% 100% no-repeat;
 }
 
+// Figma sets the quote 7px below the photo's centre.
 .case-page--lovespace .case-statement-copy {
   position: relative;
+  top: 0.94cqh;
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -41,7 +102,7 @@ $lovespace-palette-grain-opacity: 0.07;
   margin: 0;
   color: $lovespace-ink;
   font-family: $font-family-lovespace;
-  font-size: fluid($font-size-30, $font-size-48, 390px, $bp-desktop);
+  font-size: $lovespace-statement-size;
   font-weight: 400;
   line-height: 1.1;
   text-align: center;
@@ -56,14 +117,19 @@ $lovespace-palette-grain-opacity: 0.07;
   display: inline-block;
 }
 
+.case-page--lovespace .case-statement-accent picture {
+  display: contents;
+}
+
+// 210.67px stroke on 70.22px type.
 .case-page--lovespace .case-statement-accent img {
   position: absolute;
   left: 50%;
-  top: 55%;
-  width: 145%;
+  top: 50%;
+  width: 3em;
   max-width: none;
   height: auto;
-  transform: translate(-58%, -50%);
+  transform: translate(-50%, -50%);
   pointer-events: none;
 }
 
@@ -71,6 +137,45 @@ $lovespace-palette-grain-opacity: 0.07;
 .case-page--lovespace .case-color-name,
 .case-page--lovespace .case-color-specs {
   font-family: $font-family-lovespace;
+}
+
+.case-page--lovespace .case-color-name {
+  font-weight: 600;
+}
+
+.case-page--lovespace .case-palette--tall {
+  position: relative;
+  isolation: isolate;
+  padding: $space-128 124px;
+  background: #fff;
+}
+
+.case-page--lovespace .case-palette--tall::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: $lovespace-palette-grain top left / $lovespace-palette-grain-tile
+    $lovespace-palette-grain-tile;
+  opacity: $lovespace-palette-grain-opacity;
+  pointer-events: none;
+}
+
+.case-page--lovespace .case-media--tote .case-media-photo {
+  aspect-ratio: 1264 / 1307;
+  object-fit: cover;
+}
+
+.case-page--lovespace .case-related {
+  margin-top: $space-160;
+  padding-top: $space-128;
+  padding-bottom: $space-64;
+}
+
+.case-page--lovespace .case-related h2 {
+  margin-bottom: $space-48;
+  font-size: $font-size-72;
+  line-height: 1.1;
 }
 
 @media (max-width: $bp-phone) {
@@ -100,6 +205,12 @@ $lovespace-palette-grain-opacity: 0.07;
   .case-page--lovespace .case-related {
     margin-top: $space-80;
     padding-top: $space-80;
+    padding-bottom: 0;
+  }
+
+  .case-page--lovespace .case-related h2 {
+    margin-bottom: $space-32;
+    font-size: $font-size-40;
   }
 
   .case-page--lovespace .case-flow > .case-intro {
@@ -115,13 +226,8 @@ $lovespace-palette-grain-opacity: 0.07;
     font-size: $font-size-14;
   }
 
-  .case-page--lovespace .case-intro h1 {
-    line-height: 1.1;
-  }
-
   .case-page--lovespace .case-subtitle {
     font-size: $font-size-20;
-    line-height: 1.3;
   }
 
   .case-page--lovespace .case-copy {
@@ -138,12 +244,6 @@ $lovespace-palette-grain-opacity: 0.07;
     margin-inline-end: -$space-2;
   }
 
-  // Figma strokes the tag inside its 28px box.
-  .case-page--lovespace .case-intro .case-tags li {
-    padding: calc(#{$space-4} - #{$project-tag-border-width})
-      calc(#{$space-12} - #{$project-tag-border-width});
-  }
-
   .case-page--lovespace .case-comparison-panel {
     height: auto;
     aspect-ratio: 342 / 220;
@@ -152,13 +252,7 @@ $lovespace-palette-grain-opacity: 0.07;
   .case-page--lovespace .case-comparison-panel figcaption {
     top: $space-16;
     left: $space-16;
-    color: $lovespace-ink;
-    line-height: 1.2;
-    opacity: 0.8;
-  }
-
-  .case-page--lovespace .case-comparison-panel img {
-    max-width: none;
+    font-size: $font-size-base;
   }
 
   .case-page--lovespace .case-comparison-panel:first-child img {
@@ -204,10 +298,12 @@ $lovespace-palette-grain-opacity: 0.07;
   }
 
   .case-page--lovespace .case-statement-copy {
+    top: 0;
     font-size: $font-size-30;
   }
 
   .case-page--lovespace .case-statement-accent img {
+    top: 55%;
     width: 116%;
     transform: translate(-52%, -50%);
   }
@@ -215,7 +311,6 @@ $lovespace-palette-grain-opacity: 0.07;
   .case-page--lovespace .case-media--phone .case-media-photo,
   .case-page--lovespace .case-media--hero .case-media-photo,
   .case-page--lovespace .case-media--statement .case-media-photo,
-  .case-page--lovespace .case-media--tote .case-media-photo,
   .case-page--lovespace .case-media--tshirt .case-media-photo {
     object-fit: cover;
   }
@@ -242,31 +337,8 @@ $lovespace-palette-grain-opacity: 0.07;
   }
 
   .case-page--lovespace .case-palette--tall {
-    position: relative;
-    isolation: isolate;
     gap: $space-8;
     padding: $space-64 $space-40;
-    background: #fff;
-  }
-
-  .case-page--lovespace .case-palette--tall::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: $lovespace-palette-grain top left / $lovespace-palette-grain-tile
-      $lovespace-palette-grain-tile;
-    opacity: $lovespace-palette-grain-opacity;
-    pointer-events: none;
-  }
-
-  .case-page--lovespace .case-color-photo {
-    height: auto;
-  }
-
-  .case-page--lovespace .case-palette--tall .case-color-photo {
-    aspect-ratio: 984 / 540;
-    object-position: top;
   }
 
   .case-page--lovespace .case-palette--tall .case-color-info--fill {
@@ -276,7 +348,6 @@ $lovespace-palette-grain-opacity: 0.07;
 
   .case-page--lovespace .case-palette--tall .case-color-name {
     font-size: $font-size-20;
-    font-weight: 600;
   }
 
   .case-page--lovespace .case-palette--tall .case-color-info--fill .case-color-specs {
@@ -286,10 +357,6 @@ $lovespace-palette-grain-opacity: 0.07;
   .case-page--lovespace .case-palette--short {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: $space-8;
-  }
-
-  .case-page--lovespace .case-palette--short .case-color-photo {
-    aspect-ratio: 608 / 360;
   }
 
   .case-page--lovespace .case-palette--short .case-color-info--fill {

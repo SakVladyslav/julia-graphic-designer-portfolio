@@ -59,11 +59,14 @@
   text-align: right;
 }
 
+// Figma clips the row at 755px: the lead runs 6px past it, the stack 7px.
 .case-cluster {
   display: grid;
-  grid-template-columns: minmax(0, 628fr) minmax(0, 620fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: $space-16;
-  align-items: center;
+  align-items: start;
+  aspect-ratio: 1264 / 755;
+  overflow: hidden;
 }
 
 .case-cluster figure {

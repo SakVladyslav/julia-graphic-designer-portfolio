@@ -22,6 +22,15 @@ function quoteCopy(quote: CaseMediaQuote): ReactNode {
   const accentAt = first.indexOf(quote.accentWord);
   const before = accentAt === -1 ? first : first.slice(0, accentAt);
   const after = accentAt === -1 ? "" : first.slice(accentAt + quote.accentWord.length);
+  const accentImg = (
+    <img
+      src={quote.accent.src}
+      alt=""
+      width={quote.accent.width}
+      height={quote.accent.height}
+      decoding="async"
+    />
+  );
 
   return (
     <p className="case-statement-copy">
@@ -30,13 +39,19 @@ function quoteCopy(quote: CaseMediaQuote): ReactNode {
         {accentAt === -1 ? null : (
           <span className="case-statement-accent">
             {quote.accentWord}
-            <img
-              src={quote.accent.src}
-              alt=""
-              width={quote.accent.width}
-              height={quote.accent.height}
-              decoding="async"
-            />
+            {quote.accent.phone === undefined ? (
+              accentImg
+            ) : (
+              <picture>
+                <source
+                  media="(max-width: 479px)"
+                  srcSet={quote.accent.phone.src}
+                  width={quote.accent.phone.width}
+                  height={quote.accent.phone.height}
+                />
+                {accentImg}
+              </picture>
+            )}
           </span>
         )}
         {after}

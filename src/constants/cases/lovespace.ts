@@ -108,9 +108,10 @@ const statementQuote: CaseMediaQuote = {
   },
   accent: {
     src: asset("statement-accent.svg"),
-    width: 88,
-    height: 32,
+    width: 211,
+    height: 81,
     alt: "",
+    phone: { src: asset("statement-accent-phone.svg"), width: 88, height: 32 },
   },
   lines: ["We refuse the cult", "of perfection"],
   accentWord: "refuse",
@@ -195,8 +196,15 @@ export const lovespaceCase: ProjectCase = {
       ],
     },
     logoLockup,
-    // Desktop: fitting-room poster after logos. Phone: two posters side by side.
-    media("posters.webp", 1264, 1580, "Lovespace fitting-room poster", undefined, "wide"),
+    // Desktop: three posters in a shop window after logos. Phone: two posters side by side.
+    media(
+      "posters-trio.webp",
+      1896,
+      1185,
+      "Three Lovespace posters in a shop window",
+      undefined,
+      "wide",
+    ),
     media(
       "posters-duo-phone.webp",
       1368,
@@ -319,19 +327,48 @@ export const lovespaceCase: ProjectCase = {
             height: 1024,
             turned: false,
           },
-          mark: ringMark,
         },
       ],
     },
     media("mockup6.webp", 1700, 1076, "Lovespace instruction sheet", "stack", "wide"),
-    media(
-      "mockup7.webp",
-      1264,
-      1580,
-      "Close-up of arms and knees with natural skin marks",
-      "stack",
-      "wide",
-    ),
+    {
+      type: "pair",
+      spaceBefore: "stack",
+      frames: [
+        {
+          image: {
+            src: asset("posters.webp"),
+            width: 1264,
+            height: 1580,
+            alt: "Lovespace fitting-room poster",
+          },
+          fit: "fill",
+          grain: {
+            src: asset("lovespace-grain.webp"),
+            width: 1024,
+            height: 1024,
+            turned: false,
+          },
+        },
+        {
+          image: {
+            src: asset("mockup7.webp"),
+            width: 1264,
+            height: 1580,
+            alt: "Close-up of arms and knees with natural skin marks",
+          },
+          fit: "fill",
+          grain: {
+            src: asset("lovespace-grain.webp"),
+            width: 1024,
+            height: 1024,
+            turned: true,
+            opacity: 0.2,
+          },
+          mark: ringMark,
+        },
+      ],
+    },
     media("Lovespace-15.webp", 1896, 1185, "Lovespace lightbox sign", "stack", "wide"),
     // Phone Packaging Showcase order from Figma 390px.
     media(
@@ -440,7 +477,7 @@ export const lovespaceCase: ProjectCase = {
       type: "split",
       heading: "Brand phrases",
       paragraphs: [
-        "The brand had its own signature, recognizable phrases used on merchandise; they were important to the community. That’s why I kept them in the updated brand identity, incorporating them into the new design.",
+        "Lovespace already had a set of recognizable phrases that were closely connected to the brand and its community. I kept them in the updated identity to preserve this connection with the previous visual language, while giving them a new graphic treatment across merchandise and other brand materials.",
       ],
     },
     media("merch1.webp", 2400, 1599, "Two Lovespace tote bags", "block", "wide"),

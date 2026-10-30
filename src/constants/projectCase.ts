@@ -76,6 +76,8 @@ export interface CaseGrain {
   width: number;
   height: number;
   turned: boolean;
+  /** Overrides the stylesheet default: 0.1 flat, 0.15 turned. */
+  opacity?: number;
 }
 
 export interface CasePairFrame {
