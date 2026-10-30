@@ -53,6 +53,10 @@
   white-space: nowrap;
 }
 
+a.contact-main:hover {
+  color: $accent;
+}
+
 .contact-main--stub {
   cursor: not-allowed;
   opacity: 0.55;
