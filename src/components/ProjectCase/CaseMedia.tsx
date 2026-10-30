@@ -1,4 +1,4 @@
-import type { CaseImage, CaseSpace } from "../../constants/projectCase";
+import type { CaseImage, CaseMediaQuote, CaseSpace } from "../../constants/projectCase";
 
 import CaseFrame from "./CaseFrame";
 import { sectionClass } from "./sectionClass";
@@ -11,6 +11,7 @@ interface CaseMediaProps {
   captionAlign?: "start" | "end";
   framed?: boolean;
   modifier?: string;
+  quote?: CaseMediaQuote;
 }
 
 export default function CaseMedia({
@@ -21,6 +22,7 @@ export default function CaseMedia({
   captionAlign,
   framed = false,
   modifier,
+  quote,
 }: CaseMediaProps) {
   const modifierClass =
     modifier === undefined
@@ -39,6 +41,7 @@ export default function CaseMedia({
       captionAlign={captionAlign}
       framed={framed}
       priority={priority}
+      quote={quote}
     />
   );
 }

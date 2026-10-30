@@ -16,7 +16,10 @@ const QUALITY = 80;
  * keeps the largest first paint from downloading the full 900px file.
  */
 const TEXTURE_QUALITY = 50;
-const TEXTURE_FILE = "public/projects/lovespace/lovespace-texture.webp";
+const TEXTURE_FILES = new Set([
+  "public/projects/lovespace/lovespace-texture.webp",
+  "public/projects/lovespace/lovespace-grain.webp",
+]);
 
 function formatKb(bytes) {
   return `${(bytes / 1024).toFixed(1)} KB`;
@@ -71,7 +74,7 @@ const files = collectWebp(projectsDir);
 
 for (const relative of files) {
   const filePath = path.join(rootDir, relative);
-  const quality = relative === TEXTURE_FILE ? TEXTURE_QUALITY : QUALITY;
+  const quality = TEXTURE_FILES.has(relative) ? TEXTURE_QUALITY : QUALITY;
   for (const width of WIDTHS) {
     await writeVariant(filePath, width, quality);
   }

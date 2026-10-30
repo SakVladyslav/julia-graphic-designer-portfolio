@@ -1,6 +1,7 @@
 import CaseBanner from "./CaseBanner";
 import CaseCluster from "./CaseCluster";
 import CaseComparison from "./CaseComparison";
+import CaseGrid from "./CaseGrid";
 import CaseIconBoard from "./CaseIconBoard";
 import CaseIntro from "./CaseIntro";
 import CaseLogoPair from "./CaseLogoPair";
@@ -8,6 +9,7 @@ import CaseLogoStack from "./CaseLogoStack";
 import CaseMarks from "./CaseMarks";
 import CaseMedia from "./CaseMedia";
 import CaseNote from "./CaseNote";
+import CasePair from "./CasePair";
 import CasePalette from "./CasePalette";
 import CasePoster from "./CasePoster";
 import CaseRelated from "./CaseRelated";
@@ -31,7 +33,8 @@ export default function ProjectCase({ projectCase, related }: ProjectCaseProps) 
     projectCase.id === "olx" ||
     projectCase.id === "novyny" ||
     projectCase.id === "molfaria" ||
-    projectCase.id === "amaryllis"
+    projectCase.id === "amaryllis" ||
+    projectCase.id === "lovespace"
       ? `case-page--${projectCase.id}`
       : "";
   const pageClass = caseModifier === "" ? "case-page" : `case-page ${caseModifier}`;
@@ -61,6 +64,7 @@ function renderSection(section: CaseSection, index: number) {
           captionAlign={section.captionAlign}
           framed={section.framed}
           modifier={section.modifier}
+          quote={section.quote}
           priority={index === 0}
           spaceBefore={section.spaceBefore}
         />
@@ -77,6 +81,10 @@ function renderSection(section: CaseSection, index: number) {
       return <CasePoster key={key} section={section} />;
     case "cluster":
       return <CaseCluster key={key} section={section} />;
+    case "pair":
+      return <CasePair key={key} section={section} />;
+    case "grid":
+      return <CaseGrid key={key} section={section} />;
     case "stagger":
       return <CaseStagger key={key} section={section} />;
     case "banner":

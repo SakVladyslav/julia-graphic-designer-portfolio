@@ -26,14 +26,34 @@ describe("ProjectCasePage", () => {
     expect(document.title).toBe("Lovespace — Julia Samchuk");
     expect(screen.getByRole("heading", { level: 1, name: "Lovespace" })).toBeInTheDocument();
     expect(screen.getByText("Visual Identity Redesign")).toBeInTheDocument();
+    expect(
+      screen
+        .getByRole("img", { name: /close-up of skin folds/i })
+        .closest("picture")
+        ?.querySelector("source")
+        ?.getAttribute("srcset"),
+    ).toContain("hero-phone.webp");
+    expect(
+      screen
+        .getByRole("img", { name: /close-up of skin folds/i })
+        .closest(".case-media-stage")
+        ?.querySelector(".case-ring img"),
+    ).toHaveAttribute("src", expect.stringContaining("portrait-ring.svg"));
     expect(screen.getByRole("heading", { name: "Brand philosophy" })).toBeInTheDocument();
     expect(screen.getByText("Kissed Lips")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /molfaria/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /amaryllis/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /best budova group/i })).toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: /we refuse the cult of perfection/i }),
     ).toBeInTheDocument();
+    expect(document.querySelector(".case-statement-copy")).toHaveTextContent(
+      /We refuse the cult\s*of perfection/,
+    );
+    expect(document.querySelector(".case-statement-panel")).toHaveAttribute(
+      "src",
+      expect.stringContaining("statement-ring.svg"),
+    );
     expect(screen.getByRole("img", { name: "Lovespace logo on white" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Lovespace logo on black" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Lovespace logo on red" })).toBeInTheDocument();
@@ -41,14 +61,48 @@ describe("ProjectCasePage", () => {
       screen.queryByRole("img", { name: "Lovespace logo on white, black, and red" }),
     ).not.toBeInTheDocument();
     expect(
-      screen.getByRole("img", { name: "Open kraft Lovespace mailer box" }),
-    ).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Black Lovespace mailer box" })).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Red Lovespace mailer box" })).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Lovespace lightbox sign" })).toBeInTheDocument();
+      screen.getByRole("img", { name: "Two Lovespace posters side by side", hidden: true }),
+    ).toHaveAttribute("src", expect.stringContaining("posters-duo-phone.webp"));
+    expect(
+      screen.getAllByRole("img", { name: "Open kraft Lovespace mailer box", hidden: true }),
+    ).toHaveLength(2);
+    expect(
+      screen.getAllByRole("img", { name: "Black Lovespace mailer box", hidden: true }),
+    ).toHaveLength(2);
+    expect(
+      screen.getAllByRole("img", { name: "Red Lovespace mailer box", hidden: true }),
+    ).toHaveLength(2);
+    expect(
+      screen.getAllByRole("img", {
+        name: "Open Lovespace box with tissue paper and an instruction card",
+        hidden: true,
+      }),
+    ).toHaveLength(2);
+    expect(
+      screen.getAllByRole("img", { name: "Portrait with the Lovespace ring mark", hidden: true }),
+    ).toHaveLength(2);
+    expect(
+      screen.getAllByRole("img", { name: "Lovespace shopping bag", hidden: true }),
+    ).toHaveLength(2);
+    expect(
+      screen.getAllByRole("img", { name: "Lovespace fitting-room poster", hidden: true }),
+    ).toHaveLength(2);
+    expect(
+      screen.getAllByRole("img", { name: "Lovespace lightbox sign", hidden: true }),
+    ).toHaveLength(2);
     expect(
       screen.getByRole("img", { name: "Person wearing a black Lovespace t-shirt" }),
     ).toBeInTheDocument();
+    const posts = [...document.querySelectorAll(".case-grid img")];
+    expect(posts.map((post) => post.getAttribute("src"))).toEqual(
+      ["01", "02", "03", "04", "05", "06"].map((number) =>
+        expect.stringContaining(`post-${number}.webp`),
+      ),
+    );
+    expect(posts[0]).toHaveAttribute("srcset", expect.stringContaining("post-01-640w.webp 640w"));
+    expect(
+      screen.queryByRole("img", { name: "Lovespace social media posts" }),
+    ).not.toBeInTheDocument();
     expect(
       screen.queryByRole("img", { name: /packaging, signage, bags/i }),
     ).not.toBeInTheDocument();
@@ -102,8 +156,8 @@ describe("ProjectCasePage", () => {
     expect(screen.getByText("// Tote Bag")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /posters beyond/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /best budova group/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /olx business hub/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /novyny live/i })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /amaryllis/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Twitchvrotfl" })).not.toBeInTheDocument();
   });
@@ -136,8 +190,8 @@ describe("ProjectCasePage", () => {
         ?.getAttribute("srcset"),
     ).toContain("BBG-01-phone.webp");
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /amaryllis/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /olx business hub/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /novyny live/i })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /best budova group/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Twitchvrotfl" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Book covers" })).not.toBeInTheDocument();
@@ -198,7 +252,7 @@ describe("ProjectCasePage", () => {
     renderCase("lovespace");
 
     const previousCover = screen.getByRole("img", {
-      name: "Lovespace visual identity, a portrait framed by an open ring",
+      name: "Lovespace visual identity, close-up of skin folds",
     });
 
     await user.click(screen.getByRole("link", { name: /molfaria/i }));

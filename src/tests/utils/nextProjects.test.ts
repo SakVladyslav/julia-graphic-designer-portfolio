@@ -20,15 +20,15 @@ describe("nextProjects", () => {
   it("follows the homepage order", () => {
     expect(nextProjects(projects, "lovespace", 2).map((project) => project.id)).toEqual([
       "molfaria-window",
-      "amaryllis",
+      "bbg",
     ]);
     expect(nextProjects(projects, "novyny", 2).map((project) => project.id)).toEqual([
       "lovespace",
       "molfaria-window",
     ]);
     expect(nextProjects(projects, "bbg", 2).map((project) => project.id)).toEqual([
+      "amaryllis",
       "twitchvrotfl",
-      "book-covers",
     ]);
   });
 });

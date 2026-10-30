@@ -1,6 +1,7 @@
 import type {
   CaseImage,
   CaseMarksSection,
+  CaseMediaQuote,
   CaseMediaSection,
   CaseSpace,
   ProjectCase,
@@ -16,6 +17,7 @@ function media(
   height: number,
   alt: string,
   spaceBefore?: CaseSpace,
+  modifier?: string,
 ): CaseMediaSection {
   const image = {
     src: asset(file),
@@ -24,11 +26,33 @@ function media(
     alt,
   };
 
-  if (spaceBefore === undefined) {
-    return { type: "media", image };
-  }
+  return {
+    type: "media",
+    image,
+    ...(spaceBefore === undefined ? {} : { spaceBefore }),
+    ...(modifier === undefined ? {} : { modifier }),
+  };
+}
 
-  return { type: "media", spaceBefore, image };
+function withPhone(
+  section: CaseMediaSection,
+  file: string,
+  width: number,
+  height: number,
+  modifier?: string,
+): CaseMediaSection {
+  return {
+    ...section,
+    ...(modifier === undefined ? {} : { modifier }),
+    image: {
+      ...section.image,
+      phone: { src: asset(file), width, height },
+    },
+  };
+}
+
+function post(number: string, alt: string): CaseImage {
+  return { src: asset(`post-${number}.webp`), width: 832, height: 1040, alt };
 }
 
 const white = "#FFFFFF";
@@ -67,11 +91,59 @@ const logoLockup: CaseMarksSection = {
   ],
 };
 
+/** Open ring mark from Figma — overlaid on cover, bag, and portrait frames. */
+const ringMark: CaseImage = {
+  src: asset("portrait-ring.svg"),
+  width: 157,
+  height: 149,
+  alt: "",
+};
+
+const statementQuote: CaseMediaQuote = {
+  panel: {
+    src: asset("statement-ring.svg"),
+    width: 284,
+    height: 248,
+    alt: "",
+  },
+  accent: {
+    src: asset("statement-accent.svg"),
+    width: 211,
+    height: 81,
+    alt: "",
+    phone: { src: asset("statement-accent-phone.svg"), width: 88, height: 32 },
+  },
+  lines: ["We refuse the cult", "of perfection"],
+  accentWord: "refuse",
+};
+
+function withMark(section: CaseMediaSection, mark: CaseImage = ringMark): CaseMediaSection {
+  return {
+    ...section,
+    image: {
+      ...section.image,
+      mark,
+    },
+  };
+}
+
+function withQuote(section: CaseMediaSection, quote: CaseMediaQuote): CaseMediaSection {
+  return { ...section, quote };
+}
+
 export const lovespaceCase: ProjectCase = {
   id: "lovespace",
   title: "Lovespace",
   sections: [
-    media("hero.webp", 2160, 1278, "Lovespace visual identity, a portrait framed by an open ring"),
+    withMark(
+      withPhone(
+        media("hero.webp", 1896, 1185, "Lovespace visual identity, close-up of skin folds"),
+        "hero-phone.webp",
+        1023,
+        1284,
+        "hero",
+      ),
+    ),
     {
       type: "intro",
       spaceBefore: "block",
@@ -105,7 +177,16 @@ export const lovespaceCase: ProjectCase = {
         },
       },
     },
-    media("statement.webp", 1264, 746, "We refuse the cult of perfection"),
+    withQuote(
+      withPhone(
+        media("statement.webp", 1896, 1119, "We refuse the cult of perfection"),
+        "statement-phone.webp",
+        1026,
+        1284,
+        "statement",
+      ),
+      statementQuote,
+    ),
     {
       type: "split",
       heading: "Brand philosophy",
@@ -115,7 +196,23 @@ export const lovespaceCase: ProjectCase = {
       ],
     },
     logoLockup,
-    media("posters.webp", 2371, 1481, "Three Lovespace posters"),
+    // Desktop: three posters in a shop window after logos. Phone: two posters side by side.
+    media(
+      "posters-trio.webp",
+      1896,
+      1185,
+      "Three Lovespace posters in a shop window",
+      undefined,
+      "wide",
+    ),
+    media(
+      "posters-duo-phone.webp",
+      1368,
+      1368,
+      "Two Lovespace posters side by side",
+      undefined,
+      "phone duo",
+    ),
     {
       type: "palette",
       size: "tall",
@@ -164,57 +261,162 @@ export const lovespaceCase: ProjectCase = {
         },
       ],
     },
+    // Desktop packaging layout (cluster + pair). Hidden on phone.
     {
       type: "cluster",
       lead: {
         src: asset("mockup1.webp"),
-        width: 1256,
-        height: 1510,
+        width: 1248,
+        height: 1522,
         alt: "Open kraft Lovespace mailer box",
       },
       stack: [
         {
           src: asset("mockup2.webp"),
-          width: 1860,
-          height: 1110,
+          width: 1872,
+          height: 1119,
           alt: "Black Lovespace mailer box",
         },
         {
           src: asset("mockup3.webp"),
-          width: 1860,
-          height: 1110,
+          width: 1872,
+          height: 1119,
           alt: "Red Lovespace mailer box",
         },
       ],
     },
     media(
       "mockup4.webp",
-      2160,
-      1350,
+      1896,
+      1185,
       "Open Lovespace box with tissue paper and an instruction card",
       "stack",
+      "wide",
+    ),
+    {
+      type: "pair",
+      spaceBefore: "stack",
+      frames: [
+        {
+          image: {
+            src: asset("ring-portrait.webp"),
+            width: 1264,
+            height: 1580,
+            alt: "Portrait with the Lovespace ring mark",
+          },
+          fit: "cover",
+          grain: {
+            src: asset("lovespace-grain.webp"),
+            width: 1024,
+            height: 1024,
+            turned: true,
+          },
+          mark: ringMark,
+        },
+        {
+          image: {
+            src: asset("shopping-bag.webp"),
+            width: 1264,
+            height: 1580,
+            alt: "Lovespace shopping bag",
+          },
+          fit: "fill",
+          grain: {
+            src: asset("lovespace-grain.webp"),
+            width: 1024,
+            height: 1024,
+            turned: false,
+          },
+        },
+      ],
+    },
+    media("mockup6.webp", 1700, 1076, "Lovespace instruction sheet", "stack", "wide"),
+    {
+      type: "pair",
+      spaceBefore: "stack",
+      frames: [
+        {
+          image: {
+            src: asset("posters.webp"),
+            width: 1264,
+            height: 1580,
+            alt: "Lovespace fitting-room poster",
+          },
+          fit: "fill",
+          grain: {
+            src: asset("lovespace-grain.webp"),
+            width: 1024,
+            height: 1024,
+            turned: false,
+          },
+        },
+        {
+          image: {
+            src: asset("mockup7.webp"),
+            width: 1264,
+            height: 1580,
+            alt: "Close-up of arms and knees with natural skin marks",
+          },
+          fit: "fill",
+          grain: {
+            src: asset("lovespace-grain.webp"),
+            width: 1024,
+            height: 1024,
+            turned: true,
+            opacity: 0.2,
+          },
+          mark: ringMark,
+        },
+      ],
+    },
+    media("Lovespace-15.webp", 1896, 1185, "Lovespace lightbox sign", "stack", "wide"),
+    // Phone Packaging Showcase order from Figma 390px.
+    media(
+      "mockup1-phone.webp",
+      1368,
+      1368,
+      "Open kraft Lovespace mailer box",
+      undefined,
+      "phone box",
+    ),
+    media("mockup2-phone.webp", 1368, 1368, "Black Lovespace mailer box", "stack", "phone box"),
+    media(
+      "mockup4-phone.webp",
+      1368,
+      1368,
+      "Open Lovespace box with tissue paper and an instruction card",
+      "stack",
+      "phone box",
+    ),
+    withMark(
+      media("shopping-bag-phone.webp", 1368, 1710, "Lovespace shopping bag", "stack", "phone tall"),
+    ),
+    media("mockup6-phone.webp", 1368, 1712, "Lovespace instruction sheet", "stack", "phone tall"),
+    media("mockup3-phone.webp", 1368, 1712, "Red Lovespace mailer box", "stack", "phone tall"),
+    withMark(
+      media(
+        "ring-portrait-phone.webp",
+        1368,
+        1712,
+        "Portrait with the Lovespace ring mark",
+        "stack",
+        "phone tall",
+      ),
     ),
     media(
-      "mockup5.webp",
-      2160,
-      1350,
-      "Lovespace shopping bag beside a portrait with the ring mark",
+      "posters-phone.webp",
+      1368,
+      1710,
+      "Lovespace fitting-room poster",
       "stack",
+      "phone posters",
     ),
-    media("mockup6.webp", 2160, 1350, "Lovespace instruction sheet", "stack"),
-    media(
-      "mockup7.webp",
-      2160,
-      1350,
-      "Lovespace campaign card and portrait with the ring mark",
-      "stack",
-    ),
-    media("Lovespace-15.webp", 2160, 1350, "Lovespace lightbox sign", "stack"),
+    media("Lovespace-15-phone.webp", 1368, 1040, "Lovespace lightbox sign", "stack", "phone sign"),
     {
       type: "split",
       heading: "Extended palette",
       paragraphs: [
-        "Inspired by the brand's product range, these colors continue the same soft, organic direction. They add flexibility across social media, content categories, and educational projects.",
+        "Inspired by the brand’s product range, these colors continue the same soft, organic direction. They add flexibility across social media, content categories, and educational projects.",
       ],
     },
     {
@@ -260,16 +462,38 @@ export const lovespaceCase: ProjectCase = {
         },
       ],
     },
-    media("social.webp", 1893, 1571, "Lovespace social media posts"),
+    {
+      type: "grid",
+      images: [
+        post("01", "Lovespace post: questions for a gynecologist"),
+        post("02", "Lovespace post: don't be perfect, be yourself"),
+        post("03", "Lovespace post: how to choose a lubricant"),
+        post("04", "Lovespace post: where there are no templates, only you"),
+        post("05", "Lovespace post: your period, your vibe"),
+        post("06", "Lovespace post: a woman's morning be like"),
+      ],
+    },
     {
       type: "split",
       heading: "Brand phrases",
       paragraphs: [
-        "The brand had its own signature, recognizable phrases used on merchandise; they were important to the community. That’s why I kept them in the updated brand identity, incorporating them into the new design.",
+        "Lovespace already had a set of recognizable phrases that were closely connected to the brand and its community. I kept them in the updated identity to preserve this connection with the previous visual language, while giving them a new graphic treatment across merchandise and other brand materials.",
       ],
     },
-    media("merch1.webp", 2400, 1599, "Two Lovespace tote bags", "block"),
-    media("merch2.webp", 2160, 2234, "Lovespace tote bag on a red sofa", "stack"),
-    media("merch3.webp", 2160, 1350, "Person wearing a black Lovespace t-shirt", "stack"),
+    media("merch1.webp", 2400, 1599, "Two Lovespace tote bags", "block", "wide"),
+    withPhone(
+      media("merch2.webp", 1400, 1446, "Lovespace tote bag on a red sofa", "stack"),
+      "merch2-phone.webp",
+      1368,
+      1712,
+      "tote",
+    ),
+    withPhone(
+      media("merch3.webp", 1896, 1185, "Person wearing a black Lovespace t-shirt", "stack"),
+      "merch3-phone.webp",
+      1368,
+      1040,
+      "tshirt",
+    ),
   ],
 };

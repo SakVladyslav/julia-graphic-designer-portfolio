@@ -1,0 +1,25 @@
+@use "../../../styles/breakpoints" as *;
+@use "../../../styles/spacing" as *;
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $space-8;
+  list-style: none;
+}
+
+.case-grid figure {
+  margin: 0;
+}
+
+.case-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: $bp-phone) {
+  .case-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

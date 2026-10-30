@@ -108,16 +108,16 @@ export const projects: readonly Project[] = [
     ),
   },
   {
-    id: "amaryllis",
-    title: "Amaryllis Poster Series",
-    tags: ["poster design", "merch design"],
-    image: framedImage("cover", withBaseUrl("projects/amaryllis/amaryllis.webp"), 1600, 1252),
-  },
-  {
     id: "bbg",
     title: "Best Budova Group",
     tags: ["logo design", "visual identity"],
     image: framedImage("cover", withBaseUrl("projects/bbg/BBG-04.webp"), 1896, 1350),
+  },
+  {
+    id: "amaryllis",
+    title: "Amaryllis Poster Series",
+    tags: ["poster design", "merch design"],
+    image: framedImage("cover", withBaseUrl("projects/amaryllis/amaryllis.webp"), 1600, 1252),
   },
   {
     id: "twitchvrotfl",

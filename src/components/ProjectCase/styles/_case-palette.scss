@@ -24,13 +24,14 @@
 .case-color-photo {
   display: block;
   width: 100%;
-  height: $case-palette-swatch-tall;
+  height: auto;
+  aspect-ratio: 984 / 540;
   object-fit: cover;
-  object-position: bottom;
+  object-position: top;
 }
 
 .case-palette--short .case-color-photo {
-  height: $case-palette-swatch-short;
+  aspect-ratio: 608 / 360;
   object-position: center;
 }
 

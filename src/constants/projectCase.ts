@@ -26,6 +26,8 @@ export interface CaseImage {
   height: number;
   alt: string;
   phone?: CaseImagePhone;
+  /** Centered brand mark drawn over the photo (for example the Lovespace ring). */
+  mark?: CaseImage;
 }
 
 export interface CaseIntroLink {
@@ -43,6 +45,15 @@ export interface CaseIntroSection extends CaseSectionBase {
   link?: CaseIntroLink;
 }
 
+/** Centered quote over a media frame (Lovespace brand statement). */
+export interface CaseMediaQuote {
+  panel: CaseImage;
+  accent: CaseImage;
+  lines: readonly [string, string];
+  /** Word inside `lines[0]` that sits on the accent stroke. */
+  accentWord: string;
+}
+
 export interface CaseMediaSection extends CaseSectionBase {
   type: "media";
   image: CaseImage;
@@ -51,12 +62,42 @@ export interface CaseMediaSection extends CaseSectionBase {
   framed?: boolean;
   /** Extra `case-media--*` classes. Space-separated, for frame-specific crops. */
   modifier?: string;
+  quote?: CaseMediaQuote;
 }
 
 export interface CaseClusterSection extends CaseSectionBase {
   type: "cluster";
   lead: CaseImage;
   stack: readonly [CaseImage, CaseImage];
+}
+
+export interface CaseGrain {
+  src: string;
+  width: number;
+  height: number;
+  turned: boolean;
+  /** Overrides the stylesheet default: 0.1 flat, 0.15 turned. */
+  opacity?: number;
+}
+
+export interface CasePairFrame {
+  image: CaseImage;
+  /** Cover keeps the photo's proportions. Fill stretches it to the frame. */
+  fit: "cover" | "fill";
+  grain: CaseGrain;
+  mark?: CaseImage;
+}
+
+/** Two frames in one row, flush. They stack on a narrow screen. */
+export interface CasePairSection extends CaseSectionBase {
+  type: "pair";
+  frames: readonly [CasePairFrame, CasePairFrame];
+}
+
+export interface CaseGridSection extends CaseSectionBase {
+  type: "grid";
+  /** Reading order on desktop. Phone reordering lives in the case stylesheet. */
+  images: readonly CaseImage[];
 }
 
 export interface CaseStaggerFrame {
@@ -212,6 +253,8 @@ export type CaseSection =
   | CaseMarksSection
   | CasePosterSection
   | CaseClusterSection
+  | CasePairSection
+  | CaseGridSection
   | CaseStaggerSection
   | CaseBannerSection
   | CaseNoteSection
