@@ -29,6 +29,24 @@ describe("App", () => {
     expect(document.getElementById("person-jsonld")?.textContent).toContain('"@type":"Person"');
   });
 
+  it("orders the project cards as in the design", () => {
+    render(<App />);
+
+    const titles = screen
+      .getAllByRole("heading", { level: 3 })
+      .map((heading) => heading.textContent);
+    expect(titles).toEqual([
+      "Lovespace",
+      "Molfaria",
+      "Best Budova Group",
+      "Amaryllis Poster Series",
+      "Twitchvrotfl",
+      "Book covers",
+      "OLX Business Hub",
+      "Novyny LIVE",
+    ]);
+  });
+
   it("links only published project cases", () => {
     render(<App />);
 

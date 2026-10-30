@@ -43,7 +43,7 @@ describe("ProjectCasePage", () => {
     expect(screen.getByText("Kissed Lips")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /molfaria/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /amaryllis/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /best budova group/i })).toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: /we refuse the cult of perfection/i }),
     ).toBeInTheDocument();
@@ -156,8 +156,8 @@ describe("ProjectCasePage", () => {
     expect(screen.getByText("// Tote Bag")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /posters beyond/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /best budova group/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /olx business hub/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /novyny live/i })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /amaryllis/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Twitchvrotfl" })).not.toBeInTheDocument();
   });
@@ -190,8 +190,8 @@ describe("ProjectCasePage", () => {
         ?.getAttribute("srcset"),
     ).toContain("BBG-01-phone.webp");
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /amaryllis/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /olx business hub/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /novyny live/i })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /best budova group/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Twitchvrotfl" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Book covers" })).not.toBeInTheDocument();
