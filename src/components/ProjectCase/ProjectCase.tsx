@@ -64,7 +64,6 @@ function renderSection(section: CaseSection, index: number) {
           captionAlign={section.captionAlign}
           framed={section.framed}
           modifier={section.modifier}
-          quote={section.quote}
           priority={index === 0}
           spaceBefore={section.spaceBefore}
         />

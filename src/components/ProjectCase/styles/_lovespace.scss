@@ -9,10 +9,6 @@ $lovespace-panel: #f6f6f6;
 $lovespace-palette-grain: url("/projects/lovespace/lovespace-grain.webp");
 $lovespace-palette-grain-tile: 1024px;
 $lovespace-palette-grain-opacity: 0.07;
-$lovespace-statement-panel: url("/projects/lovespace/statement-ring.svg");
-// 70.222px on the 1264px photo: the quote scales with the photo, not the viewport.
-$lovespace-statement-size: 5.5556cqw;
-
 .case-page--lovespace .case-media--phone {
   display: none;
 }
@@ -60,74 +56,6 @@ $lovespace-statement-size: 5.5556cqw;
 .case-page--lovespace .case-media--hero .case-ring {
   left: 34.62%;
   right: 34.62%;
-}
-
-// Size containment lives on the absolute overlay: on the stage it would collapse the photo's height.
-.case-page--lovespace .case-statement {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  container-type: size;
-  pointer-events: none;
-}
-
-// The mask keeps the backdrop blur inside the ring shape.
-.case-page--lovespace .case-statement-panel {
-  position: absolute;
-  // 284/342 on the 390 frame; 605.67/746 tall on the 1440 frame.
-  width: min(83.04cqw, calc(81.19cqh * 284 / 248));
-  height: auto;
-  aspect-ratio: 284 / 248;
-  max-width: none;
-  object-fit: fill;
-  backdrop-filter: blur(fluid(3.88px, 10px, 390px, $bp-desktop));
-  mask: $lovespace-statement-panel center / 100% 100% no-repeat;
-}
-
-// Figma sets the quote 7px below the photo's centre.
-.case-page--lovespace .case-statement-copy {
-  position: relative;
-  top: 0.94cqh;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  color: $lovespace-ink;
-  font-size: $lovespace-statement-size;
-  font-weight: 400;
-  line-height: 1.1;
-  text-align: center;
-}
-
-.case-page--lovespace .case-statement-line {
-  display: block;
-}
-
-.case-page--lovespace .case-statement-accent {
-  position: relative;
-  display: inline-block;
-}
-
-.case-page--lovespace .case-statement-accent picture {
-  display: contents;
-}
-
-// 210.67px stroke on 70.22px type.
-.case-page--lovespace .case-statement-accent img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 3em;
-  max-width: none;
-  height: auto;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.case-page--lovespace .case-color-name {
-  font-weight: 600;
 }
 
 .case-page--lovespace .case-palette--tall {
@@ -368,6 +296,103 @@ $lovespace-statement-size: 5.5556cqw;
   }
 }
 
+// 720, 530, 390, 360 and 320 frames: below 768 the tall palette is one column
+// and the short palette is two.
+@media (max-width: #{$bp-stack - 1px}) {
+  .case-page--lovespace .case-palette--tall {
+    grid-template-columns: minmax(0, 1fr);
+    gap: $space-8;
+    padding: 72px fluid(96px, 132px, 530px, 720px);
+  }
+
+  .case-page--lovespace .case-palette--tall .case-color-info--fill {
+    gap: $space-56;
+    padding: $space-24 $space-16;
+  }
+
+  .case-page--lovespace .case-palette--tall .case-color-name {
+    font-size: $font-size-24;
+  }
+
+  .case-page--lovespace .case-palette--tall .case-color-info--fill .case-color-specs {
+    font-size: $font-size-base;
+  }
+
+  .case-page--lovespace .case-palette--short {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-8;
+  }
+
+  .case-page--lovespace .case-palette--short .case-color-info--fill {
+    gap: 0;
+    padding: $space-80 $space-16 $space-20;
+  }
+
+  .case-page--lovespace .case-palette--short .case-color-info--fill .case-color-specs {
+    font-size: $font-size-base;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 529px) {
+  .case-page--lovespace .case-palette--tall {
+    padding: fluid($space-64, 72px, 390px, 530px) fluid($space-40, 96px, 390px, 530px);
+  }
+
+  .case-page--lovespace .case-palette--tall .case-color-info--fill {
+    gap: fluid($space-40, $space-56, 390px, 530px);
+  }
+
+  .case-page--lovespace .case-palette--tall .case-color-name {
+    font-size: fluid($font-size-20, $font-size-24, 390px, 530px);
+  }
+
+  .case-page--lovespace .case-palette--short .case-color-info--fill .case-color-specs {
+    font-size: fluid($font-size-15, $font-size-base, 390px, 530px);
+  }
+}
+
+@media (max-width: 389px) {
+  .case-page--lovespace .case-palette--tall {
+    padding: fluid($space-56, $space-64, 360px, 390px) fluid($space-32, $space-40, 360px, 390px);
+  }
+
+  .case-page--lovespace .case-palette--tall .case-color-info--fill {
+    gap: $space-40;
+  }
+
+  .case-page--lovespace .case-palette--tall .case-color-name {
+    font-size: $font-size-20;
+  }
+
+  .case-page--lovespace .case-palette--short .case-color-info--fill {
+    padding: fluid(72px, $space-80, 360px, 390px) fluid($space-12, $space-16, 360px, 390px)
+      $space-20;
+  }
+
+  .case-page--lovespace .case-palette--short .case-color-info--fill .case-color-specs {
+    font-size: fluid($font-size-14, $font-size-15, 360px, 390px);
+  }
+}
+
+@media (max-width: 359px) {
+  .case-page--lovespace .case-palette--tall {
+    padding: $space-56 $space-32;
+  }
+
+  .case-page--lovespace .case-palette--tall .case-color-info--fill {
+    gap: fluid($space-32, $space-40, 320px, 360px);
+  }
+
+  .case-page--lovespace .case-palette--short .case-color-info--fill {
+    padding: fluid($space-64, 72px, 320px, 360px) fluid($space-8, $space-12, 320px, 360px) $space-20;
+  }
+
+  .case-page--lovespace .case-palette--short .case-color-info--fill .case-color-specs {
+    font-size: $font-size-14;
+  }
+}
+
 @media (max-width: $bp-phone) {
   .case-page--lovespace .case-media--wide,
   .case-page--lovespace .case-cluster,
@@ -491,17 +516,6 @@ $lovespace-statement-size: 5.5556cqw;
     right: 26.6%;
   }
 
-  .case-page--lovespace .case-statement-copy {
-    top: 0;
-    font-size: $font-size-30;
-  }
-
-  .case-page--lovespace .case-statement-accent img {
-    top: 55%;
-    width: 116%;
-    transform: translate(-52%, -50%);
-  }
-
   .case-page--lovespace .case-media--phone .case-media-photo,
   .case-page--lovespace .case-media--hero .case-media-photo,
   .case-page--lovespace .case-media--statement .case-media-photo,
@@ -528,39 +542,6 @@ $lovespace-statement-size: 5.5556cqw;
   .case-page--lovespace .case-media--sign .case-media-photo,
   .case-page--lovespace .case-media--tshirt .case-media-photo {
     aspect-ratio: 342 / 260;
-  }
-
-  .case-page--lovespace .case-palette--tall {
-    gap: $space-8;
-    padding: $space-64 $space-40;
-  }
-
-  .case-page--lovespace .case-palette--tall .case-color-info--fill {
-    gap: $space-40;
-    padding: $space-24 $space-16;
-  }
-
-  .case-page--lovespace .case-palette--tall .case-color-name {
-    font-size: $font-size-20;
-  }
-
-  .case-page--lovespace .case-palette--tall .case-color-info--fill .case-color-specs {
-    font-size: $font-size-base;
-  }
-
-  .case-page--lovespace .case-palette--short {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: $space-8;
-  }
-
-  .case-page--lovespace .case-palette--short .case-color-info--fill {
-    gap: 0;
-    padding: $space-80 $space-12 $space-20;
-  }
-
-  .case-page--lovespace .case-palette--short .case-color-info--fill .case-color-specs {
-    font-size: $font-size-15;
-    line-height: 1;
   }
 
   // The phone design swaps the second row: post 4 before post 3.

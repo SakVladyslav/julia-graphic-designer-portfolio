@@ -1,7 +1,6 @@
 import type {
   CaseImage,
   CaseMarksSection,
-  CaseMediaQuote,
   CaseMediaSection,
   CaseSpace,
   ProjectCase,
@@ -99,24 +98,6 @@ const ringMark: CaseImage = {
   alt: "",
 };
 
-const statementQuote: CaseMediaQuote = {
-  panel: {
-    src: asset("statement-ring.svg"),
-    width: 284,
-    height: 248,
-    alt: "",
-  },
-  accent: {
-    src: asset("statement-accent.svg"),
-    width: 211,
-    height: 81,
-    alt: "",
-    phone: { src: asset("statement-accent-phone.svg"), width: 88, height: 32 },
-  },
-  lines: ["We refuse the cult", "of perfection"],
-  accentWord: "refuse",
-};
-
 function withMark(section: CaseMediaSection, mark: CaseImage = ringMark): CaseMediaSection {
   return {
     ...section,
@@ -125,10 +106,6 @@ function withMark(section: CaseMediaSection, mark: CaseImage = ringMark): CaseMe
       mark,
     },
   };
-}
-
-function withQuote(section: CaseMediaSection, quote: CaseMediaQuote): CaseMediaSection {
-  return { ...section, quote };
 }
 
 export const lovespaceCase: ProjectCase = {
@@ -177,15 +154,12 @@ export const lovespaceCase: ProjectCase = {
         },
       },
     },
-    withQuote(
-      withPhone(
-        media("statement.webp", 1896, 1119, "We refuse the cult of perfection"),
-        "statement-phone.webp",
-        1026,
-        1284,
-        "statement",
-      ),
-      statementQuote,
+    withPhone(
+      media("statement.webp", 1896, 1119, "We refuse the cult of perfection"),
+      "statement-phone.webp",
+      1026,
+      1284,
+      "statement",
     ),
     {
       type: "split",
