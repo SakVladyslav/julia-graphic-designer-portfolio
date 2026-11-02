@@ -1,3 +1,4 @@
+@use "../../../styles/colors" as *;
 @use "../../../styles/typography" as *;
 @use "../../../styles/spacing" as *;
 @use "../../../styles/sizes" as *;
@@ -191,6 +192,15 @@
       margin-top: fluid(80px, 96px, 390px, $bp-stack);
     }
 
+    // Every poster frame from 1440 to 768 keeps the panel and copy gap at the same share of its width.
+    .case-poster-panel {
+      inset: 4.444cqw;
+    }
+
+    .case-poster-copy {
+      gap: 1.39cqw;
+    }
+
     @include case-related-390;
   }
 }
@@ -299,8 +309,14 @@
       object-position: right center;
     }
 
+    // A 246 × 322 photo inside a 342 × 428 cream frame. Both padding percentages resolve against the width.
+    .case-media--full {
+      padding: 15.497% 14.035%;
+      background: $molfaria-cream;
+    }
+
     .case-media--full img {
-      aspect-ratio: 984 / 1288;
+      aspect-ratio: 246 / 322;
       object-fit: cover;
       object-position: center;
     }
