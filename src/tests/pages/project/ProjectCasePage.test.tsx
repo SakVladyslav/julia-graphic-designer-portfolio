@@ -47,13 +47,7 @@ describe("ProjectCasePage", () => {
     expect(
       screen.getByRole("img", { name: /we refuse the cult of perfection/i }),
     ).toBeInTheDocument();
-    expect(document.querySelector(".case-statement-copy")).toHaveTextContent(
-      /We refuse the cult\s*of perfection/,
-    );
-    expect(document.querySelector(".case-statement-panel")).toHaveAttribute(
-      "src",
-      expect.stringContaining("statement-ring.svg"),
-    );
+    expect(document.querySelector(".case-statement")).not.toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Lovespace logo on white" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Lovespace logo on black" })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Lovespace logo on red" })).toBeInTheDocument();
