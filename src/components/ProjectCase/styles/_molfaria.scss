@@ -176,20 +176,16 @@
 
 @media (max-width: #{$bp-stack - 1px}) {
   .case-page--molfaria {
-    padding-top: fluid($space-8, $space-16, 390px, $bp-stack);
+    padding-top: fluid($space-8, $space-16, 390px, $bp-compact);
 
     @include case-intro-390;
 
-    .case-intro-copy {
-      padding-bottom: fluid($space-40, $space-48, 390px, $bp-stack);
-    }
-
     .case-flow > .case-section--block {
-      margin-top: fluid($space-40, 56px, 390px, $bp-stack);
+      margin-top: fluid($space-40, 56px, 390px, $bp-compact);
     }
 
     .case-flow > .case-section--section {
-      margin-top: fluid(80px, 96px, 390px, $bp-stack);
+      margin-top: fluid(80px, 96px, 390px, $bp-compact);
     }
 
     // Every poster frame from 1440 to 768 keeps the panel and copy gap at the same share of its width.
@@ -207,24 +203,9 @@
 
 @media (max-width: $bp-phone) {
   .case-page--molfaria {
-    padding-top: $space-8;
-
-    .case-intro,
     .case-marks--grid,
     .case-related-grid {
       grid-template-columns: minmax(0, 1fr);
-    }
-
-    .case-intro {
-      gap: $space-20;
-    }
-
-    .case-intro-title {
-      gap: $space-12;
-    }
-
-    .case-intro-copy {
-      padding-top: 0;
     }
 
     .case-flow > .case-marks--board {

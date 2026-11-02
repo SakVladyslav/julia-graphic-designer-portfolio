@@ -224,11 +224,11 @@
 
 @media (max-width: #{$bp-stack - 1px}) {
   .case-page--bbg {
-    padding-top: fluid($space-8, $space-16, 390px, $bp-stack);
+    padding-top: fluid($space-8, $space-16, 390px, $bp-compact);
   }
 
   .case-page--bbg .case-intro h1 {
-    font-size: fluid($font-size-48, $font-size-52, 390px, $bp-stack);
+    font-size: fluid($font-size-48, $font-size-52, 390px, $bp-compact);
   }
 
   .case-page--bbg .case-copy {
@@ -236,39 +236,39 @@
   }
 
   .case-page--bbg .case-flow > .case-section--block {
-    margin-top: fluid($space-40, 56px, 390px, $bp-stack);
+    margin-top: fluid($space-40, 56px, 390px, $bp-compact);
   }
 
   .case-page--bbg .case-flow > .case-section--section,
   .case-page--bbg .case-related {
-    margin-top: fluid(80px, 96px, 390px, $bp-stack);
+    margin-top: fluid(80px, 96px, 390px, $bp-compact);
   }
 
   .case-page--bbg .case-related {
-    padding-top: fluid(80px, 96px, 390px, $bp-stack);
+    padding-top: fluid(80px, 96px, 390px, $bp-compact);
   }
 
   .case-page--bbg .case-split h2 {
-    font-size: fluid($font-size-24, $font-size-28, 390px, $bp-stack);
+    font-size: fluid($font-size-24, $font-size-28, 390px, $bp-compact);
   }
 
   .case-page--bbg .case-related h2 {
-    font-size: fluid($font-size-40, $font-size-56, 390px, $bp-stack);
+    font-size: fluid($font-size-40, $font-size-56, 390px, $bp-compact);
   }
 
   .case-page--bbg .project-card h3 {
-    font-size: fluid($font-size-24, $font-size-28, 390px, $bp-stack);
+    font-size: fluid($font-size-24, $font-size-28, 390px, $bp-compact);
   }
 
   .case-page--bbg .case-related-grid {
-    row-gap: fluid($space-40, $space-64, 390px, $bp-stack);
+    row-gap: fluid($space-40, $space-64, 390px, $bp-compact);
   }
 
   .case-page--bbg .case-icon-board {
-    grid-template-columns: repeat(4, #{fluid(72px, 96px, $bp-phone, $bp-stack)});
-    row-gap: fluid($space-32, 56px, $bp-phone, $bp-stack);
-    padding: #{fluid($space-40, 56px, $bp-phone, $bp-stack)}
-      #{fluid($space-16, 72px, $bp-phone, $bp-stack)};
+    grid-template-columns: repeat(4, #{fluid(72px, 96px, $bp-phone, $bp-compact)});
+    row-gap: fluid($space-32, 56px, $bp-phone, $bp-compact);
+    padding: #{fluid($space-40, 56px, $bp-phone, $bp-compact)}
+      #{fluid($space-16, 72px, $bp-phone, $bp-compact)};
   }
 }
 
@@ -300,41 +300,18 @@
 }
 
 @media (max-width: $bp-phone) {
-  .case-page--bbg .case-intro,
-  .case-page--bbg .case-split,
   .case-page--bbg .case-logo-pair,
   .case-page--bbg .case-typefaces,
   .case-page--bbg .case-related-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .case-page--bbg .case-intro {
-    gap: $space-20;
-  }
-
-  .case-page--bbg .case-intro-title {
-    gap: $space-12;
-  }
-
   .case-page--bbg .case-eyebrow {
     font-size: $font-size-14;
   }
 
-  .case-page--bbg .case-intro-copy {
-    padding-top: 0;
-    padding-bottom: $space-40;
-  }
-
   .case-page--bbg .case-tags li {
     font-size: $font-size-14;
-  }
-
-  .case-page--bbg .case-split {
-    gap: $space-16;
-  }
-
-  .case-page--bbg .case-split .case-copy {
-    padding-top: 0;
   }
 
   .case-page--bbg .case-logo-stack {

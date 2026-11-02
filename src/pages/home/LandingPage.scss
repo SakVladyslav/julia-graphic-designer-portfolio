@@ -298,53 +298,53 @@
 
 @media (max-width: #{$bp-stack - 1px}) {
   .hero-block {
-    padding-top: fluid(18px, 36px, 390px, $bp-stack);
-    padding-bottom: fluid(53px, 82px, 390px, $bp-stack);
+    padding-top: fluid(18px, 36px, 390px, $bp-compact);
+    padding-bottom: fluid(53px, 82px, 390px, $bp-compact);
   }
 
   .hero-glow {
-    top: fluid(4px, 15px, 390px, $bp-stack);
-    right: fluid(26px, 51px, 390px, $bp-stack);
+    top: fluid(4px, 15px, 390px, $bp-compact);
+    right: fluid(26px, 51px, 390px, $bp-compact);
   }
 
   .hero-arrow {
-    top: fluid(99px, 170px, 390px, $bp-stack);
-    left: fluid(104px, 275px, 390px, $bp-stack);
-    width: fluid(16px, 32px, 390px, $bp-stack);
-    height: fluid(16px, 32px, 390px, $bp-stack);
+    top: fluid(99px, 170px, 390px, $bp-compact);
+    left: fluid(104px, 275px, 390px, $bp-compact);
+    width: fluid(16px, 32px, 390px, $bp-compact);
+    height: fluid(16px, 32px, 390px, $bp-compact);
   }
 
   .role {
-    font-size: fluid(29px, 50px, 390px, $bp-stack);
+    font-size: fluid(29px, 50px, 390px, $bp-compact);
   }
 
   .home-projects,
   .projects {
-    gap: fluid($space-32, $space-40, 390px, $bp-stack);
+    gap: fluid($space-32, $space-40, 390px, $bp-compact);
   }
 
   .home-projects {
-    padding-bottom: fluid(104px, 120px, 390px, $bp-stack);
+    padding-bottom: fluid(104px, 120px, 390px, $bp-compact);
   }
 
   .section-heading h2 {
-    font-size: fluid($font-size-40, $font-size-56, 390px, $bp-stack);
+    font-size: fluid($font-size-40, $font-size-56, 390px, $bp-compact);
   }
 
   .section-count {
-    font-size: fluid($font-size-14, $font-size-base, 390px, $bp-stack);
+    font-size: fluid($font-size-14, $font-size-base, 390px, $bp-compact);
   }
 
   .project-group h2 {
-    font-size: fluid($font-size-28, $font-size-32, 390px, $bp-stack);
+    font-size: fluid($font-size-28, $font-size-32, 390px, $bp-compact);
   }
 
   .home-projects .project-card h3 {
-    font-size: fluid($font-size-24, $font-size-28, 390px, $bp-stack);
+    font-size: fluid($font-size-24, $font-size-28, 390px, $bp-compact);
   }
 
   .project-grid {
-    row-gap: fluid($space-40, $space-48, 390px, $bp-stack);
+    row-gap: fluid($space-40, $space-48, 390px, $bp-compact);
   }
 }
 

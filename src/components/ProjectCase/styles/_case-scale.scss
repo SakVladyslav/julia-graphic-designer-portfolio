@@ -150,26 +150,26 @@
 
 @mixin case-intro-390 {
   .case-intro h1 {
-    font-size: fluid($font-size-48, $font-size-52, 390px, $bp-stack);
+    font-size: fluid($font-size-48, $font-size-52, 390px, $bp-compact);
   }
 }
 
 @mixin case-related-390 {
   .case-related {
-    margin-top: fluid(80px, 112px, 390px, $bp-stack);
-    padding-top: fluid(80px, 96px, 390px, $bp-stack);
-    padding-bottom: fluid(0px, $space-24, 390px, $bp-stack);
+    margin-top: fluid(80px, 112px, 390px, $bp-compact);
+    padding-top: fluid(80px, 96px, 390px, $bp-compact);
+    padding-bottom: fluid(0px, $space-24, 390px, $bp-compact);
   }
 
   .case-related h2 {
-    font-size: fluid($font-size-40, $font-size-56, 390px, $bp-stack);
+    font-size: fluid($font-size-40, $font-size-56, 390px, $bp-compact);
   }
 
   .case-related-grid {
-    row-gap: fluid($space-40, $space-64, 390px, $bp-stack);
+    row-gap: fluid($space-40, $space-64, 390px, $bp-compact);
   }
 
   .project-card h3 {
-    font-size: fluid($font-size-24, $font-size-28, 390px, $bp-stack);
+    font-size: fluid($font-size-24, $font-size-28, 390px, $bp-compact);
   }
 }

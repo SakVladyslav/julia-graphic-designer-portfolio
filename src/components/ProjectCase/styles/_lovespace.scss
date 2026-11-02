@@ -295,6 +295,21 @@ $lovespace-palette-grain-opacity: 0.07;
   }
 }
 
+// 660 frame. Text and "More projects" bridge down to the 390 values.
+@media (max-width: #{$bp-stack - 1px}) {
+  .case-page--lovespace {
+    padding-top: fluid($space-8, $space-16, 390px, $bp-compact);
+
+    @include case-intro-390;
+
+    .case-split h2 {
+      font-size: fluid($font-size-24, $font-size-28, 390px, $bp-compact);
+    }
+
+    @include case-related-390;
+  }
+}
+
 // 720, 530, 390, 360 and 320 frames: below 768 the tall palette is one column
 // and the short palette is two.
 @media (max-width: #{$bp-stack - 1px}) {
@@ -403,10 +418,6 @@ $lovespace-palette-grain-opacity: 0.07;
     display: block;
   }
 
-  .case-page--lovespace {
-    padding-top: $space-8;
-  }
-
   .case-page--lovespace .case-flow > .case-section--section:not(:first-child, .case-comparison) {
     margin-top: $space-80;
   }
@@ -416,28 +427,12 @@ $lovespace-palette-grain-opacity: 0.07;
     margin-top: $space-32;
   }
 
-  .case-page--lovespace .case-related {
-    margin-top: $space-80;
-    padding-top: $space-80;
-    padding-bottom: 0;
-  }
-
   .case-page--lovespace .case-related h2 {
     margin-bottom: $space-32;
-    font-size: $font-size-40;
   }
 
   .case-page--lovespace .case-flow > .case-intro {
     margin-top: $space-40;
-    gap: $space-20;
-  }
-
-  .case-page--lovespace .case-intro-title {
-    gap: $space-12;
-  }
-
-  .case-page--lovespace .case-intro h1 {
-    font-size: $font-size-48;
   }
 
   .case-page--lovespace .case-eyebrow {
@@ -450,11 +445,6 @@ $lovespace-palette-grain-opacity: 0.07;
 
   .case-page--lovespace .case-copy {
     font-size: $font-size-base;
-  }
-
-  .case-page--lovespace .case-intro-copy {
-    padding-top: 0;
-    padding-bottom: $space-40;
   }
 
   // Figma fits the three tags into 342px exactly; browser text runs about 1px wider.
@@ -479,18 +469,6 @@ $lovespace-palette-grain-opacity: 0.07;
 
   .case-page--lovespace .case-comparison-panel:last-child img {
     width: 58.8%;
-  }
-
-  .case-page--lovespace .case-split {
-    gap: $space-16;
-  }
-
-  .case-page--lovespace .case-split h2 {
-    font-size: $font-size-24;
-  }
-
-  .case-page--lovespace .case-split .case-copy {
-    padding-top: 0;
   }
 
   // The phone lockup drops the black tile.

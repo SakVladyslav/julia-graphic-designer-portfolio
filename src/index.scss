@@ -119,7 +119,7 @@ button:focus-visible {
 
 @media (max-width: #{$bp-stack - 1px}) {
   .container {
-    --page-pad: #{fluid($space-24, $space-40, 390px, $bp-stack)};
+    --page-pad: #{fluid($space-24, $space-40, 390px, $bp-compact)};
   }
 }
 

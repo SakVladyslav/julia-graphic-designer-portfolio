@@ -66,7 +66,7 @@
 @media (max-width: #{$bp-stack - 1px}) {
   .case-page--olx,
   .case-page--novyny {
-    padding-top: fluid($space-8, $space-16, 390px, $bp-stack);
+    padding-top: fluid($space-8, $space-16, 390px, $bp-compact);
 
     @include case-intro-390;
 
@@ -75,7 +75,7 @@
     }
 
     .case-flow > .case-section--block {
-      margin-top: fluid($space-40, 56px, 390px, $bp-stack);
+      margin-top: fluid($space-40, 56px, 390px, $bp-compact);
     }
 
     @include case-related-390;
@@ -85,27 +85,13 @@
 @media (max-width: $bp-phone) {
   .case-page--olx,
   .case-page--novyny {
-    .case-intro,
     .case-related-grid {
       grid-template-columns: minmax(0, 1fr);
-    }
-
-    .case-intro {
-      gap: $space-20;
-    }
-
-    .case-intro-title {
-      gap: $space-12;
     }
 
     .case-eyebrow,
     .case-tags li {
       font-size: $font-size-14;
-    }
-
-    .case-intro-copy {
-      padding-top: 0;
-      padding-bottom: $space-40;
     }
 
     .case-related-grid {

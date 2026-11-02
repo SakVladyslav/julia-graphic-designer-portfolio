@@ -1,0 +1,33 @@
+@use "../../../styles/spacing" as *;
+@use "../../../styles/breakpoints" as *;
+
+// 660 frame, shared by every case. Below 768 the intro and the heading/copy sections
+// stack into one column; values hold the 768 sizes down to 660 and bridge to 390 below.
+// Selectors match the per-case two-column rules, and this partial loads after them.
+@media (max-width: #{$bp-stack - 1px}) {
+  .case-page .case-flow > .case-intro,
+  .case-page .case-flow > .case-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .case-page .case-flow > .case-intro {
+    gap: $space-20;
+  }
+
+  .case-page .case-intro-title {
+    gap: fluid($space-12, $space-16, 390px, $bp-compact);
+  }
+
+  .case-page .case-intro-copy {
+    padding-top: 0;
+    padding-bottom: fluid($space-40, $space-48, 390px, $bp-compact);
+  }
+
+  .case-page .case-flow > .case-split {
+    gap: $space-16;
+  }
+
+  .case-page .case-split .case-copy {
+    padding-top: 0;
+  }
+}

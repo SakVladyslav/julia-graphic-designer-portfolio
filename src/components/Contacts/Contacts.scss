@@ -226,19 +226,19 @@ a.contact-action:hover {
 
 @media (max-width: #{$bp-stack - 1px}) {
   .contacts h2 {
-    font-size: fluid($font-size-40, $font-size-56, 390px, $bp-stack);
+    font-size: fluid($font-size-40, $font-size-56, 390px, $bp-compact);
   }
 
   .contacts-layout {
-    gap: fluid($space-40, $space-48, 390px, $bp-stack);
+    gap: fluid($space-40, $space-48, 390px, $bp-compact);
   }
 
   .contact-list {
-    gap: fluid($space-24, 28px, 390px, $bp-stack);
+    gap: fluid($space-24, 28px, 390px, $bp-compact);
   }
 
   .contact-main {
-    font-size: fluid(30px, $font-size-48, 390px, $bp-stack);
+    font-size: fluid(30px, $font-size-48, 390px, $bp-compact);
   }
 }
 
