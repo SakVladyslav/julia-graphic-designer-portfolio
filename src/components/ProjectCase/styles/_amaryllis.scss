@@ -3,6 +3,335 @@
 @use "../../../styles/spacing" as *;
 @use "../../../styles/sizes" as *;
 @use "../../../styles/breakpoints" as *;
+@use "./case-scale" as *;
+
+// 1440 frame. The 768, 1024 and 1200 frames keep this composition and bridge up to it below.
+// The shared fallback stacks everything at 800px; these frames keep two columns.
+@media (min-width: #{$bp-single + 1px}) {
+  .case-page--amaryllis {
+    padding-top: $space-24;
+
+    @include case-intro-1440;
+
+    .case-flow > .case-intro {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      margin-top: $space-64;
+    }
+
+    .case-flow > .case-stagger,
+    .case-flow > .case-media--posters,
+    .case-flow > .case-media--vinyl,
+    .case-flow > .case-media--shirt {
+      margin-top: $space-144;
+    }
+
+    .case-stagger {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0;
+    }
+
+    .case-stagger-follow {
+      margin-top: var(--stagger-offset);
+    }
+
+    .case-stagger .case-caption {
+      margin-top: 25px;
+      text-align: right;
+    }
+
+    .case-banner {
+      display: block;
+      aspect-ratio: 1264 / 900;
+      min-height: 0;
+      padding: 0;
+    }
+
+    .case-banner-copy {
+      position: absolute;
+      top: 278px;
+      left: 108px;
+      gap: $space-40;
+    }
+
+    .case-banner h2 {
+      font-size: $font-size-80;
+      font-weight: 700;
+    }
+
+    .case-banner-emphasis {
+      margin-top: -$space-8;
+      font-weight: 600;
+    }
+
+    .case-banner p {
+      max-width: 657px;
+      font-size: $font-size-18;
+    }
+
+    .case-banner-mark {
+      position: absolute;
+      top: 78px;
+      right: auto;
+      left: 703px;
+      width: 71.68%;
+      margin: 0;
+      transform: scaleX(-1);
+    }
+
+    .case-banner p,
+    .case-note p {
+      letter-spacing: 0.01em;
+    }
+
+    .case-note {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 508px;
+      column-gap: 140px;
+      align-items: start;
+      min-height: 0;
+    }
+
+    // Figma clips the two title lines to a 140px block, 6px shorter than they render.
+    .case-note-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+      padding-top: 184px;
+    }
+
+    .case-note h2 {
+      font-size: $font-size-case-display;
+    }
+
+    .case-note-emphasis {
+      margin-top: -$space-8;
+    }
+
+    .case-note p {
+      max-width: none;
+      font-size: $font-size-18;
+    }
+
+    // The Figma frame is 11px taller than the leaf artwork; the extra room sits below it.
+    .case-note-ornament {
+      position: static;
+      width: 100%;
+      aspect-ratio: 508 / 474;
+      margin: 0;
+      object-fit: contain;
+      object-position: top;
+    }
+
+    .case-flow > .case-media--tote {
+      margin-top: 120px;
+    }
+
+    @include case-related-1440;
+
+    .case-related-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+  }
+}
+
+// 1200 frame. Bridges up to the 1440 values.
+@media (min-width: #{$bp-single + 1px}) and (max-width: #{$bp-desktop - 1px}) {
+  .case-page--amaryllis {
+    @include case-intro-1200;
+
+    .case-flow > .case-stagger,
+    .case-flow > .case-media--posters,
+    .case-flow > .case-media--vinyl,
+    .case-flow > .case-media--shirt {
+      margin-top: fluid(136px, $space-144, $bp-laptop, $bp-desktop);
+    }
+
+    .case-banner {
+      aspect-ratio: 688 / 489;
+    }
+
+    .case-banner-copy {
+      top: fluid(238px, 278px, $bp-laptop, $bp-desktop);
+      left: fluid(93px, 108px, $bp-laptop, $bp-desktop);
+      gap: fluid($space-32, $space-40, $bp-laptop, $bp-desktop);
+    }
+
+    .case-banner h2 {
+      font-size: fluid($font-size-case-display, $font-size-80, $bp-laptop, $bp-desktop);
+    }
+
+    .case-banner p {
+      max-width: fluid(566px, 657px, $bp-laptop, $bp-desktop);
+      font-size: fluid($font-size-base, $font-size-18, $bp-laptop, $bp-desktop);
+    }
+
+    .case-banner-mark {
+      top: fluid(67px, 78px, $bp-laptop, $bp-desktop);
+      left: fluid(605px, 703px, $bp-laptop, $bp-desktop);
+    }
+
+    .case-note {
+      grid-template-columns: minmax(0, 1fr) fluid(439px, 508px, $bp-laptop, $bp-desktop);
+      column-gap: fluid(91px, 140px, $bp-laptop, $bp-desktop);
+    }
+
+    .case-note-copy {
+      gap: fluid(26px, 34px, $bp-laptop, $bp-desktop);
+      padding-top: fluid(168px, 184px, $bp-laptop, $bp-desktop);
+    }
+
+    .case-flow > .case-media--tote {
+      margin-top: fluid(112px, 120px, $bp-laptop, $bp-desktop);
+    }
+
+    @include case-related-1200;
+  }
+}
+
+// 1024 frame. Bridges up to the 1200 values.
+@media (min-width: #{$bp-single + 1px}) and (max-width: #{$bp-laptop - 1px}) {
+  .case-page--amaryllis {
+    padding-top: fluid($space-16, $space-24, $bp-tablet, $bp-laptop);
+
+    @include case-intro-1024;
+
+    .case-flow > .case-intro {
+      margin-top: fluid($space-56, $space-64, $bp-tablet, $bp-laptop);
+    }
+
+    .case-intro-copy {
+      padding-top: $space-32;
+    }
+
+    .case-flow > .case-stagger,
+    .case-flow > .case-media--posters,
+    .case-flow > .case-media--vinyl,
+    .case-flow > .case-media--shirt {
+      margin-top: fluid($space-128, 136px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-banner-copy {
+      top: fluid(196px, 238px, $bp-tablet, $bp-laptop);
+      left: fluid(79px, 93px, $bp-tablet, $bp-laptop);
+      gap: fluid(28px, $space-32, $bp-tablet, $bp-laptop);
+    }
+
+    .case-banner h2 {
+      font-size: fluid($font-size-60, $font-size-case-display, $bp-tablet, $bp-laptop);
+    }
+
+    .case-banner-emphasis {
+      margin-top: fluid(-6px, -8px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-banner p {
+      max-width: fluid(483px, 566px, $bp-tablet, $bp-laptop);
+      font-size: fluid($font-size-15, $font-size-base, $bp-tablet, $bp-laptop);
+    }
+
+    .case-banner-mark {
+      top: fluid(57px, 67px, $bp-tablet, $bp-laptop);
+      left: fluid(516px, 605px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-note {
+      grid-template-columns: minmax(0, 1fr) fluid(375px, 439px, $bp-tablet, $bp-laptop);
+      column-gap: fluid($space-80, 91px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-note-copy {
+      gap: fluid($space-32, 26px, $bp-tablet, $bp-laptop);
+      padding-top: fluid(160px, 168px, $bp-tablet, $bp-laptop);
+    }
+
+    .case-note h2 {
+      font-size: fluid($font-size-60, $font-size-case-display, $bp-tablet, $bp-laptop);
+    }
+
+    .case-note p {
+      font-size: fluid($font-size-base, $font-size-18, $bp-tablet, $bp-laptop);
+    }
+
+    .case-flow > .case-media--tote {
+      margin-top: fluid(104px, 112px, $bp-tablet, $bp-laptop);
+    }
+
+    @include case-related-1024;
+
+    .case-related h2 {
+      margin-bottom: $space-40;
+    }
+  }
+}
+
+// 768 frame. Bridges up to the 1024 values.
+@media (min-width: #{$bp-single + 1px}) and (max-width: #{$bp-tablet - 1px}) {
+  .case-page--amaryllis {
+    padding-top: $space-16;
+
+    @include case-intro-768;
+
+    .case-flow > .case-intro {
+      margin-top: $space-56;
+    }
+
+    .case-flow > .case-stagger,
+    .case-flow > .case-media--posters,
+    .case-flow > .case-media--vinyl,
+    .case-flow > .case-media--shirt {
+      margin-top: fluid(96px, $space-128, $bp-stack, $bp-tablet);
+    }
+
+    .case-banner-copy {
+      top: fluid(124px, 196px, $bp-stack, $bp-tablet);
+      left: fluid(56px, 79px, $bp-stack, $bp-tablet);
+      gap: fluid($space-20, 28px, $bp-stack, $bp-tablet);
+    }
+
+    .case-banner h2 {
+      font-size: fluid(46px, $font-size-60, $bp-stack, $bp-tablet);
+    }
+
+    .case-banner-emphasis {
+      margin-top: fluid(-4px, -6px, $bp-stack, $bp-tablet);
+    }
+
+    .case-banner p {
+      max-width: fluid(391px, 483px, $bp-stack, $bp-tablet);
+      font-size: fluid($font-size-14, $font-size-15, $bp-stack, $bp-tablet);
+    }
+
+    .case-banner-mark {
+      top: fluid(42px, 57px, $bp-stack, $bp-tablet);
+      left: fluid(411px, 516px, $bp-stack, $bp-tablet);
+    }
+
+    .case-note {
+      grid-template-columns: minmax(0, 1fr) fluid(256px, 375px, $bp-stack, $bp-tablet);
+      column-gap: fluid($space-24, $space-80, $bp-stack, $bp-tablet);
+    }
+
+    .case-note-copy {
+      gap: fluid(28px, $space-32, $bp-stack, $bp-tablet);
+      padding-top: fluid(120px, 160px, $bp-stack, $bp-tablet);
+    }
+
+    .case-note h2 {
+      font-size: fluid($font-size-52, $font-size-60, $bp-stack, $bp-tablet);
+    }
+
+    .case-note p {
+      font-size: fluid($font-size-14, $font-size-base, $bp-stack, $bp-tablet);
+    }
+
+    .case-flow > .case-media--tote {
+      margin-top: fluid(88px, 104px, $bp-stack, $bp-tablet);
+    }
+
+    @include case-related-768;
+  }
+}
 
 @media (max-width: $bp-phone) {
   .case-page--amaryllis {
@@ -54,12 +383,21 @@
     gap: 80px;
   }
 
+  // The 390 frame keeps only the symmetrical poster.
+  .case-page--amaryllis .case-stagger.case-section--section .case-stagger-follow {
+    display: none;
+  }
+
   .case-page--amaryllis .case-caption {
     margin-top: $space-16;
   }
 
   .case-page--amaryllis .case-frame {
     border-width: $space-2;
+  }
+
+  .case-page--amaryllis .case-stagger.case-section--section .case-frame {
+    border-width: $case-frame-border;
   }
 
   .case-page--amaryllis .case-media--cover img,
@@ -149,19 +487,24 @@
     line-height: 1.1;
   }
 
+  .case-page--amaryllis .case-note-emphasis {
+    margin-top: -$space-8;
+  }
+
   .case-page--amaryllis .case-flow > .case-media--tote {
     margin-top: $space-48;
   }
 
   .case-page--amaryllis .case-related {
-    margin-top: 0;
-    padding-top: 80px;
+    margin-top: $space-80;
+    padding-top: $space-80;
     padding-bottom: 0;
   }
 
   .case-page--amaryllis .case-related h2 {
     margin-bottom: $space-32;
     font-size: $font-size-40;
+    line-height: 1.1;
   }
 
   .case-page--amaryllis .case-related-grid {
