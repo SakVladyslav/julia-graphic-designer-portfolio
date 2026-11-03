@@ -1,6 +1,9 @@
 import { caseCopy, caseCopyById } from "../constants/caseCopy.ts";
+import { listProjectCases } from "../constants/projectCases.ts";
+import { publishedProjectIds } from "../constants/publishedProjectIds.ts";
 import { OG_IMAGE, SITE_DESCRIPTION, SITE_OWNER, SITE_ROLE } from "../constants/site.ts";
 
+import { assertCaseIdsLocked } from "./caseIdsLock.ts";
 import type { SharePage } from "./siteHeadTags.ts";
 
 const META_DESCRIPTION_LIMIT = 160;
@@ -81,6 +84,12 @@ function projectPage(id: string): PrerenderPage | undefined {
 
 /** Pages written at build time. One file per address a crawler can request. */
 export function prerenderPages(): readonly PrerenderPage[] {
+  assertCaseIdsLocked(
+    publishedProjectIds(),
+    listProjectCases().map((projectCase) => projectCase.id),
+    caseCopy.map((item) => item.id),
+  );
+
   const home: PrerenderPage = {
     pathname: "/",
     output: "index.html",
