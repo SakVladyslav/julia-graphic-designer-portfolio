@@ -5,17 +5,28 @@ import SiteShell from "./components/SiteShell/SiteShell";
 
 import LandingPage from "./pages/home/LandingPage";
 import NotFoundPage from "./pages/not-found/NotFoundPage";
+import CaseChunkBoundary from "./pages/project/CaseChunkBoundary";
+import ProjectRouteFallback from "./pages/project/ProjectRouteFallback";
 
 import { loadProjectCasePage } from "./pages/project/loadProjectCasePage";
+
+import { caseHtmlAlreadyInDocument } from "./utils/caseHtmlAlreadyInDocument";
+import { consumeNullCaseFallback } from "./utils/consumeNullCaseFallback";
 import { routerBasename } from "./utils/routerBasename";
 
 const ProjectCasePage = lazy(loadProjectCasePage);
 
 function ProjectRoute() {
+  const fallback = consumeNullCaseFallback(caseHtmlAlreadyInDocument()) ? null : (
+    <ProjectRouteFallback />
+  );
+
   return (
-    <Suspense fallback={null}>
-      <ProjectCasePage />
-    </Suspense>
+    <CaseChunkBoundary>
+      <Suspense fallback={fallback}>
+        <ProjectCasePage />
+      </Suspense>
+    </CaseChunkBoundary>
   );
 }
 
