@@ -30,7 +30,7 @@ frontend: "react 19 + vite 8 + sass"
 
 ```mermaid
 C4Container
-    title Current containers — julia-site
+    title Current containers - julia-site
     Person(visitor, "Visitor", "Reads the portfolio in a browser")
     Person(author, "Site owner", "Edits TypeScript constants and WebP images")
     Container(spa, "Browser SPA", "React 19 + React Router 7", "Landing, case pages, 404. Hydrates prerendered HTML")
@@ -46,19 +46,19 @@ C4Container
 
 Flat SPA. Layers are **page → component → constants/utils**, not hexagonal dirs. No `services/`, `api/`, or datastore module.
 
-| Module | Path | Layers | Wired at | Responsibility |
-|---|---|---|---|---|
-| App / routes | `src/App.tsx`, `src/main.tsx`, `src/entry-server.tsx` | composition | `index.html` → `main.tsx:32`; SSR `entry-server.tsx:21-42` | Client hydrate vs createRoot; `AppRoutes` under `SiteShell` |
-| Pages | `src/pages/` | page composition | `src/App.tsx:22-31` | `LandingPage`, lazy `ProjectCasePage`, `NotFoundPage` |
-| Components | `src/components/` | UI | pages + `SiteShell.tsx:34-42` | Chrome (Header, Footer, SkipLink, Logo, SiteNav, Contacts), `ProjectCard`, `ProjectCase/*` |
-| Constants | `src/constants/` | content data | pages / components / utils / vite | Projects, cases, `publishedProjectIds`, `caseCopy`, nav, contacts, site strings |
-| Utils | `src/utils/` | pure helpers + 2 hooks | everywhere | SEO head, sitemap/robots, prerender list, IDs, URLs |
-| Styles | `src/styles/` | design tokens | `src/index.scss:1-6` + component SCSS | Colors, typography, spacing, sizes, breakpoints, fonts |
-| Vite plugins | `src/vite/` | build plugins | `vite.config.ts:11` | Dev head injection, sitemap/robots, preview HTML routes, HTTP 404 |
-| Tests | `src/tests/` | Vitest | `vite.config.ts:12-16` | Mirrors `src/` (`pages/`, `components/`, `utils/`, `vite/`) |
-| Scripts | `scripts/` | Node build-time | `package.json:11,18-21` | Prerender, image optimize, card variants, OG image |
-| Public assets | `public/` | static files | copied into `dist` | Fonts, `projects/` WebP, `_headers`, `og.png`, favicons |
-| Host config | `wrangler.jsonc` | deploy | Cloudflare dashboard from `master` | Worker name `julia-graphic-designer-portfolio`; assets from `./dist` |
+| Module        | Path                                                  | Layers                 | Wired at                                                   | Responsibility                                                                             |
+| ------------- | ----------------------------------------------------- | ---------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| App / routes  | `src/App.tsx`, `src/main.tsx`, `src/entry-server.tsx` | composition            | `index.html` → `main.tsx:32`; SSR `entry-server.tsx:21-42` | Client hydrate vs createRoot; `AppRoutes` under `SiteShell`                                |
+| Pages         | `src/pages/`                                          | page composition       | `src/App.tsx:22-31`                                        | `LandingPage`, lazy `ProjectCasePage`, `NotFoundPage`                                      |
+| Components    | `src/components/`                                     | UI                     | pages + `SiteShell.tsx:34-42`                              | Chrome (Header, Footer, SkipLink, Logo, SiteNav, Contacts), `ProjectCard`, `ProjectCase/*` |
+| Constants     | `src/constants/`                                      | content data           | pages / components / utils / vite                          | Projects, cases, `publishedProjectIds`, `caseCopy`, nav, contacts, site strings            |
+| Utils         | `src/utils/`                                          | pure helpers + 2 hooks | everywhere                                                 | SEO head, sitemap/robots, prerender list, IDs, URLs                                        |
+| Styles        | `src/styles/`                                         | design tokens          | `src/index.scss:1-6` + component SCSS                      | Colors, typography, spacing, sizes, breakpoints, fonts                                     |
+| Vite plugins  | `src/vite/`                                           | build plugins          | `vite.config.ts:11`                                        | Dev head injection, sitemap/robots, preview HTML routes, HTTP 404                          |
+| Tests         | `src/tests/`                                          | Vitest                 | `vite.config.ts:12-16`                                     | Mirrors `src/` (`pages/`, `components/`, `utils/`, `vite/`)                                |
+| Scripts       | `scripts/`                                            | Node build-time        | `package.json:11,18-21`                                    | Prerender, image optimize, card variants, OG image                                         |
+| Public assets | `public/`                                             | static files           | copied into `dist`                                         | Fonts, `projects/` WebP, `_headers`, `og.png`, favicons                                    |
+| Host config   | `wrangler.jsonc`                                      | deploy                 | Cloudflare dashboard from `master`                         | Worker name `julia-graphic-designer-portfolio`; assets from `./dist`                       |
 
 ## Conventions (cited — the rules a new feature must match)
 
@@ -77,9 +77,9 @@ Flat SPA. Layers are **page → component → constants/utils**, not hexagonal d
 
 ## Datastores
 
-| Store | Engine | Accessed via | Notes |
-|---|---|---|---|
-| (none) | — | compile-time constants in `src/constants/` | Static site. Media files on disk under `public/projects/`. Canonical origin from `SITE_ORIGIN` / default `https://julia-s.com` (`src/utils/siteOrigin.ts:3-10`). |
+| Store  | Engine | Accessed via                               | Notes                                                                                                                                                            |
+| ------ | ------ | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| (none) | —      | compile-time constants in `src/constants/` | Static site. Media files on disk under `public/projects/`. Canonical origin from `SITE_ORIGIN` / default `https://julia-s.com` (`src/utils/siteOrigin.ts:3-10`). |
 
 ## Frontend / UI foundation
 
