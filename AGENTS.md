@@ -27,6 +27,12 @@ Before finishing any task: lint, format:check and test must pass.
 - Work in a branch and open a PR, never commit to master directly
 - After editing files, run `npm run format` on changed files
 
+## Tests for visual fixes
+
+- Pure CSS/SCSS changes (spacing, font, sizes, media queries): NO new tests. Verify visually against Figma.
+- Add a test only if markup, logic or accessibility changes.
+- Never write tests that assert CSS values.
+
 ## Git
 
 - Never commit on your own. After changes: show diff, list files, stop and wait.
