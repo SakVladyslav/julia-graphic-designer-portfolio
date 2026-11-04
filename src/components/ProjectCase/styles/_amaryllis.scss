@@ -360,6 +360,13 @@
   }
 }
 
+// Box and cup only. The poster stagger keeps the shared stack gap.
+@media (max-width: $bp-single) {
+  .case-page--amaryllis .case-stagger.case-section--group {
+    gap: $space-80;
+  }
+}
+
 @media (max-width: $bp-phone) {
   .case-page--amaryllis .case-flow > .case-section:first-child {
     margin-top: 0;
@@ -367,10 +374,6 @@
 
   .case-page--amaryllis .case-flow > .case-stagger.case-section--section {
     margin-top: 72px;
-  }
-
-  .case-page--amaryllis .case-stagger {
-    gap: 80px;
   }
 
   // The 390 frame keeps only the symmetrical poster.
