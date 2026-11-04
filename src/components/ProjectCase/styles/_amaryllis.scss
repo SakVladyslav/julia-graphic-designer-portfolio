@@ -418,6 +418,25 @@ $font-family-amaryllis: "Fixel Display", $font-family;
   }
 }
 
+// Note flower. From 759 the line ornament is hidden and the note is one column.
+@media (max-width: $bp-narrow) {
+  .case-page--amaryllis .case-note {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .case-page--amaryllis .case-note-ornament {
+    display: none;
+  }
+
+  .case-page--amaryllis .case-note-copy {
+    gap: $space-24;
+  }
+
+  .case-page--amaryllis .case-note p {
+    max-width: $case-note-copy-max;
+  }
+}
+
 // 599 frame. Desktop type starts at 600, so this frame is its own step.
 // The flower is anchored to the banner and cropped at the bottom right.
 @media (max-width: $bp-single) {
@@ -462,6 +481,23 @@ $font-family-amaryllis: "Fixel Display", $font-family;
     aspect-ratio: 450 / 538;
     margin: 0;
     transform: scaleX(-1);
+  }
+
+  .case-page--amaryllis .case-note-copy {
+    padding-top: $space-120;
+  }
+
+  .case-page--amaryllis .case-note h2 {
+    font-size: $font-size-48;
+  }
+
+  .case-page--amaryllis .case-note-emphasis {
+    margin-top: -$space-8;
+  }
+
+  .case-page--amaryllis .case-note p {
+    font-size: $font-size-14;
+    letter-spacing: 0.14px;
   }
 }
 
@@ -562,14 +598,12 @@ $font-family-amaryllis: "Fixel Display", $font-family;
     margin-top: 80px;
   }
 
-  .case-page--amaryllis .case-note-ornament {
-    display: none;
-  }
-
   .case-page--amaryllis .case-note-copy {
     display: flex;
     flex-direction: column;
     gap: $space-24;
+    // The 390 frame has no extra space above the heading.
+    padding-top: 0;
   }
 
   .case-page--amaryllis .case-note h2 {
@@ -597,6 +631,14 @@ $font-family-amaryllis: "Fixel Display", $font-family;
   .case-page--amaryllis .case-banner h2 {
     font-size: $font-size-32;
   }
+
+  .case-page--amaryllis .case-note h2 {
+    font-size: $font-size-38;
+  }
+
+  .case-page--amaryllis .case-note-copy {
+    gap: $space-20;
+  }
 }
 
 @media (max-width: $bp-mini) {
@@ -607,5 +649,9 @@ $font-family-amaryllis: "Fixel Display", $font-family;
   .case-page--amaryllis .case-banner p {
     font-size: 13px;
     letter-spacing: 0.13px;
+  }
+
+  .case-page--amaryllis .case-note h2 {
+    font-size: $font-size-32;
   }
 }
