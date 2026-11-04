@@ -17,8 +17,8 @@ updated_at: "2026-11-03"
 
 ## Platform posture
 
-- **Posture:** desktop-first — new screens are drawn at the 1440px frame first. The live CSS already narrows from that width with `max-width` queries (`src/styles/_breakpoints.scss:6-11`). Phone layouts are separate Figma frames the designer supplies; they are not the starting point and they are not guessed from the desktop frame.
-- **Breakpoints / device classes:** code thresholds are `$bp-desktop` 1440, `$bp-laptop` 1200, `$bp-tablet` 1024, `$bp-stack` 768, `$bp-single` 599, `$bp-phone` 479 (`src/styles/_breakpoints.scss:6-11`). Figma frame widths in the responsive sections are 1440, 1200, 1024, 768, and 390. A new screen uses the `$bp-*` names in code. It does not add a raw 390, 599, or 800 breakpoint.
+- **Posture:** desktop-first — new screens are drawn at the 1440px frame first. The live CSS already narrows from that width with `max-width` queries (`src/styles/_breakpoints.scss:7-16`). Phone layouts are separate Figma frames the designer supplies; they are not the starting point and they are not guessed from the desktop frame.
+- **Breakpoints / device classes:** code thresholds are `$bp-desktop` 1440, `$bp-laptop` 1200, `$bp-tablet` 1024, `$bp-stack` 768, `$bp-narrow` 759, `$bp-compact` 660, `$bp-single` 599, `$bp-phone` 479, `$bp-small` 360, `$bp-mini` 320 (`src/styles/_breakpoints.scss:7-16`). Figma frame widths in the responsive sections are 1440, 1200, 1024, 768, and 390. A new screen uses the `$bp-*` names in code. It does not add a raw 390, 599, or 800 breakpoint.
 
 ## Design tool
 

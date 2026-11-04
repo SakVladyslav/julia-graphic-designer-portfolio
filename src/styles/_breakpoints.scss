@@ -8,9 +8,12 @@ $bp-desktop: 1440px;
 $bp-laptop: 1200px;
 $bp-tablet: 1024px;
 $bp-stack: 768px;
+$bp-narrow: 759px;
 $bp-compact: 660px;
 $bp-single: 599px;
 $bp-phone: 479px;
+$bp-small: 360px;
+$bp-mini: 320px;
 
 /// Linear size between two frame widths. `$from` is the value at `$from-viewport`.
 @function fluid($from, $to, $from-viewport, $to-viewport) {

@@ -25,5 +25,12 @@ Before finishing any task: lint, format:check and test must pass.
 - Detailed rules: .cursor/rules/*.mdc
 - Architecture: docs/architecture-map.md (after survey)
 - Work in a branch and open a PR, never commit to master directly
-- Commit messages: type(scope): what and why
 - After editing files, run `npm run format` on changed files
+
+## Git
+
+- Never commit on your own. After changes: show diff, list files, stop and wait.
+- Commit ONLY after the user explicitly approves in the current message ("ок, коміть" / "ok, commit").
+- Commit format: `fix(<scope>): <what>`; one commit per VF item.
+- After commit: in `docs/_review/visual-fixes.md` set the item to `[x]` and write the commit hash in **Commit**.
+- Never run `git push`, `reset`, `rebase`, `stash`.
