@@ -26,3 +26,4 @@ Before finishing any task: lint, format:check and test must pass.
 - Architecture: docs/architecture-map.md (after survey)
 - Work in a branch and open a PR, never commit to master directly
 - Commit messages: type(scope): what and why
+- After editing files, run `npm run format` on changed files
