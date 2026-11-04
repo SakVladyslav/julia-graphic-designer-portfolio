@@ -25,11 +25,11 @@
 
 .case-page--bbg .case-intro-copy {
   padding-top: $space-40;
-  padding-bottom: 50px;
+  padding-bottom: $space-50;
 }
 
 .case-page--bbg .case-typeface--logo .case-typeface-name {
-  font-size: 78px;
+  font-size: $font-size-78;
 }
 
 .case-page--bbg .case-typeface--communication .case-typeface-name {
@@ -47,11 +47,11 @@
 
   .case-page--bbg .case-flow > .case-section--section,
   .case-page--bbg .case-related {
-    margin-top: fluid(136px, $space-144, $bp-laptop, $bp-desktop);
+    margin-top: fluid($space-136, $space-144, $bp-laptop, $bp-desktop);
   }
 
   .case-page--bbg .case-related {
-    padding-top: fluid(128px, $space-144, $bp-laptop, $bp-desktop);
+    padding-top: fluid($space-128, $space-144, $bp-laptop, $bp-desktop);
   }
 
   .case-page--bbg .case-related h2 {
@@ -63,8 +63,8 @@
   }
 
   .case-page--bbg .case-icon-board {
-    grid-template-columns: repeat(4, #{fluid(120px, 130px, $bp-laptop, $bp-desktop)});
-    padding: 72px #{fluid($space-144, 168px, $bp-laptop, $bp-desktop)};
+    grid-template-columns: repeat(4, #{fluid($space-120, $space-130, $bp-laptop, $bp-desktop)});
+    padding: $space-72 #{fluid($space-144, $space-168, $bp-laptop, $bp-desktop)};
   }
 
   .case-page--bbg .case-typeface {
@@ -76,7 +76,7 @@
   }
 
   .case-page--bbg .case-typeface--logo .case-typeface-name {
-    font-size: fluid(76px, 78px, $bp-laptop, $bp-desktop);
+    font-size: fluid($font-size-76, $font-size-78, $bp-laptop, $bp-desktop);
   }
 }
 
@@ -102,24 +102,24 @@
   }
 
   .case-page--bbg .case-typeface--logo .case-typeface-name {
-    font-size: fluid(65px, 76px, $bp-tablet, $bp-laptop);
+    font-size: fluid($font-size-65, $font-size-76, $bp-tablet, $bp-laptop);
   }
 
   .case-page--bbg .case-typeface--communication .case-typeface-name {
-    font-size: fluid(62px, $font-size-72, $bp-tablet, $bp-laptop);
+    font-size: fluid($font-size-62, $font-size-72, $bp-tablet, $bp-laptop);
   }
 
   .case-page--bbg .case-flow > .case-section--block {
-    margin-top: fluid(56px, $space-64, $bp-tablet, $bp-laptop);
+    margin-top: fluid($space-56, $space-64, $bp-tablet, $bp-laptop);
   }
 
   .case-page--bbg .case-flow > .case-section--section,
   .case-page--bbg .case-related {
-    margin-top: fluid(128px, 136px, $bp-tablet, $bp-laptop);
+    margin-top: fluid($space-128, $space-136, $bp-tablet, $bp-laptop);
   }
 
   .case-page--bbg .case-related {
-    padding-top: fluid(104px, 128px, $bp-tablet, $bp-laptop);
+    padding-top: fluid($space-104, $space-128, $bp-tablet, $bp-laptop);
   }
 
   .case-page--bbg .case-split h2 {
@@ -139,8 +139,8 @@
   }
 
   .case-page--bbg .case-icon-board {
-    grid-template-columns: repeat(4, #{fluid(110px, 120px, $bp-tablet, $bp-laptop)});
-    padding: $space-64 #{fluid(120px, $space-144, $bp-tablet, $bp-laptop)};
+    grid-template-columns: repeat(4, #{fluid($space-110, $space-120, $bp-tablet, $bp-laptop)});
+    padding: $space-64 #{fluid($space-120, $space-144, $bp-tablet, $bp-laptop)};
   }
 
   .case-page--bbg .case-typeface {
@@ -160,11 +160,11 @@
 
   .case-page--bbg .case-flow > .case-section--section,
   .case-page--bbg .case-related {
-    margin-top: fluid(96px, 128px, $bp-stack, $bp-tablet);
+    margin-top: fluid($space-96, $space-128, $bp-stack, $bp-tablet);
   }
 
   .case-page--bbg .case-related {
-    padding-top: fluid(96px, 104px, $bp-stack, $bp-tablet);
+    padding-top: fluid($space-96, $space-104, $bp-stack, $bp-tablet);
   }
 
   .case-page--bbg .case-split h2 {
@@ -184,9 +184,9 @@
   }
 
   .case-page--bbg .case-icon-board {
-    grid-template-columns: repeat(4, #{fluid(96px, 110px, $bp-stack, $bp-tablet)});
-    row-gap: 56px;
-    padding: 56px #{fluid(72px, 120px, $bp-stack, $bp-tablet)};
+    grid-template-columns: repeat(4, #{fluid($space-96, $space-110, $bp-stack, $bp-tablet)});
+    row-gap: $space-56;
+    padding: $space-56 #{fluid($space-72, $space-120, $bp-stack, $bp-tablet)};
   }
 
   .case-page--bbg .case-typeface {
@@ -204,15 +204,15 @@
   }
 
   .case-page--bbg .case-typeface--logo .case-typeface-name {
-    font-size: fluid(47px, 65px, $bp-stack, $bp-tablet);
+    font-size: fluid($font-size-47, $font-size-65, $bp-stack, $bp-tablet);
   }
 
   .case-page--bbg .case-typeface--communication .case-typeface-name {
-    font-size: fluid(45px, 62px, $bp-stack, $bp-tablet);
+    font-size: fluid($font-size-45, $font-size-62, $bp-stack, $bp-tablet);
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: $bp-columns) {
   .case-page--bbg .case-intro,
   .case-page--bbg .case-split,
   .case-page--bbg .case-logo-pair,
@@ -224,11 +224,11 @@
 
 @media (max-width: #{$bp-stack - 1px}) {
   .case-page--bbg {
-    padding-top: fluid($space-8, $space-16, 390px, $bp-compact);
+    padding-top: fluid($space-8, $space-16, $bp-mobile, $bp-compact);
   }
 
   .case-page--bbg .case-intro h1 {
-    font-size: fluid($font-size-48, $font-size-52, 390px, $bp-compact);
+    font-size: fluid($font-size-48, $font-size-52, $bp-mobile, $bp-compact);
   }
 
   .case-page--bbg .case-copy {
@@ -236,39 +236,39 @@
   }
 
   .case-page--bbg .case-flow > .case-section--block {
-    margin-top: fluid($space-40, 56px, 390px, $bp-compact);
+    margin-top: fluid($space-40, $space-56, $bp-mobile, $bp-compact);
   }
 
   .case-page--bbg .case-flow > .case-section--section,
   .case-page--bbg .case-related {
-    margin-top: fluid(80px, 96px, 390px, $bp-compact);
+    margin-top: fluid($space-80, $space-96, $bp-mobile, $bp-compact);
   }
 
   .case-page--bbg .case-related {
-    padding-top: fluid(80px, 96px, 390px, $bp-compact);
+    padding-top: fluid($space-80, $space-96, $bp-mobile, $bp-compact);
   }
 
   .case-page--bbg .case-split h2 {
-    font-size: fluid($font-size-24, $font-size-28, 390px, $bp-compact);
+    font-size: fluid($font-size-24, $font-size-28, $bp-mobile, $bp-compact);
   }
 
   .case-page--bbg .case-related h2 {
-    font-size: fluid($font-size-40, $font-size-56, 390px, $bp-compact);
+    font-size: fluid($font-size-40, $font-size-56, $bp-mobile, $bp-compact);
   }
 
   .case-page--bbg .project-card h3 {
-    font-size: fluid($font-size-24, $font-size-28, 390px, $bp-compact);
+    font-size: fluid($font-size-24, $font-size-28, $bp-mobile, $bp-compact);
   }
 
   .case-page--bbg .case-related-grid {
-    row-gap: fluid($space-40, $space-64, 390px, $bp-compact);
+    row-gap: fluid($space-40, $space-64, $bp-mobile, $bp-compact);
   }
 
   .case-page--bbg .case-icon-board {
-    grid-template-columns: repeat(4, #{fluid(72px, 96px, $bp-phone, $bp-compact)});
-    row-gap: fluid($space-32, 56px, $bp-phone, $bp-compact);
-    padding: #{fluid($space-40, 56px, $bp-phone, $bp-compact)}
-      #{fluid($space-16, 72px, $bp-phone, $bp-compact)};
+    grid-template-columns: repeat(4, #{fluid($space-72, $space-96, $bp-phone, $bp-compact)});
+    row-gap: fluid($space-32, $space-56, $bp-phone, $bp-compact);
+    padding: #{fluid($space-40, $space-56, $bp-phone, $bp-compact)}
+      #{fluid($space-16, $space-72, $bp-phone, $bp-compact)};
   }
 }
 
@@ -364,13 +364,13 @@
   }
 
   .case-page--bbg .case-typeface--logo .case-typeface-name {
-    font-size: 47px;
+    font-size: $font-size-47;
     line-height: 1;
     letter-spacing: -0.01em;
   }
 
   .case-page--bbg .case-typeface--communication .case-typeface-name {
-    font-size: 45px;
+    font-size: $font-size-45;
     line-height: 1.05;
   }
 
@@ -383,8 +383,8 @@
 
   .case-page--bbg .case-icon-board {
     grid-auto-flow: column;
-    grid-template-rows: repeat(4, 72px);
-    grid-template-columns: repeat(2, 72px);
+    grid-template-rows: repeat(4, $space-72);
+    grid-template-columns: repeat(2, $space-72);
     justify-content: center;
     column-gap: $space-48;
     row-gap: $space-32;
@@ -392,8 +392,8 @@
   }
 }
 
-// Below 700 the two type cards stack. 1440–701 stays the shared two-column frame.
-@media (max-width: 700px) {
+// Below $bp-typeface the two type cards stack. Wider stays the shared two-column frame.
+@media (max-width: $bp-typeface) {
   .case-page--bbg .case-typefaces {
     grid-template-columns: minmax(0, 1fr);
     gap: $space-8;
@@ -401,7 +401,12 @@
 
   .case-page--bbg .case-typeface {
     aspect-ratio: auto;
-    height: fluid(246px, 300px, 530px, 700px);
+    height: fluid(
+      $bbg-typeface-height-min,
+      $bbg-typeface-height-max,
+      $bp-typeface-min,
+      $bp-typeface
+    );
     padding: $space-24;
   }
 
@@ -410,29 +415,29 @@
   }
 
   .case-page--bbg .case-typeface--logo .case-typeface-name {
-    font-size: fluid(47px, 65px, 530px, 700px);
+    font-size: fluid($font-size-47, $font-size-65, $bp-typeface-min, $bp-typeface);
   }
 
   .case-page--bbg .case-typeface--communication .case-typeface-name {
-    font-size: fluid(45px, 62px, 530px, 700px);
+    font-size: fluid($font-size-45, $font-size-62, $bp-typeface-min, $bp-typeface);
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: $bp-small) {
   .case-page--bbg .case-typeface {
     padding: $space-20;
   }
 
   .case-page--bbg .case-typeface--logo .case-typeface-name {
-    font-size: fluid(40px, 47px, 320px, 360px);
+    font-size: fluid($font-size-40, $font-size-47, $bp-mini, $bp-small);
   }
 
   .case-page--bbg .case-typeface--communication .case-typeface-name {
-    font-size: fluid(38px, 45px, 320px, 360px);
+    font-size: fluid($font-size-38, $font-size-45, $bp-mini, $bp-small);
   }
 
   .case-page--bbg .case-typeface--communication .case-typeface-meta {
-    gap: 56px;
+    gap: $space-56;
   }
 
   .case-page--bbg .case-typeface--communication .case-typeface-meta > p:first-child {
@@ -452,4 +457,27 @@
 
 .case-page--bbg .case-flow > .case-section:first-child {
   margin-top: 0;
+}
+
+// Icons copy → icon grid. Later than `.case-section--block`, which is a different distance.
+.case-page--bbg .case-flow > .case-icon-board {
+  margin-top: $space-56;
+}
+
+@media (max-width: #{$bp-laptop - 1px}) {
+  .case-page--bbg .case-flow > .case-icon-board {
+    margin-top: fluid($space-48, $space-56, $bp-tablet, $bp-laptop);
+  }
+}
+
+@media (max-width: #{$bp-tablet - 1px}) {
+  .case-page--bbg .case-flow > .case-icon-board {
+    margin-top: fluid($space-40, $space-48, $bp-stack, $bp-tablet);
+  }
+}
+
+@media (max-width: #{$bp-compact - 1px}) {
+  .case-page--bbg .case-flow > .case-icon-board {
+    margin-top: fluid($space-32, $space-40, $bp-mobile, $bp-compact);
+  }
 }

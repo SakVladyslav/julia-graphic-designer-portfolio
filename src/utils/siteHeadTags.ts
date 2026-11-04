@@ -41,7 +41,9 @@ export function siteHeadTags(pageUrl: string, page: SharePage = homeSharePage): 
   const structuredData =
     page.jobTitle === undefined
       ? []
-      : [`<script type="application/ld+json">${personJsonLd(pageUrl, page.jobTitle)}</script>`];
+      : [
+          `<script id="person-jsonld" type="application/ld+json">${personJsonLd(pageUrl, page.jobTitle)}</script>`,
+        ];
 
   return [
     `<meta name="description" content="${description}" />`,

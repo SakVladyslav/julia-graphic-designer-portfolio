@@ -26,3 +26,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# agents, AI
+.claude/*.local.md
+.worktrees/
+
+docs/_review/

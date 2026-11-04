@@ -24,3 +24,8 @@
   text-transform: uppercase;
   color: $accent-text;
 }
+
+.site-shell--inverse .not-found h1,
+.site-shell--inverse .not-found a {
+  color: $paper;
+}

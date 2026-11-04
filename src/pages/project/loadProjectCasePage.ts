@@ -45,9 +45,15 @@ export function loadProjectCasePage(): Promise<ProjectCaseModule> {
     return new ReadyProjectCase(loaded);
   }
 
-  pending ??= import("./ProjectCasePage").then((module) => {
-    loaded = module;
-    return module;
-  });
+  pending ??= import("./ProjectCasePage")
+    .then((module) => {
+      loaded = module;
+      return module;
+    })
+    .catch((error: unknown) => {
+      pending = undefined;
+      console.error("Failed to load the project case page", error);
+      throw error;
+    });
   return pending;
 }
