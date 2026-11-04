@@ -18,7 +18,7 @@ updated_at: "2026-11-03"
 ## Platform posture
 
 - **Posture:** desktop-first — new screens are drawn at the 1440px frame first. The live CSS already narrows from that width with `max-width` queries (`src/styles/_breakpoints.scss:7-16`). Phone layouts are separate Figma frames the designer supplies; they are not the starting point and they are not guessed from the desktop frame.
-- **Breakpoints / device classes:** code thresholds are `$bp-desktop` 1440, `$bp-laptop` 1200, `$bp-tablet` 1024, `$bp-stack` 768, `$bp-narrow` 759, `$bp-compact` 660, `$bp-single` 599, `$bp-phone` 479, `$bp-small` 360, `$bp-mini` 320 (`src/styles/_breakpoints.scss:7-16`). Figma frame widths in the responsive sections are 1440, 1200, 1024, 768, and 390. A new screen uses the `$bp-*` names in code. It does not add a raw 390, 599, or 800 breakpoint.
+- **Breakpoints / device classes:** code thresholds are `$bp-desktop` 1440, `$bp-laptop` 1200, `$bp-tablet` 1024, `$bp-columns` 800, `$bp-stack` 768, `$bp-narrow` 759, `$bp-typeface` 700, `$bp-compact` 660, `$bp-single` 599, `$bp-typeface-min` 530, `$bp-phone` 479, `$bp-mobile` 390, `$bp-small` 360, `$bp-mini` 320 (`src/styles/_breakpoints.scss:7-16`). Figma frame widths in the responsive sections are 1440, 1200, 1024, 768, and 390. A new screen uses the `$bp-*` names in code. It does not add a raw 390, 599, or 800 breakpoint.
 
 ## Design tool
 
@@ -30,7 +30,7 @@ updated_at: "2026-11-03"
 Colors, type, space, and size come from Sass variables. A screen does not declare a new hex or a one-off px value. `@use` order in component SCSS is colors, typography, spacing, sizes (`.cursor/rules/scss-tokens.mdc`).
 
 - **Colors:** Sass variables in `src/styles/_colors.scss:6` — surfaces (`$bg`, `$paper`, `$surface-inverse`), text (`$text`), accent (`$accent`, `$accent-text`, `$accent-hover`). Case brand colors painted by `CasePalette`, `CasePoster`, and `CaseBanner` come from that case's data, not from a new token.
-- **Spacing / sizing:** spacing scale in `src/styles/_spacing.scss:5` (`$space-2` through `$space-160`). Geometry in `src/styles/_sizes.scss:5` (`$page-max-width` is 1440px). Width thresholds in `src/styles/_breakpoints.scss:6`.
+- **Spacing / sizing:** spacing scale in `src/styles/_spacing.scss:5` (`$space-2` through `$space-168`). Geometry in `src/styles/_sizes.scss:5` (`$page-max-width` is 1440px). Width thresholds in `src/styles/_breakpoints.scss:6`.
 - **Typography:** families and the size scale in `src/styles/_typography.scss:4` (`$font-family` Min Sans, `$font-size-14` through `$font-size-hero`).
 
 ## Component inventory
