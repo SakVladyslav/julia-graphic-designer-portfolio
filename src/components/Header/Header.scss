@@ -10,8 +10,11 @@
   right: 0;
   left: 0;
   z-index: 20;
-  width: 100%;
-  max-width: $page-max-width;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: min(100%, #{$page-max-width});
+  min-height: $header-resting-height;
   margin-inline: auto;
   --page-pad: #{$header-padding-x};
   /* Transparent so the hero blur, which already extends over this
@@ -28,17 +31,16 @@
 }
 
 .site-header--pinned {
-  display: flex;
-  align-items: center;
   height: $header-pinned-height;
+  min-height: 0;
   padding-top: 0;
   padding-bottom: 0;
   background-color: $bg;
   border-bottom: $border-strong solid $text;
 }
 
-.site-header--pinned .header-inner {
-  width: 100%;
+.site-header .logo {
+  line-height: calc(#{$header-resting-height} - #{$space-32} * 2);
 }
 
 .site-header--inverse.site-header--pinned {
@@ -67,6 +69,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 
 .nav-toggle {
@@ -188,6 +191,7 @@
 
 @media (max-width: $bp-phone) {
   .site-header {
+    min-height: calc(#{$space-24} * 2 + (#{$header-resting-height} - #{$space-32} * 2));
     padding: $space-24 var(--page-pad);
   }
 
