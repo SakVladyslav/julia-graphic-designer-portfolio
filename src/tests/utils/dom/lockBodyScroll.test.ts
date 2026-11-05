@@ -29,6 +29,11 @@ describe("lockBodyScroll", () => {
     expect(document.body.style.overflow).toBe("auto");
     expect(document.body.style.position).toBe("");
     expect(document.documentElement.style.overflow).toBe("");
+    expect(window.scrollTo).toHaveBeenCalledWith({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
   });
 
   it("scrolls to a hash that changed while the page was locked", () => {

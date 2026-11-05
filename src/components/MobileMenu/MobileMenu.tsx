@@ -207,7 +207,7 @@ export default function MobileMenu({
   }
 
   return createPortal(
-    <div className={rootClassName(open, inverse)}>
+    <div className={rootClassName(open && visible, inverse)}>
       <div className="mobile-menu-backdrop" onClick={onClose} />
       <div
         ref={dialogRef}

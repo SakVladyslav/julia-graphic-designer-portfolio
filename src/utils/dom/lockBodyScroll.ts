@@ -37,6 +37,6 @@ export function lockBodyScroll(): () => void {
     if (hashNow !== hashAtLock && scrollToHashId(hashNow)) {
       return;
     }
-    window.scrollTo(0, scrollY);
+    window.scrollTo({ top: scrollY, left: 0, behavior: "instant" });
   };
 }
