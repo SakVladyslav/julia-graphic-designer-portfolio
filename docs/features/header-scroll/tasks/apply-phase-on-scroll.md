@@ -11,8 +11,8 @@ files_hint:
 owner: "Tech Lead"
 estimate: "M"
 context_budget: "M"
-status: "todo"
-step: ""
+status: "done"
+step: "COMMIT"
 ---
 
 # T8 — Apply the scroll phase when the page is interactive

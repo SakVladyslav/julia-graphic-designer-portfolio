@@ -110,7 +110,7 @@
         "src/tests/components/Header/Header.test.tsx"
       ],
       "file": "docs/features/header-scroll/tasks/apply-phase-on-scroll.md",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "T9",

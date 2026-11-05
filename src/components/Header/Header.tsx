@@ -1,7 +1,10 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 import Logo from "../Logo/Logo";
 import SiteNav from "../SiteNav/SiteNav";
+
+import { headerScrollPhase } from "./headerScrollPhase";
+import type { HeaderLook, HeaderMotion, HeaderScrollTravel } from "./headerScrollPhase";
 
 import "./Header.scss";
 
@@ -9,10 +12,100 @@ interface HeaderProps {
   tone?: "default" | "inverse";
 }
 
+function phaseClassName(look: HeaderLook, motion: HeaderMotion): string {
+  const names: string[] = [];
+  if (look === "pinned") {
+    names.push("site-header--pinned");
+  }
+  if (look === "hidden") {
+    names.push("site-header--hidden");
+  }
+  if (motion === "slide") {
+    names.push("site-header--slide");
+  }
+  if (motion === "fade") {
+    names.push("site-header--fade");
+  }
+  return names.join(" ");
+}
+
 export default function Header({ tone = "default" }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrollClassName, setScrollClassName] = useState("");
   const menuId = useId();
-  const className = tone === "inverse" ? "site-header site-header--inverse" : "site-header";
+  const menuOpenRef = useRef(menuOpen);
+
+  useEffect(() => {
+    menuOpenRef.current = menuOpen;
+  }, [menuOpen]);
+  const className = [
+    "site-header",
+    tone === "inverse" ? "site-header--inverse" : "",
+    scrollClassName,
+  ]
+    .filter((name) => name !== "")
+    .join(" ");
+
+  useEffect(() => {
+    const phase: { look: HeaderLook; travel: HeaderScrollTravel } = {
+      look: "resting",
+      travel: { direction: "down", distance: 0 },
+    };
+    let previousY = window.scrollY;
+    let pendingJump = false;
+    const mediaQuery =
+      typeof window.matchMedia === "function"
+        ? window.matchMedia("(prefers-reduced-motion: reduce)")
+        : null;
+
+    const publish = (
+      deltaY: number,
+      scrollY: number,
+      kind: "scroll" | "jump",
+      firstCorrection: boolean,
+    ) => {
+      const result = headerScrollPhase({
+        look: phase.look,
+        travel: phase.travel,
+        deltaY,
+        scrollY,
+        menuOpen: menuOpenRef.current,
+        focusInside: false,
+        reducedMotion: mediaQuery?.matches === true,
+        kind,
+        firstCorrection,
+      });
+      phase.look = result.look;
+      phase.travel = result.travel;
+      setScrollClassName(phaseClassName(result.look, result.motion));
+    };
+
+    publish(0, window.scrollY, "scroll", true);
+
+    const onScroll = () => {
+      const scrollY = window.scrollY;
+      const deltaY = scrollY - previousY;
+      const kind = pendingJump ? "jump" : "scroll";
+      pendingJump = false;
+      previousY = scrollY;
+      if (deltaY === 0) {
+        return;
+      }
+      publish(deltaY, scrollY, kind, false);
+    };
+
+    const onHashChange = () => {
+      pendingJump = true;
+    };
+
+    window.addEventListener("scroll", onScroll);
+    window.addEventListener("hashchange", onHashChange);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("hashchange", onHashChange);
+    };
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) {
