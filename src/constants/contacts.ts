@@ -1,3 +1,5 @@
+import { withBaseUrl } from "../utils/withBaseUrl";
+
 export type ContactDetail = {
   id: string;
   label: string;
@@ -23,9 +25,6 @@ export type ContactAction = {
 
 /**
  * Contact content as data (not JSX).
- *
- * TODO(owner): replace the remaining stub `href: null` with a real link:
- * - CV (PDF URL or file under /public)
  *
  * Later (n8n): same fields can be filled from automation/CMS.
  */
@@ -53,7 +52,7 @@ export const contactActions: readonly ContactAction[] = [
     id: "cv",
     label: "View CV",
     variant: "cv",
-    href: null,
+    href: withBaseUrl("CV_Samchuk.pdf"),
   },
   {
     id: "linkedin",

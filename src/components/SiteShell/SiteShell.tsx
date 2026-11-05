@@ -7,6 +7,7 @@ import SkipLink from "../SkipLink/SkipLink";
 
 import { publishedProjectIds } from "../../constants/publishedProjectIds";
 
+import { scrollToHashId } from "../../utils/scrollToHashId";
 import { useDocumentHead } from "../../utils/useDocumentHead";
 
 import "./SiteShell.scss";
@@ -23,11 +24,12 @@ export default function SiteShell() {
   useDocumentHead(pathname);
 
   useBrowserLayoutEffect(() => {
-    if (locationKey.includes("#")) {
+    if (hash !== "") {
+      scrollToHashId(hash);
       return;
     }
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  }, [locationKey]);
+  }, [hash, locationKey]);
 
   const shellClass = isProjectPage ? "site-shell site-shell--inverse" : "site-shell";
 

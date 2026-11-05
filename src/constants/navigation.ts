@@ -14,5 +14,5 @@ export interface NavItem {
  */
 export const navigation: readonly NavItem[] = [
   { id: "projects", label: "Projects", href: homeHash("projects") },
-  { id: "contacts", label: "Contacts", href: "#contacts" },
+  { id: "contacts", label: "Contacts", href: homeHash("contacts") },
 ];

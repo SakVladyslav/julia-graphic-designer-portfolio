@@ -52,32 +52,6 @@
   mask-size: contain;
 }
 
-.nav-toggle[aria-expanded="true"] .nav-toggle-icon {
-  position: relative;
-  background: transparent;
-  -webkit-mask-image: none;
-  mask-image: none;
-}
-
-.nav-toggle[aria-expanded="true"] .nav-toggle-icon::before,
-.nav-toggle[aria-expanded="true"] .nav-toggle-icon::after {
-  content: "";
-  position: absolute;
-  top: 11px;
-  left: 3px;
-  width: 18px;
-  height: 2px;
-  background: currentColor;
-}
-
-.nav-toggle[aria-expanded="true"] .nav-toggle-icon::before {
-  transform: rotate(45deg);
-}
-
-.nav-toggle[aria-expanded="true"] .nav-toggle-icon::after {
-  transform: rotate(-45deg);
-}
-
 .nav {
   display: flex;
   align-items: center;
@@ -117,36 +91,11 @@
     padding: $space-24 0;
   }
 
-  .header-inner {
-    position: relative;
-  }
-
   .nav-toggle {
     display: grid;
   }
 
   .nav {
     display: none;
-  }
-
-  .nav-toggle[aria-expanded="true"] ~ .nav {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: absolute;
-    top: calc(100% + #{$space-24});
-    right: calc(-1 * var(--page-pad, #{$header-padding-x}));
-    left: calc(-1 * var(--page-pad, #{$header-padding-x}));
-    z-index: 30;
-    padding: $space-8 var(--page-pad, #{$header-padding-x}) $space-24;
-    background: $bg;
-  }
-
-  .nav-toggle[aria-expanded="true"] ~ .nav .nav-sep {
-    display: none;
-  }
-
-  .site-header--inverse .nav-toggle[aria-expanded="true"] ~ .nav {
-    background: $surface-inverse;
   }
 }
