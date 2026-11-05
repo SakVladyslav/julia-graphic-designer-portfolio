@@ -21,13 +21,15 @@ export default function ContactActionItem({ action }: ContactActionItemProps) {
     );
   }
 
+  const path = action.href.split(/[?#]/, 1)[0] ?? action.href;
+  const opensInNewTab =
+    action.variant === "cv" || isExternalHref(action.href) || path.toLowerCase().endsWith(".pdf");
+
   return (
     <a
       className={className}
       href={action.href}
-      {...(isExternalHref(action.href)
-        ? { target: "_blank", rel: "noopener noreferrer" }
-        : undefined)}
+      {...(opensInNewTab ? { target: "_blank", rel: "noopener noreferrer" } : undefined)}
     >
       {action.label}
       <ContactArrow />
