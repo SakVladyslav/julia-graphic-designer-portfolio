@@ -32,12 +32,25 @@ Personal portfolio SPA for graphic designer Julia Samchuk.
 
 ```
 src/
-  components/     # UI pieces (Header, Contacts, ProjectCard, …)
-  constants/      # Content data (projects, contacts, navigation)
-  pages/          # Page composition (LandingPage)
+  components/     # UI pieces (Header, MobileMenu, Contacts, ProjectCard, ProjectCase, …)
+  constants/      # Content data (projects, cases, contacts, navigation)
+  hooks/          # React hooks (document head, page title)
+  pages/
+    home/         # LandingPage
+    not-found/    # NotFoundPage
+    project/      # Project case route
   styles/         # Design tokens (colors, typography, spacing, sizes)
-  utils/          # Pure helpers
-  test/           # Test setup
+  tests/          # Vitest (mirrors components, pages, utils, vite)
+  utils/          # Pure helpers, one export per file, no barrels
+    seo/          # Head tags, prerender list, sitemap, robots
+    url/          # Origin, base path, hashes, external hrefs
+    dom/          # Scroll, focus, body-scroll lock
+    projects/     # Case ids, next projects, card image sources
+    ssr/          # Prerender HTML fallback
+  vite/           # Dev head injection, sitemap/robots, preview routes
+  App.tsx
+  entry-server.tsx
+  main.tsx
 public/
   fonts/          # Self-hosted WOFF2 files. Face rules are in src/styles/_fonts.scss
   projects/       # Optimized project media (WebP + SVG)

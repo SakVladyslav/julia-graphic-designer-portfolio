@@ -1,6 +1,6 @@
 import type { CaseImage, CaseMediaSection, CaseSpace, ProjectCase } from "../projectCase";
 
-import { withBaseUrl } from "../../utils/withBaseUrl";
+import { withBaseUrl } from "../../utils/url/withBaseUrl";
 
 const asset = (file: string) => withBaseUrl(`projects/novyny/${file}`);
 

@@ -2,7 +2,7 @@ import { sectionClass } from "./sectionClass";
 
 import type { CasePairSection } from "../../constants/projectCase";
 
-import { optionalSrcSet } from "../../utils/cardSources";
+import { optionalSrcSet } from "../../utils/projects/cardSources";
 
 /** Half of the 1264px row. Stacked frames use the full viewport. */
 const frameSizes = "(max-width: 800px) 100vw, (max-width: 1440px) 50vw, 632px";

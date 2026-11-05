@@ -8,7 +8,7 @@ import type {
   ProjectCase,
 } from "../projectCase";
 
-import { withBaseUrl } from "../../utils/withBaseUrl";
+import { withBaseUrl } from "../../utils/url/withBaseUrl";
 
 const asset = (file: string) => withBaseUrl(`projects/amaryllis/${file}`);
 

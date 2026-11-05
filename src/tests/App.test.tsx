@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 import App from "../App";
 import { loadProjectCasePage } from "../pages/project/loadProjectCasePage";
-import { routerBasename } from "../utils/routerBasename";
+import { routerBasename } from "../utils/url/routerBasename";
 
 describe("App", () => {
   beforeEach(() => {

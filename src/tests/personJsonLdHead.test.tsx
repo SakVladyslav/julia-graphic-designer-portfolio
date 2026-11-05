@@ -4,9 +4,9 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 import App from "../App";
 
-import { pageCanonicalUrl } from "../utils/pageCanonicalUrl";
-import { prerenderPages } from "../utils/prerenderPages";
-import { siteHeadTags } from "../utils/siteHeadTags";
+import { pageCanonicalUrl } from "../utils/seo/pageCanonicalUrl";
+import { prerenderPages } from "../utils/seo/prerenderPages";
+import { siteHeadTags } from "../utils/seo/siteHeadTags";
 
 function jsonLdScripts(): NodeListOf<HTMLScriptElement> {
   return document.head.querySelectorAll('script[type="application/ld+json"]');

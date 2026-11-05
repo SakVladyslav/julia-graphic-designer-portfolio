@@ -6,7 +6,7 @@ import { publishedProjectIds } from "../../constants/publishedProjectIds";
 
 import type { Project } from "../../constants/projects";
 
-import { projectCaseId } from "../../utils/projectCaseId";
+import { projectCaseId } from "../../utils/projects/projectCaseId";
 
 import "./ProjectCard.scss";
 

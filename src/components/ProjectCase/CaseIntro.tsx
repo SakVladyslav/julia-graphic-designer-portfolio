@@ -1,6 +1,6 @@
 import type { CaseIntroSection } from "../../constants/projectCase";
 
-import { isExternalHref } from "../../utils/isExternalHref";
+import { isExternalHref } from "../../utils/url/isExternalHref";
 
 import { sectionClass } from "./sectionClass";
 

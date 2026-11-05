@@ -1,6 +1,6 @@
 import type { ContactDetail } from "../../constants/contacts";
 
-import { isExternalHref } from "../../utils/isExternalHref";
+import { isExternalHref } from "../../utils/url/isExternalHref";
 
 type ContactDetailItemProps = {
   detail: ContactDetail;

@@ -2,7 +2,7 @@ import ContactArrow from "./ContactArrow";
 
 import type { ContactAction } from "../../constants/contacts";
 
-import { isExternalHref } from "../../utils/isExternalHref";
+import { isExternalHref } from "../../utils/url/isExternalHref";
 
 type ContactActionItemProps = {
   action: ContactAction;
