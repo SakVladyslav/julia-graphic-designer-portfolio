@@ -58,11 +58,17 @@ export default function Header({ tone = "default" }: HeaderProps) {
         ? window.matchMedia("(prefers-reduced-motion: reduce)")
         : null;
 
+    const headerContains = (node: EventTarget | null) => {
+      const header = document.getElementById("top");
+      return header !== null && node instanceof Node && header.contains(node);
+    };
+
     const publish = (
       deltaY: number,
       scrollY: number,
       kind: "scroll" | "jump",
       firstCorrection: boolean,
+      focusEntered: boolean,
     ) => {
       const result = headerScrollPhase({
         look: phase.look,
@@ -70,7 +76,8 @@ export default function Header({ tone = "default" }: HeaderProps) {
         deltaY,
         scrollY,
         menuOpen: menuOpenRef.current,
-        focusInside: false,
+        focusInside: headerContains(document.activeElement),
+        focusEntered,
         reducedMotion: mediaQuery?.matches === true,
         kind,
         firstCorrection,
@@ -80,7 +87,7 @@ export default function Header({ tone = "default" }: HeaderProps) {
       setScrollClassName(phaseClassName(result.look, result.motion));
     };
 
-    publish(0, window.scrollY, "scroll", true);
+    publish(0, window.scrollY, "scroll", true, false);
 
     const onScroll = () => {
       const scrollY = window.scrollY;
@@ -91,19 +98,31 @@ export default function Header({ tone = "default" }: HeaderProps) {
       if (deltaY === 0) {
         return;
       }
-      publish(deltaY, scrollY, kind, false);
+      publish(deltaY, scrollY, kind, false, false);
     };
 
     const onHashChange = () => {
       pendingJump = true;
     };
 
+    const onFocusIn = (event: FocusEvent) => {
+      if (!headerContains(event.target)) {
+        return;
+      }
+      if (headerContains(event.relatedTarget)) {
+        return;
+      }
+      publish(0, window.scrollY, "scroll", false, true);
+    };
+
     window.addEventListener("scroll", onScroll);
     window.addEventListener("hashchange", onHashChange);
+    window.addEventListener("focusin", onFocusIn);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("hashchange", onHashChange);
+      window.removeEventListener("focusin", onFocusIn);
     };
   }, []);
 

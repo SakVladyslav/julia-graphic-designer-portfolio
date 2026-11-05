@@ -124,7 +124,7 @@
         "src/tests/components/Header/Header.test.tsx"
       ],
       "file": "docs/features/header-scroll/tasks/keep-header-while-in-use.md",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "T10",
