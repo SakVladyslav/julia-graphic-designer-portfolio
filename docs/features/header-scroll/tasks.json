@@ -41,7 +41,7 @@
         "src/tests/components/Header/headerScrollPhase.test.ts"
       ],
       "file": "docs/features/header-scroll/tasks/hold-and-reveal-on-focus.md",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "T4",

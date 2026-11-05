@@ -1,6 +1,6 @@
 export type HeaderLook = "resting" | "hidden" | "pinned";
 
-export type HeaderMotion = "slide" | "none";
+export type HeaderMotion = "slide" | "none" | "fade" | "immediate";
 
 export type HeaderScrollDirection = "down" | "up";
 
@@ -14,6 +14,10 @@ export interface HeaderScrollPhaseInput {
   travel: HeaderScrollTravel;
   deltaY: number;
   scrollY: number;
+  menuOpen?: boolean;
+  focusInside?: boolean;
+  focusEntered?: boolean;
+  reducedMotion?: boolean;
 }
 
 export interface HeaderScrollPhaseResult {
@@ -38,6 +42,22 @@ export function headerScrollPhase(input: HeaderScrollPhaseInput): HeaderScrollPh
 
   if (input.scrollY <= 0) {
     return { look: "resting", travel, motion: "none" };
+  }
+
+  if (input.focusEntered === true && input.look === "hidden") {
+    return {
+      look: "pinned",
+      travel,
+      motion: input.reducedMotion === true ? "fade" : "immediate",
+    };
+  }
+
+  if (input.menuOpen === true || input.focusInside === true) {
+    return { look: input.look, travel: input.travel, motion: "none" };
+  }
+
+  if (input.deltaY === 0) {
+    return { look: input.look, travel, motion: "none" };
   }
 
   if (distance < TRAVEL_THRESHOLD_PX) {

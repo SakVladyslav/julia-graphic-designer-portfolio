@@ -10,7 +10,7 @@
 | --- | --------------------------------------------------- | ------ | --------- | -------- | ---------- | ------ | ---- |
 | T1  | Decide hide and pin from scroll travel              | domain | Tech Lead | S        | —          | done   | COMMIT |
 | T2  | Rest the header when the page is at the top         | domain | Tech Lead | S        | T1         | done   | COMMIT |
-| T3  | Hold the phase and reveal a hidden header on focus  | domain | Tech Lead | S        | T2         | todo   | —    |
+| T3  | Hold the phase and reveal a hidden header on focus  | domain | Tech Lead | S        | T2         | done   | COMMIT |
 | T4  | Match jumps and replace an unfinished move          | domain | Tech Lead | S        | T3         | todo   | —    |
 | T5  | Choose slide, fade, or no motion                    | domain | Tech Lead | S        | T4         | todo   | —    |
 | T6  | Fix the header to the viewport and move the clip    | ui     | Tech Lead | S        | —          | todo   | —    |

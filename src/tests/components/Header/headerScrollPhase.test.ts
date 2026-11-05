@@ -134,4 +134,101 @@ describe("headerScrollPhase", () => {
 
     expect(next).toMatchObject({ look: "resting", motion: "none" });
   });
+
+  it("keeps the look when a scroll happens while the menu is open", () => {
+    const held = headerScrollPhase({
+      look: "resting",
+      travel: { direction: "down", distance: 0 },
+      deltaY: 24,
+      scrollY: belowTop,
+      menuOpen: true,
+    });
+
+    expect(held).toMatchObject({ look: "resting", motion: "none" });
+  });
+
+  it("keeps the look when a scroll happens while focus is inside the header", () => {
+    const held = headerScrollPhase({
+      look: "hidden",
+      travel: { direction: "up", distance: 0 },
+      deltaY: -24,
+      scrollY: belowTop,
+      focusInside: true,
+    });
+
+    expect(held).toMatchObject({ look: "hidden", motion: "none" });
+  });
+
+  it("keeps the look when both holds end before a new scroll, then follows a later 10 px scroll", () => {
+    const held = headerScrollPhase({
+      look: "pinned",
+      travel: { direction: "down", distance: 0 },
+      deltaY: 24,
+      scrollY: belowTop,
+      menuOpen: true,
+    });
+    const released = headerScrollPhase({
+      look: held.look,
+      travel: held.travel,
+      deltaY: 0,
+      scrollY: belowTop,
+    });
+
+    expect(released).toMatchObject({ look: "pinned", motion: "none" });
+
+    const short = headerScrollPhase({
+      look: released.look,
+      travel: released.travel,
+      deltaY: 9,
+      scrollY: belowTop,
+    });
+
+    expect(short.look).toBe("pinned");
+
+    const qualified = headerScrollPhase({
+      look: short.look,
+      travel: short.travel,
+      deltaY: 1,
+      scrollY: belowTop,
+    });
+
+    expect(qualified).toMatchObject({ look: "hidden", motion: "slide" });
+  });
+
+  it("pins immediately when focus enters a hidden header below the top", () => {
+    const next = headerScrollPhase({
+      look: "hidden",
+      travel: { direction: "down", distance: 12 },
+      deltaY: 0,
+      scrollY: belowTop,
+      focusEntered: true,
+    });
+
+    expect(next).toMatchObject({ look: "pinned", motion: "immediate" });
+  });
+
+  it("fades the pinned header in when focus enters under reduced motion", () => {
+    const next = headerScrollPhase({
+      look: "hidden",
+      travel: { direction: "down", distance: 12 },
+      deltaY: 0,
+      scrollY: belowTop,
+      focusEntered: true,
+      reducedMotion: true,
+    });
+
+    expect(next).toMatchObject({ look: "pinned", motion: "fade" });
+  });
+
+  it("rests when focus enters a hidden header at the top", () => {
+    const next = headerScrollPhase({
+      look: "hidden",
+      travel: { direction: "down", distance: 12 },
+      deltaY: 0,
+      scrollY: 0,
+      focusEntered: true,
+    });
+
+    expect(next).toMatchObject({ look: "resting", motion: "none" });
+  });
 });
