@@ -217,4 +217,21 @@ describe("Header", () => {
 
     expect(document.querySelector(".mobile-menu-root--inverse")).not.toBeNull();
   });
+
+  it("paints the inverse document canvas while the menu is open and clears it on close", async () => {
+    const { user, dialog } = await openMenu("inverse");
+
+    expect(document.documentElement).toHaveAttribute("data-canvas", "menu");
+
+    await user.click(within(dialog).getByRole("button", { name: "Close menu" }));
+    await waitFor(() => {
+      expect(document.documentElement).not.toHaveAttribute("data-canvas");
+    });
+  });
+
+  it("leaves the document canvas untouched for the light menu", async () => {
+    await openMenu();
+
+    expect(document.documentElement).not.toHaveAttribute("data-canvas");
+  });
 });

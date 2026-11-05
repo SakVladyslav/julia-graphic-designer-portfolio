@@ -15,6 +15,26 @@ html {
   scroll-behavior: smooth;
 }
 
+// Default is the light page. Inverse pages and the open inverse menu override
+// it so Safari chrome and overscroll match the panel, not the light body.
+:root {
+  --document-canvas: #{$bg};
+}
+
+html[data-canvas="inverse"] {
+  --document-canvas: #{$surface-inverse};
+}
+
+html[data-canvas="menu"] {
+  --document-canvas: #{$menu-inverse-bg};
+}
+
+html[data-canvas="inverse"],
+html[data-canvas="menu"] {
+  background: var(--document-canvas);
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
   background: $bg;
@@ -23,6 +43,11 @@ body {
   font-size: $font-size-base;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
+}
+
+html[data-canvas="inverse"] body,
+html[data-canvas="menu"] body {
+  background: var(--document-canvas);
 }
 
 button,

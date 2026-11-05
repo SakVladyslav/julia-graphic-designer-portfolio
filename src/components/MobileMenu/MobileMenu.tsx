@@ -11,6 +11,7 @@ import {
   mobileMenuProjectLinks,
 } from "../../constants/mobileMenu";
 
+import { bindDocumentCanvas } from "../../utils/dom/bindDocumentCanvas";
 import { focusableElements } from "../../utils/dom/focusableElements";
 import { lockBodyScroll } from "../../utils/dom/lockBodyScroll";
 
@@ -124,6 +125,13 @@ export default function MobileMenu({
     }
     return lockBodyScroll();
   }, [open, present]);
+
+  useEffect(() => {
+    if (!present || !inverse) {
+      return;
+    }
+    return bindDocumentCanvas("menu", "inverse");
+  }, [present, inverse]);
 
   useEffect(() => {
     if (!present) {
