@@ -1,4 +1,4 @@
-import { SITE_OWNER } from "../constants/site.ts";
+import { SITE_OWNER } from "../../constants/site.ts";
 
 const SAME_AS = [
   "https://www.linkedin.com/in/julia-samchuk-5b21791a1/",

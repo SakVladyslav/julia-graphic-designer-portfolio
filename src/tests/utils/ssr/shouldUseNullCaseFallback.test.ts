@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { consumeNullCaseFallback } from "../../utils/consumeNullCaseFallback";
-import { shouldUseNullCaseFallback } from "../../utils/shouldUseNullCaseFallback";
+import { consumeNullCaseFallback } from "../../../utils/ssr/consumeNullCaseFallback";
+import { shouldUseNullCaseFallback } from "../../../utils/ssr/shouldUseNullCaseFallback";
 
 describe("shouldUseNullCaseFallback", () => {
   it("keeps a null fallback only on the first frame when the case HTML is already there", () => {

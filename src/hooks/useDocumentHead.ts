@@ -2,8 +2,8 @@ import { useEffect } from "react";
 
 import { OG_IMAGE, SITE_OWNER } from "../constants/site.ts";
 
-import { personJsonLd } from "./personJsonLd.ts";
-import { headForPath } from "./prerenderPages.ts";
+import { personJsonLd } from "../utils/seo/personJsonLd.ts";
+import { headForPath } from "../utils/seo/prerenderPages.ts";
 
 interface MetaTag {
   attribute: "name" | "property";

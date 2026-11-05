@@ -2,8 +2,8 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 
-import { listProjectCases } from "../../constants/projectCases";
-import { projects } from "../../constants/projects";
+import { listProjectCases } from "../../../constants/projectCases";
+import { projects } from "../../../constants/projects";
 
 import {
   cardSizes,
@@ -11,7 +11,7 @@ import {
   caseImageSizes,
   optionalSrcSet,
   percentScale,
-} from "../../utils/cardSources";
+} from "../../../utils/projects/cardSources";
 
 function publicFile(url: string): string {
   return path.join(process.cwd(), "public", decodeURI(url.replace(/^\//, "")));

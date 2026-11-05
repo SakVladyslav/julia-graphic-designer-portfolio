@@ -1,4 +1,4 @@
-import { siteBasePath } from "./siteBasePath.ts";
+import { siteBasePath } from "../url/siteBasePath.ts";
 
 /** Homepage plus one path per published project case. */
 export function indexablePaths(base: string, caseIds: readonly string[]): readonly string[] {

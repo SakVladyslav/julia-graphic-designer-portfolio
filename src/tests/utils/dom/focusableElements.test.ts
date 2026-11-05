@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { focusableElements } from "../../utils/focusableElements";
+import { focusableElements } from "../../../utils/dom/focusableElements";
 
 describe("focusableElements", () => {
   it("returns interactive nodes and skips inert subtrees", () => {

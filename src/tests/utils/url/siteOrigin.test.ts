@@ -1,7 +1,7 @@
 import { env } from "node:process";
 import { afterEach, describe, expect, it } from "vitest";
 
-import { siteOrigin } from "../../utils/siteOrigin";
+import { siteOrigin } from "../../../utils/url/siteOrigin";
 
 describe("siteOrigin", () => {
   const original = env.SITE_ORIGIN;

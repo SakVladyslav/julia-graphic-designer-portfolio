@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { siteUrl } from "../../utils/siteUrl";
+import { siteUrl } from "../../../utils/url/siteUrl";
 
 describe("siteUrl", () => {
   it("joins the site origin with the Vite base", () => {

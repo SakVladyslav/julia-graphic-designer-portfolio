@@ -7,7 +7,7 @@ import sharp from "sharp";
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const projectsDir = path.join(rootDir, "public", "projects");
 
-/** Keep in step with `CARD_VARIANT_WIDTHS` in `src/utils/cardSources.ts`. */
+/** Keep in step with `CARD_VARIANT_WIDTHS` in `src/utils/projects/cardSources.ts`. */
 const WIDTHS = [640, 960, 1280];
 const QUALITY = 80;
 

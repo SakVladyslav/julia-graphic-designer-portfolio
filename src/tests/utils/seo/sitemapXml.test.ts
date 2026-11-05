@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { publishedProjectIds } from "../../constants/publishedProjectIds";
+import { publishedProjectIds } from "../../../constants/publishedProjectIds";
 
-import { indexablePaths } from "../../utils/indexablePaths";
-import { sitemapXml } from "../../utils/sitemapXml";
+import { indexablePaths } from "../../../utils/seo/indexablePaths";
+import { sitemapXml } from "../../../utils/seo/sitemapXml";
 
 describe("sitemapXml", () => {
   const xml = sitemapXml("https://julia-s.com", indexablePaths("/", publishedProjectIds()));

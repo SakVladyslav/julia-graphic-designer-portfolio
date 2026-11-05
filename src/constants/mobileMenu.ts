@@ -2,8 +2,8 @@ import { navigation } from "./navigation";
 import { projects } from "./projects";
 import { publishedProjectIds } from "./publishedProjectIds";
 
-import { homeHash } from "../utils/homeHash";
-import { projectCaseId } from "../utils/projectCaseId";
+import { homeHash } from "../utils/url/homeHash";
+import { projectCaseId } from "../utils/projects/projectCaseId";
 
 /** Matches `$bp-phone` in `src/styles/_breakpoints.scss`. */
 export const MOBILE_MENU_MAX_WIDTH_PX = 479;

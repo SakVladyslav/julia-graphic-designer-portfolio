@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { robotsTxt } from "../../utils/robotsTxt";
+import { robotsTxt } from "../../../utils/seo/robotsTxt";
 
 describe("robotsTxt", () => {
   it("allows the site and points at the sitemap", () => {

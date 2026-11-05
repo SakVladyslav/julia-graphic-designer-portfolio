@@ -11,8 +11,8 @@ import {
   mobileMenuProjectLinks,
 } from "../../constants/mobileMenu";
 
-import { focusableElements } from "../../utils/focusableElements";
-import { lockBodyScroll } from "../../utils/lockBodyScroll";
+import { focusableElements } from "../../utils/dom/focusableElements";
+import { lockBodyScroll } from "../../utils/dom/lockBodyScroll";
 
 import "./MobileMenu.scss";
 

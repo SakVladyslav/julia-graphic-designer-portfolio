@@ -1,7 +1,7 @@
-import { caseCopy, caseCopyById } from "../constants/caseCopy.ts";
-import { listProjectCases } from "../constants/projectCases.ts";
-import { publishedProjectIds } from "../constants/publishedProjectIds.ts";
-import { OG_IMAGE, SITE_DESCRIPTION, SITE_OWNER, SITE_ROLE } from "../constants/site.ts";
+import { caseCopy, caseCopyById } from "../../constants/caseCopy.ts";
+import { listProjectCases } from "../../constants/projectCases.ts";
+import { publishedProjectIds } from "../../constants/publishedProjectIds.ts";
+import { OG_IMAGE, SITE_DESCRIPTION, SITE_OWNER, SITE_ROLE } from "../../constants/site.ts";
 
 import { assertCaseIdsLocked } from "./caseIdsLock.ts";
 import type { SharePage } from "./siteHeadTags.ts";

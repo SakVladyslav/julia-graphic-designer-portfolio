@@ -1,7 +1,7 @@
-import { OG_IMAGE, SITE_DESCRIPTION, SITE_OWNER } from "../constants/site.ts";
+import { OG_IMAGE, SITE_DESCRIPTION, SITE_OWNER } from "../../constants/site.ts";
 
 import { personJsonLd } from "./personJsonLd.ts";
-import { siteOrigin } from "./siteOrigin.ts";
+import { siteOrigin } from "../url/siteOrigin.ts";
 
 export interface SharePage {
   title: string;

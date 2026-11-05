@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { SITE_DESCRIPTION } from "../../constants/site";
+import { SITE_DESCRIPTION } from "../../../constants/site";
 
-import { siteHeadTags } from "../../utils/siteHeadTags";
+import { siteHeadTags } from "../../../utils/seo/siteHeadTags";
 
 describe("siteHeadTags", () => {
   const tags = siteHeadTags("https://julia-s.com/");

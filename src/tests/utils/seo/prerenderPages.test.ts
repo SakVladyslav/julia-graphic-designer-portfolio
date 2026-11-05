@@ -1,10 +1,14 @@
 import { describe, expect, it } from "vitest";
 
-import { SITE_DESCRIPTION, SITE_OWNER } from "../../constants/site";
+import { SITE_DESCRIPTION, SITE_OWNER } from "../../../constants/site";
 
-import { pageCanonicalUrl } from "../../utils/pageCanonicalUrl";
-import { clampMetaDescription, headForPath, prerenderPages } from "../../utils/prerenderPages";
-import { siteHeadTags } from "../../utils/siteHeadTags";
+import { pageCanonicalUrl } from "../../../utils/seo/pageCanonicalUrl";
+import {
+  clampMetaDescription,
+  headForPath,
+  prerenderPages,
+} from "../../../utils/seo/prerenderPages";
+import { siteHeadTags } from "../../../utils/seo/siteHeadTags";
 
 describe("clampMetaDescription", () => {
   it("keeps a short sentence", () => {

@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { projects } from "../../constants/projects";
+import { projects } from "../../../constants/projects";
 
-import { nextProjects } from "../../utils/nextProjects";
+import { nextProjects } from "../../../utils/projects/nextProjects";
 
 describe("nextProjects", () => {
   it("returns the following projects and wraps to the start", () => {

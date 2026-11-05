@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { isExternalHref } from "../../utils/isExternalHref";
+import { isExternalHref } from "../../../utils/url/isExternalHref";
 
 describe("isExternalHref", () => {
   it("detects http(s) urls", () => {

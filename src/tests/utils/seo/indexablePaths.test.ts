@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 
-import { caseCopy } from "../../constants/caseCopy";
-import { listProjectCases } from "../../constants/projectCases";
-import { publishedProjectIds } from "../../constants/publishedProjectIds";
+import { caseCopy } from "../../../constants/caseCopy";
+import { listProjectCases } from "../../../constants/projectCases";
+import { publishedProjectIds } from "../../../constants/publishedProjectIds";
 
-import { indexablePaths } from "../../utils/indexablePaths";
-import { prerenderPages } from "../../utils/prerenderPages";
+import { indexablePaths } from "../../../utils/seo/indexablePaths";
+import { prerenderPages } from "../../../utils/seo/prerenderPages";
 
 describe("indexablePaths", () => {
   it("lists the homepage and every published case", () => {

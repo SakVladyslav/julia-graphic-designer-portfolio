@@ -17,7 +17,7 @@ Before finishing any task: lint, format:check and test must pass.
 - Project cases: src/constants/cases/, src/components/ProjectCase/, src/pages/project/
 - Published cases list: src/constants/publishedProjectIds.ts
 - Design tokens: src/styles/ — use tokens, never hardcoded values
-- SEO and prerender: src/utils/, src/vite/, scripts/prerender.mjs
+- SEO and prerender: src/utils/seo/, src/hooks/, src/vite/, scripts/prerender.mjs
 - Images: public/projects/ — always webp, processed via scripts in scripts/
 
 ## Rules

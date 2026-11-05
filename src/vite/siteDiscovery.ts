@@ -6,14 +6,14 @@ import type { Connect, Plugin, ResolvedConfig } from "vite";
 
 import { publishedProjectIds } from "../constants/publishedProjectIds.ts";
 
-import { indexablePaths } from "../utils/indexablePaths.ts";
-import { isIndexablePath } from "../utils/isIndexablePath.ts";
-import { requestPathname } from "../utils/requestPathname.ts";
-import { robotsTxt } from "../utils/robotsTxt.ts";
-import { siteBasePath } from "../utils/siteBasePath.ts";
-import { siteOrigin } from "../utils/siteOrigin.ts";
-import { siteUrl } from "../utils/siteUrl.ts";
-import { sitemapXml } from "../utils/sitemapXml.ts";
+import { indexablePaths } from "../utils/seo/indexablePaths.ts";
+import { isIndexablePath } from "../utils/seo/isIndexablePath.ts";
+import { requestPathname } from "../utils/url/requestPathname.ts";
+import { robotsTxt } from "../utils/seo/robotsTxt.ts";
+import { siteBasePath } from "../utils/url/siteBasePath.ts";
+import { siteOrigin } from "../utils/url/siteOrigin.ts";
+import { siteUrl } from "../utils/url/siteUrl.ts";
+import { sitemapXml } from "../utils/seo/sitemapXml.ts";
 
 import { forceNotFoundStatus } from "./forceNotFoundStatus.ts";
 

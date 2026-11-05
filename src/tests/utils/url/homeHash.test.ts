@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { homeHash } from "../../utils/homeHash";
+import { homeHash } from "../../../utils/url/homeHash";
 
 describe("homeHash", () => {
   it("points a section id at the home page under the site base", () => {

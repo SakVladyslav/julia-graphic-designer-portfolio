@@ -1,4 +1,4 @@
-import { siteOrigin } from "./siteOrigin.ts";
+import { siteOrigin } from "../url/siteOrigin.ts";
 
 /** Absolute canonical URL for a prerendered pathname. Homepage keeps the trailing slash. */
 export function pageCanonicalUrl(pathname: string): string {

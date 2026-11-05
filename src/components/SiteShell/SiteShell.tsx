@@ -7,8 +7,8 @@ import SkipLink from "../SkipLink/SkipLink";
 
 import { publishedProjectIds } from "../../constants/publishedProjectIds";
 
-import { scrollToHashId } from "../../utils/scrollToHashId";
-import { useDocumentHead } from "../../utils/useDocumentHead";
+import { scrollToHashId } from "../../utils/dom/scrollToHashId";
+import { useDocumentHead } from "../../hooks/useDocumentHead";
 
 import "./SiteShell.scss";
 

@@ -1,11 +1,11 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { assertCaseIdsLocked } from "../../utils/caseIdsLock";
-import { prerenderPages } from "../../utils/prerenderPages";
+import { assertCaseIdsLocked } from "../../../utils/seo/caseIdsLock";
+import { prerenderPages } from "../../../utils/seo/prerenderPages";
 
-vi.mock("../../constants/caseCopy", async () => {
-  const actual = await vi.importActual<typeof import("../../constants/caseCopy")>(
-    "../../constants/caseCopy",
+vi.mock("../../../constants/caseCopy", async () => {
+  const actual = await vi.importActual<typeof import("../../../constants/caseCopy")>(
+    "../../../constants/caseCopy",
   );
   const caseCopy = [
     ...actual.caseCopy.filter((item) => item.id !== "novyny"),

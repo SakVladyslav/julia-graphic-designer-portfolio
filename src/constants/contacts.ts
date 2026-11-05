@@ -1,4 +1,4 @@
-import { withBaseUrl } from "../utils/withBaseUrl";
+import { withBaseUrl } from "../utils/url/withBaseUrl";
 
 export type ContactDetail = {
   id: string;

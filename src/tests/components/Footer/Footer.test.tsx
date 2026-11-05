@@ -3,8 +3,8 @@ import { afterEach, describe, expect, it } from "vitest";
 
 import Footer from "../../../components/Footer/Footer";
 
-import { homeHash } from "../../../utils/homeHash";
-import { withBaseUrl } from "../../../utils/withBaseUrl";
+import { homeHash } from "../../../utils/url/homeHash";
+import { withBaseUrl } from "../../../utils/url/withBaseUrl";
 
 describe("Footer", () => {
   afterEach(() => {

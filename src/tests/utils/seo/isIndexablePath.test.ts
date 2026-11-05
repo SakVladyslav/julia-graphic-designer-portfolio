@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { isIndexablePath } from "../../utils/isIndexablePath";
+import { isIndexablePath } from "../../../utils/seo/isIndexablePath";
 
 const paths = ["/", "/projects/lovespace"];
 

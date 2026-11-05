@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 
 import type { CaseImage } from "../../constants/projectCase";
 
-import { caseImageSizes, optionalSrcSet } from "../../utils/cardSources";
+import { caseImageSizes, optionalSrcSet } from "../../utils/projects/cardSources";
 
 interface CaseFrameProps {
   image: CaseImage;

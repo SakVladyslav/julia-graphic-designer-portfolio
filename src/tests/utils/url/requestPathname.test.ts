@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { requestPathname } from "../../utils/requestPathname";
+import { requestPathname } from "../../../utils/url/requestPathname";
 
 describe("requestPathname", () => {
   it("drops the query string", () => {

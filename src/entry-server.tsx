@@ -4,11 +4,11 @@ import { StaticRouter } from "react-router-dom";
 
 import { AppRoutes } from "./App.tsx";
 
-import { pageCanonicalUrl } from "./utils/pageCanonicalUrl.ts";
-import { prerenderPages } from "./utils/prerenderPages.ts";
-import { routerBasename } from "./utils/routerBasename.ts";
-import { siteHeadTags } from "./utils/siteHeadTags.ts";
-import type { PrerenderPage } from "./utils/prerenderPages.ts";
+import { pageCanonicalUrl } from "./utils/seo/pageCanonicalUrl.ts";
+import { prerenderPages } from "./utils/seo/prerenderPages.ts";
+import { routerBasename } from "./utils/url/routerBasename.ts";
+import { siteHeadTags } from "./utils/seo/siteHeadTags.ts";
+import type { PrerenderPage } from "./utils/seo/prerenderPages.ts";
 
 export interface RenderedPage {
   pathname: string;

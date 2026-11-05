@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { lockBodyScroll } from "../../utils/lockBodyScroll";
-import { scrollToHashId } from "../../utils/scrollToHashId";
+import { lockBodyScroll } from "../../../utils/dom/lockBodyScroll";
+import { scrollToHashId } from "../../../utils/dom/scrollToHashId";
 
 describe("lockBodyScroll", () => {
   beforeEach(() => {

@@ -1,7 +1,7 @@
 import type { Plugin, ResolvedConfig } from "vite";
 
-import { siteHeadTags } from "../utils/siteHeadTags.ts";
-import { siteUrl } from "../utils/siteUrl.ts";
+import { siteHeadTags } from "../utils/seo/siteHeadTags.ts";
+import { siteUrl } from "../utils/url/siteUrl.ts";
 
 export function siteHead(): Plugin {
   let config: ResolvedConfig | undefined;

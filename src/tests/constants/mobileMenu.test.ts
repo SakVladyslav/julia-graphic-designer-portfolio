@@ -8,7 +8,7 @@ import {
 } from "../../constants/mobileMenu";
 import { navigation } from "../../constants/navigation";
 
-import { homeHash } from "../../utils/homeHash";
+import { homeHash } from "../../utils/url/homeHash";
 
 describe("mobileMenu", () => {
   it("lists only Figma projects that have published case pages", () => {

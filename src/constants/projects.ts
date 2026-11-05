@@ -1,5 +1,5 @@
-import { cardSizes, cardSrcSet, percentScale } from "../utils/cardSources";
-import { withBaseUrl } from "../utils/withBaseUrl";
+import { cardSizes, cardSrcSet, percentScale } from "../utils/projects/cardSources";
+import { withBaseUrl } from "../utils/url/withBaseUrl";
 
 type LovespaceImage = {
   kind: "lovespace";

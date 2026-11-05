@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { formatSectionCount } from "../../utils/formatSectionCount";
+import { formatSectionCount } from "../../../utils/projects/formatSectionCount";
 
 describe("formatSectionCount", () => {
   it("pads single-digit counts like Figma", () => {

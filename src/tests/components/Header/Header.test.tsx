@@ -8,8 +8,8 @@ import Header from "../../../components/Header/Header";
 import { contactActions } from "../../../constants/contacts";
 import { mobileMenuAllProjectsHref, mobileMenuContactsHref } from "../../../constants/mobileMenu";
 
-import { homeHash } from "../../../utils/homeHash";
-import { withBaseUrl } from "../../../utils/withBaseUrl";
+import { homeHash } from "../../../utils/url/homeHash";
+import { withBaseUrl } from "../../../utils/url/withBaseUrl";
 
 function showPhoneChrome() {
   const style = document.createElement("style");

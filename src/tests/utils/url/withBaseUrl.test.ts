@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { withBaseUrl } from "../../utils/withBaseUrl";
+import { withBaseUrl } from "../../../utils/url/withBaseUrl";
 
 describe("withBaseUrl", () => {
   it("joins BASE_URL with a relative public path", () => {

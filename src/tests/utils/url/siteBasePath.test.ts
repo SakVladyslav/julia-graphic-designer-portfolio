@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { siteBasePath } from "../../utils/siteBasePath";
+import { siteBasePath } from "../../../utils/url/siteBasePath";
 
 describe("siteBasePath", () => {
   it("keeps the root base as the homepage path", () => {
