@@ -55,6 +55,8 @@
 }
 
 .mobile-menu-root--inverse .mobile-menu-panel {
+  min-height: 100vh;
+  min-height: 100dvh;
   background: $menu-inverse-bg;
   color: $menu-inverse-text;
 }
@@ -64,6 +66,9 @@
   align-items: center;
   justify-content: space-between;
   padding: $space-24 var(--page-pad) $space-20;
+  padding-top: calc(#{$space-24} + env(safe-area-inset-top, 0px));
+  padding-right: calc(var(--page-pad) + env(safe-area-inset-right, 0px));
+  padding-left: calc(var(--page-pad) + env(safe-area-inset-left, 0px));
 }
 
 .mobile-menu-close {
@@ -104,6 +109,9 @@
   flex-direction: column;
   gap: $space-32;
   padding: $space-8 var(--page-pad) $space-56;
+  padding-right: calc(var(--page-pad) + env(safe-area-inset-right, 0px));
+  padding-bottom: calc(#{$space-56} + env(safe-area-inset-bottom, 0px));
+  padding-left: calc(var(--page-pad) + env(safe-area-inset-left, 0px));
 }
 
 .mobile-menu-nav {

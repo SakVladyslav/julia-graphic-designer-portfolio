@@ -7,6 +7,7 @@ import SkipLink from "../SkipLink/SkipLink";
 
 import { publishedProjectIds } from "../../constants/publishedProjectIds";
 
+import { bindDocumentCanvas } from "../../utils/dom/bindDocumentCanvas";
 import { scrollToHashId } from "../../utils/dom/scrollToHashId";
 import { useDocumentHead } from "../../hooks/useDocumentHead";
 
@@ -22,6 +23,10 @@ export default function SiteShell() {
   const locationKey = `${pathname}${hash}`;
 
   useDocumentHead(pathname);
+
+  useBrowserLayoutEffect(() => {
+    return bindDocumentCanvas("page", isProjectPage ? "inverse" : "default");
+  }, [isProjectPage]);
 
   useBrowserLayoutEffect(() => {
     if (hash !== "") {

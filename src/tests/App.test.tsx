@@ -26,6 +26,7 @@ describe("App", () => {
     expect(screen.getByRole("contentinfo")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /julia samchuk/i })).toBeInTheDocument();
     expect(document.title).toBe("Julia Samchuk");
+    expect(document.documentElement).not.toHaveAttribute("data-canvas");
     expect(document.getElementById("person-jsonld")?.textContent).toContain('"@type":"Person"');
   });
 
@@ -111,6 +112,7 @@ describe("App", () => {
       await screen.findByRole("heading", { name: "This page does not exist." }),
     ).toBeInTheDocument();
     expect(document.querySelector(".site-shell--inverse")).not.toBeInTheDocument();
+    expect(document.documentElement).not.toHaveAttribute("data-canvas");
   });
 
   it("shows a published case on the first render after the page module has loaded", async () => {
@@ -126,6 +128,7 @@ describe("App", () => {
     render(<App />);
 
     expect(document.querySelector(".site-shell--inverse")).toBeInTheDocument();
+    expect(document.documentElement).toHaveAttribute("data-canvas", "inverse");
     expect(await screen.findByRole("heading", { level: 1, name: "Lovespace" })).toBeInTheDocument();
     expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
       "href",
