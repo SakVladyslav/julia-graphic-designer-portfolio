@@ -231,4 +231,75 @@ describe("headerScrollPhase", () => {
 
     expect(next).toMatchObject({ look: "resting", motion: "none" });
   });
+
+  it("rests at the end of a jump to the top even when focus is inside", () => {
+    const next = headerScrollPhase({
+      look: "pinned",
+      travel: { direction: "up", distance: 0 },
+      deltaY: -80,
+      scrollY: 0,
+      focusInside: true,
+      kind: "jump",
+    });
+
+    expect(next).toMatchObject({ look: "resting", motion: "none" });
+  });
+
+  it("hides after a downward jump of at least 10 px even when focus is inside", () => {
+    const next = headerScrollPhase({
+      look: "pinned",
+      travel: { direction: "down", distance: 0 },
+      deltaY: 10,
+      scrollY: belowTop,
+      focusInside: true,
+      kind: "jump",
+    });
+
+    expect(next).toMatchObject({ look: "hidden", motion: "slide" });
+  });
+
+  it("pins after an upward jump that ends below the top even when focus is inside", () => {
+    const next = headerScrollPhase({
+      look: "hidden",
+      travel: { direction: "up", distance: 0 },
+      deltaY: -10,
+      scrollY: belowTop,
+      focusInside: true,
+      kind: "jump",
+    });
+
+    expect(next).toMatchObject({ look: "pinned", motion: "slide" });
+  });
+
+  it("replaces an unfinished move when travel reverses by at least 10 px", () => {
+    const towardHidden = headerScrollPhase({
+      look: "pinned",
+      travel: { direction: "down", distance: 0 },
+      deltaY: 10,
+      scrollY: belowTop,
+    });
+    const reversed = headerScrollPhase({
+      look: towardHidden.look,
+      travel: towardHidden.travel,
+      deltaY: -10,
+      scrollY: belowTop,
+    });
+
+    expect(reversed).toMatchObject({ look: "pinned", motion: "slide" });
+
+    const towardPinned = headerScrollPhase({
+      look: "hidden",
+      travel: { direction: "up", distance: 0 },
+      deltaY: -10,
+      scrollY: belowTop,
+    });
+    const reversedDown = headerScrollPhase({
+      look: towardPinned.look,
+      travel: towardPinned.travel,
+      deltaY: 10,
+      scrollY: belowTop,
+    });
+
+    expect(reversedDown).toMatchObject({ look: "hidden", motion: "slide" });
+  });
 });

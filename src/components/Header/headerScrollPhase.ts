@@ -18,6 +18,7 @@ export interface HeaderScrollPhaseInput {
   focusInside?: boolean;
   focusEntered?: boolean;
   reducedMotion?: boolean;
+  kind?: "scroll" | "jump";
 }
 
 export interface HeaderScrollPhaseResult {
@@ -52,7 +53,7 @@ export function headerScrollPhase(input: HeaderScrollPhaseInput): HeaderScrollPh
     };
   }
 
-  if (input.menuOpen === true || input.focusInside === true) {
+  if (input.kind !== "jump" && (input.menuOpen === true || input.focusInside === true)) {
     return { look: input.look, travel: input.travel, motion: "none" };
   }
 

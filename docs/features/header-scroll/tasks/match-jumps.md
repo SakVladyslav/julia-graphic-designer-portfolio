@@ -11,8 +11,8 @@ files_hint:
 owner: "Tech Lead"
 estimate: "S"
 context_budget: "M"
-status: "todo"
-step: ""
+status: "done"
+step: "COMMIT"
 ---
 
 # T4 — Match jumps and replace an unfinished move

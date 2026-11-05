@@ -55,7 +55,7 @@
         "src/tests/components/Header/headerScrollPhase.test.ts"
       ],
       "file": "docs/features/header-scroll/tasks/match-jumps.md",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "T5",
