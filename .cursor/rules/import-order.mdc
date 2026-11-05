@@ -12,7 +12,7 @@ Group imports in this order. Separate **every present group** with one blank lin
 2. **Components** — `components/`, and relative siblings (`./ContactArrow`, `../Logo/Logo`)
 3. **Pages** — `pages/`
 4. **Constants** — `constants/` (including `import type` from constants)
-5. **Utils** — `utils/`
+5. **Utils and hooks** — `utils/` and `hooks/`. A deeper path (`../../utils/seo/…`, `../../utils/url/…`, `../../utils/dom/…`, `../../utils/projects/…`, `../../utils/ssr/…`, `../../hooks/…`) stays in this one group. Do not split the group by folder.
 6. **Assets** — `assets/`, image/svg URL imports
 7. **Styles** — `*.scss` (always last)
 
@@ -26,7 +26,8 @@ import ProjectCard from "../../components/ProjectCard/ProjectCard";
 
 import { projects } from "../../constants/projects";
 
-import { formatSectionCount } from "../../utils/formatSectionCount";
+import { formatSectionCount } from "../../utils/projects/formatSectionCount";
+import { usePageTitle } from "../../hooks/usePageTitle";
 
 import heroArrowUrl from "../../assets/hero-arrow.svg";
 

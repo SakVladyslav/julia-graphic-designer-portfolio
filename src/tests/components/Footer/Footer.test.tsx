@@ -3,6 +3,9 @@ import { afterEach, describe, expect, it } from "vitest";
 
 import Footer from "../../../components/Footer/Footer";
 
+import { homeHash } from "../../../utils/url/homeHash";
+import { withBaseUrl } from "../../../utils/url/withBaseUrl";
+
 describe("Footer", () => {
   afterEach(() => {
     cleanup();
@@ -23,7 +26,14 @@ describe("Footer", () => {
       "https://www.linkedin.com/in/julia-samchuk-5b21791a1/",
     );
     expect(screen.getByText("[email]").closest("li")).toHaveClass("contact-detail--email");
-    expect(screen.getByText("View CV")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Contacts" })).toHaveAttribute(
+      "href",
+      homeHash("contacts"),
+    );
+    expect(screen.getByRole("link", { name: "View CV" })).toHaveAttribute(
+      "href",
+      withBaseUrl("CV_Samchuk.pdf"),
+    );
     expect(screen.queryByText("Instagram")).not.toBeInTheDocument();
   });
 

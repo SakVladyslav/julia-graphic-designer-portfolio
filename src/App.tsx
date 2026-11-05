@@ -10,9 +10,9 @@ import ProjectRouteFallback from "./pages/project/ProjectRouteFallback";
 
 import { loadProjectCasePage } from "./pages/project/loadProjectCasePage";
 
-import { caseHtmlAlreadyInDocument } from "./utils/caseHtmlAlreadyInDocument";
-import { consumeNullCaseFallback } from "./utils/consumeNullCaseFallback";
-import { routerBasename } from "./utils/routerBasename";
+import { caseHtmlAlreadyInDocument } from "./utils/ssr/caseHtmlAlreadyInDocument";
+import { consumeNullCaseFallback } from "./utils/ssr/consumeNullCaseFallback";
+import { routerBasename } from "./utils/url/routerBasename";
 
 const ProjectCasePage = lazy(loadProjectCasePage);
 

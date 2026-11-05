@@ -14,6 +14,9 @@ const STATIC_FILES = [
   "public/og.png",
   "src/assets/hero-arrow.svg",
   "src/assets/menu.svg",
+  "src/assets/menu-close.svg",
+  "src/assets/menu-chevron.svg",
+  "src/assets/menu-external.svg",
   "src/assets/to-top.svg",
   "src/assets/contact-arrow.svg",
 ] as const;

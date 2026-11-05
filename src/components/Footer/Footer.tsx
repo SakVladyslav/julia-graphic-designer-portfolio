@@ -4,7 +4,7 @@ import SiteNav from "../SiteNav/SiteNav";
 
 import { COPYRIGHT_YEAR, SITE_OWNER } from "../../constants/site";
 
-import { scrollToTop } from "../../utils/scrollToTop";
+import { scrollToTop } from "../../utils/dom/scrollToTop";
 
 import "./Footer.scss";
 

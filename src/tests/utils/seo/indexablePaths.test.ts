@@ -1,0 +1,36 @@
+import { describe, expect, it } from "vitest";
+
+import { caseCopy } from "../../../constants/caseCopy";
+import { listProjectCases } from "../../../constants/projectCases";
+import { publishedProjectIds } from "../../../constants/publishedProjectIds";
+
+import { indexablePaths } from "../../../utils/seo/indexablePaths";
+import { prerenderPages } from "../../../utils/seo/prerenderPages";
+
+describe("indexablePaths", () => {
+  it("lists the homepage and every published case", () => {
+    expect(publishedProjectIds()).toEqual(listProjectCases().map((projectCase) => projectCase.id));
+    expect(publishedProjectIds()).toEqual(caseCopy.map((item) => item.id));
+    expect(indexablePaths("/", publishedProjectIds())).toEqual([
+      "/",
+      "/projects/lovespace",
+      "/projects/molfaria",
+      "/projects/amaryllis",
+      "/projects/bbg",
+      "/projects/olx",
+      "/projects/novyny",
+    ]);
+    expect(
+      prerenderPages()
+        .map((page) => page.pathname)
+        .filter((pathname) => pathname !== "/404"),
+    ).toEqual(indexablePaths("/", publishedProjectIds()));
+  });
+
+  it("prefixes a subdirectory base", () => {
+    expect(indexablePaths("/portfolio/", ["lovespace"])).toEqual([
+      "/portfolio",
+      "/portfolio/projects/lovespace",
+    ]);
+  });
+});

@@ -1,10 +1,12 @@
 import { useEffect, useId, useRef, useState } from "react";
 
 import Logo from "../Logo/Logo";
+import MobileMenu from "../MobileMenu/MobileMenu";
 import SiteNav from "../SiteNav/SiteNav";
-
 import { headerScrollPhase } from "./headerScrollPhase";
 import type { HeaderLook, HeaderMotion, HeaderScrollTravel } from "./headerScrollPhase";
+
+import { MOBILE_MENU_MAX_WIDTH_PX } from "../../constants/mobileMenu";
 
 import "./Header.scss";
 
@@ -34,10 +36,12 @@ export default function Header({ tone = "default" }: HeaderProps) {
   const [scrollClassName, setScrollClassName] = useState("");
   const menuId = useId();
   const menuOpenRef = useRef(menuOpen);
+  const burgerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     menuOpenRef.current = menuOpen;
   }, [menuOpen]);
+
   const className = [
     "site-header",
     tone === "inverse" ? "site-header--inverse" : "",
@@ -130,45 +134,34 @@ export default function Header({ tone = "default" }: HeaderProps) {
   }, []);
 
   useEffect(() => {
-    if (!menuOpen) {
+    if (typeof window.matchMedia !== "function") {
       return;
     }
 
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+    const media = window.matchMedia(`(max-width: ${MOBILE_MENU_MAX_WIDTH_PX}px)`);
+    const onChange = () => {
+      if (!media.matches) {
         setMenuOpen(false);
       }
     };
 
-    const onPointerDown = (event: PointerEvent) => {
-      if (!(event.target instanceof Node)) {
-        return;
-      }
-
-      const header = document.getElementById("top");
-      if (header !== null && !header.contains(event.target)) {
-        setMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("keydown", onKeyDown);
-    document.addEventListener("pointerdown", onPointerDown);
-
+    media.addEventListener("change", onChange);
     return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.removeEventListener("pointerdown", onPointerDown);
+      media.removeEventListener("change", onChange);
     };
-  }, [menuOpen]);
+  }, []);
 
   return (
     <header className={className} id="top">
       <div className="header-inner">
         <Logo tone="header" />
         <button
+          ref={burgerRef}
           type="button"
           className="nav-toggle"
           aria-expanded={menuOpen}
           aria-controls={menuId}
+          aria-haspopup="dialog"
           onClick={() => {
             setMenuOpen((open) => !open);
           }}
@@ -177,7 +170,6 @@ export default function Header({ tone = "default" }: HeaderProps) {
           <span className="visually-hidden">{menuOpen ? "Close menu" : "Open menu"}</span>
         </button>
         <SiteNav
-          id={menuId}
           className="nav"
           ariaLabel="Primary"
           onNavigate={() => {
@@ -185,6 +177,15 @@ export default function Header({ tone = "default" }: HeaderProps) {
           }}
         />
       </div>
+      <MobileMenu
+        id={menuId}
+        open={menuOpen}
+        tone={tone}
+        returnFocusRef={burgerRef}
+        onClose={() => {
+          setMenuOpen(false);
+        }}
+      />
     </header>
   );
 }

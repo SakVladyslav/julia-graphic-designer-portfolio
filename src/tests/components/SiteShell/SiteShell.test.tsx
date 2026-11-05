@@ -1,6 +1,6 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import SiteShell from "../../../components/SiteShell/SiteShell";
 
@@ -18,8 +18,12 @@ function renderShell(path: string) {
 }
 
 describe("SiteShell", () => {
+  const originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
+
   afterEach(() => {
     cleanup();
+    window.location.hash = "";
+    HTMLElement.prototype.scrollIntoView = originalScrollIntoView;
   });
 
   it("keeps the header outside the clip and the page inside it", () => {
@@ -63,5 +67,21 @@ describe("SiteShell", () => {
     expect(clip.contains(header)).toBe(false);
     expect(clip.contains(screen.getByRole("main"))).toBe(true);
     expect(clip.contains(screen.getByRole("contentinfo"))).toBe(true);
+  });
+
+  it("scrolls to the contacts section for the home contacts hash", () => {
+    const scrollIntoView = vi.fn();
+    HTMLElement.prototype.scrollIntoView = scrollIntoView;
+
+    render(
+      <MemoryRouter initialEntries={["/#contacts"]}>
+        <SiteShell />
+      </MemoryRouter>,
+    );
+
+    const contacts = document.getElementById("contacts");
+    expect(contacts).not.toBeNull();
+    expect(scrollIntoView).toHaveBeenCalled();
+    expect(scrollIntoView.mock.instances[0]).toBe(contacts);
   });
 });

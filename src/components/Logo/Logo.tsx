@@ -1,4 +1,4 @@
-import { homeHash } from "../../utils/homeHash";
+import { homeHash } from "../../utils/url/homeHash";
 
 import "./Logo.scss";
 

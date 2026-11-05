@@ -10,9 +10,9 @@ import { projects } from "../../constants/projects";
 import { publishedProjectIds } from "../../constants/publishedProjectIds";
 import { SITE_OWNER } from "../../constants/site";
 
-import { nextProjects } from "../../utils/nextProjects";
-import { projectCaseId } from "../../utils/projectCaseId";
-import { usePageTitle } from "../../utils/usePageTitle";
+import { nextProjects } from "../../utils/projects/nextProjects";
+import { projectCaseId } from "../../utils/projects/projectCaseId";
+import { usePageTitle } from "../../hooks/usePageTitle";
 
 export default function ProjectCasePage() {
   const { projectId } = useParams();

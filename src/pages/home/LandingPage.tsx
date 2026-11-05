@@ -5,8 +5,8 @@ import { SITE_OWNER, SITE_ROLE } from "../../constants/site";
 
 import type { Project } from "../../constants/projects";
 
-import { formatSectionCount } from "../../utils/formatSectionCount";
-import { usePageTitle } from "../../utils/usePageTitle";
+import { formatSectionCount } from "../../utils/projects/formatSectionCount";
+import { usePageTitle } from "../../hooks/usePageTitle";
 
 import heroArrowUrl from "../../assets/hero-arrow.svg";
 

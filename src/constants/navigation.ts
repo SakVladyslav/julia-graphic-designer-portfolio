@@ -1,4 +1,4 @@
-import { homeHash } from "../utils/homeHash";
+import { homeHash } from "../utils/url/homeHash";
 
 export interface NavItem {
   id: string;
@@ -14,5 +14,5 @@ export interface NavItem {
  */
 export const navigation: readonly NavItem[] = [
   { id: "projects", label: "Projects", href: homeHash("projects") },
-  { id: "contacts", label: "Contacts", href: "#contacts" },
+  { id: "contacts", label: "Contacts", href: homeHash("contacts") },
 ];

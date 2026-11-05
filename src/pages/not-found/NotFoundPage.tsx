@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import { SITE_OWNER } from "../../constants/site";
 
-import { usePageTitle } from "../../utils/usePageTitle";
+import { usePageTitle } from "../../hooks/usePageTitle";
 
 import "./NotFoundPage.scss";
 
