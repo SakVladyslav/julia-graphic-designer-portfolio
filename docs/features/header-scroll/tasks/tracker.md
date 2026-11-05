@@ -14,7 +14,7 @@
 | T4  | Match jumps and replace an unfinished move          | domain | Tech Lead | S        | T3         | done   | COMMIT |
 | T5  | Choose slide, fade, or no motion                    | domain | Tech Lead | S        | T4         | done   | COMMIT |
 | T6  | Fix the header to the viewport and move the clip    | ui     | Tech Lead | S        | —          | done   | COMMIT |
-| T7  | Paint resting, pinned, and hidden looks             | ui     | Tech Lead | M        | T6         | todo   | —    |
+| T7  | Paint resting, pinned, and hidden looks             | ui     | Tech Lead | M        | T6         | done   | COMMIT |
 | T8  | Apply the scroll phase when the page is interactive | ui     | Tech Lead | M        | T5, T7     | todo   | —    |
 | T9  | Keep the header on screen while it is in use        | ui     | Tech Lead | S        | T8         | todo   | —    |
 | T10 | Offset in-page targets by the pinned header height  | ui     | Tech Lead | S        | T7         | todo   | —    |

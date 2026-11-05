@@ -11,8 +11,8 @@ files_hint:
 owner: "Tech Lead"
 estimate: "M"
 context_budget: "M"
-status: "todo"
-step: ""
+status: "done"
+step: "COMMIT"
 ---
 
 # T7 — Paint resting, pinned, and hidden looks

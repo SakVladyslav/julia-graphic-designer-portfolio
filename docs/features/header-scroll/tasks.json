@@ -96,7 +96,7 @@
       "dod": "Header styles define resting, pinned, hidden, a slide within 300 ms, and a 150 ms fade, and the pinned height token exists.",
       "files_hint": ["src/components/Header/Header.scss", "src/styles/_sizes.scss"],
       "file": "docs/features/header-scroll/tasks/paint-header-looks.md",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "T8",

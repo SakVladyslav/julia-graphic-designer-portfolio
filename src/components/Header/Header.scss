@@ -27,6 +27,42 @@
   color: $paper;
 }
 
+.site-header--pinned {
+  display: flex;
+  align-items: center;
+  height: $header-pinned-height;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: $bg;
+  border-bottom: $border-strong solid $text;
+}
+
+.site-header--pinned .header-inner {
+  width: 100%;
+}
+
+.site-header--inverse.site-header--pinned {
+  background-color: $surface-inverse;
+  border-bottom-color: $paper;
+}
+
+.site-header--hidden {
+  transform: translateY(-100%);
+}
+
+.site-header--slide {
+  transition: transform 300ms ease;
+}
+
+.site-header--fade {
+  transition: opacity 150ms ease;
+}
+
+.site-header--hidden.site-header--fade {
+  transform: none;
+  opacity: 0;
+}
+
 .header-inner {
   display: flex;
   align-items: center;
