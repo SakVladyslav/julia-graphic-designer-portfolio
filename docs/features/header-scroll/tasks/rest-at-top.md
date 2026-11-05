@@ -11,8 +11,8 @@ files_hint:
 owner: "Tech Lead"
 estimate: "S"
 context_budget: "M"
-status: "todo"
-step: ""
+status: "done"
+step: "COMMIT"
 ---
 
 # T2 — Rest the header when the page is at the top

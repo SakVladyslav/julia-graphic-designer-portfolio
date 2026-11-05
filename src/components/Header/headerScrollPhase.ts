@@ -36,7 +36,11 @@ export function headerScrollPhase(input: HeaderScrollPhaseInput): HeaderScrollPh
         : input.travel.distance + Math.abs(input.deltaY);
   const travel: HeaderScrollTravel = { direction, distance };
 
-  if (distance < TRAVEL_THRESHOLD_PX || (direction === "up" && input.scrollY <= 0)) {
+  if (input.scrollY <= 0) {
+    return { look: "resting", travel, motion: "none" };
+  }
+
+  if (distance < TRAVEL_THRESHOLD_PX) {
     return { look: input.look, travel, motion: "none" };
   }
 

@@ -101,4 +101,37 @@ describe("headerScrollPhase", () => {
 
     expect(qualified).toMatchObject({ look: "pinned", motion: "slide" });
   });
+
+  it("rests at scroll position 0 even when the last travel is under 10 px", () => {
+    const fromPinned = headerScrollPhase({
+      look: "pinned",
+      travel: { direction: "up", distance: 0 },
+      deltaY: -4,
+      scrollY: 0,
+    });
+
+    expect(fromPinned).toMatchObject({ look: "resting", motion: "none" });
+  });
+
+  it("rests at scroll position 0 when the previous look was hidden", () => {
+    const fromHidden = headerScrollPhase({
+      look: "hidden",
+      travel: { direction: "down", distance: 12 },
+      deltaY: 0,
+      scrollY: 0,
+    });
+
+    expect(fromHidden).toMatchObject({ look: "resting", motion: "none" });
+  });
+
+  it("stays resting when a page that does not scroll stays at position 0", () => {
+    const next = headerScrollPhase({
+      look: "resting",
+      travel: { direction: "down", distance: 0 },
+      deltaY: 0,
+      scrollY: 0,
+    });
+
+    expect(next).toMatchObject({ look: "resting", motion: "none" });
+  });
 });

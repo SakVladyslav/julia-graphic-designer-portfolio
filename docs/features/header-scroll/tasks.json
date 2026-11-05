@@ -27,7 +27,7 @@
         "src/tests/components/Header/headerScrollPhase.test.ts"
       ],
       "file": "docs/features/header-scroll/tasks/rest-at-top.md",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "T3",
