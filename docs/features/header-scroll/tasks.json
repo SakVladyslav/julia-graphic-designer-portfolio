@@ -13,7 +13,7 @@
         "src/tests/components/Header/headerScrollPhase.test.ts"
       ],
       "file": "docs/features/header-scroll/tasks/decide-phase-from-travel.md",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "T2",

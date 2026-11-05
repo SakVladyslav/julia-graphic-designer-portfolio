@@ -11,8 +11,8 @@ files_hint:
 owner: "Tech Lead"
 estimate: "S"
 context_budget: "M"
-status: "todo"
-step: ""
+status: "done"
+step: "COMMIT"
 ---
 
 # T1 — Decide hide and pin from scroll travel
