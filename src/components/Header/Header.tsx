@@ -82,9 +82,12 @@ export default function Header({ tone = "default" }: HeaderProps) {
         kind,
         firstCorrection,
       });
+      const lookChanged = result.look !== phase.look;
       phase.look = result.look;
       phase.travel = result.travel;
-      setScrollClassName(phaseClassName(result.look, result.motion));
+      if (lookChanged || result.motion !== "none") {
+        setScrollClassName(phaseClassName(result.look, result.motion));
+      }
     };
 
     publish(0, window.scrollY, "scroll", true, false);

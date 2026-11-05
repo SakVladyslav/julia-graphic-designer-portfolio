@@ -52,6 +52,10 @@ describe("Header scroll phase", () => {
     const header = screen.getByRole("banner");
     expect(header).toHaveClass("site-header--hidden");
     expect(header).toHaveClass("site-header--slide");
+
+    scrollToY(16);
+    expect(header).toHaveClass("site-header--hidden");
+    expect(header).toHaveClass("site-header--slide");
   });
 
   it("pins with a slide after an upward scroll of 10 px below the top", () => {
