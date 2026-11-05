@@ -19,6 +19,7 @@ export interface HeaderScrollPhaseInput {
   focusEntered?: boolean;
   reducedMotion?: boolean;
   kind?: "scroll" | "jump";
+  firstCorrection?: boolean;
 }
 
 export interface HeaderScrollPhaseResult {
@@ -41,8 +42,20 @@ export function headerScrollPhase(input: HeaderScrollPhaseInput): HeaderScrollPh
         : input.travel.distance + Math.abs(input.deltaY);
   const travel: HeaderScrollTravel = { direction, distance };
 
+  if (input.firstCorrection === true) {
+    return {
+      look: input.scrollY <= 0 ? "resting" : "pinned",
+      travel,
+      motion: "none",
+    };
+  }
+
   if (input.scrollY <= 0) {
-    return { look: "resting", travel, motion: "none" };
+    const look: HeaderLook = "resting";
+    const motion: HeaderMotion =
+      look === input.look || input.reducedMotion !== true ? "none" : "fade";
+
+    return { look, travel, motion };
   }
 
   if (input.focusEntered === true && input.look === "hidden") {
@@ -70,6 +83,6 @@ export function headerScrollPhase(input: HeaderScrollPhaseInput): HeaderScrollPh
   return {
     look,
     travel,
-    motion: look === input.look ? "none" : "slide",
+    motion: look === input.look ? "none" : input.reducedMotion === true ? "fade" : "slide",
   };
 }

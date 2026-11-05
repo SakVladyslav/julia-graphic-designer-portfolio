@@ -69,7 +69,7 @@
         "src/tests/components/Header/headerScrollPhase.test.ts"
       ],
       "file": "docs/features/header-scroll/tasks/choose-motion.md",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "T6",

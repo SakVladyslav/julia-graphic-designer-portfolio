@@ -302,4 +302,71 @@ describe("headerScrollPhase", () => {
 
     expect(reversedDown).toMatchObject({ look: "hidden", motion: "slide" });
   });
+
+  it("fades instead of sliding when a qualifying scroll happens under reduced motion", () => {
+    const down = headerScrollPhase({
+      look: "resting",
+      travel: { direction: "down", distance: 0 },
+      deltaY: 10,
+      scrollY: belowTop,
+      reducedMotion: true,
+    });
+    const up = headerScrollPhase({
+      look: "hidden",
+      travel: { direction: "up", distance: 0 },
+      deltaY: -10,
+      scrollY: belowTop,
+      reducedMotion: true,
+    });
+    const top = headerScrollPhase({
+      look: "pinned",
+      travel: { direction: "up", distance: 0 },
+      deltaY: -4,
+      scrollY: 0,
+      reducedMotion: true,
+    });
+
+    expect(down).toMatchObject({ look: "hidden", motion: "fade" });
+    expect(up).toMatchObject({ look: "pinned", motion: "fade" });
+    expect(top).toMatchObject({ look: "resting", motion: "fade" });
+  });
+
+  it("snaps a first correction below the top to pinned with no motion", () => {
+    const next = headerScrollPhase({
+      look: "resting",
+      travel: { direction: "down", distance: 0 },
+      deltaY: 0,
+      scrollY: belowTop,
+      firstCorrection: true,
+      reducedMotion: true,
+    });
+
+    expect(next).toMatchObject({ look: "pinned", motion: "none" });
+  });
+
+  it("snaps a first correction at the top to resting with no motion", () => {
+    const next = headerScrollPhase({
+      look: "resting",
+      travel: { direction: "down", distance: 0 },
+      deltaY: 0,
+      scrollY: 0,
+      firstCorrection: true,
+      reducedMotion: true,
+    });
+
+    expect(next).toMatchObject({ look: "resting", motion: "none" });
+  });
+
+  it("does not fade a held scroll when reduced motion is on", () => {
+    const next = headerScrollPhase({
+      look: "pinned",
+      travel: { direction: "down", distance: 0 },
+      deltaY: 20,
+      scrollY: belowTop,
+      menuOpen: true,
+      reducedMotion: true,
+    });
+
+    expect(next).toMatchObject({ look: "pinned", motion: "none" });
+  });
 });

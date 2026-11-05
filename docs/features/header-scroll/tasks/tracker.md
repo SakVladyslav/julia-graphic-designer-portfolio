@@ -12,7 +12,7 @@
 | T2  | Rest the header when the page is at the top         | domain | Tech Lead | S        | T1         | done   | COMMIT |
 | T3  | Hold the phase and reveal a hidden header on focus  | domain | Tech Lead | S        | T2         | done   | COMMIT |
 | T4  | Match jumps and replace an unfinished move          | domain | Tech Lead | S        | T3         | done   | COMMIT |
-| T5  | Choose slide, fade, or no motion                    | domain | Tech Lead | S        | T4         | todo   | —    |
+| T5  | Choose slide, fade, or no motion                    | domain | Tech Lead | S        | T4         | done   | COMMIT |
 | T6  | Fix the header to the viewport and move the clip    | ui     | Tech Lead | S        | —          | todo   | —    |
 | T7  | Paint resting, pinned, and hidden looks             | ui     | Tech Lead | M        | T6         | todo   | —    |
 | T8  | Apply the scroll phase when the page is interactive | ui     | Tech Lead | M        | T5, T7     | todo   | —    |
