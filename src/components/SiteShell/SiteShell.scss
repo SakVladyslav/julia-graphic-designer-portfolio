@@ -1,7 +1,17 @@
 @use "../../styles/colors" as *;
+@use "../../styles/spacing" as *;
+@use "../../styles/sizes" as *;
+@use "../../styles/breakpoints" as *;
 
-.site-shell {
+.site-shell-clip {
   overflow-x: clip;
+  padding-top: $header-resting-height;
+}
+
+@media (max-width: $bp-phone) {
+  .site-shell-clip {
+    padding-top: calc(#{$space-24} * 2 + (#{$header-resting-height} - #{$space-32} * 2));
+  }
 }
 
 .site-shell--inverse {

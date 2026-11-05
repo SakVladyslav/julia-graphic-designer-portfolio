@@ -1,0 +1,141 @@
+{
+  "slug": "header-scroll",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Decide hide and pin from scroll travel",
+      "layer": "domain",
+      "deps": [],
+      "acs": ["AC-01", "AC-02", "AC-06"],
+      "dod": "Unit tests pass for hide after 10 px down, pin after 10 px up below the top, and an unchanged look while the current direction is under 10 px.",
+      "files_hint": [
+        "src/components/Header/headerScrollPhase.ts",
+        "src/tests/components/Header/headerScrollPhase.test.ts"
+      ],
+      "file": "docs/features/header-scroll/tasks/decide-phase-from-travel.md",
+      "status": "done"
+    },
+    {
+      "id": "T2",
+      "title": "Rest the header when the page is at the top",
+      "layer": "domain",
+      "deps": ["T1"],
+      "acs": ["AC-03", "AC-08"],
+      "dod": "Unit tests pass for look resting at scroll position 0, including a last travel under 10 px and a previous pinned look.",
+      "files_hint": [
+        "src/components/Header/headerScrollPhase.ts",
+        "src/tests/components/Header/headerScrollPhase.test.ts"
+      ],
+      "file": "docs/features/header-scroll/tasks/rest-at-top.md",
+      "status": "done"
+    },
+    {
+      "id": "T3",
+      "title": "Hold the phase and reveal a hidden header on focus",
+      "layer": "domain",
+      "deps": ["T2"],
+      "acs": ["AC-04", "AC-15", "AC-18"],
+      "dod": "Unit tests pass for an unchanged look on a held scroll, an unchanged look when both holds end, and a pinned reveal on focus entry that is immediate or a fade.",
+      "files_hint": [
+        "src/components/Header/headerScrollPhase.ts",
+        "src/tests/components/Header/headerScrollPhase.test.ts"
+      ],
+      "file": "docs/features/header-scroll/tasks/hold-and-reveal-on-focus.md",
+      "status": "done"
+    },
+    {
+      "id": "T4",
+      "title": "Match jumps and replace an unfinished move",
+      "layer": "domain",
+      "deps": ["T3"],
+      "acs": ["AC-05", "AC-16"],
+      "dod": "Unit tests pass for a jump to the top, a downward jump, an upward jump below the top with focus inside, and a reversing move.",
+      "files_hint": [
+        "src/components/Header/headerScrollPhase.ts",
+        "src/tests/components/Header/headerScrollPhase.test.ts"
+      ],
+      "file": "docs/features/header-scroll/tasks/match-jumps.md",
+      "status": "done"
+    },
+    {
+      "id": "T5",
+      "title": "Choose slide, fade, or no motion",
+      "layer": "domain",
+      "deps": ["T4"],
+      "acs": ["AC-10", "AC-13", "AC-14"],
+      "dod": "Unit tests pass for a fade on a qualifying scroll under reduced motion, and for a first correction that snaps to pinned or resting with no motion.",
+      "files_hint": [
+        "src/components/Header/headerScrollPhase.ts",
+        "src/tests/components/Header/headerScrollPhase.test.ts"
+      ],
+      "file": "docs/features/header-scroll/tasks/choose-motion.md",
+      "status": "done"
+    },
+    {
+      "id": "T6",
+      "title": "Fix the header to the viewport and move the clip",
+      "layer": "ui",
+      "deps": [],
+      "acs": ["AC-12", "AC-17"],
+      "dod": "The shell test passes: the header is outside the clip wrapper, and the outlet and the footer are inside it.",
+      "files_hint": [
+        "src/components/SiteShell/SiteShell.tsx",
+        "src/components/SiteShell/SiteShell.scss",
+        "src/components/Header/Header.scss",
+        "src/tests/components/SiteShell/SiteShell.test.tsx"
+      ],
+      "file": "docs/features/header-scroll/tasks/fix-header-to-viewport.md",
+      "status": "done"
+    },
+    {
+      "id": "T7",
+      "title": "Paint resting, pinned, and hidden looks",
+      "layer": "ui",
+      "deps": ["T6"],
+      "acs": ["AC-02", "AC-09", "AC-10", "AC-17"],
+      "dod": "Header styles define resting, pinned, hidden, a slide within 300 ms, and a 150 ms fade, and the pinned height token exists.",
+      "files_hint": ["src/components/Header/Header.scss", "src/styles/_sizes.scss"],
+      "file": "docs/features/header-scroll/tasks/paint-header-looks.md",
+      "status": "done"
+    },
+    {
+      "id": "T8",
+      "title": "Apply the scroll phase when the page is interactive",
+      "layer": "ui",
+      "deps": ["T5", "T7"],
+      "acs": ["AC-01", "AC-02", "AC-13", "AC-14", "AC-16"],
+      "dod": "The header test passes for hide and pin on scroll, and for a first correction that snaps without a motion class.",
+      "files_hint": [
+        "src/components/Header/Header.tsx",
+        "src/tests/components/Header/Header.test.tsx"
+      ],
+      "file": "docs/features/header-scroll/tasks/apply-phase-on-scroll.md",
+      "status": "done"
+    },
+    {
+      "id": "T9",
+      "title": "Keep the header on screen while it is in use",
+      "layer": "ui",
+      "deps": ["T8"],
+      "acs": ["AC-04", "AC-07", "AC-15", "AC-18"],
+      "dod": "The header test passes for a held scroll, an unchanged look when the holds end, a pinned focus reveal, and the primary nav still present.",
+      "files_hint": [
+        "src/components/Header/Header.tsx",
+        "src/tests/components/Header/Header.test.tsx"
+      ],
+      "file": "docs/features/header-scroll/tasks/keep-header-while-in-use.md",
+      "status": "done"
+    },
+    {
+      "id": "T10",
+      "title": "Offset in-page targets by the pinned header height",
+      "layer": "ui",
+      "deps": ["T7"],
+      "acs": ["AC-11"],
+      "dod": "The projects and contacts anchors set scroll-margin-top to the pinned-height token, with no CSS-value test.",
+      "files_hint": ["src/pages/home/LandingPage.scss", "src/components/Contacts/Contacts.scss"],
+      "file": "docs/features/header-scroll/tasks/offset-in-page-targets.md",
+      "status": "done"
+    }
+  ]
+}
