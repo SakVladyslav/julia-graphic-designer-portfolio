@@ -85,7 +85,7 @@
         "src/tests/components/SiteShell/SiteShell.test.tsx"
       ],
       "file": "docs/features/header-scroll/tasks/fix-header-to-viewport.md",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "T7",

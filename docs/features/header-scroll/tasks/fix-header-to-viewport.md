@@ -13,8 +13,8 @@ files_hint:
 owner: "Tech Lead"
 estimate: "S"
 context_budget: "M"
-status: "todo"
-step: ""
+status: "done"
+step: "COMMIT"
 ---
 
 # T6 — Fix the header to the viewport and move the clip

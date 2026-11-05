@@ -33,12 +33,14 @@ export default function SiteShell() {
 
   return (
     <div className={shellClass}>
-      <div className="container">
-        <SkipLink />
-        <Header tone={isProjectPage ? "inverse" : "default"} />
-        <Outlet />
+      <SkipLink />
+      <Header tone={isProjectPage ? "inverse" : "default"} />
+      <div className="site-shell-clip">
+        <div className="container">
+          <Outlet />
+        </div>
+        <Footer tone={isProjectPage ? "light" : "inverse"} />
       </div>
-      <Footer tone={isProjectPage ? "light" : "inverse"} />
     </div>
   );
 }
