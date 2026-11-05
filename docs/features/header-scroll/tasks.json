@@ -135,7 +135,7 @@
       "dod": "The projects and contacts anchors set scroll-margin-top to the pinned-height token, with no CSS-value test.",
       "files_hint": ["src/pages/home/LandingPage.scss", "src/components/Contacts/Contacts.scss"],
       "file": "docs/features/header-scroll/tasks/offset-in-page-targets.md",
-      "status": "todo"
+      "status": "done"
     }
   ]
 }
