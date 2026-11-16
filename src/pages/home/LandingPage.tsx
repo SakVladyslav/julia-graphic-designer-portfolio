@@ -27,7 +27,7 @@ export default function LandingPage() {
   usePageTitle(SITE_OWNER);
 
   return (
-    <main id="main-content" tabIndex={-1}>
+    <main>
       <section className="hero" aria-labelledby="hero-heading">
         <div className="hero-glow-anchor" aria-hidden="true">
           <div className="hero-glow" />

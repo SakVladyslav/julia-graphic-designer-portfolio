@@ -14,15 +14,12 @@ describe("App", () => {
     cleanup();
   });
 
-  it("renders skip link and primary landmarks", () => {
+  it("renders the primary landmarks without a skip link", () => {
     render(<App />);
 
-    expect(screen.getByRole("link", { name: /skip to content/i })).toHaveAttribute(
-      "href",
-      "#main-content",
-    );
+    expect(screen.queryByRole("link", { name: /skip to content/i })).not.toBeInTheDocument();
     expect(screen.getByRole("banner")).toBeInTheDocument();
-    expect(screen.getByRole("main")).toHaveAttribute("id", "main-content");
+    expect(screen.getByRole("main")).toBeInTheDocument();
     expect(screen.getByRole("contentinfo")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /julia samchuk/i })).toBeInTheDocument();
     expect(document.title).toBe("Julia Samchuk");
@@ -96,7 +93,7 @@ describe("App", () => {
     window.history.pushState({}, "", `${import.meta.env.BASE_URL}no-such-page`);
     render(<App />);
 
-    expect(screen.getByRole("main")).toHaveAttribute("id", "main-content");
+    expect(screen.getByRole("main")).toBeInTheDocument();
     expect(
       await screen.findByRole("heading", { name: "This page does not exist." }),
     ).toBeInTheDocument();

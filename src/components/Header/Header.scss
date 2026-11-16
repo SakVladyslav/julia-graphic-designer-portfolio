@@ -35,15 +35,29 @@
   min-height: 0;
   padding-top: 0;
   padding-bottom: 0;
+  // The bar fill and divider span the whole viewport, the content stays in the
+  // container. The border stays (transparent) so the inner geometry is unchanged.
+  border-bottom: $border-strong solid transparent;
+}
+
+.site-header--pinned::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: calc(50% - 50vw);
+  bottom: calc(-1 * #{$border-strong});
+  left: calc(50% - 50vw);
+  z-index: -1;
   background-color: $bg;
   border-bottom: $border-strong solid $text;
+  pointer-events: none;
 }
 
 .site-header .logo {
   line-height: calc(#{$header-resting-height} - #{$space-32} * 2);
 }
 
-.site-header--inverse.site-header--pinned {
+.site-header--inverse.site-header--pinned::before {
   background-color: $surface-inverse;
   border-bottom-color: $paper;
 }

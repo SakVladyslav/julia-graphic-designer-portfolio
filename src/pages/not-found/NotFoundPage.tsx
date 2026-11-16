@@ -15,7 +15,7 @@ export default function NotFoundPage({ reload = false }: NotFoundPageProps) {
   usePageTitle(`Page not found — ${SITE_OWNER}`);
 
   return (
-    <main className="not-found" id="main-content" tabIndex={-1}>
+    <main className="not-found">
       <h1>This page does not exist.</h1>
       <Link to="/">Back to the homepage</Link>
       {reload ? (

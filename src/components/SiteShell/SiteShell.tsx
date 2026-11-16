@@ -3,7 +3,6 @@ import { Outlet, useLocation, useMatch } from "react-router-dom";
 
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import SkipLink from "../SkipLink/SkipLink";
 
 import { publishedProjectIds } from "../../constants/publishedProjectIds";
 
@@ -45,7 +44,6 @@ export default function SiteShell() {
 
   return (
     <div className={shellClass}>
-      <SkipLink />
       <Header tone={isProjectPage ? "inverse" : "default"} />
       <div className="site-shell-clip">
         <div className="container">
