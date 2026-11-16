@@ -1,4 +1,5 @@
 import { cleanup, render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it } from "vitest";
 
 import Footer from "../../../components/Footer/Footer";
@@ -12,7 +13,11 @@ describe("Footer", () => {
   });
 
   it("renders the contacts band on the dark surface", () => {
-    render(<Footer />);
+    render(
+      <MemoryRouter>
+        <Footer />
+      </MemoryRouter>,
+    );
 
     expect(screen.getByRole("contentinfo")).toHaveClass("site-footer--inverse");
     expect(screen.getByRole("heading", { name: "Contacts" })).toBeInTheDocument();
@@ -38,7 +43,11 @@ describe("Footer", () => {
   });
 
   it("supports the light surface", () => {
-    render(<Footer tone="light" />);
+    render(
+      <MemoryRouter>
+        <Footer tone="light" />
+      </MemoryRouter>,
+    );
 
     expect(screen.getByRole("contentinfo")).toHaveClass("site-footer--light");
     expect(screen.getByRole("contentinfo")).not.toHaveClass("site-footer--inverse");

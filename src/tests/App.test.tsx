@@ -105,6 +105,7 @@ describe("App", () => {
       routerBasename() || "/",
     );
     expect(document.title).toBe("Page not found — Julia Samchuk");
+    expect(document.getElementById("contacts")).not.toBeNull();
   });
 
   it("treats an unknown project address as a missing page", async () => {
@@ -124,6 +125,7 @@ describe("App", () => {
     render(<App />);
 
     expect(screen.getByRole("heading", { level: 1, name: "Lovespace" })).toBeInTheDocument();
+    expect(document.getElementById("contacts")).not.toBeNull();
   });
 
   it("uses the inverse shell for a published project", async () => {

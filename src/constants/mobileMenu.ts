@@ -1,4 +1,4 @@
-import { navigation } from "./navigation";
+import { CONTACTS_ID, navigation } from "./navigation";
 import { projects } from "./projects";
 import { publishedProjectIds } from "./publishedProjectIds";
 
@@ -54,9 +54,9 @@ export function mobileMenuAllProjectsHref(): string {
 
 export function mobileMenuContactsHref(): string {
   for (const item of navigation) {
-    if (item.id === "contacts") {
+    if (item.id === CONTACTS_ID) {
       return item.href;
     }
   }
-  return homeHash("contacts");
+  return homeHash(CONTACTS_ID);
 }

@@ -50,6 +50,10 @@ export function headerScrollPhase(input: HeaderScrollPhaseInput): HeaderScrollPh
     };
   }
 
+  if (input.kind !== "jump" && input.menuOpen === true) {
+    return { look: input.look, travel: input.travel, motion: "none" };
+  }
+
   if (input.scrollY <= 0) {
     const look: HeaderLook = "resting";
     const motion: HeaderMotion =
@@ -66,7 +70,7 @@ export function headerScrollPhase(input: HeaderScrollPhaseInput): HeaderScrollPh
     };
   }
 
-  if (input.kind !== "jump" && (input.menuOpen === true || input.focusInside === true)) {
+  if (input.kind !== "jump" && input.focusInside === true) {
     return { look: input.look, travel: input.travel, motion: "none" };
   }
 

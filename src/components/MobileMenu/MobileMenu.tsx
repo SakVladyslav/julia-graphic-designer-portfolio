@@ -1,6 +1,6 @@
-import { useEffect, useId, useRef, useState, type RefObject } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState, type RefObject } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import Logo from "../Logo/Logo";
 
@@ -10,9 +10,12 @@ import {
   mobileMenuContactsHref,
   mobileMenuProjectLinks,
 } from "../../constants/mobileMenu";
+import { CONTACTS_ID } from "../../constants/navigation";
 
 import { bindDocumentCanvas } from "../../utils/dom/bindDocumentCanvas";
 import { focusableElements } from "../../utils/dom/focusableElements";
+import { focusHashTarget } from "../../utils/dom/focusHashTarget";
+import { followContactsHash } from "../../utils/dom/followContactsHash";
 import { lockBodyScroll } from "../../utils/dom/lockBodyScroll";
 import {
   currentInputModality,
@@ -21,6 +24,8 @@ import {
 } from "../../hooks/useInputModality";
 
 import "./MobileMenu.scss";
+
+const useBrowserLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 const MENU_EXIT_MS = 280;
 const MENU_EXIT_REDUCED_MS = 120;
@@ -126,6 +131,9 @@ export default function MobileMenu({
   const openedWithRef = useRef<InputModality>("keyboard");
   const closedWithRef = useRef<InputModality>("keyboard");
   const inverse = tone === "inverse";
+  const navigate = useNavigate();
+  const location = useLocation();
+  const skipReturnFocusRef = useRef(false);
   useInputModality();
 
   useEffect(() => {
@@ -173,13 +181,22 @@ export default function MobileMenu({
       return;
     }
     openedRef.current = false;
+    if (skipReturnFocusRef.current) {
+      skipReturnFocusRef.current = false;
+      const contacts = document.getElementById(CONTACTS_ID);
+      if (contacts instanceof HTMLElement) {
+        focusHashTarget(contacts);
+      }
+      return;
+    }
     const target = returnFocusRef.current;
     if (target !== null) {
       focusOnClose(closedWithRef.current, target);
     }
   }, [present, returnFocusRef]);
 
-  useEffect(() => {
+  // Layout so unlock settles before SiteShell scrolls to the next route.
+  useBrowserLayoutEffect(() => {
     if (!open || !present) {
       return;
     }
@@ -335,7 +352,21 @@ export default function MobileMenu({
                   </ul>
                 </div>
               </div>
-              <a className="mobile-menu-item" href={mobileMenuContactsHref()}>
+              <a
+                className="mobile-menu-item"
+                href={mobileMenuContactsHref()}
+                onClick={(event) => {
+                  const result = followContactsHash(event, {
+                    pathname: location.pathname,
+                    search: location.search,
+                    hash: location.hash,
+                    navigate,
+                  });
+                  if (result === "in-page") {
+                    skipReturnFocusRef.current = true;
+                  }
+                }}
+              >
                 Contacts
               </a>
             </nav>

@@ -1,6 +1,9 @@
 import { Fragment } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import { navigation } from "../../constants/navigation";
+import { CONTACTS_ID, navigation } from "../../constants/navigation";
+
+import { followContactsHash } from "../../utils/dom/followContactsHash";
 
 import "./SiteNav.scss";
 
@@ -12,6 +15,9 @@ interface SiteNavProps {
 }
 
 export default function SiteNav({ className, ariaLabel, id, onNavigate }: SiteNavProps) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <nav className={className} aria-label={ariaLabel} id={id} onClick={onNavigate}>
       {navigation.map((item, index) => (
@@ -21,7 +27,23 @@ export default function SiteNav({ className, ariaLabel, id, onNavigate }: SiteNa
               /
             </span>
           ) : null}
-          <a href={item.href}>{item.label}</a>
+          <a
+            href={item.href}
+            onClick={
+              item.id === CONTACTS_ID
+                ? (event) => {
+                    followContactsHash(event, {
+                      pathname: location.pathname,
+                      search: location.search,
+                      hash: location.hash,
+                      navigate,
+                    });
+                  }
+                : undefined
+            }
+          >
+            {item.label}
+          </a>
         </Fragment>
       ))}
     </nav>

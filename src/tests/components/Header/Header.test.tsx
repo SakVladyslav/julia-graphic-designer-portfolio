@@ -1,6 +1,6 @@
 import { act, cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, useLocation } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import Header from "../../../components/Header/Header";
@@ -9,6 +9,11 @@ import { contactActions } from "../../../constants/contacts";
 import { mobileMenuAllProjectsHref, mobileMenuContactsHref } from "../../../constants/mobileMenu";
 
 import { focusableElements } from "../../../utils/dom/focusableElements";
+import {
+  PROGRAMMATIC_SCROLL_EVENT,
+  takeQueuedUnlockHashScroll,
+} from "../../../utils/dom/programmaticScroll";
+import { scrollToHashId } from "../../../utils/dom/scrollToHashId";
 import { homeHash } from "../../../utils/url/homeHash";
 import { withBaseUrl } from "../../../utils/url/withBaseUrl";
 
@@ -31,7 +36,11 @@ describe("Header scroll phase", () => {
 
   it("stays resting when the page is at the top on mount", () => {
     setScrollY(0);
-    render(<Header />);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
 
     const header = screen.getByRole("banner");
     expect(header).not.toHaveClass("site-header--pinned");
@@ -42,7 +51,11 @@ describe("Header scroll phase", () => {
 
   it("pins with no motion class when the mount position is below the top", () => {
     setScrollY(80);
-    render(<Header />);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
 
     const header = screen.getByRole("banner");
     expect(header).toHaveClass("site-header--pinned");
@@ -53,7 +66,11 @@ describe("Header scroll phase", () => {
 
   it("hides with a slide after a downward scroll of 10 px", () => {
     setScrollY(0);
-    render(<Header />);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
 
     scrollToY(10);
 
@@ -68,7 +85,11 @@ describe("Header scroll phase", () => {
 
   it("pins with a slide after an upward scroll of 10 px below the top", () => {
     setScrollY(80);
-    render(<Header />);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
 
     scrollToY(90);
     scrollToY(80);
@@ -81,11 +102,17 @@ describe("Header scroll phase", () => {
 
   it("removes the scroll listener on unmount", () => {
     const remove = vi.spyOn(window, "removeEventListener");
-    const { unmount } = render(<Header />);
+    const { unmount } = render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
 
     unmount();
 
     expect(remove.mock.calls.some(([type]) => type === "scroll")).toBe(true);
+    expect(remove.mock.calls.some(([type]) => type === PROGRAMMATIC_SCROLL_EVENT)).toBe(true);
+    expect(remove.mock.calls.some(([type]) => type === "resize")).toBe(true);
     remove.mockRestore();
   });
 
@@ -120,7 +147,11 @@ describe("Header scroll phase", () => {
 
   it("keeps the look while focus is inside, and after blur, until the next 10 px scroll", () => {
     setScrollY(80);
-    render(<Header />);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
 
     const logo = screen.getByRole("link", { name: /smchk/i });
     act(() => {
@@ -145,7 +176,11 @@ describe("Header scroll phase", () => {
 
   it("pins a hidden header immediately when focus enters", () => {
     setScrollY(0);
-    render(<Header />);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
     scrollToY(20);
 
     const logo = screen.getByRole("link", { name: /smchk/i });
@@ -171,7 +206,11 @@ describe("Header scroll phase", () => {
     }));
 
     setScrollY(0);
-    render(<Header />);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
     scrollToY(20);
 
     const logo = screen.getByRole("link", { name: /smchk/i });
@@ -187,20 +226,35 @@ describe("Header scroll phase", () => {
     window.matchMedia = original;
   });
 
-  it("follows a jump even when focus is inside the header", () => {
-    setScrollY(80);
-    render(<Header />);
-
-    const logo = screen.getByRole("link", { name: /smchk/i });
-    act(() => {
-      logo.focus();
-    });
-    window.dispatchEvent(new Event("hashchange"));
-    scrollToY(160);
+  it("snaps a programmatic hash jump to pinned instead of hiding", () => {
+    setScrollY(0);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
+    scrollToY(20);
 
     const header = screen.getByRole("banner");
     expect(header).toHaveClass("site-header--hidden");
-    expect(header).not.toHaveClass("site-header--pinned");
+
+    const target = document.createElement("section");
+    target.id = "later";
+    target.scrollIntoView = () => {
+      setScrollY(160);
+      window.dispatchEvent(new Event("scroll"));
+    };
+    document.body.append(target);
+
+    act(() => {
+      scrollToHashId("#later");
+    });
+
+    expect(header).toHaveClass("site-header--pinned");
+    expect(header).not.toHaveClass("site-header--hidden");
+    expect(header).not.toHaveClass("site-header--slide");
+    expect(header).not.toHaveClass("site-header--fade");
+    target.remove();
   });
 });
 
@@ -214,12 +268,27 @@ function showPhoneChrome() {
   document.head.appendChild(style);
 }
 
-function renderHeader(tone?: "default" | "inverse") {
+function LocationPath() {
+  const location = useLocation();
+  return <div data-testid="location-path">{`${location.pathname}${location.hash}`}</div>;
+}
+
+function renderHeader(tone?: "default" | "inverse", path = "/") {
   return render(
-    <MemoryRouter>
+    <MemoryRouter initialEntries={[path]}>
+      <LocationPath />
       <Header tone={tone} />
     </MemoryRouter>,
   );
+}
+
+function mountContacts() {
+  const contacts = document.createElement("section");
+  contacts.id = "contacts";
+  contacts.tabIndex = -1;
+  contacts.scrollIntoView = vi.fn();
+  document.body.append(contacts);
+  return contacts;
 }
 
 async function revealMenu() {
@@ -234,8 +303,8 @@ async function revealMenu() {
   });
 }
 
-async function openMenu(tone?: "default" | "inverse") {
-  renderHeader(tone);
+async function openMenu(tone?: "default" | "inverse", path = "/") {
+  renderHeader(tone, path);
   const user = userEvent.setup();
   const burger = screen.getByRole("button", { name: "Open menu" });
   await user.click(burger);
@@ -289,6 +358,8 @@ describe("Header", () => {
     document.body.style.top = "";
     document.body.style.width = "";
     document.documentElement.style.overflow = "";
+    takeQueuedUnlockHashScroll();
+    document.getElementById("contacts")?.remove();
     document.querySelector("[data-phone-chrome]")?.remove();
   });
 
@@ -475,6 +546,45 @@ describe("Header", () => {
     await waitFor(() => {
       expect(screen.queryByRole("dialog", { name: "Menu" })).not.toBeInTheDocument();
     });
+  });
+
+  it("scrolls to on-page contacts from the menu without leaving the case", async () => {
+    const contacts = mountContacts();
+    const { user, burger, dialog } = await openMenu(undefined, "/projects/olx");
+
+    await user.click(within(dialog).getByRole("link", { name: "Contacts" }));
+
+    expect(screen.getByTestId("location-path")).toHaveTextContent("/projects/olx#contacts");
+    expect(contacts.scrollIntoView).toHaveBeenCalled();
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog", { name: "Menu" })).not.toBeInTheDocument();
+    });
+    expect(burger).toHaveAttribute("aria-expanded", "false");
+    expect(contacts).toHaveFocus();
+  });
+
+  it("sends Contacts to /#contacts when the page has no contacts block", async () => {
+    const { user, dialog } = await openMenu(undefined, "/no-such-page");
+
+    await user.click(within(dialog).getByRole("link", { name: "Contacts" }));
+
+    expect(screen.getByTestId("location-path")).toHaveTextContent("/#contacts");
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog", { name: "Menu" })).not.toBeInTheDocument();
+    });
+  });
+
+  it("scrolls the desktop Contacts item to the on-page block", async () => {
+    const contacts = mountContacts();
+    renderHeader(undefined, "/projects/olx");
+    const user = userEvent.setup();
+    const primary = screen.getByRole("navigation", { name: "Primary" });
+
+    await user.click(within(primary).getByRole("link", { name: "Contacts" }));
+
+    expect(screen.getByTestId("location-path")).toHaveTextContent("/projects/olx#contacts");
+    expect(contacts.scrollIntoView).toHaveBeenCalled();
+    expect(contacts).toHaveFocus();
   });
 
   it("uses the header tone for the overlay", async () => {

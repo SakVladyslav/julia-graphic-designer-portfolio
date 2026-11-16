@@ -10,6 +10,15 @@
   scroll-margin-top: $header-pinned-height;
 }
 
+.contacts:focus {
+  outline: none;
+}
+
+.contacts:focus-visible {
+  outline: 2px solid $accent;
+  outline-offset: 3px;
+}
+
 .contacts h2 {
   margin-bottom: $space-48;
   font-family: $font-family;

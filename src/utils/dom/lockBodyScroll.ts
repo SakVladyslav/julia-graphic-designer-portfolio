@@ -1,3 +1,9 @@
+import {
+  clearScrollLockMarker,
+  notifyProgrammaticScroll,
+  setScrollLockMarker,
+  takeQueuedUnlockHashScroll,
+} from "./programmaticScroll";
 import { scrollToHashId } from "./scrollToHashId";
 
 interface BodyInlineStyle {
@@ -21,6 +27,7 @@ export function lockBodyScroll(): () => void {
   };
   const previousHtmlOverflow = html.style.overflow;
 
+  setScrollLockMarker();
   html.style.overflow = "hidden";
   body.style.overflow = "hidden";
   body.style.position = "fixed";
@@ -33,10 +40,20 @@ export function lockBodyScroll(): () => void {
     body.style.position = previousBody.position;
     body.style.top = previousBody.top;
     body.style.width = previousBody.width;
+    const queuedHash = takeQueuedUnlockHashScroll();
     const hashNow = window.location.hash;
+    if (queuedHash !== null && scrollToHashId(queuedHash)) {
+      clearScrollLockMarker();
+      notifyProgrammaticScroll();
+      return;
+    }
     if (hashNow !== hashAtLock && scrollToHashId(hashNow)) {
+      clearScrollLockMarker();
+      notifyProgrammaticScroll();
       return;
     }
     window.scrollTo({ top: scrollY, left: 0, behavior: "instant" });
+    clearScrollLockMarker();
+    notifyProgrammaticScroll();
   };
 }

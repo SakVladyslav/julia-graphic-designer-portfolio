@@ -10,6 +10,14 @@ describe("Contacts", () => {
     cleanup();
   });
 
+  it("exposes a focusable contacts landmark", () => {
+    render(<Contacts />);
+
+    const section = screen.getByRole("region", { name: "Contacts" });
+    expect(section).toHaveAttribute("id", "contacts");
+    expect(section).toHaveAttribute("tabindex", "-1");
+  });
+
   it("opens the CV and LinkedIn actions in a new tab", () => {
     render(<Contacts />);
 

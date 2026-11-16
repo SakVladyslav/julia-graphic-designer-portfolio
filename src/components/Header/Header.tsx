@@ -8,6 +8,12 @@ import type { HeaderLook, HeaderMotion, HeaderScrollTravel } from "./headerScrol
 
 import { MOBILE_MENU_MAX_WIDTH_PX } from "../../constants/mobileMenu";
 
+import {
+  PROGRAMMATIC_SCROLL_EVENT,
+  isProgrammaticScroll,
+  isScrollLocked,
+} from "../../utils/dom/programmaticScroll";
+
 import "./Header.scss";
 
 interface HeaderProps {
@@ -56,7 +62,6 @@ export default function Header({ tone = "default" }: HeaderProps) {
       travel: { direction: "down", distance: 0 },
     };
     let previousY = window.scrollY;
-    let pendingJump = false;
     const mediaQuery =
       typeof window.matchMedia === "function"
         ? window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -73,6 +78,7 @@ export default function Header({ tone = "default" }: HeaderProps) {
       kind: "scroll" | "jump",
       firstCorrection: boolean,
       focusEntered: boolean,
+      forceClass = false,
     ) => {
       const result = headerScrollPhase({
         look: phase.look,
@@ -89,27 +95,38 @@ export default function Header({ tone = "default" }: HeaderProps) {
       const lookChanged = result.look !== phase.look;
       phase.look = result.look;
       phase.travel = result.travel;
-      if (lookChanged || result.motion !== "none") {
+      if (forceClass || lookChanged || result.motion !== "none") {
         setScrollClassName(phaseClassName(result.look, result.motion));
       }
+    };
+
+    const resync = () => {
+      const scrollY = window.scrollY;
+      previousY = scrollY;
+      phase.travel = { direction: "down", distance: 0 };
+      publish(0, scrollY, "scroll", true, false, true);
     };
 
     publish(0, window.scrollY, "scroll", true, false);
 
     const onScroll = () => {
+      if (isScrollLocked() || isProgrammaticScroll()) {
+        return;
+      }
       const scrollY = window.scrollY;
       const deltaY = scrollY - previousY;
-      const kind = pendingJump ? "jump" : "scroll";
-      pendingJump = false;
       previousY = scrollY;
       if (deltaY === 0) {
         return;
       }
-      publish(deltaY, scrollY, kind, false, false);
+      publish(deltaY, scrollY, "scroll", false, false);
     };
 
-    const onHashChange = () => {
-      pendingJump = true;
+    const onProgrammaticScroll = () => {
+      if (isScrollLocked()) {
+        return;
+      }
+      resync();
     };
 
     const onFocusIn = (event: FocusEvent) => {
@@ -122,13 +139,18 @@ export default function Header({ tone = "default" }: HeaderProps) {
       publish(0, window.scrollY, "scroll", false, true);
     };
 
+    const viewport = window.visualViewport;
     window.addEventListener("scroll", onScroll);
-    window.addEventListener("hashchange", onHashChange);
+    window.addEventListener(PROGRAMMATIC_SCROLL_EVENT, onProgrammaticScroll);
+    window.addEventListener("resize", onProgrammaticScroll);
+    viewport?.addEventListener("resize", onProgrammaticScroll);
     window.addEventListener("focusin", onFocusIn);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("hashchange", onHashChange);
+      window.removeEventListener(PROGRAMMATIC_SCROLL_EVENT, onProgrammaticScroll);
+      window.removeEventListener("resize", onProgrammaticScroll);
+      viewport?.removeEventListener("resize", onProgrammaticScroll);
       window.removeEventListener("focusin", onFocusIn);
     };
   }, []);
