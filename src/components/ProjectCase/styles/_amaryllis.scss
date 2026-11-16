@@ -459,10 +459,13 @@ $font-family-amaryllis: "Fixel Display", $font-family;
     width: 100%;
     max-width: none;
     gap: $space-16;
+    // The title scales with the copy width so "Linear Illustration" stays on one line.
+    container-type: inline-size;
   }
 
   .case-page--amaryllis .case-banner h2 {
-    font-size: 44px;
+    // 11cqi keeps the longest title line inside the copy box on every phone.
+    font-size: min(44px, 11cqi);
   }
 
   .case-page--amaryllis .case-banner-emphasis {
@@ -569,7 +572,7 @@ $font-family-amaryllis: "Fixel Display", $font-family;
   }
 
   .case-page--amaryllis .case-banner h2 {
-    font-size: $font-size-40;
+    font-size: min($font-size-40, 11cqi);
     font-weight: 700;
     line-height: 1.1;
   }
@@ -624,7 +627,7 @@ $font-family-amaryllis: "Fixel Display", $font-family;
 // 390 frame keeps the 34px heading. 360 and 320 step down from it.
 @media (max-width: $bp-mobile) {
   .case-page--amaryllis .case-banner h2 {
-    font-size: 34px;
+    font-size: min(34px, 11cqi);
   }
 
   .case-page--amaryllis .case-flow > .case-media--tote {
@@ -634,7 +637,7 @@ $font-family-amaryllis: "Fixel Display", $font-family;
 
 @media (max-width: $bp-small) {
   .case-page--amaryllis .case-banner h2 {
-    font-size: $font-size-32;
+    font-size: min($font-size-32, 11cqi);
   }
 
   .case-page--amaryllis .case-note h2 {
@@ -652,7 +655,7 @@ $font-family-amaryllis: "Fixel Display", $font-family;
 
 @media (max-width: $bp-mini) {
   .case-page--amaryllis .case-banner h2 {
-    font-size: $font-size-28;
+    font-size: min($font-size-28, 11cqi);
   }
 
   .case-page--amaryllis .case-banner p {
