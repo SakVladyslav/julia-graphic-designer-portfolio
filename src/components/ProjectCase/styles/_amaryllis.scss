@@ -435,6 +435,11 @@ $font-family-amaryllis: "Fixel Display", $font-family;
   .case-page--amaryllis .case-note p {
     max-width: $case-note-copy-max;
   }
+
+  // 759 down to 391 keeps 56. The 390 frame steps to 48, 360 and 320 to 40.
+  .case-page--amaryllis .case-flow > .case-media--tote {
+    margin-top: $space-56;
+  }
 }
 
 // 599 frame. Desktop type starts at 600, so this frame is its own step.
@@ -614,16 +619,16 @@ $font-family-amaryllis: "Fixel Display", $font-family;
   .case-page--amaryllis .case-note-emphasis {
     margin-top: -$space-8;
   }
-
-  .case-page--amaryllis .case-flow > .case-media--tote {
-    margin-top: $space-48;
-  }
 }
 
 // 390 frame keeps the 34px heading. 360 and 320 step down from it.
 @media (max-width: $bp-mobile) {
   .case-page--amaryllis .case-banner h2 {
     font-size: 34px;
+  }
+
+  .case-page--amaryllis .case-flow > .case-media--tote {
+    margin-top: $space-48;
   }
 }
 
@@ -638,6 +643,10 @@ $font-family-amaryllis: "Fixel Display", $font-family;
 
   .case-page--amaryllis .case-note-copy {
     gap: $space-20;
+  }
+
+  .case-page--amaryllis .case-flow > .case-media--tote {
+    margin-top: $space-40;
   }
 }
 
