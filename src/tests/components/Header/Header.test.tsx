@@ -8,6 +8,7 @@ import Header from "../../../components/Header/Header";
 import { contactActions } from "../../../constants/contacts";
 import { mobileMenuAllProjectsHref, mobileMenuContactsHref } from "../../../constants/mobileMenu";
 
+import { focusableElements } from "../../../utils/dom/focusableElements";
 import { homeHash } from "../../../utils/url/homeHash";
 import { withBaseUrl } from "../../../utils/url/withBaseUrl";
 
@@ -243,6 +244,29 @@ async function openMenu(tone?: "default" | "inverse") {
   return { user, burger, dialog };
 }
 
+function edgeFocusable(dialog: HTMLElement): { first: HTMLElement; last: HTMLElement } {
+  const elements = focusableElements(dialog);
+  const first = elements[0];
+  const last = elements[elements.length - 1];
+  if (first === undefined || last === undefined) {
+    throw new Error("Menu dialog has no focusable elements");
+  }
+  return { first, last };
+}
+
+async function openMenuFromKeyboard() {
+  renderHeader();
+  const user = userEvent.setup();
+  const burger = screen.getByRole("button", { name: "Open menu" });
+  act(() => {
+    burger.focus();
+  });
+  await user.keyboard("{Enter}");
+  await revealMenu();
+  const dialog = await screen.findByRole("dialog", { name: "Menu" });
+  return { user, burger, dialog };
+}
+
 function linkedInHref(): string {
   for (const action of contactActions) {
     if (action.id === "linkedin" && action.href !== null) {
@@ -284,13 +308,62 @@ describe("Header", () => {
     );
   });
 
-  it("opens the overlay from the burger and focuses Close menu", async () => {
+  it("opens the overlay from a click and focuses the dialog", async () => {
     const { burger, dialog } = await openMenu();
 
     expect(burger).toHaveAttribute("aria-expanded", "true");
     expect(burger).toHaveTextContent("Close menu");
-    expect(within(dialog).getByRole("button", { name: "Close menu" })).toHaveFocus();
+    expect(dialog).toHaveFocus();
+    expect(within(dialog).getByRole("button", { name: "Close menu" })).not.toHaveFocus();
     expect(document.body.style.overflow).toBe("hidden");
+  });
+
+  it("opens from the keyboard and focuses Close menu", async () => {
+    const { dialog } = await openMenuFromKeyboard();
+
+    expect(within(dialog).getByRole("button", { name: "Close menu" })).toHaveFocus();
+  });
+
+  it("returns focus to the burger after Escape", async () => {
+    const { user, burger } = await openMenuFromKeyboard();
+
+    await user.keyboard("{Escape}");
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog", { name: "Menu" })).not.toBeInTheDocument();
+    });
+    expect(burger).toHaveFocus();
+  });
+
+  it("cycles Tab and Shift+Tab inside the dialog after a pointer open", async () => {
+    const { user, dialog } = await openMenu();
+    const { first, last } = edgeFocusable(dialog);
+
+    expect(dialog).toHaveFocus();
+
+    await user.tab();
+    expect(first).toHaveFocus();
+
+    await user.tab({ shift: true });
+    expect(last).toHaveFocus();
+
+    await user.tab();
+    expect(first).toHaveFocus();
+  });
+
+  it("cycles Tab and Shift+Tab inside the dialog after a keyboard open", async () => {
+    const { user, dialog } = await openMenuFromKeyboard();
+    const { first, last } = edgeFocusable(dialog);
+
+    expect(within(dialog).getByRole("button", { name: "Close menu" })).toHaveFocus();
+
+    act(() => {
+      last.focus();
+    });
+    await user.tab();
+    expect(first).toHaveFocus();
+
+    await user.tab({ shift: true });
+    expect(last).toHaveFocus();
   });
 
   it("closes on the close button, Escape, and backdrop, and restores focus", async () => {
@@ -311,7 +384,7 @@ describe("Header", () => {
       expect(burger).toHaveAttribute("aria-expanded", "false");
       expect(burger).toHaveTextContent("Open menu");
       expect(burger).toHaveFocus();
-      expect(focusCalls).toContainEqual({ preventScroll: true });
+      expect(focusCalls).toContainEqual({ preventScroll: true, focusVisible: false });
       expect(document.body.style.overflow).not.toBe("hidden");
 
       await user.click(burger);

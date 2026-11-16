@@ -49,6 +49,10 @@
   overflow-y: auto;
 }
 
+.mobile-menu-panel:focus {
+  outline: none;
+}
+
 .mobile-menu-clip {
   position: relative;
   overflow: clip;
@@ -81,6 +85,7 @@
   background: transparent;
   color: inherit;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .mobile-menu-close-icon,
