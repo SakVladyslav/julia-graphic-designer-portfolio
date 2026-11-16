@@ -8,6 +8,15 @@ import type { HeaderLook, HeaderMotion, HeaderScrollTravel } from "./headerScrol
 
 import { MOBILE_MENU_MAX_WIDTH_PX } from "../../constants/mobileMenu";
 
+import { currentInputModality } from "../../hooks/useInputModality";
+
+import {
+  PROGRAMMATIC_SCROLL_EVENT,
+  isProgrammaticScroll,
+  isScrollLocked,
+} from "../../utils/dom/programmaticScroll";
+import type { ProgrammaticScrollDetail } from "../../utils/dom/programmaticScroll";
+
 import "./Header.scss";
 
 interface HeaderProps {
@@ -56,7 +65,9 @@ export default function Header({ tone = "default" }: HeaderProps) {
       travel: { direction: "down", distance: 0 },
     };
     let previousY = window.scrollY;
-    let pendingJump = false;
+    // After a followed link the header stays hidden until the visitor scrolls themselves.
+    // Scroll events without input (a smooth jump still settling, iOS toolbar) must not pin it.
+    let holdHiddenUntilInput = false;
     const mediaQuery =
       typeof window.matchMedia === "function"
         ? window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -67,12 +78,19 @@ export default function Header({ tone = "default" }: HeaderProps) {
       return header !== null && node instanceof Node && header.contains(node);
     };
 
+    // Only keyboard focus holds the header in place. After a touch or mouse close the menu
+    // returns focus to the burger without a visible ring; that must not freeze scroll hiding.
+    const keyboardFocusInside = () =>
+      currentInputModality() === "keyboard" && headerContains(document.activeElement);
+
     const publish = (
       deltaY: number,
       scrollY: number,
       kind: "scroll" | "jump",
       firstCorrection: boolean,
       focusEntered: boolean,
+      forceClass = false,
+      correctionLook: "pinned" | "hidden" = "pinned",
     ) => {
       const result = headerScrollPhase({
         look: phase.look,
@@ -80,40 +98,66 @@ export default function Header({ tone = "default" }: HeaderProps) {
         deltaY,
         scrollY,
         menuOpen: menuOpenRef.current,
-        focusInside: headerContains(document.activeElement),
+        focusInside: keyboardFocusInside(),
         focusEntered,
         reducedMotion: mediaQuery?.matches === true,
         kind,
         firstCorrection,
+        correctionLook,
       });
       const lookChanged = result.look !== phase.look;
       phase.look = result.look;
       phase.travel = result.travel;
-      if (lookChanged || result.motion !== "none") {
+      if (forceClass || lookChanged || result.motion !== "none") {
         setScrollClassName(phaseClassName(result.look, result.motion));
       }
     };
 
-    publish(0, window.scrollY, "scroll", true, false);
-
-    const onScroll = () => {
+    const resync = (correctionLook: "pinned" | "hidden") => {
+      holdHiddenUntilInput = correctionLook === "hidden";
       const scrollY = window.scrollY;
-      const deltaY = scrollY - previousY;
-      const kind = pendingJump ? "jump" : "scroll";
-      pendingJump = false;
       previousY = scrollY;
-      if (deltaY === 0) {
-        return;
-      }
-      publish(deltaY, scrollY, kind, false, false);
+      phase.travel = { direction: "down", distance: 0 };
+      publish(0, scrollY, "scroll", true, false, true, correctionLook);
     };
 
-    const onHashChange = () => {
-      pendingJump = true;
+    // A page opened on a link target (`/#contacts`) has not been scrolled by the visitor yet.
+    holdHiddenUntilInput = window.location.hash !== "";
+    publish(
+      0,
+      window.scrollY,
+      "scroll",
+      true,
+      false,
+      false,
+      window.location.hash === "" ? "pinned" : "hidden",
+    );
+
+    const onScroll = () => {
+      if (isScrollLocked() || isProgrammaticScroll()) {
+        return;
+      }
+      const scrollY = window.scrollY;
+      const deltaY = scrollY - previousY;
+      previousY = scrollY;
+      if (deltaY === 0 || holdHiddenUntilInput) {
+        return;
+      }
+      publish(deltaY, scrollY, "scroll", false, false);
+    };
+
+    // A followed link (Projects, Contacts) lands hidden: the visitor has not moved yet,
+    // and the header only comes back on a scroll up. A restore (menu close) stays visible.
+    const onProgrammaticScroll = (event: Event) => {
+      if (isScrollLocked()) {
+        return;
+      }
+      const detail = (event as CustomEvent<ProgrammaticScrollDetail | null>).detail;
+      resync(detail?.reason === "hash" ? "hidden" : "pinned");
     };
 
     const onFocusIn = (event: FocusEvent) => {
-      if (!headerContains(event.target)) {
+      if (currentInputModality() !== "keyboard" || !headerContains(event.target)) {
         return;
       }
       if (headerContains(event.relatedTarget)) {
@@ -122,13 +166,26 @@ export default function Header({ tone = "default" }: HeaderProps) {
       publish(0, window.scrollY, "scroll", false, true);
     };
 
+    // No resize / visualViewport resize resync: on iOS they fire while the address bar
+    // shows or hides mid-scroll and would force "pinned". Breakpoint changes go through matchMedia.
+    const onVisitorInput = () => {
+      holdHiddenUntilInput = false;
+    };
+    const inputEvents = ["wheel", "touchstart", "pointerdown", "keydown"] as const;
+
     window.addEventListener("scroll", onScroll);
-    window.addEventListener("hashchange", onHashChange);
+    window.addEventListener(PROGRAMMATIC_SCROLL_EVENT, onProgrammaticScroll);
     window.addEventListener("focusin", onFocusIn);
+    for (const name of inputEvents) {
+      window.addEventListener(name, onVisitorInput, { capture: true, passive: true });
+    }
 
     return () => {
+      for (const name of inputEvents) {
+        window.removeEventListener(name, onVisitorInput, { capture: true });
+      }
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("hashchange", onHashChange);
+      window.removeEventListener(PROGRAMMATIC_SCROLL_EVENT, onProgrammaticScroll);
       window.removeEventListener("focusin", onFocusIn);
     };
   }, []);

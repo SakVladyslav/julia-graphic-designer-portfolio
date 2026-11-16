@@ -1,6 +1,6 @@
-import { useEffect, useId, useRef, useState, type RefObject } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState, type RefObject } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import Logo from "../Logo/Logo";
 
@@ -10,12 +10,22 @@ import {
   mobileMenuContactsHref,
   mobileMenuProjectLinks,
 } from "../../constants/mobileMenu";
+import { CONTACTS_ID } from "../../constants/navigation";
 
 import { bindDocumentCanvas } from "../../utils/dom/bindDocumentCanvas";
 import { focusableElements } from "../../utils/dom/focusableElements";
+import { focusHashTarget } from "../../utils/dom/focusHashTarget";
+import { followContactsHash } from "../../utils/dom/followContactsHash";
 import { lockBodyScroll } from "../../utils/dom/lockBodyScroll";
+import {
+  currentInputModality,
+  useInputModality,
+  type InputModality,
+} from "../../hooks/useInputModality";
 
 import "./MobileMenu.scss";
+
+const useBrowserLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 const MENU_EXIT_MS = 280;
 const MENU_EXIT_REDUCED_MS = 120;
@@ -56,6 +66,52 @@ function projectsClassName(open: boolean): string {
   return open ? "mobile-menu-projects mobile-menu-projects--open" : "mobile-menu-projects";
 }
 
+function focusOnOpen(
+  modality: InputModality,
+  dialog: HTMLElement | null,
+  close: HTMLElement | null,
+): void {
+  if (modality === "keyboard") {
+    close?.focus({ preventScroll: true });
+    return;
+  }
+  dialog?.focus({ preventScroll: true });
+}
+
+function focusOnClose(modality: InputModality, target: HTMLElement): void {
+  if (modality === "pointer") {
+    target.focus({ preventScroll: true, focusVisible: false });
+    return;
+  }
+  target.focus({ preventScroll: true });
+}
+
+function trapTab(event: KeyboardEvent, dialog: HTMLElement): void {
+  const elements = focusableElements(dialog);
+  const first = elements[0];
+  const last = elements[elements.length - 1];
+  if (first === undefined || last === undefined) {
+    event.preventDefault();
+    return;
+  }
+
+  const active = document.activeElement;
+  if (!(active instanceof HTMLElement) || !elements.includes(active)) {
+    event.preventDefault();
+    (event.shiftKey ? last : first).focus({ preventScroll: true });
+    return;
+  }
+  if (event.shiftKey && active === first) {
+    event.preventDefault();
+    last.focus({ preventScroll: true });
+    return;
+  }
+  if (!event.shiftKey && active === last) {
+    event.preventDefault();
+    first.focus({ preventScroll: true });
+  }
+}
+
 export default function MobileMenu({
   id,
   open,
@@ -72,14 +128,22 @@ export default function MobileMenu({
   const closeRef = useRef<HTMLButtonElement>(null);
   const onCloseRef = useRef(onClose);
   const openedRef = useRef(false);
+  const openedWithRef = useRef<InputModality>("keyboard");
+  const closedWithRef = useRef<InputModality>("keyboard");
   const inverse = tone === "inverse";
+  const navigate = useNavigate();
+  const location = useLocation();
+  const skipReturnFocusRef = useRef(false);
+  useInputModality();
 
   useEffect(() => {
     onCloseRef.current = onClose;
   }, [onClose]);
 
   useEffect(() => {
+    const device = currentInputModality();
     if (open) {
+      openedWithRef.current = device;
       openedRef.current = true;
       let innerFrame = 0;
       const frame = window.requestAnimationFrame(() => {
@@ -97,6 +161,7 @@ export default function MobileMenu({
     if (!openedRef.current) {
       return;
     }
+    closedWithRef.current = device;
     const frame = window.requestAnimationFrame(() => {
       setVisible(false);
     });
@@ -116,10 +181,22 @@ export default function MobileMenu({
       return;
     }
     openedRef.current = false;
-    returnFocusRef.current?.focus({ preventScroll: true });
+    if (skipReturnFocusRef.current) {
+      skipReturnFocusRef.current = false;
+      const contacts = document.getElementById(CONTACTS_ID);
+      if (contacts instanceof HTMLElement) {
+        focusHashTarget(contacts);
+      }
+      return;
+    }
+    const target = returnFocusRef.current;
+    if (target !== null) {
+      focusOnClose(closedWithRef.current, target);
+    }
   }, [present, returnFocusRef]);
 
-  useEffect(() => {
+  // Layout so unlock settles before SiteShell scrolls to the next route.
+  useBrowserLayoutEffect(() => {
     if (!open || !present) {
       return;
     }
@@ -151,7 +228,7 @@ export default function MobileMenu({
     if (!open || !present) {
       return;
     }
-    closeRef.current?.focus({ preventScroll: true });
+    focusOnOpen(openedWithRef.current, dialogRef.current, closeRef.current);
     const dialog = dialogRef.current;
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -163,21 +240,7 @@ export default function MobileMenu({
       if (event.key !== "Tab" || dialog === null) {
         return;
       }
-      const elements = focusableElements(dialog);
-      const first = elements[0];
-      const last = elements[elements.length - 1];
-      if (first === undefined || last === undefined) {
-        return;
-      }
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus({ preventScroll: true });
-        return;
-      }
-      if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus({ preventScroll: true });
-      }
+      trapTab(event, dialog);
     };
 
     document.addEventListener("keydown", onKeyDown);
@@ -224,6 +287,7 @@ export default function MobileMenu({
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
+        tabIndex={-1}
         onClick={(event) => {
           if (event.target instanceof Element && event.target.closest("a") !== null) {
             onClose();
@@ -238,7 +302,12 @@ export default function MobileMenu({
               type="button"
               className="mobile-menu-close"
               aria-label="Close menu"
-              onClick={onClose}
+              onClick={(event) => {
+                if (event.detail > 0) {
+                  event.currentTarget.blur();
+                }
+                onClose();
+              }}
             >
               <span className="mobile-menu-close-icon" aria-hidden="true" />
             </button>
@@ -283,7 +352,21 @@ export default function MobileMenu({
                   </ul>
                 </div>
               </div>
-              <a className="mobile-menu-item" href={mobileMenuContactsHref()}>
+              <a
+                className="mobile-menu-item"
+                href={mobileMenuContactsHref()}
+                onClick={(event) => {
+                  const result = followContactsHash(event, {
+                    pathname: location.pathname,
+                    search: location.search,
+                    hash: location.hash,
+                    navigate,
+                  });
+                  if (result === "in-page") {
+                    skipReturnFocusRef.current = true;
+                  }
+                }}
+              >
                 Contacts
               </a>
             </nav>

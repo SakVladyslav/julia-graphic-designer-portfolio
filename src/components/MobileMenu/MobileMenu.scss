@@ -49,14 +49,16 @@
   overflow-y: auto;
 }
 
+.mobile-menu-panel:focus {
+  outline: none;
+}
+
 .mobile-menu-clip {
   position: relative;
   overflow: clip;
 }
 
 .mobile-menu-root--inverse .mobile-menu-panel {
-  min-height: 100vh;
-  min-height: 100dvh;
   background: $menu-inverse-bg;
   color: $menu-inverse-text;
 }
@@ -69,6 +71,12 @@
   padding-top: calc(#{$space-24} + env(safe-area-inset-top, 0px));
   padding-right: calc(var(--page-pad) + env(safe-area-inset-right, 0px));
   padding-left: calc(var(--page-pad) + env(safe-area-inset-left, 0px));
+}
+
+// Same line box as .site-header .logo, so the logo and close icon sit exactly
+// where the header logo and burger are.
+.mobile-menu-bar .logo {
+  line-height: calc(#{$header-resting-height} - #{$space-32} * 2);
 }
 
 .mobile-menu-close {

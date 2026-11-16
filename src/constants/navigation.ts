@@ -6,6 +6,9 @@ export interface NavItem {
   href: string;
 }
 
+/** DOM id for the contacts section on any page that renders it. */
+export const CONTACTS_ID = "contacts";
+
 /**
  * Single source of truth for header and footer anchors.
  * Labels match the desktop homepage: Projects / Contacts.
@@ -14,5 +17,5 @@ export interface NavItem {
  */
 export const navigation: readonly NavItem[] = [
   { id: "projects", label: "Projects", href: homeHash("projects") },
-  { id: "contacts", label: "Contacts", href: homeHash("contacts") },
+  { id: CONTACTS_ID, label: "Contacts", href: homeHash(CONTACTS_ID) },
 ];

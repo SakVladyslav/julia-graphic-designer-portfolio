@@ -3,13 +3,14 @@ import { Outlet, useLocation, useMatch } from "react-router-dom";
 
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import SkipLink from "../SkipLink/SkipLink";
 
 import { publishedProjectIds } from "../../constants/publishedProjectIds";
 
 import { bindDocumentCanvas } from "../../utils/dom/bindDocumentCanvas";
+import { runProgrammaticScroll } from "../../utils/dom/programmaticScroll";
 import { scrollToHashId } from "../../utils/dom/scrollToHashId";
 import { useDocumentHead } from "../../hooks/useDocumentHead";
+import { useInputModality } from "../../hooks/useInputModality";
 
 import "./SiteShell.scss";
 
@@ -23,6 +24,7 @@ export default function SiteShell() {
   const locationKey = `${pathname}${hash}`;
 
   useDocumentHead(pathname);
+  useInputModality();
 
   useBrowserLayoutEffect(() => {
     return bindDocumentCanvas("page", isProjectPage ? "inverse" : "default");
@@ -33,14 +35,15 @@ export default function SiteShell() {
       scrollToHashId(hash);
       return;
     }
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    runProgrammaticScroll(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    });
   }, [hash, locationKey]);
 
   const shellClass = isProjectPage ? "site-shell site-shell--inverse" : "site-shell";
 
   return (
     <div className={shellClass}>
-      <SkipLink />
       <Header tone={isProjectPage ? "inverse" : "default"} />
       <div className="site-shell-clip">
         <div className="container">

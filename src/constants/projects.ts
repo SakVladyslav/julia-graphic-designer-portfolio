@@ -128,7 +128,7 @@ export const projects: readonly Project[] = [
   {
     id: "book-covers",
     title: "Book covers",
-    tags: ["visual identity", "rebranding"],
+    tags: ["book cover design", "editorial design"],
     image: framedImage(
       "cover",
       withBaseUrl("projects/book-covers/cover.webp"),

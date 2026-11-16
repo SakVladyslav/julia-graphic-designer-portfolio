@@ -1,4 +1,4 @@
-import { navigation } from "./navigation";
+import { CONTACTS_ID, navigation } from "./navigation";
 import { projects } from "./projects";
 import { publishedProjectIds } from "./publishedProjectIds";
 
@@ -15,8 +15,8 @@ export interface MobileMenuProjectLink {
 }
 
 /**
- * Figma mobile-menu order. Twitchvrotfl and Book covers stay off this list
- * until they have a published case page — no invented routes.
+ * Figma mobile-menu order. Twitchvrotfl has no case page.
+ * Book covers is published, but this menu does not list it.
  */
 const FIGMA_PROJECT_IDS = ["lovespace", "molfaria-window", "bbg", "amaryllis"] as const;
 
@@ -54,9 +54,9 @@ export function mobileMenuAllProjectsHref(): string {
 
 export function mobileMenuContactsHref(): string {
   for (const item of navigation) {
-    if (item.id === "contacts") {
+    if (item.id === CONTACTS_ID) {
       return item.href;
     }
   }
-  return homeHash("contacts");
+  return homeHash(CONTACTS_ID);
 }

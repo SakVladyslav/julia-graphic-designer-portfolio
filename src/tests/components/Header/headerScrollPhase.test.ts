@@ -147,6 +147,54 @@ describe("headerScrollPhase", () => {
     expect(held).toMatchObject({ look: "resting", motion: "none" });
   });
 
+  it("keeps the look when the menu is open and scroll position is 0", () => {
+    const pinned = headerScrollPhase({
+      look: "pinned",
+      travel: { direction: "down", distance: 20 },
+      deltaY: -640,
+      scrollY: 0,
+      menuOpen: true,
+    });
+    const hidden = headerScrollPhase({
+      look: "hidden",
+      travel: { direction: "up", distance: 4 },
+      deltaY: -640,
+      scrollY: 0,
+      menuOpen: true,
+    });
+
+    expect(pinned).toMatchObject({
+      look: "pinned",
+      motion: "none",
+      travel: { direction: "down", distance: 20 },
+    });
+    expect(hidden).toMatchObject({ look: "hidden", motion: "none" });
+  });
+
+  it("rests on a negative scroll position from rubber-band overscroll", () => {
+    const next = headerScrollPhase({
+      look: "pinned",
+      travel: { direction: "up", distance: 4 },
+      deltaY: -8,
+      scrollY: -12,
+    });
+
+    expect(next).toMatchObject({ look: "resting", motion: "none" });
+  });
+
+  it("still rests at the end of a jump to the top while the menu is open", () => {
+    const next = headerScrollPhase({
+      look: "pinned",
+      travel: { direction: "up", distance: 0 },
+      deltaY: -80,
+      scrollY: 0,
+      menuOpen: true,
+      kind: "jump",
+    });
+
+    expect(next).toMatchObject({ look: "resting", motion: "none" });
+  });
+
   it("keeps the look when a scroll happens while focus is inside the header", () => {
     const held = headerScrollPhase({
       look: "hidden",
@@ -342,6 +390,19 @@ describe("headerScrollPhase", () => {
     });
 
     expect(next).toMatchObject({ look: "pinned", motion: "none" });
+  });
+
+  it("lands a followed link below the top hidden with no motion", () => {
+    const next = headerScrollPhase({
+      look: "pinned",
+      travel: { direction: "up", distance: 40 },
+      deltaY: 0,
+      scrollY: belowTop,
+      firstCorrection: true,
+      correctionLook: "hidden",
+    });
+
+    expect(next).toMatchObject({ look: "hidden", motion: "none" });
   });
 
   it("snaps a first correction at the top to resting with no motion", () => {

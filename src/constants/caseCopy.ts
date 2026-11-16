@@ -49,6 +49,13 @@ export const caseCopy: readonly CaseCopy[] = [
       "News Website Redesign. Novyny LIVE is a Ukrainian news platform that came to the agency for a full website redesign. The goal was to modernize the interface…",
     imageAlt: "Novyny LIVE, Julia Samchuk",
   },
+  {
+    id: "book-covers",
+    title: "Educational Book Covers — Julia Samchuk",
+    description:
+      "A series of educational book covers created for the same client across different university disciplines. Each cover was developed as a separate visual concept,…",
+    imageAlt: "Educational Book Covers, Julia Samchuk",
+  },
 ];
 
 export function caseCopyById(id: string): CaseCopy | undefined {

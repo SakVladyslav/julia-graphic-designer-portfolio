@@ -19,6 +19,7 @@ describe("indexablePaths", () => {
       "/projects/bbg",
       "/projects/olx",
       "/projects/novyny",
+      "/projects/book-covers",
     ]);
     expect(
       prerenderPages()

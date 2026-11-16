@@ -35,15 +35,29 @@
   min-height: 0;
   padding-top: 0;
   padding-bottom: 0;
+  // The bar fill and divider span the whole viewport, the content stays in the
+  // container. The border stays (transparent) so the inner geometry is unchanged.
+  border-bottom: $border-strong solid transparent;
+}
+
+.site-header--pinned::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: calc(50% - 50vw);
+  bottom: calc(-1 * #{$border-strong});
+  left: calc(50% - 50vw);
+  z-index: -1;
   background-color: $bg;
   border-bottom: $border-strong solid $text;
+  pointer-events: none;
 }
 
 .site-header .logo {
   line-height: calc(#{$header-resting-height} - #{$space-32} * 2);
 }
 
-.site-header--inverse.site-header--pinned {
+.site-header--inverse.site-header--pinned::before {
   background-color: $surface-inverse;
   border-bottom-color: $paper;
 }
@@ -167,6 +181,12 @@
   .site-header {
     min-height: calc(#{$space-24} * 2 + (#{$header-resting-height} - #{$space-32} * 2));
     padding: $space-24 var(--page-pad);
+  }
+
+  // Pinned keeps the 24px phone padding; take the 2px border from the bottom so the
+  // logo and burger stay on the same line as in resting and in the menu bar.
+  .site-header--pinned {
+    padding-bottom: calc(#{$space-24} - #{$border-strong});
   }
 
   .nav-toggle {

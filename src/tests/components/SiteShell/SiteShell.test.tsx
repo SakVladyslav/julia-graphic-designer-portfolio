@@ -9,8 +9,8 @@ function renderShell(path: string) {
     <MemoryRouter initialEntries={[path]}>
       <Routes>
         <Route element={<SiteShell />}>
-          <Route index element={<main id="main-content">Home</main>} />
-          <Route path="projects/:projectId" element={<main id="main-content">Case</main>} />
+          <Route index element={<main>Home</main>} />
+          <Route path="projects/:projectId" element={<main>Case</main>} />
         </Route>
       </Routes>
     </MemoryRouter>,
@@ -33,7 +33,6 @@ describe("SiteShell", () => {
     const clip = document.querySelector(".site-shell-clip");
     const page = screen.getByRole("main");
     const footer = screen.getByRole("contentinfo");
-    const skipLink = screen.getByRole("link", { name: "Skip to content" });
 
     expect(clip).toBeInstanceOf(HTMLElement);
     if (!(clip instanceof HTMLElement)) {
@@ -41,15 +40,11 @@ describe("SiteShell", () => {
     }
 
     expect(clip.contains(header)).toBe(false);
-    expect(clip.contains(skipLink)).toBe(false);
     expect(clip.contains(page)).toBe(true);
     expect(clip.contains(footer)).toBe(true);
     expect(page.closest(".container")).not.toBeNull();
     expect(header).not.toHaveClass("site-header--pinned");
     expect(header).not.toHaveClass("site-header--hidden");
-    expect(
-      skipLink.compareDocumentPosition(header) & Node.DOCUMENT_POSITION_FOLLOWING,
-    ).toBeGreaterThan(0);
   });
 
   it("keeps the header outside the clip on a published case", () => {

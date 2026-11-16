@@ -1,0 +1,183 @@
+@use "../../../styles/typography" as *;
+@use "../../../styles/spacing" as *;
+@use "../../../styles/breakpoints" as *;
+@use "./case-scale" as *;
+
+// 1440 frame. 1200, 1024, 768, and 390 bridge up to it.
+// This case has no subtitle, so the shared subtitle line stays out of the title stack.
+.case-page--book-covers {
+  padding-top: $space-24;
+
+  @include case-intro-1440;
+
+  .case-subtitle {
+    display: none;
+  }
+
+  // Heading block to the first photo is 56px. CaseSpace has no 56 step.
+  .case-flow > .case-split + .case-media {
+    margin-top: $space-56;
+  }
+
+  @include case-related-1440;
+}
+
+@media (max-width: #{$bp-desktop - 1px}) {
+  .case-page--book-covers {
+    @include case-intro-1200;
+
+    .case-intro {
+      gap: fluid($space-20, $space-32, $bp-laptop, $bp-desktop);
+    }
+
+    .case-split {
+      gap: fluid($space-24, $space-32, $bp-laptop, $bp-desktop);
+    }
+
+    .case-flow > .case-section--block {
+      margin-top: fluid($space-56, $space-64, $bp-laptop, $bp-desktop);
+    }
+
+    .case-flow > .case-section--section:not(:first-child) {
+      margin-top: fluid($space-136, $space-144, $bp-laptop, $bp-desktop);
+    }
+
+    @include case-related-1200;
+  }
+}
+
+@media (max-width: #{$bp-laptop - 1px}) {
+  .case-page--book-covers {
+    padding-top: fluid($space-16, $space-24, $bp-tablet, $bp-laptop);
+
+    @include case-intro-1024;
+
+    .case-intro {
+      gap: $space-20;
+    }
+
+    .case-split {
+      gap: fluid($space-20, $space-24, $bp-tablet, $bp-laptop);
+    }
+
+    .case-split h2 {
+      font-size: fluid($font-size-32, $font-size-40, $bp-tablet, $bp-laptop);
+    }
+
+    .case-flow > .case-section--section:not(:first-child) {
+      margin-top: fluid($space-128, $space-136, $bp-tablet, $bp-laptop);
+    }
+
+    .case-flow > .case-split + .case-media {
+      margin-top: fluid($space-48, $space-56, $bp-tablet, $bp-laptop);
+    }
+
+    @include case-related-1024;
+  }
+}
+
+@media (max-width: #{$bp-tablet - 1px}) {
+  .case-page--book-covers {
+    @include case-intro-768;
+
+    .case-split {
+      gap: fluid($space-16, $space-20, $bp-stack, $bp-tablet);
+    }
+
+    .case-split h2 {
+      font-size: fluid($font-size-28, $font-size-32, $bp-stack, $bp-tablet);
+    }
+
+    .case-flow > .case-section--section:not(:first-child) {
+      margin-top: fluid($space-96, $space-128, $bp-stack, $bp-tablet);
+    }
+
+    .case-flow > .case-split + .case-media {
+      margin-top: fluid($space-40, $space-48, $bp-stack, $bp-tablet);
+    }
+
+    @include case-related-768;
+  }
+}
+
+// The shared fallback stacks these at 800px. The 768 frame is still two columns.
+@media (max-width: 800px) {
+  .case-page--book-covers {
+    .case-intro,
+    .case-split,
+    .case-related-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+  }
+}
+
+@media (max-width: #{$bp-stack - 1px}) {
+  .case-page--book-covers {
+    padding-top: fluid($space-8, $space-16, 390px, $bp-compact);
+
+    @include case-intro-390;
+
+    .case-split h2 {
+      font-size: fluid($font-size-24, $font-size-28, 390px, $bp-compact);
+    }
+
+    .case-flow > .case-section--block {
+      margin-top: fluid($space-40, $space-56, 390px, $bp-compact);
+    }
+
+    .case-flow > .case-section--section:not(:first-child) {
+      margin-top: fluid($space-80, $space-96, 390px, $bp-compact);
+    }
+
+    // The flat lay sits 72px under the intro. Later sections keep the 80px rhythm.
+    .case-flow > .case-media--books {
+      margin-top: fluid($space-72, $space-96, 390px, $bp-compact);
+    }
+
+    .case-flow > .case-split + .case-media {
+      margin-top: fluid($space-32, $space-40, 390px, $bp-compact);
+    }
+
+    @include case-related-390;
+  }
+}
+
+@media (max-width: $bp-phone) {
+  .case-page--book-covers {
+    .case-related-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    // Phone files share these ratios. Voxel-1 and Voxel-3 have no phone file:
+    // the 390 frame crops the desktop photo (342×428 and square).
+    .case-media--hero img,
+    .case-media--voxel-1 img,
+    .case-media--web-1 img {
+      aspect-ratio: 342 / 428;
+      object-fit: cover;
+    }
+
+    .case-media--books img,
+    .case-media--voxel-2 img,
+    .case-media--voxel-3 img {
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .case-media--engineering-1 img {
+      aspect-ratio: 1044 / 1284;
+      object-fit: cover;
+    }
+
+    .case-media--engineering-2 img,
+    .case-media--engineering-3 img {
+      aspect-ratio: 1044 / 1026;
+      object-fit: cover;
+    }
+
+    .case-media--web-2 img {
+      aspect-ratio: 1710 / 1300;
+      object-fit: cover;
+    }
+  }
+}

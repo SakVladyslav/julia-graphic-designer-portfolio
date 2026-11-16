@@ -2,12 +2,13 @@ import ContactActionItem from "./ContactActionItem";
 import ContactDetailItem from "./ContactDetailItem";
 
 import { contactActions, contactDetails, contactLocation } from "../../constants/contacts";
+import { CONTACTS_ID } from "../../constants/navigation";
 
 import "./Contacts.scss";
 
 export default function Contacts() {
   return (
-    <section className="contacts" id="contacts" aria-labelledby="contacts-heading">
+    <section className="contacts" id={CONTACTS_ID} tabIndex={-1} aria-labelledby="contacts-heading">
       <h2 id="contacts-heading">Contacts</h2>
       <div className="contacts-layout">
         <ul className="contact-list">

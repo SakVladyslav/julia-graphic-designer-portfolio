@@ -14,15 +14,12 @@ describe("App", () => {
     cleanup();
   });
 
-  it("renders skip link and primary landmarks", () => {
+  it("renders the primary landmarks without a skip link", () => {
     render(<App />);
 
-    expect(screen.getByRole("link", { name: /skip to content/i })).toHaveAttribute(
-      "href",
-      "#main-content",
-    );
+    expect(screen.queryByRole("link", { name: /skip to content/i })).not.toBeInTheDocument();
     expect(screen.getByRole("banner")).toBeInTheDocument();
-    expect(screen.getByRole("main")).toHaveAttribute("id", "main-content");
+    expect(screen.getByRole("main")).toBeInTheDocument();
     expect(screen.getByRole("contentinfo")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /julia samchuk/i })).toBeInTheDocument();
     expect(document.title).toBe("Julia Samchuk");
@@ -79,8 +76,11 @@ describe("App", () => {
     expect(screen.getByText("[06]")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Twitchvrotfl" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Book covers" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /book covers/i })).toHaveAttribute(
+      "href",
+      `${import.meta.env.BASE_URL}projects/book-covers`,
+    );
     expect(screen.queryByRole("link", { name: /twitchvrotfl/i })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: /book covers/i })).not.toBeInTheDocument();
 
     const header = screen.getByRole("banner");
     expect(within(header).queryByRole("link", { name: "About" })).not.toBeInTheDocument();
@@ -93,7 +93,7 @@ describe("App", () => {
     window.history.pushState({}, "", `${import.meta.env.BASE_URL}no-such-page`);
     render(<App />);
 
-    expect(screen.getByRole("main")).toHaveAttribute("id", "main-content");
+    expect(screen.getByRole("main")).toBeInTheDocument();
     expect(
       await screen.findByRole("heading", { name: "This page does not exist." }),
     ).toBeInTheDocument();
@@ -102,6 +102,7 @@ describe("App", () => {
       routerBasename() || "/",
     );
     expect(document.title).toBe("Page not found — Julia Samchuk");
+    expect(document.getElementById("contacts")).not.toBeNull();
   });
 
   it("treats an unknown project address as a missing page", async () => {
@@ -121,6 +122,7 @@ describe("App", () => {
     render(<App />);
 
     expect(screen.getByRole("heading", { level: 1, name: "Lovespace" })).toBeInTheDocument();
+    expect(document.getElementById("contacts")).not.toBeNull();
   });
 
   it("uses the inverse shell for a published project", async () => {

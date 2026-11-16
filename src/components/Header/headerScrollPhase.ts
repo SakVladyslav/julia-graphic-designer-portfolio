@@ -20,6 +20,8 @@ export interface HeaderScrollPhaseInput {
   reducedMotion?: boolean;
   kind?: "scroll" | "jump";
   firstCorrection?: boolean;
+  /** Look a first correction takes below the top. A followed link lands hidden. */
+  correctionLook?: "pinned" | "hidden";
 }
 
 export interface HeaderScrollPhaseResult {
@@ -44,10 +46,14 @@ export function headerScrollPhase(input: HeaderScrollPhaseInput): HeaderScrollPh
 
   if (input.firstCorrection === true) {
     return {
-      look: input.scrollY <= 0 ? "resting" : "pinned",
+      look: input.scrollY <= 0 ? "resting" : (input.correctionLook ?? "pinned"),
       travel,
       motion: "none",
     };
+  }
+
+  if (input.kind !== "jump" && input.menuOpen === true) {
+    return { look: input.look, travel: input.travel, motion: "none" };
   }
 
   if (input.scrollY <= 0) {
@@ -66,7 +72,7 @@ export function headerScrollPhase(input: HeaderScrollPhaseInput): HeaderScrollPh
     };
   }
 
-  if (input.kind !== "jump" && (input.menuOpen === true || input.focusInside === true)) {
+  if (input.kind !== "jump" && input.focusInside === true) {
     return { look: input.look, travel: input.travel, motion: "none" };
   }
 

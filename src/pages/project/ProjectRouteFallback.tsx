@@ -2,7 +2,7 @@ import "./ProjectRouteFallback.scss";
 
 export default function ProjectRouteFallback() {
   return (
-    <main className="project-route-fallback" id="main-content" tabIndex={-1}>
+    <main className="project-route-fallback">
       <p>Loading the project.</p>
     </main>
   );
