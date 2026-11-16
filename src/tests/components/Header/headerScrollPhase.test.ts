@@ -392,6 +392,19 @@ describe("headerScrollPhase", () => {
     expect(next).toMatchObject({ look: "pinned", motion: "none" });
   });
 
+  it("lands a followed link below the top hidden with no motion", () => {
+    const next = headerScrollPhase({
+      look: "pinned",
+      travel: { direction: "up", distance: 40 },
+      deltaY: 0,
+      scrollY: belowTop,
+      firstCorrection: true,
+      correctionLook: "hidden",
+    });
+
+    expect(next).toMatchObject({ look: "hidden", motion: "none" });
+  });
+
   it("snaps a first correction at the top to resting with no motion", () => {
     const next = headerScrollPhase({
       look: "resting",

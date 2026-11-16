@@ -44,12 +44,12 @@ export function lockBodyScroll(): () => void {
     const hashNow = window.location.hash;
     if (queuedHash !== null && scrollToHashId(queuedHash)) {
       clearScrollLockMarker();
-      notifyProgrammaticScroll();
+      notifyProgrammaticScroll("hash");
       return;
     }
     if (hashNow !== hashAtLock && scrollToHashId(hashNow)) {
       clearScrollLockMarker();
-      notifyProgrammaticScroll();
+      notifyProgrammaticScroll("hash");
       return;
     }
     window.scrollTo({ top: scrollY, left: 0, behavior: "instant" });

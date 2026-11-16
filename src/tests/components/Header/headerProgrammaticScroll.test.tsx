@@ -111,6 +111,14 @@ function browserDropsScroll() {
   dispatchScroll();
 }
 
+function expectHiddenWithoutMotion() {
+  const header = screen.getByRole("banner");
+  expect(header).toHaveClass("site-header--hidden");
+  expect(header).not.toHaveClass("site-header--pinned");
+  expect(header).not.toHaveClass("site-header--slide");
+  expect(header).not.toHaveClass("site-header--fade");
+}
+
 function expectLook(pinned: boolean) {
   const header = screen.getByRole("banner");
   if (pinned) {
@@ -337,7 +345,7 @@ describe("header programmatic scroll", () => {
     media.restore();
   });
 
-  it("pins after choosing Contacts in the menu on a page that already has the block", async () => {
+  it("hides after choosing Contacts in the menu on a page that already has the block", async () => {
     installRestoringScroll();
     HTMLElement.prototype.scrollIntoView = function scrollIntoView(this: HTMLElement) {
       if (this.id !== "contacts") {
@@ -357,10 +365,17 @@ describe("header programmatic scroll", () => {
 
     expect(burger).toHaveAttribute("aria-expanded", "false");
     expect(window.scrollY).toBe(880);
-    expectLook(true);
+    expectHiddenWithoutMotion();
+
+    scrollToY(870);
+    expectHiddenWithoutMotion();
+
+    window.dispatchEvent(new Event("touchstart"));
+    scrollToY(850);
+    expect(screen.getByRole("banner")).toHaveClass("site-header--pinned");
   });
 
-  it("pins after a hash chosen in the menu, and after a new-tab link", async () => {
+  it("hides after a hash chosen in the menu, and stays visible after a new-tab link", async () => {
     installRestoringScroll();
     setScrollY(640);
     renderHeader();
@@ -379,7 +394,7 @@ describe("header programmatic scroll", () => {
     await closeMenu(user, burger, "burger");
 
     expect(window.scrollY).toBe(880);
-    expectLook(true);
+    expectHiddenWithoutMotion();
 
     await openMenu(user);
     browserDropsScroll();
@@ -395,7 +410,7 @@ describe("header programmatic scroll", () => {
     section.remove();
   });
 
-  it("pins on a route hash jump and rests after a case route, including back", async () => {
+  it("hides on a route hash jump and rests after a case route, including back", async () => {
     installRestoringScroll();
     HTMLElement.prototype.scrollIntoView = function scrollIntoView(this: HTMLElement) {
       if (this.id !== "contacts") {
@@ -410,7 +425,7 @@ describe("header programmatic scroll", () => {
     const user = userEvent.setup();
     await user.click(screen.getByRole("button", { name: "Jump contacts" }));
     expect(window.scrollY).toBe(500);
-    expectLook(true);
+    expectHiddenWithoutMotion();
 
     await user.click(screen.getByRole("button", { name: "Open case" }));
     expect(window.scrollY).toBe(0);
@@ -420,7 +435,7 @@ describe("header programmatic scroll", () => {
     expect(screen.getByRole("banner")).toHaveClass("site-header--hidden");
     await user.click(screen.getByRole("button", { name: "Back" }));
     expect(window.scrollY).toBe(500);
-    expectLook(true);
+    expectHiddenWithoutMotion();
   });
 
   it("rests at the top of a case opened from the menu", async () => {

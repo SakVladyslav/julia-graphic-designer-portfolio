@@ -14,6 +14,6 @@ export function scrollToHashId(hash: string): boolean {
 
   runProgrammaticScroll(() => {
     target.scrollIntoView({ behavior: "instant", block: "start" });
-  });
+  }, "hash");
   return true;
 }

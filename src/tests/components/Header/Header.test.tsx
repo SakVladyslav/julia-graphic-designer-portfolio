@@ -13,6 +13,7 @@ import {
   PROGRAMMATIC_SCROLL_EVENT,
   takeQueuedUnlockHashScroll,
 } from "../../../utils/dom/programmaticScroll";
+import { runProgrammaticScroll } from "../../../utils/dom/programmaticScroll";
 import { scrollToHashId } from "../../../utils/dom/scrollToHashId";
 import { homeHash } from "../../../utils/url/homeHash";
 import { withBaseUrl } from "../../../utils/url/withBaseUrl";
@@ -229,7 +230,7 @@ describe("Header scroll phase", () => {
     window.matchMedia = original;
   });
 
-  it("snaps a programmatic hash jump to pinned instead of hiding", () => {
+  it("lands a followed link hidden, then pins on the first scroll up", () => {
     setScrollY(0);
     render(
       <MemoryRouter>
@@ -253,11 +254,52 @@ describe("Header scroll phase", () => {
       scrollToHashId("#later");
     });
 
-    expect(header).toHaveClass("site-header--pinned");
-    expect(header).not.toHaveClass("site-header--hidden");
+    expect(header).toHaveClass("site-header--hidden");
+    expect(header).not.toHaveClass("site-header--pinned");
     expect(header).not.toHaveClass("site-header--slide");
     expect(header).not.toHaveClass("site-header--fade");
+
+    scrollToY(140);
+    expect(header).toHaveClass("site-header--hidden");
+
+    window.dispatchEvent(new Event("wheel"));
+    scrollToY(120);
+    expect(header).toHaveClass("site-header--pinned");
     target.remove();
+  });
+
+  it("keeps a menu-close restore pinned below the top", () => {
+    setScrollY(0);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
+    scrollToY(20);
+
+    const header = screen.getByRole("banner");
+    expect(header).toHaveClass("site-header--hidden");
+
+    act(() => {
+      runProgrammaticScroll(() => {
+        setScrollY(160);
+      });
+    });
+
+    expect(header).toHaveClass("site-header--pinned");
+  });
+
+  it("opens hidden on a page loaded at a link target", () => {
+    window.history.replaceState({}, "", "#contacts");
+    setScrollY(500);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole("banner")).toHaveClass("site-header--hidden");
+    window.history.replaceState({}, "", window.location.pathname);
   });
 });
 

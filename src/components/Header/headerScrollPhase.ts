@@ -20,6 +20,8 @@ export interface HeaderScrollPhaseInput {
   reducedMotion?: boolean;
   kind?: "scroll" | "jump";
   firstCorrection?: boolean;
+  /** Look a first correction takes below the top. A followed link lands hidden. */
+  correctionLook?: "pinned" | "hidden";
 }
 
 export interface HeaderScrollPhaseResult {
@@ -44,7 +46,7 @@ export function headerScrollPhase(input: HeaderScrollPhaseInput): HeaderScrollPh
 
   if (input.firstCorrection === true) {
     return {
-      look: input.scrollY <= 0 ? "resting" : "pinned",
+      look: input.scrollY <= 0 ? "resting" : (input.correctionLook ?? "pinned"),
       travel,
       motion: "none",
     };

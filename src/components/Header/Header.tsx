@@ -15,6 +15,7 @@ import {
   isProgrammaticScroll,
   isScrollLocked,
 } from "../../utils/dom/programmaticScroll";
+import type { ProgrammaticScrollDetail } from "../../utils/dom/programmaticScroll";
 
 import "./Header.scss";
 
@@ -64,6 +65,9 @@ export default function Header({ tone = "default" }: HeaderProps) {
       travel: { direction: "down", distance: 0 },
     };
     let previousY = window.scrollY;
+    // After a followed link the header stays hidden until the visitor scrolls themselves.
+    // Scroll events without input (a smooth jump still settling, iOS toolbar) must not pin it.
+    let holdHiddenUntilInput = false;
     const mediaQuery =
       typeof window.matchMedia === "function"
         ? window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -86,6 +90,7 @@ export default function Header({ tone = "default" }: HeaderProps) {
       firstCorrection: boolean,
       focusEntered: boolean,
       forceClass = false,
+      correctionLook: "pinned" | "hidden" = "pinned",
     ) => {
       const result = headerScrollPhase({
         look: phase.look,
@@ -98,6 +103,7 @@ export default function Header({ tone = "default" }: HeaderProps) {
         reducedMotion: mediaQuery?.matches === true,
         kind,
         firstCorrection,
+        correctionLook,
       });
       const lookChanged = result.look !== phase.look;
       phase.look = result.look;
@@ -107,14 +113,25 @@ export default function Header({ tone = "default" }: HeaderProps) {
       }
     };
 
-    const resync = () => {
+    const resync = (correctionLook: "pinned" | "hidden") => {
+      holdHiddenUntilInput = correctionLook === "hidden";
       const scrollY = window.scrollY;
       previousY = scrollY;
       phase.travel = { direction: "down", distance: 0 };
-      publish(0, scrollY, "scroll", true, false, true);
+      publish(0, scrollY, "scroll", true, false, true, correctionLook);
     };
 
-    publish(0, window.scrollY, "scroll", true, false);
+    // A page opened on a link target (`/#contacts`) has not been scrolled by the visitor yet.
+    holdHiddenUntilInput = window.location.hash !== "";
+    publish(
+      0,
+      window.scrollY,
+      "scroll",
+      true,
+      false,
+      false,
+      window.location.hash === "" ? "pinned" : "hidden",
+    );
 
     const onScroll = () => {
       if (isScrollLocked() || isProgrammaticScroll()) {
@@ -123,17 +140,20 @@ export default function Header({ tone = "default" }: HeaderProps) {
       const scrollY = window.scrollY;
       const deltaY = scrollY - previousY;
       previousY = scrollY;
-      if (deltaY === 0) {
+      if (deltaY === 0 || holdHiddenUntilInput) {
         return;
       }
       publish(deltaY, scrollY, "scroll", false, false);
     };
 
-    const onProgrammaticScroll = () => {
+    // A followed link (Projects, Contacts) lands hidden: the visitor has not moved yet,
+    // and the header only comes back on a scroll up. A restore (menu close) stays visible.
+    const onProgrammaticScroll = (event: Event) => {
       if (isScrollLocked()) {
         return;
       }
-      resync();
+      const detail = (event as CustomEvent<ProgrammaticScrollDetail | null>).detail;
+      resync(detail?.reason === "hash" ? "hidden" : "pinned");
     };
 
     const onFocusIn = (event: FocusEvent) => {
@@ -148,11 +168,22 @@ export default function Header({ tone = "default" }: HeaderProps) {
 
     // No resize / visualViewport resize resync: on iOS they fire while the address bar
     // shows or hides mid-scroll and would force "pinned". Breakpoint changes go through matchMedia.
+    const onVisitorInput = () => {
+      holdHiddenUntilInput = false;
+    };
+    const inputEvents = ["wheel", "touchstart", "pointerdown", "keydown"] as const;
+
     window.addEventListener("scroll", onScroll);
     window.addEventListener(PROGRAMMATIC_SCROLL_EVENT, onProgrammaticScroll);
     window.addEventListener("focusin", onFocusIn);
+    for (const name of inputEvents) {
+      window.addEventListener(name, onVisitorInput, { capture: true, passive: true });
+    }
 
     return () => {
+      for (const name of inputEvents) {
+        window.removeEventListener(name, onVisitorInput, { capture: true });
+      }
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener(PROGRAMMATIC_SCROLL_EVENT, onProgrammaticScroll);
       window.removeEventListener("focusin", onFocusIn);
