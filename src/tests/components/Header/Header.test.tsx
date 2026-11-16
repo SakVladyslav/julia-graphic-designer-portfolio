@@ -112,7 +112,7 @@ describe("Header scroll phase", () => {
 
     expect(remove.mock.calls.some(([type]) => type === "scroll")).toBe(true);
     expect(remove.mock.calls.some(([type]) => type === PROGRAMMATIC_SCROLL_EVENT)).toBe(true);
-    expect(remove.mock.calls.some(([type]) => type === "resize")).toBe(true);
+    expect(remove.mock.calls.some(([type]) => type === "resize")).toBe(false);
     remove.mockRestore();
   });
 
@@ -155,6 +155,7 @@ describe("Header scroll phase", () => {
 
     const logo = screen.getByRole("link", { name: /smchk/i });
     act(() => {
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
       logo.focus();
     });
     scrollToY(100);
@@ -185,6 +186,7 @@ describe("Header scroll phase", () => {
 
     const logo = screen.getByRole("link", { name: /smchk/i });
     act(() => {
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
       logo.focus();
     });
 
@@ -215,6 +217,7 @@ describe("Header scroll phase", () => {
 
     const logo = screen.getByRole("link", { name: /smchk/i });
     act(() => {
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
       logo.focus();
     });
 

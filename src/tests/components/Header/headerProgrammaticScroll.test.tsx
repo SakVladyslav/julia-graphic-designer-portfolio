@@ -1,4 +1,4 @@
-import { act, cleanup, render, screen, within } from "@testing-library/react";
+import { act, cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -457,7 +457,7 @@ describe("header programmatic scroll", () => {
     media.restore();
   });
 
-  it("pins a hidden header when the viewport resizes without a user scroll", () => {
+  it("ignores viewport resizes so the iOS address bar cannot pin a hidden header", () => {
     setScrollY(0);
     renderHeader();
     scrollToY(40);
@@ -467,6 +467,52 @@ describe("header programmatic scroll", () => {
     act(() => {
       window.dispatchEvent(new Event("resize"));
     });
+
+    expect(screen.getByRole("banner")).toHaveClass("site-header--hidden");
+  });
+
+  // iPhone log: after a touch close, focus returns to the burger (focusVisible: false)
+  // and every later scroll event had active = button.nav-toggle, so the header never hid.
+  it("hides on the next scroll down after a touch close returns focus to the burger", async () => {
+    installRestoringScroll();
+    setScrollY(1245);
+    renderHeader();
+    const user = userEvent.setup();
+    const burger = await openMenu(user);
+    browserDropsScroll();
+    await closeMenu(user, burger, "button");
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog", { name: "Menu" })).not.toBeInTheDocument();
+    });
+    expect(burger).toHaveFocus();
+    expectLook(true);
+
+    scrollToY(1250);
+    scrollToY(1262);
+
+    expect(screen.getByRole("banner")).toHaveClass("site-header--hidden");
+    expect(screen.getByRole("banner")).toHaveClass("site-header--slide");
+  });
+
+  it("keeps the header pinned while keyboard focus is back on the burger", async () => {
+    installRestoringScroll();
+    setScrollY(640);
+    renderHeader();
+    const user = userEvent.setup();
+    const burger = within(screen.getByRole("banner")).getByRole("button", { hidden: true });
+    act(() => {
+      burger.focus();
+    });
+    await user.keyboard("{Enter}");
+    await flushMenuFrames();
+    browserDropsScroll();
+    await user.keyboard("{Escape}");
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog", { name: "Menu" })).not.toBeInTheDocument();
+    });
+    expect(burger).toHaveFocus();
+
+    scrollToY(700);
 
     expectLook(true);
   });

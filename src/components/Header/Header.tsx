@@ -8,6 +8,8 @@ import type { HeaderLook, HeaderMotion, HeaderScrollTravel } from "./headerScrol
 
 import { MOBILE_MENU_MAX_WIDTH_PX } from "../../constants/mobileMenu";
 
+import { currentInputModality } from "../../hooks/useInputModality";
+
 import {
   PROGRAMMATIC_SCROLL_EVENT,
   isProgrammaticScroll,
@@ -72,6 +74,11 @@ export default function Header({ tone = "default" }: HeaderProps) {
       return header !== null && node instanceof Node && header.contains(node);
     };
 
+    // Only keyboard focus holds the header in place. After a touch or mouse close the menu
+    // returns focus to the burger without a visible ring; that must not freeze scroll hiding.
+    const keyboardFocusInside = () =>
+      currentInputModality() === "keyboard" && headerContains(document.activeElement);
+
     const publish = (
       deltaY: number,
       scrollY: number,
@@ -86,7 +93,7 @@ export default function Header({ tone = "default" }: HeaderProps) {
         deltaY,
         scrollY,
         menuOpen: menuOpenRef.current,
-        focusInside: headerContains(document.activeElement),
+        focusInside: keyboardFocusInside(),
         focusEntered,
         reducedMotion: mediaQuery?.matches === true,
         kind,
@@ -130,7 +137,7 @@ export default function Header({ tone = "default" }: HeaderProps) {
     };
 
     const onFocusIn = (event: FocusEvent) => {
-      if (!headerContains(event.target)) {
+      if (currentInputModality() !== "keyboard" || !headerContains(event.target)) {
         return;
       }
       if (headerContains(event.relatedTarget)) {
@@ -139,18 +146,15 @@ export default function Header({ tone = "default" }: HeaderProps) {
       publish(0, window.scrollY, "scroll", false, true);
     };
 
-    const viewport = window.visualViewport;
+    // No resize / visualViewport resize resync: on iOS they fire while the address bar
+    // shows or hides mid-scroll and would force "pinned". Breakpoint changes go through matchMedia.
     window.addEventListener("scroll", onScroll);
     window.addEventListener(PROGRAMMATIC_SCROLL_EVENT, onProgrammaticScroll);
-    window.addEventListener("resize", onProgrammaticScroll);
-    viewport?.addEventListener("resize", onProgrammaticScroll);
     window.addEventListener("focusin", onFocusIn);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener(PROGRAMMATIC_SCROLL_EVENT, onProgrammaticScroll);
-      window.removeEventListener("resize", onProgrammaticScroll);
-      viewport?.removeEventListener("resize", onProgrammaticScroll);
       window.removeEventListener("focusin", onFocusIn);
     };
   }, []);
