@@ -16,6 +16,9 @@ html {
   // Keep the scrollbar gutter while the menu locks scroll (html overflow: hidden),
   // so the page and fixed header do not shift sideways or reflow.
   scrollbar-gutter: stable;
+  // Mobile browsers flash a grey box on tapped links and buttons. The design has no tap fill;
+  // hover and keyboard focus states stay as they are.
+  -webkit-tap-highlight-color: transparent;
 }
 
 // Default is the light page. Inverse pages and the open inverse menu override
