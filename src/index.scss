@@ -13,6 +13,9 @@
 
 html {
   scroll-behavior: smooth;
+  // Keep the scrollbar gutter while the menu locks scroll (html overflow: hidden),
+  // so the page and fixed header do not shift sideways or reflow.
+  scrollbar-gutter: stable;
 }
 
 // Default is the light page. Inverse pages and the open inverse menu override

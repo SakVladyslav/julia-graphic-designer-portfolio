@@ -73,6 +73,12 @@
   padding-left: calc(var(--page-pad) + env(safe-area-inset-left, 0px));
 }
 
+// Same line box as .site-header .logo, so the logo and close icon sit exactly
+// where the header logo and burger are.
+.mobile-menu-bar .logo {
+  line-height: calc(#{$header-resting-height} - #{$space-32} * 2);
+}
+
 .mobile-menu-close {
   display: grid;
   place-items: center;

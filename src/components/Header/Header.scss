@@ -169,6 +169,12 @@
     padding: $space-24 var(--page-pad);
   }
 
+  // Pinned keeps the 24px phone padding; take the 2px border from the bottom so the
+  // logo and burger stay on the same line as in resting and in the menu bar.
+  .site-header--pinned {
+    padding-bottom: calc(#{$space-24} - #{$border-strong});
+  }
+
   .nav-toggle {
     display: grid;
   }
