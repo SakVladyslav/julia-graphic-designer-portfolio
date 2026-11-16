@@ -12,9 +12,9 @@ describe("sitemapXml", () => {
     expect(xml).toContain("<loc>https://julia-s.com/</loc>");
     expect(xml).toContain("<loc>https://julia-s.com/projects/lovespace</loc>");
     expect(xml).toContain("<loc>https://julia-s.com/projects/novyny</loc>");
+    expect(xml).toContain("<loc>https://julia-s.com/projects/book-covers</loc>");
     expect(xml).not.toContain("/uk");
     expect(xml).not.toContain("twitchvrotfl");
-    expect(xml).not.toContain("book-covers");
     expect(xml.match(/<loc>/g)).toHaveLength(publishedProjectIds().length + 1);
   });
 

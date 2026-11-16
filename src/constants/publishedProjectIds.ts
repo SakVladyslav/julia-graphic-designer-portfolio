@@ -4,5 +4,5 @@
  * and an HTML file.
  */
 export function publishedProjectIds(): readonly string[] {
-  return ["lovespace", "molfaria", "amaryllis", "bbg", "olx", "novyny"];
+  return ["lovespace", "molfaria", "amaryllis", "bbg", "olx", "novyny", "book-covers"];
 }

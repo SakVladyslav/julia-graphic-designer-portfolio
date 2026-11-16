@@ -1,5 +1,6 @@
 import { amaryllisCase } from "./cases/amaryllis";
 import { bbgCase } from "./cases/bbg";
+import { bookCoversCase } from "./cases/bookCovers";
 import { lovespaceCase } from "./cases/lovespace";
 import { molfariaCase } from "./cases/molfaria";
 import { novynyCase } from "./cases/novyny";
@@ -14,6 +15,7 @@ const projectCases: readonly ProjectCase[] = [
   bbgCase,
   olxCase,
   novynyCase,
+  bookCoversCase,
 ];
 
 export function listProjectCases(): readonly ProjectCase[] {

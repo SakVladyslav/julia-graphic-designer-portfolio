@@ -79,8 +79,11 @@ describe("App", () => {
     expect(screen.getByText("[06]")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Twitchvrotfl" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Book covers" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /book covers/i })).toHaveAttribute(
+      "href",
+      `${import.meta.env.BASE_URL}projects/book-covers`,
+    );
     expect(screen.queryByRole("link", { name: /twitchvrotfl/i })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: /book covers/i })).not.toBeInTheDocument();
 
     const header = screen.getByRole("banner");
     expect(within(header).queryByRole("link", { name: "About" })).not.toBeInTheDocument();

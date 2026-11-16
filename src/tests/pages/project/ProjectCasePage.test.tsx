@@ -150,8 +150,9 @@ describe("ProjectCasePage", () => {
     expect(screen.getByText("// Tote Bag")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /posters beyond/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /book covers/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /olx business hub/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /novyny live/i })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /novyny live/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /amaryllis/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Twitchvrotfl" })).not.toBeInTheDocument();
   });
@@ -185,10 +186,10 @@ describe("ProjectCasePage", () => {
     ).toContain("BBG-01-phone.webp");
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /amaryllis/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /olx business hub/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /book covers/i })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /olx business hub/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /best budova group/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Twitchvrotfl" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: "Book covers" })).not.toBeInTheDocument();
   });
 
   it("renders the olx business hub case and links the full case on behance", () => {
@@ -254,6 +255,66 @@ describe("ProjectCasePage", () => {
     expect(previousCover).not.toBeInTheDocument();
     expect(screen.getByRole("img", { name: /paper cup/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 1, name: "Molfaria" })).toBeInTheDocument();
+  });
+
+  it("renders the educational book covers case", () => {
+    renderCase("book-covers");
+
+    expect(document.title).toBe("Educational Book Covers — Julia Samchuk");
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Educational Book Covers" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("[Client project]")).toBeInTheDocument();
+    expect(screen.getByText("book cover design")).toBeInTheDocument();
+    expect(screen.getByText("editorial design")).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Discrete-Voxel Parametric Design Cover" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Engineering and Computer Graphics Covers" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Web Design Technologies Cover" }),
+    ).toBeInTheDocument();
+
+    const alts = [
+      "Discrete-voxel parametric design book on a sunlit wooden table",
+      "Flat lay of educational book covers for voxel design, engineering graphics, and web design",
+      "Front cover of the discrete-voxel parametric design book",
+      "Open discrete-voxel parametric design book showing the cover and inside pages",
+      "Stack of discrete-voxel parametric design books showing the back cover",
+      "Navy engineering and computer graphics textbook on a grey pedestal",
+      "Burgundy engineering graphics workbook stacked on a navy textbook",
+      "Open navy engineering and computer graphics textbook",
+      "Black web design technologies book with a laptop on the cover",
+      "Group of black web design technologies books, front and back covers",
+    ];
+    for (const alt of alts) {
+      expect(screen.getByRole("img", { name: alt })).toBeInTheDocument();
+    }
+
+    expect(
+      screen
+        .getByRole("img", { name: /sunlit wooden table/i })
+        .parentElement?.querySelector("source")
+        ?.getAttribute("srcset"),
+    ).toContain("hero-phone.webp");
+    expect(
+      screen
+        .getByRole("img", { name: "Front cover of the discrete-voxel parametric design book" })
+        .closest("picture"),
+    ).toBeNull();
+    expect(
+      screen
+        .getByRole("img", {
+          name: "Stack of discrete-voxel parametric design books showing the back cover",
+        })
+        .closest("picture"),
+    ).toBeNull();
+    expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /olx business hub/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /novyny live/i })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /^book covers/i })).not.toBeInTheDocument();
   });
 
   it("answers an unknown project address with the not-found page", () => {

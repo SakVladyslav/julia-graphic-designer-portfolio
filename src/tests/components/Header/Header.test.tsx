@@ -91,7 +91,11 @@ describe("Header scroll phase", () => {
   it("keeps the look while the menu is open, and after the menu closes, until the next 10 px scroll", async () => {
     const user = userEvent.setup();
     setScrollY(80);
-    render(<Header />);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    );
 
     const toggle = screen.getByRole("button", { hidden: true });
     await user.click(toggle);

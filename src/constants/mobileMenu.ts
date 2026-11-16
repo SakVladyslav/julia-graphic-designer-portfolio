@@ -15,8 +15,8 @@ export interface MobileMenuProjectLink {
 }
 
 /**
- * Figma mobile-menu order. Twitchvrotfl and Book covers stay off this list
- * until they have a published case page — no invented routes.
+ * Figma mobile-menu order. Twitchvrotfl has no case page.
+ * Book covers is published, but this menu does not list it.
  */
 const FIGMA_PROJECT_IDS = ["lovespace", "molfaria-window", "bbg", "amaryllis"] as const;
 
