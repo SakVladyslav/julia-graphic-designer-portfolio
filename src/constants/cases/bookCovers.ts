@@ -111,13 +111,18 @@ export const bookCoversCase: ProjectCase = {
       1368,
       1368,
     ),
-    media(
-      "voxel-3.webp",
-      2400,
-      1500,
-      "Stack of discrete-voxel parametric design books showing the back cover",
-      "stack",
-      "voxel-3",
+    withPhone(
+      media(
+        "voxel-3.webp",
+        2400,
+        1500,
+        "Stack of discrete-voxel parametric design books showing the back cover",
+        "stack",
+        "voxel-3",
+      ),
+      "voxel-3-phone.webp",
+      1368,
+      1368,
     ),
     {
       type: "split",

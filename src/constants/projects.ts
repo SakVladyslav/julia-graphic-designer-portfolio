@@ -129,19 +129,7 @@ export const projects: readonly Project[] = [
     id: "book-covers",
     title: "Book covers",
     tags: ["book cover design", "editorial design"],
-    image: framedImage(
-      "cover",
-      withBaseUrl("projects/book-covers/cover.webp"),
-      1920,
-      1439,
-      percentScale("119.16%"),
-      {
-        width: "119.16%",
-        height: "119.07%",
-        left: "-9.58%",
-        top: "-11.39%",
-      },
-    ),
+    image: framedImage("cover", withBaseUrl("projects/book-covers/cover.webp"), 1232, 924),
   },
   {
     id: "olx",

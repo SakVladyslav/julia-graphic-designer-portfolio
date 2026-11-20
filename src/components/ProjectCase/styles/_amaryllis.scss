@@ -428,7 +428,11 @@ $font-family-amaryllis: "Fixel Display", $font-family;
     display: none;
   }
 
+  // From 759 the note is one column. Flex has to stay on: the 600+ frame
+  // drops it at 599, and gap does nothing on a block box (480–599 had 0 space).
   .case-page--amaryllis .case-note-copy {
+    display: flex;
+    flex-direction: column;
     gap: $space-24;
   }
 
@@ -628,6 +632,11 @@ $font-family-amaryllis: "Fixel Display", $font-family;
 @media (max-width: $bp-mobile) {
   .case-page--amaryllis .case-banner h2 {
     font-size: min(34px, 11cqi);
+  }
+
+  // 390 keeps 24. Bridge down to 20 at 360; below that the 360 rule holds 20.
+  .case-page--amaryllis .case-note-copy {
+    gap: fluid($space-24, $space-20, $bp-mobile, $bp-small);
   }
 
   .case-page--amaryllis .case-flow > .case-media--tote {
