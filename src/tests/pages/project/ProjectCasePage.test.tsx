@@ -309,8 +309,10 @@ describe("ProjectCasePage", () => {
         .getByRole("img", {
           name: "Stack of discrete-voxel parametric design books showing the back cover",
         })
-        .closest("picture"),
-    ).toBeNull();
+        .closest("picture")
+        ?.querySelector("source")
+        ?.getAttribute("srcset"),
+    ).toContain("voxel-3-phone.webp");
     expect(screen.getByRole("heading", { name: "More projects" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /olx business hub/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /novyny live/i })).toBeInTheDocument();

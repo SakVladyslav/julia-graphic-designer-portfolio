@@ -148,8 +148,8 @@
       grid-template-columns: minmax(0, 1fr);
     }
 
-    // Phone files share these ratios. Voxel-1 and Voxel-3 have no phone file:
-    // the 390 frame crops the desktop photo (342×428 and square).
+    // Phone files share these ratios. Voxel-1 has no phone file:
+    // the 390 frame crops the desktop photo (342×428).
     .case-media--hero img,
     .case-media--voxel-1 img,
     .case-media--web-1 img {
