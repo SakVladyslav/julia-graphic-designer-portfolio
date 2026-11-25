@@ -14,11 +14,14 @@ export interface MobileMenuProjectLink {
   href: string;
 }
 
-/**
- * Figma mobile-menu order. Twitchvrotfl has no case page.
- * Book covers is published, but this menu does not list it.
- */
-const FIGMA_PROJECT_IDS = ["lovespace", "molfaria-window", "bbg", "amaryllis"] as const;
+/** Figma mobile-menu order. Twitchvrotfl has no case page. */
+const FIGMA_PROJECT_IDS = [
+  "lovespace",
+  "molfaria-window",
+  "bbg",
+  "amaryllis",
+  "book-covers",
+] as const;
 
 export function mobileMenuProjectLinks(): readonly MobileMenuProjectLink[] {
   const published = new Set(publishedProjectIds());

@@ -556,8 +556,11 @@ describe("Header", () => {
       "href",
       `${base}projects/amaryllis`,
     );
+    expect(within(dialog).getByRole("link", { name: "Book covers" })).toHaveAttribute(
+      "href",
+      `${base}projects/book-covers`,
+    );
     expect(within(dialog).queryByRole("link", { name: "Twitchvrotfl" })).not.toBeInTheDocument();
-    expect(within(dialog).queryByRole("link", { name: "Book covers" })).not.toBeInTheDocument();
     expect(within(dialog).queryByRole("link", { name: /olx/i })).not.toBeInTheDocument();
 
     await user.click(projectsToggle);

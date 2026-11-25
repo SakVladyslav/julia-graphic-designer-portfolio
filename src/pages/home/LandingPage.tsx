@@ -1,6 +1,6 @@
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 
-import { projectGroups, projects } from "../../constants/projects";
+import { projectGroups, visibleProjects } from "../../constants/projects";
 import { SITE_OWNER, SITE_ROLE } from "../../constants/site";
 
 import type { Project } from "../../constants/projects";
@@ -14,11 +14,11 @@ import "./LandingPage.scss";
 
 const groupedProjectIds = new Set(projectGroups.flatMap((group) => group.projectIds));
 
-const selectedProjects = projects.filter((project) => !groupedProjectIds.has(project.id));
+const selectedProjects = visibleProjects.filter((project) => !groupedProjectIds.has(project.id));
 
 function projectsForGroup(projectIds: readonly string[]): Project[] {
   return projectIds.flatMap((id) => {
-    const project = projects.find((item) => item.id === id);
+    const project = visibleProjects.find((item) => item.id === id);
     return project === undefined ? [] : [project];
   });
 }

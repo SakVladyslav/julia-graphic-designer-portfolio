@@ -39,6 +39,8 @@ export interface Project {
   id: string;
   /** Case page this card opens. Defaults to `id`. */
   caseId?: string;
+  /** Left out of the homepage and the next-project order. The entry stays so its images stay referenced. */
+  hidden?: boolean;
   title: string;
   tags: readonly string[];
   image: LovespaceImage | FramedImage;
@@ -119,8 +121,10 @@ export const projects: readonly Project[] = [
     tags: ["poster design", "merch design"],
     image: framedImage("cover", withBaseUrl("projects/amaryllis/amaryllis.webp"), 1600, 1252),
   },
+  // Temporarily hidden. The card returns later; files in public/projects/twitchvrotfl stay.
   {
     id: "twitchvrotfl",
+    hidden: true,
     title: "Twitchvrotfl",
     tags: ["logo design", "brand mark"],
     image: framedImage("cover", withBaseUrl("projects/twitchvrotfl/cover.webp"), 1232, 964),
@@ -168,6 +172,11 @@ export const projects: readonly Project[] = [
     ),
   },
 ];
+
+/** Homepage order, and the order next-project navigation walks. */
+export const visibleProjects: readonly Project[] = projects.filter(
+  (project) => project.hidden !== true,
+);
 
 export const projectGroups: readonly ProjectGroup[] = [
   {

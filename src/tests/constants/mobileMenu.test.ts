@@ -17,12 +17,14 @@ describe("mobileMenu", () => {
       "molfaria-window",
       "bbg",
       "amaryllis",
+      "book-covers",
     ]);
     expect(mobileMenuProjectLinks().map((item) => item.href)).toEqual([
       "/projects/lovespace",
       "/projects/molfaria",
       "/projects/bbg",
       "/projects/amaryllis",
+      "/projects/book-covers",
     ]);
   });
 

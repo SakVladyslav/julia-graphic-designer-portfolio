@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { projects } from "../../../constants/projects";
+import { visibleProjects } from "../../../constants/projects";
 
 import { nextProjects } from "../../../utils/projects/nextProjects";
 
@@ -18,17 +18,17 @@ describe("nextProjects", () => {
   });
 
   it("follows the homepage order", () => {
-    expect(nextProjects(projects, "lovespace", 2).map((project) => project.id)).toEqual([
+    expect(nextProjects(visibleProjects, "lovespace", 2).map((project) => project.id)).toEqual([
       "molfaria-window",
       "bbg",
     ]);
-    expect(nextProjects(projects, "novyny", 2).map((project) => project.id)).toEqual([
+    expect(nextProjects(visibleProjects, "novyny", 2).map((project) => project.id)).toEqual([
       "lovespace",
       "molfaria-window",
     ]);
-    expect(nextProjects(projects, "bbg", 2).map((project) => project.id)).toEqual([
+    expect(nextProjects(visibleProjects, "bbg", 2).map((project) => project.id)).toEqual([
       "amaryllis",
-      "twitchvrotfl",
+      "book-covers",
     ]);
   });
 });
