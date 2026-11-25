@@ -38,7 +38,6 @@ describe("App", () => {
       "Molfaria",
       "Best Budova Group",
       "Amaryllis Poster Series",
-      "Twitchvrotfl",
       "Book covers",
       "OLX Business Hub",
       "Novyny LIVE",
@@ -73,8 +72,8 @@ describe("App", () => {
       "href",
       `${import.meta.env.BASE_URL}projects/novyny`,
     );
-    expect(screen.getByText("[06]")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Twitchvrotfl" })).toBeInTheDocument();
+    expect(screen.getByText("[05]")).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Twitchvrotfl" })).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Book covers" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /book covers/i })).toHaveAttribute(
       "href",

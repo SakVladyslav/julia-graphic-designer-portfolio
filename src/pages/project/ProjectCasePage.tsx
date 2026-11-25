@@ -6,7 +6,7 @@ import NotFoundPage from "../not-found/NotFoundPage";
 
 import { caseCopyById } from "../../constants/caseCopy";
 import { getProjectCase } from "../../constants/projectCases";
-import { projects } from "../../constants/projects";
+import { visibleProjects } from "../../constants/projects";
 import { publishedProjectIds } from "../../constants/publishedProjectIds";
 import { SITE_OWNER } from "../../constants/site";
 
@@ -28,7 +28,7 @@ export default function ProjectCasePage() {
 
   const published = new Set(publishedProjectIds());
   const related = nextProjects(
-    projects.filter((project) => published.has(projectCaseId(project))),
+    visibleProjects.filter((project) => published.has(projectCaseId(project))),
     projectCase.id,
     2,
   );
