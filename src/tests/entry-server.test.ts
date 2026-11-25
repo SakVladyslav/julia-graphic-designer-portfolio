@@ -50,4 +50,22 @@ describe("renderPages", () => {
     expect(missing?.head).toContain('<meta name="robots" content="noindex" />');
     expect(missing?.head).not.toContain('rel="canonical"');
   });
+
+  it("inlines every page, including each project case", () => {
+    const projectPages = pages.filter((page) => page.pathname.startsWith("/projects/"));
+
+    expect(projectPages.length).toBeGreaterThan(0);
+
+    for (const page of pages) {
+      expect(page.html, page.pathname).not.toContain("<!--$?-->");
+      expect(page.html, page.pathname).not.toContain("<!--$!-->");
+      expect(page.html, page.pathname).not.toContain("<template");
+      expect(page.html, page.pathname).not.toContain("<script");
+      expect(page.html, page.pathname).not.toContain("Loading the project.");
+    }
+
+    for (const page of projectPages) {
+      expect(page.html, page.pathname).toContain('class="case-page');
+    }
+  });
 });

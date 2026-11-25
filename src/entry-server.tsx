@@ -1,8 +1,10 @@
 import { StrictMode } from "react";
-import { renderToReadableStream } from "react-dom/server";
+import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 
 import { AppRoutes } from "./App.tsx";
+
+import { loadProjectCasePage } from "./pages/project/loadProjectCasePage.ts";
 
 import { pageCanonicalUrl } from "./utils/seo/pageCanonicalUrl.ts";
 import { prerenderPages } from "./utils/seo/prerenderPages.ts";
@@ -18,16 +20,17 @@ export interface RenderedPage {
   head: string;
 }
 
-async function renderPage(page: PrerenderPage): Promise<RenderedPage> {
-  const stream = await renderToReadableStream(
+function renderPage(page: PrerenderPage): RenderedPage {
+  // A streamed Suspense boundary writes <!--$?--> and an inline script.
+  // The page CSP blocks that script, so hydrateRoot throws React #419.
+  // renderToString inlines the tree and emits no inline script.
+  const html = renderToString(
     <StrictMode>
       <StaticRouter basename={routerBasename()} location={page.pathname}>
         <AppRoutes />
       </StaticRouter>
     </StrictMode>,
   );
-  await stream.allReady;
-  const html = await new Response(stream).text();
 
   return {
     pathname: page.pathname,
@@ -38,6 +41,8 @@ async function renderPage(page: PrerenderPage): Promise<RenderedPage> {
   };
 }
 
-export function renderPages(): Promise<RenderedPage[]> {
-  return Promise.all(prerenderPages().map((page) => renderPage(page)));
+export async function renderPages(): Promise<RenderedPage[]> {
+  // Resolve the lazy case before rendering so renderToString does not suspend.
+  await loadProjectCasePage();
+  return prerenderPages().map((page) => renderPage(page));
 }
